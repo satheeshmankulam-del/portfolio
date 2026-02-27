@@ -383,14 +383,58 @@
     .page-hero { padding: 90px 5% 40px; }
     .writings-main { padding: 2rem 5% 4rem; }
   }
+  /* ── THEME TOGGLE ── */
+  .theme-toggle { display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; border-radius:10px; border:1.5px solid var(--gray-5); background:transparent; cursor:pointer; transition:background 0.2s,border-color 0.2s,transform 0.2s; color:var(--gray-2); flex-shrink:0; }
+  .theme-toggle:hover { background:var(--blue-light); border-color:var(--blue-mid); transform:rotate(12deg); color:var(--blue); }
+  .icon-sun  { display:none; }
+  .icon-moon { display:block; }
+  [data-theme="dark"] .icon-sun  { display:block; }
+  [data-theme="dark"] .icon-moon { display:none; }
+
+  /* ── DARK MODE ── */
+  [data-theme="dark"] { --blue:#4D9BFF; --blue-dark:#2979F5; --blue-light:rgba(77,155,255,0.1); --blue-mid:rgba(77,155,255,0.2); --black:#F0F4FF; --gray-1:#E0E8FF; --gray-2:#A8B8D8; --gray-3:#7A8FAD; --gray-4:#4A5880; --gray-5:rgba(255,255,255,0.08); --gray-6:#0E1424; --white:#0A0F1E; }
+  [data-theme="dark"] body { background:#0A0F1E; color:#F0F4FF; }
+  [data-theme="dark"] nav { background:rgba(10,15,30,0.95); border-bottom-color:rgba(255,255,255,0.07); }
+  [data-theme="dark"] .nav-back { border-color:rgba(255,255,255,0.1); color:#A8B8D8; }
+  [data-theme="dark"] .nav-back:hover { color:#4D9BFF; border-color:#4D9BFF; }
+  [data-theme="dark"] .theme-toggle { border-color:rgba(255,255,255,0.1); color:#A8B8D8; }
+  [data-theme="dark"] .theme-toggle:hover { background:rgba(77,155,255,0.12); border-color:rgba(77,155,255,0.3); color:#4D9BFF; }
+  [data-theme="dark"] .page-hero { background:#0A0F1E; border-bottom-color:rgba(255,255,255,0.07); }
+  [data-theme="dark"] .page-hero h1 { color:#F0F4FF; }
+  [data-theme="dark"] .page-hero p { color:#A8B8D8; }
+  [data-theme="dark"] .filter-bar { background:#0E1424; border-bottom-color:rgba(255,255,255,0.07); }
+  [data-theme="dark"] .filter-btn { background:#131929; border-color:rgba(255,255,255,0.08); color:#A8B8D8; }
+  [data-theme="dark"] .filter-btn:hover,[data-theme="dark"] .filter-btn.active { background:#4D9BFF; color:white; border-color:#4D9BFF; }
+  [data-theme="dark"] .writings-main { background:#0A0F1E; }
+  [data-theme="dark"] .writing-card { background:#131929; border-color:rgba(255,255,255,0.07); }
+  [data-theme="dark"] .writing-card:hover { border-color:rgba(77,155,255,0.3); box-shadow:0 4px 12px rgba(77,155,255,0.12),0 12px 40px rgba(77,155,255,0.08); }
+  [data-theme="dark"] .wc-tag { background:rgba(77,155,255,0.1); color:#4D9BFF; }
+  [data-theme="dark"] .wc-title { color:#E0E8FF; }
+  [data-theme="dark"] .wc-desc { color:#7A8FAD; }
+  [data-theme="dark"] .wc-footer { border-top-color:rgba(255,255,255,0.07); }
+  [data-theme="dark"] .wc-read { color:#A8B8D8; }
+  [data-theme="dark"] .medium-cta { background:#131929; border-color:rgba(255,255,255,0.07); }
+  [data-theme="dark"] .medium-cta h3 { color:#F0F4FF; }
+  [data-theme="dark"] .medium-cta p { color:#7A8FAD; }
+  [data-theme="dark"] footer { background:#060A14; border-top-color:rgba(255,255,255,0.05); }
+  [data-theme="dark"] footer p { color:rgba(255,255,255,0.2); }
+  [data-theme="dark"] .footer-logo { color:rgba(255,255,255,0.3); }
+
 </style>
+<script src="theme.js"></script>
 </head>
 <body>
 
 <!-- NAV -->
 <nav>
   <a href="index.html" class="nav-logo">Satheesh<span>.</span></a>
-  <a href="index.html" class="nav-back">← Back to Portfolio</a>
+  <div style="display:flex;align-items:center;gap:0.75rem;">
+    <a href="index.html" class="nav-back">← Back to Portfolio</a>
+    <button class="theme-toggle" onclick="__toggleTheme()" aria-label="Switch to dark mode">
+      <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    </button>
+  </div>
 </nav>
 
 <!-- PAGE HERO -->

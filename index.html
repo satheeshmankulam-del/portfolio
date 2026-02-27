@@ -1191,6 +1191,23 @@
   }
   .mobile-resume:hover { background: var(--blue-dark); padding-left: 1.2rem !important; }
 
+  .mobile-theme-toggle {
+    width: 100% !important;
+    height: auto !important;
+    border-radius: 12px !important;
+    padding: 1rem 1.2rem !important;
+    justify-content: flex-start !important;
+    gap: 0.75rem !important;
+    border-color: var(--gray-5) !important;
+    margin-top: 0.5rem;
+  }
+  .mobile-theme-label {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--gray-1);
+  }
+  [data-theme="dark"] .mobile-theme-label { color: #E0E8FF; }
+
   /* ── SCROLL REVEAL ── */
   .reveal {
     opacity: 0;
@@ -1410,7 +1427,150 @@
     .skb-btns { flex-direction:column; }
     .skf { flex-direction:column; }
   }
+  /* ══════════════════════════════════
+     DARK MODE
+  ══════════════════════════════════ */
+
+  /* toggle button */
+  .theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px; height: 36px;
+    border-radius: 10px;
+    border: 1.5px solid var(--gray-5);
+    background: transparent;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s, transform 0.2s;
+    flex-shrink: 0;
+    color: var(--gray-2);
+  }
+  .theme-toggle:hover {
+    background: var(--blue-light);
+    border-color: var(--blue-mid);
+    transform: rotate(12deg);
+    color: var(--blue);
+  }
+  .theme-toggle svg { pointer-events: none; transition: transform 0.3s; }
+
+  /* sun icon (shown in dark mode) */
+  .icon-sun  { display: none; }
+  .icon-moon { display: block; }
+
+  [data-theme="dark"] .icon-sun  { display: block; }
+  [data-theme="dark"] .icon-moon { display: none; }
+
+  /* ── DARK VARIABLES ── */
+  [data-theme="dark"] {
+    --blue: #4D9BFF;
+    --blue-dark: #2979F5;
+    --blue-light: rgba(77,155,255,0.1);
+    --blue-mid: rgba(77,155,255,0.2);
+    --black: #F0F4FF;
+    --gray-1: #E0E8FF;
+    --gray-2: #A8B8D8;
+    --gray-3: #7A8FAD;
+    --gray-4: #4A5880;
+    --gray-5: rgba(255,255,255,0.08);
+    --gray-6: #0E1424;
+    --white: #0A0F1E;
+    --radius: 12px;
+    --radius-lg: 20px;
+    --shadow: 0 1px 3px rgba(0,0,0,0.3), 0 4px 16px rgba(0,0,0,0.3);
+    --shadow-hover: 0 4px 12px rgba(77,155,255,0.2), 0 12px 40px rgba(77,155,255,0.12);
+  }
+
+  [data-theme="dark"] body { background: #0A0F1E; color: #F0F4FF; }
+
+  [data-theme="dark"] nav {
+    background: rgba(10,15,30,0.95);
+    border-bottom-color: rgba(255,255,255,0.07);
+  }
+  [data-theme="dark"] nav.scrolled {
+    background: rgba(10,15,30,0.98);
+    box-shadow: 0 2px 20px rgba(0,0,0,0.4);
+  }
+  [data-theme="dark"] .nav-links a { color: #A8B8D8; }
+  [data-theme="dark"] .nav-links a:hover { color: #F0F4FF; }
+  [data-theme="dark"] .nav-resume-btn { background: rgba(255,255,255,0.08) !important; border-color: rgba(255,255,255,0.15) !important; color: #F0F4FF !important; }
+  [data-theme="dark"] .nav-resume-btn:hover { background: rgba(255,255,255,0.14) !important; }
+  [data-theme="dark"] .theme-toggle { border-color: rgba(255,255,255,0.1); color: #A8B8D8; }
+  [data-theme="dark"] .theme-toggle:hover { background: rgba(77,155,255,0.12); border-color: rgba(77,155,255,0.3); color: #4D9BFF; }
+
+  [data-theme="dark"] .mobile-nav { background: rgba(10,15,30,0.99); }
+  [data-theme="dark"] .mobile-link { color: #E0E8FF; border-bottom-color: rgba(255,255,255,0.07); }
+  [data-theme="dark"] .nav-hamburger span { background: #E0E8FF; }
+  [data-theme="dark"] .nav-hamburger:hover { background: rgba(255,255,255,0.07); }
+
+  [data-theme="dark"] .hero { background: #0A0F1E; }
+  [data-theme="dark"] .hero-bg { background: radial-gradient(ellipse 80% 60% at 65% 40%, rgba(77,155,255,0.08) 0%, transparent 60%), radial-gradient(ellipse 40% 40% at 80% 80%, rgba(77,155,255,0.05) 0%, transparent 50%); }
+  [data-theme="dark"] .hero-badge { background: rgba(77,155,255,0.1); border-color: rgba(77,155,255,0.2); }
+  [data-theme="dark"] .hero h1 { color: #F0F4FF; }
+  [data-theme="dark"] .hero-desc { color: #A8B8D8; }
+  [data-theme="dark"] .btn-secondary { border-color: rgba(255,255,255,0.12); color: #E0E8FF; }
+  [data-theme="dark"] .btn-secondary:hover { border-color: #4D9BFF; color: #4D9BFF; }
+  [data-theme="dark"] .hero-stat-num { color: #F0F4FF; }
+  [data-theme="dark"] .hero-stat-label { color: #7A8FAD; }
+  [data-theme="dark"] .hero-stats { border-top-color: rgba(255,255,255,0.07); }
+
+  [data-theme="dark"] #about { background: #0E1424; }
+  [data-theme="dark"] .about-text p { color: #A8B8D8; }
+  [data-theme="dark"] .pill { background: rgba(77,155,255,0.1); color: #4D9BFF; border-color: rgba(77,155,255,0.2); }
+  [data-theme="dark"] .about-card { background: #131929; border-color: rgba(255,255,255,0.07); }
+  [data-theme="dark"] .about-card:first-child { background: rgba(77,155,255,0.08); border-color: rgba(77,155,255,0.15); }
+  [data-theme="dark"] .about-card h4 { color: #E0E8FF; }
+  [data-theme="dark"] .about-card p, [data-theme="dark"] .about-card span { color: #7A8FAD; }
+
+  [data-theme="dark"] #casestudies { background: #0A0F1E; }
+  [data-theme="dark"] .section-title { color: #F0F4FF; }
+  [data-theme="dark"] .section-sub { color: #7A8FAD; }
+  [data-theme="dark"] .section-label { color: #4D9BFF; }
+  [data-theme="dark"] .section-label::before { background: #4D9BFF; }
+
+  [data-theme="dark"] .featured-writing-card { background: #131929; border-color: rgba(255,255,255,0.07); }
+  [data-theme="dark"] .featured-writing-card:hover { border-color: rgba(77,155,255,0.3); }
+  [data-theme="dark"] .fw-tag { background: rgba(77,155,255,0.1); color: #4D9BFF; }
+  [data-theme="dark"] .fw-title { color: #E0E8FF; }
+  [data-theme="dark"] .fw-desc { color: #7A8FAD; }
+  [data-theme="dark"] .fw-footer { border-top-color: rgba(255,255,255,0.07); }
+  [data-theme="dark"] .fw-read { color: #A8B8D8; }
+  [data-theme="dark"] .writings-cta { background: #131929; border-color: rgba(255,255,255,0.07); }
+  [data-theme="dark"] .writings-cta-text { color: #A8B8D8; }
+  [data-theme="dark"] .writings-count { color: #4D9BFF; }
+
+  [data-theme="dark"] #work { background: #0E1424; }
+  [data-theme="dark"] .work-card { background: #131929; border-color: rgba(255,255,255,0.07); }
+  [data-theme="dark"] .work-card:hover { border-color: rgba(77,155,255,0.3); }
+  [data-theme="dark"] .work-info h4 { color: #E0E8FF; }
+  [data-theme="dark"] .work-info span { color: #4A5880; }
+  [data-theme="dark"] .work-card-viewall { background: rgba(77,155,255,0.07); border-color: rgba(77,155,255,0.15); }
+  [data-theme="dark"] .work-card-viewall:hover { background: #4D9BFF; }
+  [data-theme="dark"] .viewall-label { color: #E0E8FF; }
+  [data-theme="dark"] .viewall-count { color: #4D9BFF; }
+
+  [data-theme="dark"] #book { background: #0A0F1E; }
+  [data-theme="dark"] .book-eyebrow { color: #4D9BFF; }
+  [data-theme="dark"] .book-content h3 { color: #F0F4FF; }
+  [data-theme="dark"] .book-content p { color: #A8B8D8; }
+  [data-theme="dark"] .book-highlight { background: rgba(77,155,255,0.08); border-color: rgba(77,155,255,0.2); }
+  [data-theme="dark"] .book-highlight p { color: #C0CFEF; }
+  [data-theme="dark"] .book-btn-dark { background: rgba(255,255,255,0.08); color: #E0E8FF; }
+  [data-theme="dark"] .book-btn-outline { background: transparent; border-color: rgba(255,255,255,0.15); color: #E0E8FF; }
+  [data-theme="dark"] .book-btn-outline:hover { border-color: #4D9BFF; color: #4D9BFF; }
+
+  [data-theme="dark"] footer { background: #060A14; border-top-color: rgba(255,255,255,0.05); }
+  [data-theme="dark"] footer p { color: rgba(255,255,255,0.2); }
+  [data-theme="dark"] .footer-logo { color: rgba(255,255,255,0.3); }
+
+  /* skeleton dark */
+  [data-theme="dark"] #skeleton-wrapper { background: #0A0F1E; }
+  [data-theme="dark"] .sk {
+    background: linear-gradient(90deg,#131929 0%,#131929 30%,#1A2340 50%,#131929 70%,#131929 100%);
+    background-size: 400% 100%;
+  }
+
 </style>
+<script src="theme.js"></script>
 </head>
 <body>
 
@@ -1609,6 +1769,12 @@
       Resume
     </a></li>
     <li><a href="#contact" class="nav-cta">Let's Talk</a></li>
+    <li>
+      <button class="theme-toggle" onclick="__toggleTheme()" aria-label="Switch to dark mode">
+        <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      </button>
+    </li>
   </ul>
 
   <!-- Hamburger button -->
@@ -1629,6 +1795,12 @@
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
       Download Resume
     </a>
+    <!-- Theme toggle in mobile drawer -->
+    <button class="theme-toggle mobile-theme-toggle" onclick="__toggleTheme()" aria-label="Switch to dark mode">
+      <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      <span class="mobile-theme-label">Toggle Dark Mode</span>
+    </button>
   </div>
 </div>
 
