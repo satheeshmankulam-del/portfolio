@@ -1,0 +1,2075 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Satheesh M — UX Designer</title>
+<style>
+  @font-face {
+    font-family: 'SF Pro Display';
+    src: local('-apple-system'), local('SF Pro Display'), local('SFProDisplay-Regular');
+    font-weight: 400;
+  }
+
+  :root {
+    --blue: #0061FE;
+    --blue-dark: #004BC4;
+    --blue-light: #EEF4FF;
+    --blue-mid: #D6E4FF;
+    --black: #0D1117;
+    --gray-1: #1C2333;
+    --gray-2: #4A5568;
+    --gray-3: #718096;
+    --gray-4: #A0AEC0;
+    --gray-5: #E2E8F0;
+    --gray-6: #F7F9FC;
+    --white: #FFFFFF;
+    --radius: 12px;
+    --radius-lg: 20px;
+    --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.06);
+    --shadow-hover: 0 4px 12px rgba(0,97,254,0.12), 0 12px 40px rgba(0,97,254,0.08);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: -apple-system, 'SF Pro Text', 'SF Pro Display', BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+    background: var(--white);
+    color: var(--black);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5%;
+    height: 68px;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--gray-5);
+    transition: box-shadow 0.3s;
+  }
+  nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.08); }
+
+  .nav-logo {
+    font-family: -apple-system, 'SF Pro Display', BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 800;
+    font-size: 1.15rem;
+    color: var(--black);
+    text-decoration: none;
+    letter-spacing: -0.02em;
+  }
+  .nav-logo span { color: var(--blue); }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--gray-2);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--blue); }
+
+  .nav-cta {
+    background: var(--blue);
+    color: var(--white) !important;
+    padding: 0.5rem 1.2rem;
+    border-radius: 8px;
+    transition: background 0.2s, transform 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--blue-dark) !important; color: var(--white) !important; transform: translateY(-1px); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 120px 5% 80px;
+    position: relative;
+    overflow: hidden;
+    gap: 4rem;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 65% 40%, #EEF4FF 0%, transparent 60%),
+                radial-gradient(ellipse 40% 40% at 80% 80%, #D6E4FF 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(var(--gray-5) 1px, transparent 1px),
+                      linear-gradient(90deg, var(--gray-5) 1px, transparent 1px);
+    background-size: 60px 60px;
+    opacity: 0.4;
+    mask-image: radial-gradient(ellipse at 60% 50%, black 20%, transparent 70%);
+  }
+
+  .hero-content {
+    position: relative;
+    max-width: 600px;
+  }
+
+  /* ── HERO ILLUSTRATION ── */
+  .hero-visual {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeUp 0.8s 0.4s ease both;
+  }
+
+  .hero-visual svg {
+    width: 100%;
+    max-width: 520px;
+    height: auto;
+    filter: drop-shadow(0 24px 48px rgba(0,97,254,0.10));
+  }
+
+  /* floating card animations */
+  @keyframes floatA {
+    0%, 100% { transform: translateY(0px); }
+    50%       { transform: translateY(-10px); }
+  }
+  @keyframes floatB {
+    0%, 100% { transform: translateY(0px); }
+    50%       { transform: translateY(-7px); }
+  }
+  @keyframes floatC {
+    0%, 100% { transform: translateY(0px); }
+    50%       { transform: translateY(-13px); }
+  }
+  @keyframes drawLine {
+    from { stroke-dashoffset: 200; }
+    to   { stroke-dashoffset: 0; }
+  }
+  @keyframes popIn {
+    from { opacity: 0; transform: scale(0.7); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+  @keyframes cursorBlink {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.3; }
+  }
+
+  .svg-float-a { animation: floatA 4s ease-in-out infinite; }
+  .svg-float-b { animation: floatB 5.5s ease-in-out infinite 0.5s; }
+  .svg-float-c { animation: floatC 4.8s ease-in-out infinite 1s; }
+  .svg-cursor  { animation: floatB 3s ease-in-out infinite 0.2s; }
+
+  .svg-line-1 {
+    stroke-dasharray: 200;
+    stroke-dashoffset: 0;
+    animation: drawLine 2s ease-out 1s both;
+  }
+  .svg-pop-1 { animation: popIn 0.5s cubic-bezier(0.34,1.56,0.64,1) 1.5s both; }
+  .svg-pop-2 { animation: popIn 0.5s cubic-bezier(0.34,1.56,0.64,1) 1.8s both; }
+  .svg-pop-3 { animation: popIn 0.5s cubic-bezier(0.34,1.56,0.64,1) 2.1s both; }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--blue-light);
+    color: var(--blue);
+    font-size: 0.82rem;
+    font-weight: 600;
+    padding: 0.35rem 0.9rem;
+    border-radius: 100px;
+    margin-bottom: 1.8rem;
+    border: 1px solid var(--blue-mid);
+    animation: fadeUp 0.6s ease both;
+  }
+  .hero-badge::before {
+    content: '';
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: #22C55E;
+    box-shadow: 0 0 0 3px rgba(34,197,94,0.2);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 3px rgba(34,197,94,0.2); }
+    50% { box-shadow: 0 0 0 6px rgba(34,197,94,0.1); }
+  }
+
+  .hero h1 {
+    font-family: -apple-system, 'SF Pro Display', BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+    font-size: clamp(2.6rem, 5.5vw, 4.2rem);
+    font-weight: 800;
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    color: var(--black);
+    margin-bottom: 1.4rem;
+    animation: fadeUp 0.6s 0.1s ease both;
+  }
+  .hero h1 em {
+    font-style: normal;
+    color: var(--blue);
+  }
+
+  .hero-desc {
+    font-size: 1.15rem;
+    color: var(--gray-2);
+    font-weight: 400;
+    max-width: 540px;
+    line-height: 1.7;
+    margin-bottom: 2.4rem;
+    animation: fadeUp 0.6s 0.2s ease both;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--blue);
+    color: white;
+    font-family: -apple-system, 'SF Pro Text', BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 0.75rem 1.6rem;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+  }
+  .btn-primary:hover {
+    background: var(--blue-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,97,254,0.3);
+  }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: transparent;
+    color: var(--gray-1);
+    font-family: -apple-system, 'SF Pro Text', BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 0.75rem 1.6rem;
+    border-radius: 10px;
+    text-decoration: none;
+    border: 1.5px solid var(--gray-5);
+    transition: border-color 0.2s, color 0.2s, transform 0.2s;
+  }
+  .btn-secondary:hover {
+    border-color: var(--blue);
+    color: var(--blue);
+    transform: translateY(-2px);
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 2.5rem;
+    margin-top: 3.5rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--gray-5);
+    animation: fadeUp 0.6s 0.4s ease both;
+  }
+  .hero-stat-num {
+    font-family: -apple-system, 'SF Pro Display', BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--black);
+    line-height: 1;
+    margin-bottom: 0.2rem;
+  }
+  .hero-stat-num span { color: var(--blue); }
+  .hero-stat-label {
+    font-size: 0.82rem;
+    color: var(--gray-3);
+    font-weight: 500;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── SECTIONS ── */
+  section { padding: 100px 5%; }
+
+  .section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 1rem;
+  }
+  .section-label::before {
+    content: '';
+    width: 20px; height: 2px;
+    background: var(--blue);
+    border-radius: 2px;
+  }
+
+  .section-title {
+    font-family: -apple-system, 'SF Pro Display', BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    color: var(--black);
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+
+  .section-sub {
+    font-size: 1.05rem;
+    color: var(--gray-2);
+    max-width: 520px;
+    line-height: 1.7;
+  }
+
+  /* ── ABOUT ── */
+  #about { background: var(--gray-6); }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+    margin-top: 3rem;
+  }
+
+  .about-text p {
+    font-size: 1.05rem;
+    color: var(--gray-2);
+    line-height: 1.8;
+    margin-bottom: 1.2rem;
+  }
+  .about-text p strong { color: var(--black); font-weight: 600; }
+
+  .expertise-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: 1.8rem;
+  }
+  .pill {
+    background: white;
+    border: 1.5px solid var(--gray-5);
+    color: var(--gray-1);
+    font-size: 0.84rem;
+    font-weight: 500;
+    padding: 0.4rem 0.9rem;
+    border-radius: 100px;
+    transition: border-color 0.2s, color 0.2s, background 0.2s;
+  }
+  .pill:hover {
+    border-color: var(--blue);
+    color: var(--blue);
+    background: var(--blue-light);
+  }
+
+  .about-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .about-card {
+    background: white;
+    border: 1px solid var(--gray-5);
+    border-radius: var(--radius);
+    padding: 1.4rem;
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .about-card:hover {
+    box-shadow: var(--shadow);
+    transform: translateY(-3px);
+  }
+  .about-card:first-child {
+    grid-column: 1 / -1;
+    background: var(--blue);
+    color: white;
+    border-color: transparent;
+  }
+
+  .about-card-icon {
+    font-size: 1.5rem;
+    margin-bottom: 0.8rem;
+  }
+  .about-card h4 {
+    font-family: -apple-system, 'SF Pro Display', BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+  }
+  .about-card p {
+    font-size: 0.84rem;
+    opacity: 0.75;
+    line-height: 1.5;
+  }
+  .about-card:first-child h4,
+  .about-card:first-child p { color: white; }
+  .about-card:first-child .about-card-icon { filter: brightness(0) invert(1); }
+
+  /* ── FEATURED WRITINGS (homepage) ── */
+  #casestudies { background: white; }
+
+  .featured-writings-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .featured-writing-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+    background: var(--gray-6);
+    border: 1.5px solid var(--gray-5);
+    border-radius: var(--radius-lg);
+    padding: 2rem 2rem 1.6rem;
+    text-decoration: none;
+    color: inherit;
+    transition: box-shadow 0.25s, transform 0.25s, border-color 0.25s, background 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+  .featured-writing-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radius-lg);
+    background: linear-gradient(135deg, rgba(0,97,254,0.04) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+  }
+  .featured-writing-card:hover {
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-5px);
+    border-color: var(--blue-mid);
+    background: white;
+  }
+  .featured-writing-card:hover::after { opacity: 1; }
+
+  .fw-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .fw-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.76rem;
+    font-weight: 600;
+    color: var(--blue);
+    background: var(--blue-light);
+    border: 1px solid var(--blue-mid);
+    padding: 0.28rem 0.75rem;
+    border-radius: 100px;
+  }
+
+  .fw-tag {
+    font-size: 0.73rem;
+    font-weight: 600;
+    color: var(--gray-4);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+  }
+
+  .fw-title {
+    font-family: -apple-system, 'SF Pro Display', BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+    font-size: 1.18rem;
+    font-weight: 700;
+    line-height: 1.35;
+    color: var(--black);
+    letter-spacing: -0.01em;
+  }
+
+  .fw-desc {
+    font-size: 0.9rem;
+    color: var(--gray-2);
+    line-height: 1.7;
+    flex: 1;
+  }
+
+  .fw-footer {
+    margin-top: auto;
+    padding-top: 1rem;
+    border-top: 1px solid var(--gray-5);
+  }
+
+  .fw-read {
+    font-size: 0.86rem;
+    font-weight: 600;
+    color: var(--blue);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+  .fw-arrow {
+    transition: transform 0.2s;
+    display: inline-block;
+  }
+  .featured-writing-card:hover .fw-arrow { transform: translateX(4px); }
+
+  /* ── WRITINGS CTA BAR ── */
+  .writings-cta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--blue-light);
+    border: 1.5px solid var(--blue-mid);
+    border-radius: var(--radius-lg);
+    padding: 1.4rem 2rem;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .writings-cta-text {
+    font-size: 0.95rem;
+    color: var(--gray-2);
+  }
+  .writings-count {
+    font-weight: 700;
+    color: var(--blue);
+  }
+
+  /* ── CASE CARDS (kept for writings page) ── */
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 3rem;
+    gap: 2rem;
+  }
+
+  .view-all {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--blue);
+    text-decoration: none;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    transition: gap 0.2s;
+  }
+  .view-all:hover { gap: 0.6rem; }
+
+  .cases-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.2rem;
+  }
+
+  .case-card {
+    background: var(--gray-6);
+    border: 1px solid var(--gray-5);
+    border-radius: var(--radius-lg);
+    padding: 1.8rem;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    transition: box-shadow 0.25s, transform 0.25s, border-color 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+  .case-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--blue);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+  .case-card:hover {
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-4px);
+    border-color: var(--blue-mid);
+  }
+  .case-card:hover::before { transform: scaleX(1); }
+
+  .case-card.featured {
+    grid-column: 1 / -1;
+    flex-direction: row;
+    align-items: center;
+    background: var(--blue-light);
+    border-color: var(--blue-mid);
+    gap: 2rem;
+  }
+  .case-card.featured::before { transform: scaleX(1); }
+
+  .case-app-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--blue);
+    background: white;
+    padding: 0.25rem 0.65rem;
+    border-radius: 6px;
+    border: 1px solid var(--blue-mid);
+    width: fit-content;
+  }
+
+  .case-card h3 {
+    font-family: -apple-system, 'SF Pro Display', BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    line-height: 1.35;
+    color: var(--black);
+    flex: 1;
+  }
+
+  .case-card.featured h3 {
+    font-size: 1.35rem;
+  }
+
+  .case-card p {
+    font-size: 0.85rem;
+    color: var(--gray-3);
+    line-height: 1.6;
+  }
+
+  .case-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.78rem;
+    color: var(--gray-4);
+    font-weight: 500;
+    margin-top: auto;
+  }
+
+  .case-arrow {
+    color: var(--blue);
+    font-size: 1rem;
+    transition: transform 0.2s;
+  }
+  .case-card:hover .case-arrow { transform: translateX(4px); }
+
+  .case-featured-content { flex: 1; }
+
+  /* ── DESIGN WORK (homepage) ── */
+  #work { background: var(--gray-6); }
+
+  .work-grid-home {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.2rem;
+    margin-top: 3rem;
+  }
+
+  .work-card {
+    background: white;
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1.5px solid var(--gray-5);
+    text-decoration: none;
+    color: inherit;
+    transition: box-shadow 0.25s, transform 0.25s, border-color 0.25s;
+    display: flex;
+    flex-direction: column;
+  }
+  .work-card:hover {
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-4px);
+    border-color: var(--blue-mid);
+  }
+
+  .work-thumb {
+    aspect-ratio: 4/3;
+    background: var(--blue-light);
+    overflow: hidden;
+    position: relative;
+    flex-shrink: 0;
+  }
+  .work-thumb img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+  .work-card:hover .work-thumb img { transform: scale(1.05); }
+
+  .work-source-badge {
+    position: absolute;
+    top: 10px; left: 10px;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(8px);
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--gray-1);
+    padding: 0.22rem 0.65rem;
+    border-radius: 100px;
+    border: 1px solid var(--gray-5);
+    z-index: 1;
+  }
+
+  .work-info {
+    padding: 1rem 1.1rem;
+  }
+  .work-info h4 {
+    font-family: -apple-system, 'SF Pro Display', BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: var(--black);
+    margin-bottom: 0.2rem;
+    line-height: 1.3;
+  }
+  .work-info span {
+    font-size: 0.78rem;
+    color: var(--gray-4);
+  }
+
+  /* ── VIEW ALL TILE ── */
+  .work-card-viewall {
+    background: var(--blue-light);
+    border-color: var(--blue-mid);
+    cursor: pointer;
+  }
+  .work-card-viewall:hover {
+    background: var(--blue);
+    border-color: var(--blue);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 32px rgba(0,97,254,0.25);
+  }
+
+  .viewall-inner {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .viewall-thumbs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    aspect-ratio: 4/3;
+    overflow: hidden;
+    opacity: 0.45;
+    transition: opacity 0.25s;
+    flex-shrink: 0;
+  }
+  .work-card-viewall:hover .viewall-thumbs { opacity: 0.18; }
+
+  .viewall-thumbs img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    filter: grayscale(20%);
+  }
+
+  .viewall-text {
+    padding: 1rem 1.1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    flex: 1;
+    justify-content: center;
+  }
+
+  .viewall-count {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--blue);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: color 0.25s;
+  }
+  .work-card-viewall:hover .viewall-count { color: rgba(255,255,255,0.65); }
+
+  .viewall-label {
+    font-family: -apple-system, 'SF Pro Display', BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--black);
+    line-height: 1.3;
+    transition: color 0.25s;
+  }
+  .work-card-viewall:hover .viewall-label { color: white; }
+
+  .viewall-arrow {
+    font-size: 1.1rem;
+    color: var(--blue);
+    font-weight: 700;
+    margin-top: 0.25rem;
+    transition: transform 0.2s, color 0.25s;
+    display: inline-block;
+    width: fit-content;
+  }
+  .work-card-viewall:hover .viewall-arrow {
+    transform: translateX(5px);
+    color: white;
+  }
+
+
+  /* ── BOOK ── */
+  #book {
+    background: white;
+  }
+
+  .book-inner {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 5rem;
+    align-items: center;
+    margin-top: 3rem;
+  }
+
+  .book-cover {
+    width: 200px;
+    flex-shrink: 0;
+    position: relative;
+  }
+  .book-cover-art {
+    width: 200px;
+    height: 270px;
+    background: linear-gradient(135deg, #0061FE 0%, #004BC4 50%, #0D1117 100%);
+    border-radius: 8px 16px 16px 8px;
+    box-shadow: -6px 8px 0 0 rgba(0,0,0,0.15), 6px 12px 40px rgba(0,97,254,0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+  .book-cover-art::before {
+    content: '';
+    position: absolute;
+    top: -40%; right: -20%;
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.07);
+  }
+  .book-cover-art::after {
+    content: '';
+    position: absolute;
+    bottom: -30%; left: -20%;
+    width: 150px; height: 150px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.05);
+  }
+  .book-cover-title {
+    font-family: -apple-system, 'SF Pro Display', BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+    font-size: 0.95rem;
+    font-weight: 800;
+    line-height: 1.25;
+    position: relative;
+    z-index: 1;
+  }
+  .book-cover-author {
+    font-size: 0.72rem;
+    margin-top: 1.2rem;
+    opacity: 0.7;
+    position: relative;
+    z-index: 1;
+  }
+
+  .book-eyebrow {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 0.75rem;
+  }
+
+  .book-highlight {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    background: var(--blue-light);
+    border: 1.5px solid var(--blue-mid);
+    border-left: 4px solid var(--blue);
+    border-radius: 10px;
+    padding: 1rem 1.2rem;
+    margin-bottom: 1.4rem;
+  }
+  .book-highlight-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 1px; }
+  .book-highlight p {
+    font-size: 0.95rem;
+    color: var(--gray-1);
+    line-height: 1.65;
+    margin: 0;
+  }
+  .book-highlight p strong { color: var(--blue); font-weight: 700; }
+
+  .book-content h3 {
+    font-family: -apple-system, 'SF Pro Display', BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+    font-size: 1.7rem;
+    font-weight: 800;
+    color: var(--black);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+  }
+  .book-content p {
+    color: var(--gray-2);
+    font-size: 1rem;
+    line-height: 1.75;
+    margin-bottom: 1.8rem;
+    max-width: 500px;
+  }
+
+  .book-links {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .book-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.65rem 1.2rem;
+    border-radius: 10px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .book-btn:hover { transform: translateY(-2px); }
+
+  .book-btn-dark {
+    background: var(--black);
+    color: white;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  }
+  .book-btn-dark:hover { box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
+
+  .book-btn-outline {
+    background: white;
+    color: var(--black);
+    border: 1.5px solid var(--gray-5);
+  }
+  .book-btn-outline:hover { border-color: var(--blue); color: var(--blue); }
+
+  /* ── CONTACT ── */
+  #contact {
+    background: var(--black);
+    color: white;
+    text-align: center;
+  }
+
+  #contact .section-label { color: rgba(255,255,255,0.5); }
+  #contact .section-label::before { background: rgba(255,255,255,0.3); }
+  #contact .section-title { color: white; }
+
+  .contact-grid {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .contact-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.4rem;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    border: 1.5px solid rgba(255,255,255,0.15);
+    color: white;
+    transition: border-color 0.2s, background 0.2s, transform 0.2s;
+  }
+  .contact-link:hover {
+    border-color: var(--blue);
+    background: var(--blue);
+    transform: translateY(-2px);
+  }
+  .contact-link.primary {
+    background: var(--blue);
+    border-color: transparent;
+  }
+  .contact-link.primary:hover { background: var(--blue-dark); }
+
+  .contact-divider {
+    width: 1px; height: 20px;
+    background: rgba(255,255,255,0.1);
+    margin: auto 0;
+  }
+
+  .contact-email-block {
+    margin-top: 2rem;
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.4);
+  }
+  .contact-email-block a {
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+  }
+  .contact-email-block a:hover { color: white; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #080C14;
+    padding: 2rem 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid rgba(255,255,255,0.05);
+  }
+  footer p {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.25);
+  }
+  /* ── CONTACT RESUME LINK ── */
+  .contact-resume {
+    border-color: rgba(255,255,255,0.3) !important;
+  }
+  .contact-resume:hover {
+    background: white !important;
+    color: var(--black) !important;
+    border-color: white !important;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #080C14;
+    padding: 2rem 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  footer p {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.25);
+  }
+  .footer-logo {
+    font-family: -apple-system, 'SF Pro Display', BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 800;
+    font-size: 1rem;
+    color: rgba(255,255,255,0.3);
+    text-decoration: none;
+  }
+  .footer-logo span { color: var(--blue); }
+
+  /* ── HAMBURGER ── */
+  .nav-hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 8px;
+    transition: background 0.2s;
+  }
+  .nav-hamburger:hover { background: var(--gray-5); }
+  .nav-hamburger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--black);
+    border-radius: 2px;
+    transition: transform 0.3s, opacity 0.3s;
+  }
+  .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* ── MOBILE DRAWER ── */
+  .mobile-nav {
+    display: none;
+    position: fixed;
+    top: 68px; left: 0; right: 0; bottom: 0;
+    background: rgba(255,255,255,0.98);
+    backdrop-filter: blur(20px);
+    z-index: 99;
+    overflow-y: auto;
+    transform: translateX(100%);
+    transition: transform 0.32s cubic-bezier(0.4,0,0.2,1);
+  }
+  .mobile-nav.open { transform: translateX(0); }
+
+  .mobile-nav-inner {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 6%;
+    gap: 0.3rem;
+  }
+
+  .mobile-link {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--black);
+    text-decoration: none;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--gray-5);
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    transition: color 0.2s, padding-left 0.2s;
+    letter-spacing: -0.01em;
+  }
+  .mobile-link:last-child { border-bottom: none; }
+  .mobile-link:hover { color: var(--blue); padding-left: 4px; }
+
+  .mobile-resume {
+    margin-top: 1rem;
+    background: var(--blue);
+    color: white !important;
+    padding: 1rem 1.2rem;
+    border-radius: 12px;
+    border: none !important;
+    font-size: 1rem !important;
+    justify-content: center;
+  }
+  .mobile-resume:hover { background: var(--blue-dark); padding-left: 1.2rem !important; }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+
+  /* ══════════════════════════════
+     RESPONSIVE
+  ══════════════════════════════ */
+
+  /* ── TABLET (≤ 1024px) ── */
+  @media (max-width: 1024px) {
+    .cases-grid { grid-template-columns: repeat(2, 1fr); }
+    .work-grid-home { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  /* ── TABLET / SMALL DESKTOP (≤ 900px) ── */
+  @media (max-width: 900px) {
+    /* Nav */
+    .nav-links { display: none; }
+    .nav-hamburger { display: flex; }
+    .mobile-nav { display: block; }
+
+    /* Hero */
+    .hero {
+      grid-template-columns: 1fr;
+      padding: 100px 5% 60px;
+      gap: 3rem;
+    }
+    .hero h1 { font-size: clamp(2.2rem, 6vw, 3.2rem); }
+    .hero-stats { gap: 1.5rem; flex-wrap: wrap; }
+    .hero-visual { justify-content: center; }
+    .hero-visual svg { max-width: 380px; }
+
+    /* About */
+    .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .about-cards { grid-template-columns: 1fr 1fr; }
+
+    /* Featured writings */
+    .featured-writings-grid { grid-template-columns: 1fr; }
+    .writings-cta { flex-direction: column; align-items: flex-start; gap: 1rem; }
+
+    /* Work */
+    .work-grid-home { grid-template-columns: repeat(2, 1fr); }
+
+    /* Book */
+    .book-inner { grid-template-columns: 1fr; gap: 2.5rem; text-align: center; }
+    .book-cover { width: 100%; display: flex; justify-content: center; }
+    .book-highlight { text-align: left; }
+    .book-links { justify-content: center; }
+    .book-content p { margin-left: auto; margin-right: auto; }
+
+    /* Section headers */
+    .section-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  }
+
+  /* ── MOBILE (≤ 640px) ── */
+  @media (max-width: 640px) {
+    section { padding: 60px 5%; }
+    nav { padding: 0 5%; }
+
+    /* Hero */
+    .hero { padding: 90px 5% 50px; min-height: auto; gap: 2rem; }
+    .hero h1 { font-size: 2rem; }
+    .hero-desc { font-size: 1rem; }
+    .hero-actions { flex-direction: column; }
+    .hero-actions a { text-align: center; justify-content: center; }
+    .hero-stats { gap: 1.2rem; }
+    .hero-stat-num { font-size: 1.5rem; }
+    .hero-visual svg { max-width: 300px; }
+
+    /* About */
+    .about-cards { grid-template-columns: 1fr; }
+    .about-card:first-child { grid-column: 1; }
+    .expertise-pills { gap: 0.4rem; }
+
+    /* Writings cta */
+    .writings-cta { padding: 1.2rem 1.4rem; }
+    .writings-cta .btn-primary { width: 100%; justify-content: center; }
+
+    /* Work grid */
+    .work-grid-home { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
+    .work-info h4 { font-size: 0.82rem; }
+
+    /* Book */
+    .book-cover-art { width: 170px; height: 230px; }
+    .book-links { flex-direction: column; }
+    .book-btn { justify-content: center; text-align: center; }
+
+    /* Contact */
+    .contact-grid { gap: 0.75rem; }
+    .contact-link { padding: 0.65rem 1rem; font-size: 0.84rem; }
+
+    /* Footer */
+    footer { flex-direction: column; text-align: center; gap: 0.5rem; }
+  }
+
+  /* ── SMALL MOBILE (≤ 380px) ── */
+  @media (max-width: 380px) {
+    .work-grid-home { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 1.75rem; }
+    .section-title { font-size: 1.6rem; }
+  }
+
+  /* ════════════════════════════════════
+     SKELETON LOADER
+  ════════════════════════════════════ */
+  .sk {
+    background: linear-gradient(90deg,#EEF1F7 0%,#EEF1F7 30%,#F8FAFF 50%,#EEF1F7 70%,#EEF1F7 100%);
+    background-size: 400% 100%;
+    border-radius: 8px;
+    animation: skshimmer 1.6s ease-in-out infinite;
+  }
+  @keyframes skshimmer {
+    0%   { background-position: 100% 0; }
+    100% { background-position: -100% 0; }
+  }
+  .sk-dark {
+    background: linear-gradient(90deg,rgba(255,255,255,0.05) 0%,rgba(255,255,255,0.05) 30%,rgba(255,255,255,0.09) 50%,rgba(255,255,255,0.05) 70%,rgba(255,255,255,0.05) 100%);
+    background-size: 400% 100%;
+    border-radius: 8px;
+    animation: skshimmerdark 1.6s ease-in-out infinite;
+  }
+  @keyframes skshimmerdark {
+    0%   { background-position: 100% 0; }
+    100% { background-position: -100% 0; }
+  }
+  .sk-circle { border-radius: 50%; }
+  .sk-pill   { border-radius: 100px; }
+  .sk-d1 { animation-delay: 0.08s; }
+  .sk-d2 { animation-delay: 0.16s; }
+  .sk-d3 { animation-delay: 0.24s; }
+  .sk-d4 { animation-delay: 0.32s; }
+  .sk-d5 { animation-delay: 0.40s; }
+  .sk-d6 { animation-delay: 0.48s; }
+
+  #skeleton-wrapper {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: white;
+    overflow-y: auto;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+  }
+  #skeleton-wrapper.fade-out {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  /* NAV sk */
+  .skn { height:68px; background:rgba(255,255,255,0.95); border-bottom:1px solid var(--gray-5); display:flex; align-items:center; justify-content:space-between; padding:0 5%; }
+  .skn-links { display:flex; align-items:center; gap:1.8rem; }
+
+  /* HERO sk */
+  .skh { min-height:100vh; display:grid; grid-template-columns:1fr 1fr; align-items:center; padding:120px 5% 80px; gap:4rem; position:relative; overflow:hidden; }
+  .skh::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 60% 80% at 70% 50%,var(--blue-light) 0%,transparent 60%); opacity:0.5; pointer-events:none; }
+  .skh-stats { display:flex; gap:2.5rem; padding-top:2.5rem; border-top:1px solid var(--gray-5); }
+  .skh-stat  { display:flex; flex-direction:column; gap:0.4rem; }
+  .skh-visual { display:flex; align-items:center; justify-content:center; position:relative; }
+
+  /* section sk */
+  .sks { padding:80px 5%; }
+  .sks.alt { background:var(--gray-6); }
+  .sks-hdr { margin-bottom:3rem; }
+
+  /* about sk */
+  .ska-grid { display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:start; }
+  .ska-lines { display:flex; flex-direction:column; gap:0.55rem; margin-bottom:1.8rem; }
+  .ska-pills { display:flex; flex-wrap:wrap; gap:0.6rem; }
+  .ska-cards { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+
+  /* writings sk */
+  .skw-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; }
+  .skw-card { background:var(--gray-6); border:1.5px solid var(--gray-5); border-radius:20px; padding:2rem; display:flex; flex-direction:column; gap:1rem; }
+  .skw-desc { display:flex; flex-direction:column; gap:0.45rem; }
+  .skw-foot { padding-top:1rem; border-top:1px solid var(--gray-5); display:flex; justify-content:space-between; }
+
+  /* work sk */
+  .skwk-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.2rem; }
+  .skwk-card { background:white; border:1.5px solid var(--gray-5); border-radius:12px; overflow:hidden; }
+  .skwk-info { padding:1rem 1.1rem; display:flex; flex-direction:column; gap:0.45rem; }
+
+  /* book sk */
+  .skb-inner { display:grid; grid-template-columns:auto 1fr; gap:5rem; align-items:center; }
+  .skb-content { display:flex; flex-direction:column; gap:0.8rem; }
+  .skb-btns { display:flex; gap:1rem; margin-top:0.4rem; }
+
+  /* contact sk */
+  .skc { background:var(--black); padding:80px 5%; text-align:center; }
+  .skc-links { display:flex; justify-content:center; flex-wrap:wrap; gap:1rem; margin-top:2.5rem; }
+
+  /* footer sk */
+  .skf { background:#080C14; padding:2rem 5%; display:flex; align-items:center; justify-content:space-between; border-top:1px solid rgba(255,255,255,0.05); flex-wrap:wrap; gap:1rem; }
+
+  /* skeleton responsive */
+  @media (max-width:900px) {
+    .skh { grid-template-columns:1fr; padding:100px 5% 60px; gap:2.5rem; }
+    .ska-grid { grid-template-columns:1fr; gap:2.5rem; }
+    .skw-grid { grid-template-columns:1fr; }
+    .skwk-grid { grid-template-columns:repeat(2,1fr); }
+    .skb-inner { grid-template-columns:1fr; gap:2rem; text-align:center; }
+    .skn-links { display:none; }
+  }
+  @media (max-width:600px) {
+    .skwk-grid { grid-template-columns:1fr 1fr; }
+    .skh-stats { flex-wrap:wrap; gap:1.2rem; }
+    .skb-btns { flex-direction:column; }
+    .skf { flex-direction:column; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════
+     SKELETON LOADER
+══════════════════════════════════ -->
+<div id="skeleton-wrapper">
+
+  <!-- NAV -->
+  <div class="skn">
+    <div class="sk sk-pill sk-d1" style="width:110px;height:18px"></div>
+    <div class="skn-links">
+      <div class="sk sk-pill sk-d1" style="width:52px;height:12px"></div>
+      <div class="sk sk-pill sk-d2" style="width:64px;height:12px"></div>
+      <div class="sk sk-pill sk-d3" style="width:80px;height:12px"></div>
+      <div class="sk sk-pill sk-d4" style="width:44px;height:12px"></div>
+      <div class="sk sk-pill sk-d5" style="width:58px;height:12px"></div>
+      <div class="sk sk-pill sk-d6" style="width:90px;height:36px;border-radius:10px"></div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <div class="skh">
+    <div style="position:relative">
+      <div class="sk sk-pill sk-d1" style="width:200px;height:28px;margin-bottom:1.8rem"></div>
+      <div style="display:flex;flex-direction:column;gap:0.6rem;margin-bottom:1.4rem">
+        <div class="sk sk-d1" style="width:90%;height:52px;border-radius:10px"></div>
+        <div class="sk sk-d2" style="width:70%;height:52px;border-radius:10px"></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:0.5rem;margin-bottom:2.4rem">
+        <div class="sk sk-d2" style="width:100%;height:14px;border-radius:7px"></div>
+        <div class="sk sk-d3" style="width:92%;height:14px;border-radius:7px"></div>
+        <div class="sk sk-d4" style="width:78%;height:14px;border-radius:7px"></div>
+      </div>
+      <div style="display:flex;gap:1rem;margin-bottom:2.5rem">
+        <div class="sk sk-d3" style="width:160px;height:44px;border-radius:10px"></div>
+        <div class="sk sk-d4" style="width:120px;height:44px;border-radius:10px"></div>
+      </div>
+      <div class="skh-stats">
+        <div class="skh-stat"><div class="sk sk-d4" style="width:60px;height:28px;border-radius:8px"></div><div class="sk sk-d5" style="width:80px;height:10px;border-radius:5px"></div></div>
+        <div class="skh-stat"><div class="sk sk-d4" style="width:60px;height:28px;border-radius:8px"></div><div class="sk sk-d5" style="width:80px;height:10px;border-radius:5px"></div></div>
+        <div class="skh-stat"><div class="sk sk-d5" style="width:60px;height:28px;border-radius:8px"></div><div class="sk sk-d6" style="width:90px;height:10px;border-radius:5px"></div></div>
+        <div class="skh-stat"><div class="sk sk-d5" style="width:60px;height:28px;border-radius:8px"></div><div class="sk sk-d6" style="width:70px;height:10px;border-radius:5px"></div></div>
+      </div>
+    </div>
+    <div class="skh-visual">
+      <div class="sk sk-d2" style="position:absolute;width:136px;height:64px;border-radius:14px;top:18%;left:-8%;z-index:2"></div>
+      <div class="sk sk-d2" style="width:220px;height:420px;border-radius:28px;position:relative;z-index:1"></div>
+      <div class="sk sk-d3" style="position:absolute;width:140px;height:72px;border-radius:14px;top:14%;right:-5%;z-index:2"></div>
+      <div class="sk sk-d4" style="position:absolute;width:148px;height:80px;border-radius:14px;bottom:22%;right:-4%;z-index:2"></div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <div class="sks alt">
+    <div class="sks-hdr">
+      <div class="sk sk-pill sk-d1" style="width:80px;height:10px;margin-bottom:1rem"></div>
+      <div class="sk sk-d1" style="width:50%;height:36px;border-radius:10px;margin-bottom:0.6rem"></div>
+      <div class="sk sk-d2" style="width:38%;height:36px;border-radius:10px;margin-bottom:1rem"></div>
+      <div class="sk sk-d2" style="width:65%;height:14px;border-radius:7px"></div>
+    </div>
+    <div class="ska-grid">
+      <div>
+        <div class="ska-lines">
+          <div class="sk sk-d1" style="width:100%;height:13px;border-radius:6px"></div>
+          <div class="sk sk-d2" style="width:95%;height:13px;border-radius:6px"></div>
+          <div class="sk sk-d2" style="width:88%;height:13px;border-radius:6px"></div>
+          <div class="sk sk-d3" style="width:100%;height:13px;border-radius:6px"></div>
+          <div class="sk sk-d3" style="width:90%;height:13px;border-radius:6px"></div>
+          <div class="sk sk-d4" style="width:70%;height:13px;border-radius:6px"></div>
+        </div>
+        <div class="ska-pills">
+          <div class="sk sk-pill sk-d2" style="width:90px;height:28px"></div>
+          <div class="sk sk-pill sk-d3" style="width:130px;height:28px"></div>
+          <div class="sk sk-pill sk-d3" style="width:100px;height:28px"></div>
+          <div class="sk sk-pill sk-d4" style="width:110px;height:28px"></div>
+          <div class="sk sk-pill sk-d4" style="width:120px;height:28px"></div>
+          <div class="sk sk-pill sk-d5" style="width:95px;height:28px"></div>
+          <div class="sk sk-pill sk-d5" style="width:80px;height:28px"></div>
+          <div class="sk sk-pill sk-d6" style="width:60px;height:28px"></div>
+        </div>
+      </div>
+      <div class="ska-cards">
+        <div class="sk sk-d2" style="grid-column:1/-1;height:90px;border-radius:12px"></div>
+        <div class="sk sk-d3" style="height:110px;border-radius:12px"></div>
+        <div class="sk sk-d4" style="height:110px;border-radius:12px"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WRITINGS -->
+  <div class="sks">
+    <div class="sks-hdr">
+      <div class="sk sk-pill sk-d1" style="width:80px;height:10px;margin-bottom:1rem"></div>
+      <div class="sk sk-d1" style="width:50%;height:36px;border-radius:10px;margin-bottom:0.6rem"></div>
+      <div class="sk sk-d2" style="width:65%;height:14px;border-radius:7px"></div>
+    </div>
+    <div class="skw-grid">
+      <div class="skw-card">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div class="sk sk-pill sk-d1" style="width:120px;height:24px"></div>
+          <div class="sk sk-d2" style="width:60px;height:10px;border-radius:5px"></div>
+        </div>
+        <div><div class="sk sk-d2" style="width:100%;height:18px;border-radius:9px;margin-bottom:0.45rem"></div><div class="sk sk-d3" style="width:85%;height:18px;border-radius:9px;margin-bottom:0.45rem"></div><div class="sk sk-d3" style="width:60%;height:18px;border-radius:9px"></div></div>
+        <div class="skw-desc"><div class="sk sk-d3" style="width:100%;height:12px;border-radius:6px"></div><div class="sk sk-d4" style="width:88%;height:12px;border-radius:6px"></div><div class="sk sk-d4" style="width:72%;height:12px;border-radius:6px"></div></div>
+        <div class="skw-foot"><div class="sk sk-d5" style="width:100px;height:12px;border-radius:6px"></div><div class="sk sk-d6" style="width:20px;height:12px;border-radius:6px"></div></div>
+      </div>
+      <div class="skw-card">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div class="sk sk-pill sk-d2" style="width:110px;height:24px"></div>
+          <div class="sk sk-d3" style="width:60px;height:10px;border-radius:5px"></div>
+        </div>
+        <div><div class="sk sk-d3" style="width:100%;height:18px;border-radius:9px;margin-bottom:0.45rem"></div><div class="sk sk-d4" style="width:80%;height:18px;border-radius:9px;margin-bottom:0.45rem"></div><div class="sk sk-d4" style="width:55%;height:18px;border-radius:9px"></div></div>
+        <div class="skw-desc"><div class="sk sk-d4" style="width:100%;height:12px;border-radius:6px"></div><div class="sk sk-d5" style="width:92%;height:12px;border-radius:6px"></div><div class="sk sk-d5" style="width:65%;height:12px;border-radius:6px"></div></div>
+        <div class="skw-foot"><div class="sk sk-d5" style="width:100px;height:12px;border-radius:6px"></div><div class="sk sk-d6" style="width:20px;height:12px;border-radius:6px"></div></div>
+      </div>
+    </div>
+    <div class="sk sk-d3" style="margin-top:2.5rem;height:68px;border-radius:20px"></div>
+  </div>
+
+  <!-- DESIGN WORK -->
+  <div class="sks alt">
+    <div class="sks-hdr">
+      <div class="sk sk-pill sk-d1" style="width:80px;height:10px;margin-bottom:1rem"></div>
+      <div class="sk sk-d1" style="width:55%;height:36px;border-radius:10px;margin-bottom:0.6rem"></div>
+      <div class="sk sk-d2" style="width:65%;height:14px;border-radius:7px"></div>
+    </div>
+    <div class="skwk-grid">
+      <div class="skwk-card"><div class="sk sk-d1" style="aspect-ratio:4/3;width:100%"></div><div class="skwk-info"><div class="sk sk-d2" style="width:75%;height:14px;border-radius:7px"></div><div class="sk sk-d3" style="width:50%;height:10px;border-radius:5px"></div></div></div>
+      <div class="skwk-card"><div class="sk sk-d2" style="aspect-ratio:4/3;width:100%"></div><div class="skwk-info"><div class="sk sk-d3" style="width:70%;height:14px;border-radius:7px"></div><div class="sk sk-d4" style="width:45%;height:10px;border-radius:5px"></div></div></div>
+      <div class="skwk-card"><div class="sk sk-d3" style="aspect-ratio:4/3;width:100%"></div><div class="skwk-info"><div class="sk sk-d4" style="width:80%;height:14px;border-radius:7px"></div><div class="sk sk-d5" style="width:55%;height:10px;border-radius:5px"></div></div></div>
+    </div>
+  </div>
+
+  <!-- BOOK -->
+  <div class="sks">
+    <div class="sks-hdr">
+      <div class="sk sk-pill sk-d1" style="width:80px;height:10px;margin-bottom:1rem"></div>
+      <div class="sk sk-d1" style="width:20%;height:36px;border-radius:10px"></div>
+    </div>
+    <div class="skb-inner">
+      <div class="sk sk-d2" style="width:200px;height:270px;border-radius:8px 16px 16px 8px"></div>
+      <div class="skb-content">
+        <div class="sk sk-d1" style="width:90px;height:10px;border-radius:5px"></div>
+        <div class="sk sk-d2" style="width:70%;height:32px;border-radius:9px"></div>
+        <div class="sk sk-d2" style="width:55%;height:32px;border-radius:9px"></div>
+        <div class="sk sk-d3" style="height:64px;border-radius:10px;margin:0.4rem 0"></div>
+        <div class="sk sk-d3" style="width:100%;height:13px;border-radius:6px"></div>
+        <div class="sk sk-d4" style="width:95%;height:13px;border-radius:6px"></div>
+        <div class="sk sk-d4" style="width:80%;height:13px;border-radius:6px"></div>
+        <div class="skb-btns">
+          <div class="sk sk-d5" style="width:150px;height:40px;border-radius:10px"></div>
+          <div class="sk sk-d6" style="width:140px;height:40px;border-radius:10px"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <div class="skc">
+    <div class="sk sk-dark sk-d1" style="width:80px;height:10px;border-radius:5px;margin:0 auto 1rem"></div>
+    <div class="sk sk-dark sk-d2" style="width:50%;height:40px;border-radius:10px;margin:0 auto 0.6rem"></div>
+    <div class="sk sk-dark sk-d2" style="width:38%;height:40px;border-radius:10px;margin:0 auto 0.8rem"></div>
+    <div class="sk sk-dark sk-d3" style="width:40%;height:13px;border-radius:6px;margin:0 auto"></div>
+    <div class="skc-links">
+      <div class="sk sk-dark sk-d3" style="width:160px;height:44px;border-radius:10px"></div>
+      <div class="sk sk-dark sk-d4" style="width:110px;height:44px;border-radius:10px"></div>
+      <div class="sk sk-dark sk-d4" style="width:100px;height:44px;border-radius:10px"></div>
+      <div class="sk sk-dark sk-d5" style="width:105px;height:44px;border-radius:10px"></div>
+      <div class="sk sk-dark sk-d5" style="width:100px;height:44px;border-radius:10px"></div>
+      <div class="sk sk-dark sk-d6" style="width:155px;height:44px;border-radius:10px"></div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="skf">
+    <div class="sk sk-dark sk-d1" style="width:100px;height:16px;border-radius:8px"></div>
+    <div class="sk sk-dark sk-d2" style="width:200px;height:12px;border-radius:6px"></div>
+  </div>
+
+</div>
+<!-- END SKELETON -->
+
+
+<nav id="navbar">
+  <a href="#" class="nav-logo">Satheesh<span>.</span></a>
+
+  <!-- Desktop links -->
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="writings.html">Writings</a></li>
+    <li><a href="design-work.html">Design Work</a></li>
+    <li><a href="#book">Book</a></li>
+    <li><a href="SatheeshM_UXD.pdf" download="SatheeshM_Resume.pdf">Resume ↓</a></li>
+    <li><a href="#contact" class="nav-cta">Let's Talk</a></li>
+  </ul>
+
+  <!-- Hamburger button -->
+  <button class="nav-hamburger" id="navToggle" aria-label="Open menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile drawer -->
+<div class="mobile-nav" id="mobileNav">
+  <div class="mobile-nav-inner">
+    <a href="#about" class="mobile-link">About</a>
+    <a href="writings.html" class="mobile-link">Writings</a>
+    <a href="design-work.html" class="mobile-link">Design Work</a>
+    <a href="#book" class="mobile-link">Book</a>
+    <a href="#contact" class="mobile-link">Let's Talk</a>
+    <a href="SatheeshM_UXD.pdf" download="SatheeshM_Resume.pdf" class="mobile-link mobile-resume">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Download Resume
+    </a>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Available for Freelance &amp; Full-time</div>
+    <h1>Designing for <em>humans</em>,<br>not just screens.</h1>
+    <p class="hero-desc">
+      I'm Satheesh M — a UX Designer with 4+ years in user experience and 10+ years in visual storytelling. I turn friction into flow and confusion into clarity.
+    </p>
+    <div class="hero-actions">
+      <a href="#casestudies" class="btn-primary">View Case Studies →</a>
+      <a href="https://www.linkedin.com/in/satheeshm93/" target="_blank" class="btn-secondary">LinkedIn ↗</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="hero-stat-num">10<span>+</span></div>
+        <div class="hero-stat-label">Years in Visual Design</div>
+      </div>
+      <div>
+        <div class="hero-stat-num">4<span>+</span></div>
+        <div class="hero-stat-label">Years in UX</div>
+      </div>
+      <div>
+        <div class="hero-stat-num">12<span>+</span></div>
+        <div class="hero-stat-label">UX Case Studies</div>
+      </div>
+      <div>
+        <div class="hero-stat-num">1</div>
+        <div class="hero-stat-label">Published Book</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO ILLUSTRATION -->
+  <div class="hero-visual">
+    <svg viewBox="0 0 520 560" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <defs>
+        <linearGradient id="screenGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#F7F9FC"/>
+          <stop offset="100%" stop-color="#EEF4FF"/>
+        </linearGradient>
+        <linearGradient id="blueGrad" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#0061FE"/>
+          <stop offset="100%" stop-color="#004BC4"/>
+        </linearGradient>
+        <linearGradient id="cardGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#ffffff"/>
+          <stop offset="100%" stop-color="#F7F9FC"/>
+        </linearGradient>
+        <filter id="shadow1" x="-20%" y="-20%" width="140%" height="140%">
+          <feDropShadow dx="0" dy="8" stdDeviation="16" flood-color="#0061FE" flood-opacity="0.12"/>
+        </filter>
+        <filter id="shadow2" x="-30%" y="-30%" width="160%" height="160%">
+          <feDropShadow dx="0" dy="6" stdDeviation="12" flood-color="#000" flood-opacity="0.08"/>
+        </filter>
+        <clipPath id="phoneClip">
+          <rect x="148" y="40" width="196" height="380" rx="24"/>
+        </clipPath>
+      </defs>
+
+      <!-- ── PHONE BODY ── -->
+      <rect x="144" y="36" width="204" height="388" rx="28" fill="#1C2333" filter="url(#shadow1)"/>
+      <rect x="148" y="40" width="196" height="380" rx="24" fill="url(#screenGrad)"/>
+
+      <!-- status bar -->
+      <rect x="148" y="40" width="196" height="36" rx="0" fill="white" opacity="0.7"/>
+      <!-- notch -->
+      <rect x="210" y="46" width="72" height="18" rx="9" fill="#1C2333"/>
+      <!-- status icons -->
+      <circle cx="172" cy="55" r="4" fill="#E2E8F0"/>
+      <rect x="162" y="52" width="8" height="6" rx="1" fill="#A0AEC0"/>
+
+      <!-- ── APP UI CONTENT (clipped to phone screen) ── -->
+      <g clip-path="url(#phoneClip)">
+
+        <!-- header bar -->
+        <rect x="148" y="76" width="196" height="44" fill="white"/>
+        <circle cx="172" cy="98" r="12" fill="#EEF4FF"/>
+        <!-- avatar icon -->
+        <circle cx="172" cy="95" r="5" fill="#0061FE" opacity="0.6"/>
+        <ellipse cx="172" cy="107" rx="7" ry="4" fill="#0061FE" opacity="0.3"/>
+        <text x="190" y="94" font-size="9" font-weight="700" fill="#0D1117" font-family="-apple-system,sans-serif">Satheesh M</text>
+        <text x="190" y="106" font-size="7" fill="#718096" font-family="-apple-system,sans-serif">UX Designer</text>
+        <!-- menu dots -->
+        <circle cx="322" cy="98" r="2" fill="#A0AEC0"/>
+        <circle cx="330" cy="98" r="2" fill="#A0AEC0"/>
+        <circle cx="338" cy="98" r="2" fill="#A0AEC0"/>
+
+        <!-- divider -->
+        <rect x="148" y="120" width="196" height="1" fill="#E2E8F0"/>
+
+        <!-- section title -->
+        <text x="164" y="140" font-size="8" font-weight="700" fill="#A0AEC0" font-family="-apple-system,sans-serif" letter-spacing="1">CASE STUDIES</text>
+
+        <!-- ── CASE STUDY CARD 1 (blue) ── -->
+        <rect x="160" y="150" width="172" height="68" rx="10" fill="url(#blueGrad)"/>
+        <!-- card accent -->
+        <rect x="160" y="150" width="172" height="68" rx="10" fill="url(#blueGrad)" opacity="0.95"/>
+        <rect x="160" y="150" width="5" height="68" rx="2" fill="white" opacity="0.2"/>
+        <text x="174" y="170" font-size="7.5" font-weight="700" fill="rgba(255,255,255,0.7)" font-family="-apple-system,sans-serif">🗺️ Google Maps</text>
+        <text x="174" y="184" font-size="8" font-weight="700" fill="white" font-family="-apple-system,sans-serif">Smarter Navigation</text>
+        <text x="174" y="195" font-size="7.5" fill="rgba(255,255,255,0.75)" font-family="-apple-system,sans-serif">with Vehicle Profiles</text>
+        <!-- read arrow -->
+        <rect x="292" y="200" width="30" height="12" rx="6" fill="white" opacity="0.2"/>
+        <text x="300" y="210" font-size="7" fill="white" font-family="-apple-system,sans-serif">Read →</text>
+
+        <!-- ── CASE STUDY CARD 2 ── -->
+        <rect x="160" y="228" width="172" height="58" rx="10" fill="white" opacity="0.95"/>
+        <rect x="160" y="228" width="5" height="58" rx="2" fill="#0061FE" opacity="0.6"/>
+        <text x="174" y="246" font-size="7" fill="#718096" font-family="-apple-system,sans-serif">🧠 Behavioural UX</text>
+        <text x="174" y="259" font-size="8" font-weight="700" fill="#0D1117" font-family="-apple-system,sans-serif">I Don't Care Users</text>
+        <text x="174" y="272" font-size="7" fill="#A0AEC0" font-family="-apple-system,sans-serif">Passive psychology →</text>
+
+        <!-- ── CASE STUDY CARD 3 ── -->
+        <rect x="160" y="296" width="172" height="58" rx="10" fill="white" opacity="0.95"/>
+        <rect x="160" y="296" width="5" height="58" rx="2" fill="#0061FE" opacity="0.4"/>
+        <text x="174" y="314" font-size="7" fill="#718096" font-family="-apple-system,sans-serif">✨ AI Design</text>
+        <text x="174" y="327" font-size="8" font-weight="700" fill="#0D1117" font-family="-apple-system,sans-serif">When AI Knows Me</text>
+        <text x="174" y="340" font-size="7" fill="#A0AEC0" font-family="-apple-system,sans-serif">Too Well →</text>
+
+        <!-- bottom nav bar -->
+        <rect x="148" y="390" width="196" height="30" fill="white"/>
+        <rect x="148" y="390" width="196" height="1" fill="#E2E8F0"/>
+        <!-- nav icons -->
+        <rect x="175" y="397" width="14" height="10" rx="2" fill="#0061FE" opacity="0.8"/>
+        <rect x="225" y="400" width="14" height="7" rx="2" fill="#E2E8F0"/>
+        <rect x="275" y="400" width="14" height="7" rx="2" fill="#E2E8F0"/>
+        <circle cx="245" cy="403" r="2" fill="#E2E8F0"/>
+        <circle cx="295" cy="403" r="2" fill="#E2E8F0"/>
+
+      </g>
+
+      <!-- phone home indicator -->
+      <rect x="218" y="414" width="56" height="4" rx="2" fill="#4A5568" opacity="0.3"/>
+
+      <!-- ── FLOATING ANNOTATION CARD — Friction Detected ── -->
+      <g class="svg-float-a svg-pop-1" transform="translate(0,0)">
+        <rect x="12" y="130" width="136" height="64" rx="14" fill="white" filter="url(#shadow2)"/>
+        <rect x="12" y="130" width="136" height="64" rx="14" stroke="#E2E8F0" stroke-width="1.2"/>
+        <!-- icon bg -->
+        <rect x="24" y="142" width="28" height="28" rx="8" fill="#FFF3E0"/>
+        <text x="31" y="162" font-size="14">⚡</text>
+        <text x="60" y="153" font-size="8" font-weight="700" fill="#0D1117" font-family="-apple-system,sans-serif">Friction Detected</text>
+        <text x="60" y="165" font-size="7" fill="#718096" font-family="-apple-system,sans-serif">3 pain points found</text>
+        <text x="60" y="177" font-size="7" fill="#718096" font-family="-apple-system,sans-serif">in onboarding flow</text>
+        <!-- small dots -->
+        <circle cx="28" cy="185" r="3" fill="#F56565"/>
+        <circle cx="38" cy="185" r="3" fill="#ED8936"/>
+        <circle cx="48" cy="185" r="3" fill="#48BB78"/>
+      </g>
+
+      <!-- connector line from annotation to phone -->
+      <path class="svg-line-1" d="M148 163 Q130 163 128 165" stroke="#D6E4FF" stroke-width="1.5" stroke-dasharray="200"/>
+
+      <!-- ── FLOATING ANNOTATION CARD — UX Score ── -->
+      <g class="svg-float-c svg-pop-2" transform="translate(0,0)">
+        <rect x="362" y="80" width="140" height="72" rx="14" fill="white" filter="url(#shadow2)"/>
+        <rect x="362" y="80" width="140" height="72" rx="14" stroke="#E2E8F0" stroke-width="1.2"/>
+        <!-- score arc bg -->
+        <circle cx="390" cy="116" r="20" fill="#EEF4FF"/>
+        <text x="382" y="121" font-size="10" font-weight="800" fill="#0061FE" font-family="-apple-system,sans-serif">92</text>
+        <text x="378" y="130" font-size="6" fill="#A0AEC0" font-family="-apple-system,sans-serif">UX Score</text>
+        <!-- bar chart mini -->
+        <rect x="420" y="120" width="6" height="18" rx="2" fill="#EEF4FF"/>
+        <rect x="430" y="112" width="6" height="26" rx="2" fill="#D6E4FF"/>
+        <rect x="440" y="104" width="6" height="34" rx="2" fill="#0061FE"/>
+        <rect x="450" y="108" width="6" height="30" rx="2" fill="#D6E4FF"/>
+        <text x="416" y="98" font-size="7.5" font-weight="700" fill="#0D1117" font-family="-apple-system,sans-serif">Usability Test</text>
+        <text x="416" y="108" font-size="6.5" fill="#48BB78" font-family="-apple-system,sans-serif">↑ 23% improved</text>
+      </g>
+
+      <!-- ── FLOATING ANNOTATION CARD — Micro-interaction ── -->
+      <g class="svg-float-b svg-pop-3" transform="translate(0,0)">
+        <rect x="358" y="290" width="148" height="80" rx="14" fill="white" filter="url(#shadow2)"/>
+        <rect x="358" y="290" width="148" height="80" rx="14" stroke="#E2E8F0" stroke-width="1.2"/>
+        <rect x="370" y="302" width="24" height="24" rx="7" fill="#EEF4FF"/>
+        <text x="375" y="319" font-size="13">🎯</text>
+        <text x="403" y="315" font-size="8" font-weight="700" fill="#0D1117" font-family="-apple-system,sans-serif">Micro-Interaction</text>
+        <text x="403" y="326" font-size="7" fill="#718096" font-family="-apple-system,sans-serif">Tap → Feedback → Trust</text>
+        <!-- progress bar -->
+        <rect x="370" y="340" width="124" height="5" rx="3" fill="#EEF4FF"/>
+        <rect x="370" y="340" width="96" height="5" rx="3" fill="#0061FE"/>
+        <text x="370" y="357" font-size="6.5" fill="#A0AEC0" font-family="-apple-system,sans-serif">Response time: 0.2s  ✓ Optimal</text>
+      </g>
+
+      <!-- ── CURSOR ── -->
+      <g class="svg-cursor svg-pop-1" transform="translate(316, 248)">
+        <path d="M0 0 L0 20 L5 16 L8 24 L11 23 L8 15 L14 15 Z" fill="white" stroke="#0D1117" stroke-width="1.2" stroke-linejoin="round"/>
+        <!-- cursor ring -->
+        <circle cx="2" cy="2" r="8" fill="#0061FE" opacity="0.08"/>
+      </g>
+
+      <!-- ── BOTTOM ANNOTATION — Flow arrow ── -->
+      <g class="svg-pop-2">
+        <path d="M160 480 Q200 470 244 476" stroke="#D6E4FF" stroke-width="1.5" stroke-dasharray="5 3" fill="none"/>
+        <polygon points="244,472 252,476 244,480" fill="#0061FE" opacity="0.4"/>
+        <rect x="52" y="462" width="110" height="32" rx="10" fill="white" filter="url(#shadow2)"/>
+        <rect x="52" y="462" width="110" height="32" rx="10" stroke="#E2E8F0" stroke-width="1"/>
+        <text x="62" y="476" font-size="7.5" font-weight="700" fill="#0D1117" font-family="-apple-system,sans-serif">User Flow</text>
+        <text x="62" y="487" font-size="6.5" fill="#718096" font-family="-apple-system,sans-serif">Onboarding → Activation</text>
+      </g>
+
+      <!-- ── TOP BADGE — Available ── -->
+      <g class="svg-float-b">
+        <rect x="178" y="6" width="136" height="26" rx="13" fill="url(#blueGrad)" opacity="0.9"/>
+        <circle cx="193" cy="19" r="4" fill="#4ADE80"/>
+        <text x="202" y="23" font-size="8" font-weight="700" fill="white" font-family="-apple-system,sans-serif">Open to Work • Bangalore</text>
+      </g>
+
+    </svg>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="reveal">
+    <div class="section-label">About Me</div>
+    <h2 class="section-title">Where storytelling meets<br>user experience</h2>
+  </div>
+  <div class="about-grid">
+    <div class="about-text reveal reveal-delay-1">
+      <p>I'm a <strong>Senior Video Specialist & Motion Designer turned UX Designer</strong> based in Bangalore, India. My background in visual storytelling gives me a unique edge — I see interfaces as narratives, and every interaction as a scene in a story.</p>
+      <p>For over a decade I crafted motion and video experiences that hooked audiences in seconds. Now I apply that same instinct for attention and engagement to digital product design — obsessing over the small moments that make or break a user's journey.</p>
+      <p>My writing on <strong>Medium</strong> has earned a loyal readership across 12 in-depth UX case studies, and my book connects the dots between intuition, friction, and thoughtful design.</p>
+      <div class="expertise-pills">
+        <span class="pill">UX Research</span>
+        <span class="pill">Interaction Design</span>
+        <span class="pill">Friction Analysis</span>
+        <span class="pill">Motion Graphics</span>
+        <span class="pill">Micro-interactions</span>
+        <span class="pill">Usability Testing</span>
+        <span class="pill">Design Systems</span>
+        <span class="pill">Figma</span>
+        <span class="pill">After Effects</span>
+      </div>
+    </div>
+    <div class="about-cards reveal reveal-delay-2">
+      <div class="about-card">
+        <div class="about-card-icon">✦</div>
+        <h4>Blending craft & empathy</h4>
+        <p>10+ years of visual expertise now applied to user-centered product design — motion thinking meets UX precision.</p>
+      </div>
+      <div class="about-card">
+        <div class="about-card-icon">📍</div>
+        <h4>Bangalore, India</h4>
+        <p>Open to remote work &amp; willing to relocate for the right opportunity.</p>
+      </div>
+      <div class="about-card">
+        <div class="about-card-icon">✍️</div>
+        <h4>UX Writer & Thinker</h4>
+        <p>Active Medium contributor covering friction, AI design &amp; product UX.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASE STUDIES -->
+<section id="casestudies">
+  <div class="section-header reveal">
+    <div>
+      <div class="section-label">Writing &amp; Case Studies</div>
+      <h2 class="section-title">UX Analysis &amp; Thinking</h2>
+      <p class="section-sub">Real-world friction spots, dissected and redesigned. Published on Medium.</p>
+    </div>
+  </div>
+
+  <div class="featured-writings-grid">
+
+    <!-- Featured 1 -->
+    <a href="https://medium.com/design-bootcamp/smarter-navigation-with-vehicle-profiles-a-ux-case-study-for-google-maps-android-auto-879bd58b21c8?sk=cdb1348b9ebd13e613d2c1906e63cd58" target="_blank" class="featured-writing-card reveal">
+      <div class="fw-top">
+        <div class="fw-badge">🗺️ Google Maps · Android Auto</div>
+        <div class="fw-tag">UX Case Study</div>
+      </div>
+      <h3 class="fw-title">Smarter Navigation with Vehicle Profiles: A UX Case Study for Google Maps &amp; Android Auto</h3>
+      <p class="fw-desc">Exploring how vehicle-aware navigation could reduce cognitive load and deliver truly contextual routing experiences. A deep dive into a single missing feature in a mature, billion-user product.</p>
+      <div class="fw-footer">
+        <div class="fw-read">Read on Medium <span class="fw-arrow">→</span></div>
+      </div>
+    </a>
+
+    <!-- Featured 2 -->
+    <a href="https://medium.com/design-bootcamp/designing-for-i-dont-care-users-f4ae4b0eca39?sk=62b19af25b81abed237a12bdf693994b" target="_blank" class="featured-writing-card reveal reveal-delay-1">
+      <div class="fw-top">
+        <div class="fw-badge">🧠 Behavioural UX</div>
+        <div class="fw-tag">Psychology</div>
+      </div>
+      <h3 class="fw-title">Designing for "I Don't Care" Users</h3>
+      <p class="fw-desc">What happens when users simply don't have the motivation to engage? A deeper look into passive user psychology — and how product moments can either lose or capture low-intent users entirely.</p>
+      <div class="fw-footer">
+        <div class="fw-read">Read on Medium <span class="fw-arrow">→</span></div>
+      </div>
+    </a>
+
+  </div>
+
+  <!-- View All CTA -->
+  <div class="writings-cta reveal">
+    <div class="writings-cta-text">
+      <span class="writings-count">12 writings</span> on UX friction, micro-interactions, and product psychology
+    </div>
+    <a href="writings.html" class="btn-primary">View All Writings →</a>
+  </div>
+
+</section>
+
+<!-- DESIGN WORK -->
+<section id="work">
+  <div class="section-header reveal">
+    <div>
+      <div class="section-label">Design Work</div>
+      <h2 class="section-title">UI Components &amp; Explorations</h2>
+      <p class="section-sub">Visual design explorations across hero sections, micro-interactions, and component systems.</p>
+    </div>
+  </div>
+
+  <div class="work-grid-home">
+
+    <!-- Dribbble Card 1 -->
+    <a href="https://dribbble.com/Mankulam" target="_blank" class="work-card reveal">
+      <div class="work-thumb">
+        <img src="https://mir-s3-cdn-cf.behance.net/projects/404/92da3c231215857.694038aeee7d8.png" alt="Hero section designs" loading="lazy">
+        <div class="work-source-badge">🏀 Dribbble</div>
+      </div>
+      <div class="work-info">
+        <h4>Hero Section Designs</h4>
+        <span>UI Exploration · 2.1k views</span>
+      </div>
+    </a>
+
+    <!-- Dribbble Card 2 -->
+    <a href="https://dribbble.com/Mankulam" target="_blank" class="work-card reveal reveal-delay-1">
+      <div class="work-thumb">
+        <img src="https://mir-s3-cdn-cf.behance.net/projects/404/2f6700228867433.Y3JvcCwxNzY0LDEzODAsMTMxLDA.png" alt="Micro-Interactions" loading="lazy">
+        <div class="work-source-badge">🏀 Dribbble</div>
+      </div>
+      <div class="work-info">
+        <h4>Micro-Interactions</h4>
+        <span>Interaction Design</span>
+      </div>
+    </a>
+
+    <!-- View All — same tile size -->
+    <a href="design-work.html" class="work-card work-card-viewall reveal reveal-delay-2">
+      <div class="viewall-inner">
+        <div class="viewall-thumbs">
+          <img src="https://mir-s3-cdn-cf.behance.net/projects/404/ee9279240584915.Y3JvcCw4MDgsNjMyLDAsMA.png" alt="" loading="lazy">
+          <img src="https://mir-s3-cdn-cf.behance.net/projects/404/b1a4c2227968249.Y3JvcCw4MDgsNjMyLDE5Niww.png" alt="" loading="lazy">
+          <img src="https://mir-s3-cdn-cf.behance.net/projects/404/f097dc238371179.Y3JvcCw4MDgsNjMyLDAsMA.png" alt="" loading="lazy">
+          <img src="https://mir-s3-cdn-cf.behance.net/projects/404/7df855238398511.Y3JvcCw4MDgsNjMyLDAsMA.png" alt="" loading="lazy">
+        </div>
+        <div class="viewall-text">
+          <div class="viewall-count">+8 projects</div>
+          <div class="viewall-label">View All Design Work</div>
+          <div class="viewall-arrow">→</div>
+        </div>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- BOOK -->
+<section id="book">
+  <div class="reveal">
+    <div class="section-label">Published Work</div>
+    <h2 class="section-title">The Book</h2>
+  </div>
+  <div class="book-inner">
+    <div class="book-cover reveal">
+      <div class="book-cover-art">
+        <div class="book-cover-title">The Psychology of Product Moments</div>
+        <div class="book-cover-author">Satheesh Mankulam</div>
+      </div>
+    </div>
+    <div class="book-content reveal reveal-delay-1">
+      <div class="book-eyebrow">Published Book</div>
+      <h3>The Psychology of<br>Product Moments</h3>
+      <div class="book-highlight">
+        <span class="book-highlight-icon">⚡</span>
+        <p>Not a full product review. A deep dive into <strong>single features</strong> of mature products — the one tap, one signal, one friction point that decides the experience.</p>
+      </div>
+      <p>10 focused UX case studies from real-world products — Google Chrome, Google Maps, Android Auto, WhatsApp, Rapido, LinkedIn — each one zooming into a specific micro-interaction, feedback cue, or friction moment and analyzing it through the lens of UX psychology.</p>
+      <p>Most UX books talk about flows and screens. This one talks about <em>moments</em> — and why the smallest interaction often decides everything.</p>
+      <div class="book-links">
+        <a href="https://play.google.com/store/books/details?id=NKG9EQAAQBAJ" target="_blank" class="book-btn book-btn-dark">
+          📱 Google Play Books
+        </a>
+        <a href="https://amzn.in/d/8U8qs1h" target="_blank" class="book-btn book-btn-outline">
+          📦 Amazon Kindle
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="reveal">
+    <div class="section-label">Get In Touch</div>
+    <h2 class="section-title" style="color:white;">Let's build something<br>worth experiencing.</h2>
+    <p style="color:rgba(255,255,255,0.5);margin-top:0.8rem;font-size:1rem;">Open to freelance projects, full-time roles, and UX collaborations.</p>
+  </div>
+  <div class="contact-grid reveal reveal-delay-1">
+    <a href="tel:+919731108717" class="contact-link primary">📞 +91 97311 08717</a>
+    <a href="https://www.linkedin.com/in/satheeshm93/" target="_blank" class="contact-link">💼 LinkedIn</a>
+    <a href="https://medium.com/@satheesh.mankulam" target="_blank" class="contact-link">✍️ Medium</a>
+    <a href="https://dribbble.com/Mankulam" target="_blank" class="contact-link">🏀 Dribbble</a>
+    <a href="https://www.behance.net/satheesmankul" target="_blank" class="contact-link">🎨 Behance</a>
+    <a href="SatheeshM_UXD.pdf" download="SatheeshM_Resume.pdf" class="contact-link contact-resume">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Download Resume
+    </a>
+  </div>
+  <div class="contact-email-block reveal reveal-delay-2">
+    Bangalore, India · Available Now
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <a href="#" class="footer-logo">Satheesh<span>.</span></a>
+  <p>© 2025 Satheesh M · UX Designer · Bangalore</p>
+</footer>
+
+<script>
+  // ── SKELETON: hide when page fully loaded ──
+  window.addEventListener('load', () => {
+    document.getElementById('skeleton-wrapper').classList.add('fade-out');
+  });
+
+  // Nav scroll effect
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+
+  // Hamburger / mobile nav
+  const navToggle = document.getElementById('navToggle');
+  const mobileNav = document.getElementById('mobileNav');
+
+  navToggle.addEventListener('click', () => {
+    const isOpen = mobileNav.classList.toggle('open');
+    navToggle.classList.toggle('open', isOpen);
+    navToggle.setAttribute('aria-expanded', isOpen);
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  });
+
+  // Close mobile nav when a link is clicked
+  mobileNav.querySelectorAll('.mobile-link').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileNav.classList.remove('open');
+      navToggle.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    });
+  });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

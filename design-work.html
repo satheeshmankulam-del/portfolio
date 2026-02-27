@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Design Work — Satheesh M · UX Designer</title>
+<style>
+  :root {
+    --blue: #0061FE;
+    --blue-dark: #004BC4;
+    --blue-light: #EEF4FF;
+    --blue-mid: #D6E4FF;
+    --black: #0D1117;
+    --gray-1: #1C2333;
+    --gray-2: #4A5568;
+    --gray-3: #718096;
+    --gray-4: #A0AEC0;
+    --gray-5: #E2E8F0;
+    --gray-6: #F7F9FC;
+    --white: #FFFFFF;
+    --radius: 14px;
+    --radius-lg: 20px;
+    --shadow-hover: 0 4px 12px rgba(0,97,254,0.12), 0 12px 40px rgba(0,97,254,0.08);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: -apple-system, 'SF Pro Text', 'SF Pro Display', BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+    background: var(--white);
+    color: var(--black);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5%;
+    height: 68px;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--gray-5);
+    box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+  }
+
+  .nav-logo {
+    font-family: -apple-system, 'SF Pro Display', BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 800;
+    font-size: 1.15rem;
+    color: var(--black);
+    text-decoration: none;
+    letter-spacing: -0.02em;
+  }
+  .nav-logo span { color: var(--blue); }
+
+  .nav-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--gray-2);
+    text-decoration: none;
+    padding: 0.45rem 1rem;
+    border-radius: 8px;
+    border: 1.5px solid var(--gray-5);
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .nav-back:hover { color: var(--blue); border-color: var(--blue); }
+
+  /* ── PAGE HERO ── */
+  .page-hero {
+    padding: 110px 5% 60px;
+    background: var(--white);
+    border-bottom: 1px solid var(--gray-5);
+    position: relative;
+    overflow: hidden;
+  }
+  .page-hero-bg {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 50% 100% at 95% 50%, #EEF4FF 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .page-hero-inner {
+    position: relative;
+    max-width: 760px;
+  }
+
+  .page-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 1rem;
+  }
+  .page-label::before {
+    content: '';
+    width: 20px; height: 2px;
+    background: var(--blue);
+    border-radius: 2px;
+  }
+
+  .page-hero h1 {
+    font-family: -apple-system, 'SF Pro Display', BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--black);
+    line-height: 1.1;
+    margin-bottom: 1rem;
+  }
+
+  .page-hero p {
+    font-size: 1.05rem;
+    color: var(--gray-2);
+    line-height: 1.7;
+    max-width: 540px;
+  }
+
+  .hero-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .hero-link-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.88rem;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 10px;
+    border: 1.5px solid var(--gray-5);
+    color: var(--gray-1);
+    transition: border-color 0.2s, color 0.2s, transform 0.2s;
+  }
+  .hero-link-btn:hover {
+    border-color: var(--blue);
+    color: var(--blue);
+    transform: translateY(-2px);
+  }
+  .hero-link-btn.primary {
+    background: var(--blue);
+    color: white;
+    border-color: transparent;
+  }
+  .hero-link-btn.primary:hover {
+    background: var(--blue-dark);
+    color: white;
+    box-shadow: 0 6px 20px rgba(0,97,254,0.3);
+  }
+
+  /* ── FILTER BAR ── */
+  .filter-bar {
+    padding: 1.4rem 5%;
+    background: var(--gray-6);
+    border-bottom: 1px solid var(--gray-5);
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+  }
+
+  .filter-label {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--gray-4);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-right: 0.4rem;
+  }
+
+  .filter-btn {
+    font-family: inherit;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--gray-2);
+    background: white;
+    border: 1.5px solid var(--gray-5);
+    padding: 0.35rem 0.85rem;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .filter-btn:hover, .filter-btn.active {
+    background: var(--blue);
+    color: white;
+    border-color: var(--blue);
+  }
+
+  /* ── WORK GRID ── */
+  .work-main {
+    padding: 3rem 5% 6rem;
+    background: var(--white);
+  }
+
+  .work-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.4rem;
+  }
+
+  /* featured spans 2 cols */
+  .work-item {
+    background: var(--gray-6);
+    border: 1.5px solid var(--gray-5);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 0.25s, transform 0.25s, border-color 0.25s;
+    position: relative;
+  }
+  .work-item:hover {
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-5px);
+    border-color: var(--blue-mid);
+  }
+
+  .work-item.featured {
+    grid-column: 1 / 3;
+  }
+  .work-item.featured .wi-thumb {
+    aspect-ratio: 16/9;
+  }
+
+  .wi-thumb {
+    aspect-ratio: 4/3;
+    overflow: hidden;
+    position: relative;
+    background: var(--blue-light);
+    flex-shrink: 0;
+  }
+  .wi-thumb img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+  .work-item:hover .wi-thumb img { transform: scale(1.06); }
+
+  .wi-badge {
+    position: absolute;
+    top: 12px; left: 12px;
+    background: rgba(255,255,255,0.93);
+    backdrop-filter: blur(8px);
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--gray-1);
+    padding: 0.25rem 0.65rem;
+    border-radius: 100px;
+    border: 1px solid rgba(0,0,0,0.06);
+    z-index: 1;
+  }
+
+  .wi-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.35) 0%, transparent 50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .work-item:hover .wi-overlay { opacity: 1; }
+
+  .wi-overlay-text {
+    position: absolute;
+    bottom: 14px; right: 14px;
+    color: white;
+    font-size: 0.8rem;
+    font-weight: 700;
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity 0.3s, transform 0.3s;
+  }
+  .work-item:hover .wi-overlay-text {
+    opacity: 1;
+    transform: none;
+  }
+
+  .wi-info {
+    padding: 1.2rem 1.4rem 1.4rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .wi-title {
+    font-family: -apple-system, 'SF Pro Display', BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--black);
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+  }
+  .work-item.featured .wi-title { font-size: 1.15rem; }
+
+  .wi-desc {
+    font-size: 0.84rem;
+    color: var(--gray-3);
+    line-height: 1.6;
+    flex: 1;
+  }
+
+  .wi-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 0.8rem;
+    padding-top: 0.8rem;
+    border-top: 1px solid var(--gray-5);
+  }
+
+  .wi-tag {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--gray-4);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .wi-arrow {
+    font-size: 0.9rem;
+    color: var(--blue);
+    font-weight: 700;
+    transition: transform 0.2s;
+    display: inline-block;
+  }
+  .work-item:hover .wi-arrow { transform: translateX(4px); }
+
+  /* hidden via filter */
+  .work-item.hidden { display: none; }
+
+  /* ── BEHANCE CTA ── */
+  .behance-cta {
+    margin-top: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--black);
+    border-radius: var(--radius-lg);
+    padding: 2rem 2.5rem;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .behance-cta-text h3 {
+    font-family: -apple-system, 'SF Pro Display', BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: white;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.3rem;
+  }
+  .behance-cta-text p {
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.45);
+  }
+
+  .behance-cta-btns {
+    display: flex;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+  }
+
+  .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.88rem;
+    font-weight: 700;
+    text-decoration: none;
+    padding: 0.65rem 1.3rem;
+    border-radius: 10px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .cta-btn:hover { transform: translateY(-2px); }
+
+  .cta-btn-blue {
+    background: var(--blue);
+    color: white;
+  }
+  .cta-btn-blue:hover { box-shadow: 0 6px 20px rgba(0,97,254,0.4); }
+
+  .cta-btn-outline {
+    background: transparent;
+    color: white;
+    border: 1.5px solid rgba(255,255,255,0.2);
+  }
+  .cta-btn-outline:hover { border-color: rgba(255,255,255,0.5); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #080C14;
+    padding: 2rem 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  footer p { font-size: 0.82rem; color: rgba(255,255,255,0.25); }
+  .footer-logo {
+    font-family: -apple-system, 'SF Pro Display', BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 800;
+    font-size: 1rem;
+    color: rgba(255,255,255,0.3);
+    text-decoration: none;
+  }
+  .footer-logo span { color: var(--blue); }
+
+  /* ── REVEAL ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
+  }
+  .reveal.visible { opacity: 1; transform: none; }
+  .reveal-delay-1 { transition-delay: 0.07s; }
+  .reveal-delay-2 { transition-delay: 0.14s; }
+  .reveal-delay-3 { transition-delay: 0.21s; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .work-grid { grid-template-columns: repeat(2, 1fr); }
+    .work-item.featured { grid-column: 1 / -1; }
+    .behance-cta { flex-direction: column; gap: 1.4rem; }
+  }
+
+  @media (max-width: 600px) {
+    .work-grid { grid-template-columns: 1fr; }
+    .work-item.featured { grid-column: 1; }
+    .page-hero { padding: 90px 5% 40px; }
+    .work-main { padding: 2rem 5% 4rem; }
+    .hero-links { flex-direction: column; }
+    .hero-link-btn { justify-content: center; }
+    .behance-cta { padding: 1.5rem; }
+    .behance-cta-btns { flex-direction: column; width: 100%; }
+    .cta-btn { justify-content: center; }
+    footer { flex-direction: column; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">Satheesh<span>.</span></a>
+  <a href="index.html" class="nav-back">← Back to Portfolio</a>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-inner">
+    <div class="page-label">Design Work</div>
+    <h1>UI Explorations &amp;<br>Component Design</h1>
+    <p>Visual design work across hero sections, micro-interactions, onboarding flows, error states, and UI component systems — published on Behance &amp; Dribbble.</p>
+    <div class="hero-links">
+      <a href="https://www.behance.net/satheesmankul" target="_blank" class="hero-link-btn primary">🎨 View on Behance ↗</a>
+      <a href="https://dribbble.com/Mankulam" target="_blank" class="hero-link-btn">🏀 View on Dribbble ↗</a>
+    </div>
+  </div>
+</section>
+
+<!-- FILTER BAR -->
+<div class="filter-bar">
+  <span class="filter-label">Filter</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  <button class="filter-btn" data-filter="hero">Hero Sections</button>
+  <button class="filter-btn" data-filter="interaction">Interactions</button>
+  <button class="filter-btn" data-filter="auth">Auth Flows</button>
+  <button class="filter-btn" data-filter="components">Components</button>
+</div>
+
+<!-- WORK GRID -->
+<main class="work-main">
+  <div class="work-grid">
+
+    <!-- 1. Hero sections — FEATURED -->
+    <a href="https://www.behance.net/gallery/231215857/Hero-section-designs"
+       target="_blank" class="work-item featured reveal" data-tags="hero">
+      <div class="wi-thumb">
+        <div class="wi-badge">🏀 Dribbble · Behance</div>
+        <img src="https://mir-s3-cdn-cf.behance.net/projects/404/92da3c231215857.694038aeee7d8.png" alt="Hero section designs" loading="lazy">
+        <div class="wi-overlay"></div>
+        <div class="wi-overlay-text">View Project ↗</div>
+      </div>
+      <div class="wi-info">
+        <div class="wi-title">Hero Section Designs</div>
+        <div class="wi-desc">A curated collection of bold, varied hero section layouts — exploring layout, typography hierarchy, and visual storytelling across different product personalities.</div>
+        <div class="wi-footer">
+          <span class="wi-tag">UI Exploration · 2.1k views</span>
+          <span class="wi-arrow">→</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- 2. Micro-Interactions -->
+    <a href="https://www.behance.net/gallery/228867433/Micro-Interactions"
+       target="_blank" class="work-item reveal" data-tags="interaction">
+      <div class="wi-thumb">
+        <div class="wi-badge">🏀 Dribbble · Behance</div>
+        <img src="https://mir-s3-cdn-cf.behance.net/projects/404/2f6700228867433.Y3JvcCwxNzY0LDEzODAsMTMxLDA.png" alt="Micro-Interactions" loading="lazy">
+        <div class="wi-overlay"></div>
+        <div class="wi-overlay-text">View Project ↗</div>
+      </div>
+      <div class="wi-info">
+        <div class="wi-title">Micro-Interactions</div>
+        <div class="wi-desc">Crafted motion and interaction details — hover states, toggle animations, and feedback cues that make interfaces feel alive and responsive.</div>
+        <div class="wi-footer">
+          <span class="wi-tag">Interaction Design</span>
+          <span class="wi-arrow">→</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- 3. Miscellaneous -->
+    <a href="https://www.behance.net/gallery/240584915/Miscellaneous"
+       target="_blank" class="work-item reveal reveal-delay-1" data-tags="components">
+      <div class="wi-thumb">
+        <img src="https://mir-s3-cdn-cf.behance.net/projects/404/ee9279240584915.Y3JvcCw4MDgsNjMyLDAsMA.png" alt="Miscellaneous" loading="lazy">
+        <div class="wi-overlay"></div>
+        <div class="wi-overlay-text">View Project ↗</div>
+      </div>
+      <div class="wi-info">
+        <div class="wi-title">Miscellaneous UI</div>
+        <div class="wi-desc">A mix of experimental UI explorations — cards, layouts, and interface moments that don't fit neatly into a single category but are worth sharing.</div>
+        <div class="wi-footer">
+          <span class="wi-tag">UI Components</span>
+          <span class="wi-arrow">→</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- 4. Pricing -->
+    <a href="https://www.behance.net/gallery/227968249/Pricing-designs"
+       target="_blank" class="work-item reveal reveal-delay-2" data-tags="components">
+      <div class="wi-thumb">
+        <img src="https://mir-s3-cdn-cf.behance.net/projects/404/b1a4c2227968249.Y3JvcCw4MDgsNjMyLDE5Niww.png" alt="Pricing designs" loading="lazy">
+        <div class="wi-overlay"></div>
+        <div class="wi-overlay-text">View Project ↗</div>
+      </div>
+      <div class="wi-info">
+        <div class="wi-title">Pricing Designs</div>
+        <div class="wi-desc">Pricing page explorations built around clarity, hierarchy, and trust — layouts designed to help users make confident decisions.</div>
+        <div class="wi-footer">
+          <span class="wi-tag">UI Exploration</span>
+          <span class="wi-arrow">→</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- 5. Sign Up -->
+    <a href="https://www.behance.net/gallery/238371179/Sign-up-designs"
+       target="_blank" class="work-item reveal" data-tags="auth">
+      <div class="wi-thumb">
+        <img src="https://mir-s3-cdn-cf.behance.net/projects/404/f097dc238371179.Y3JvcCw4MDgsNjMyLDAsMA.png" alt="Sign up designs" loading="lazy">
+        <div class="wi-overlay"></div>
+        <div class="wi-overlay-text">View Project ↗</div>
+      </div>
+      <div class="wi-info">
+        <div class="wi-title">Sign Up Designs</div>
+        <div class="wi-desc">Onboarding and registration flow explorations — reducing friction while maintaining security and brand trust from the first interaction.</div>
+        <div class="wi-footer">
+          <span class="wi-tag">Auth Flows</span>
+          <span class="wi-arrow">→</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- 6. Testimonials -->
+    <a href="https://www.behance.net/gallery/238411971/Testimonials-section-designs"
+       target="_blank" class="work-item reveal reveal-delay-1" data-tags="components">
+      <div class="wi-thumb">
+        <img src="https://mir-s3-cdn-cf.behance.net/projects/404/05b900238411971.Y3JvcCw4MDgsNjMyLDAsMA.png" alt="Testimonials designs" loading="lazy">
+        <div class="wi-overlay"></div>
+        <div class="wi-overlay-text">View Project ↗</div>
+      </div>
+      <div class="wi-info">
+        <div class="wi-title">Testimonials Section Designs</div>
+        <div class="wi-desc">Social proof section explorations — different approaches to presenting user reviews that build credibility without visual clutter.</div>
+        <div class="wi-footer">
+          <span class="wi-tag">UI Exploration</span>
+          <span class="wi-arrow">→</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- 7. Error States -->
+    <a href="https://www.behance.net/gallery/238398511/Error-state-designs"
+       target="_blank" class="work-item reveal reveal-delay-2" data-tags="components interaction">
+      <div class="wi-thumb">
+        <img src="https://mir-s3-cdn-cf.behance.net/projects/404/7df855238398511.Y3JvcCw4MDgsNjMyLDAsMA.png" alt="Error state designs" loading="lazy">
+        <div class="wi-overlay"></div>
+        <div class="wi-overlay-text">View Project ↗</div>
+      </div>
+      <div class="wi-info">
+        <div class="wi-title">Error State Designs</div>
+        <div class="wi-desc">Edge case UI explorations — empty states, error screens, and no-result moments designed to feel helpful rather than dead-ends.</div>
+        <div class="wi-footer">
+          <span class="wi-tag">Edge Cases · UX Writing</span>
+          <span class="wi-arrow">→</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- 8. Features Section -->
+    <a href="https://www.behance.net/gallery/238398215/Features-section-designs"
+       target="_blank" class="work-item reveal" data-tags="hero components">
+      <div class="wi-thumb">
+        <img src="https://mir-s3-cdn-cf.behance.net/projects/404/95423a238398215.Y3JvcCw4MDgsNjMyLDAsMA.png" alt="Features section designs" loading="lazy">
+        <div class="wi-overlay"></div>
+        <div class="wi-overlay-text">View Project ↗</div>
+      </div>
+      <div class="wi-info">
+        <div class="wi-title">Features Section Designs</div>
+        <div class="wi-desc">Landing page feature grid explorations — communicating product value clearly through layout, iconography, and progressive disclosure.</div>
+        <div class="wi-footer">
+          <span class="wi-tag">UI Exploration</span>
+          <span class="wi-arrow">→</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- 9. Integration Designs -->
+    <a href="https://www.behance.net/gallery/239614263/Integration-designs"
+       target="_blank" class="work-item reveal reveal-delay-1" data-tags="components">
+      <div class="wi-thumb">
+        <img src="https://mir-s3-cdn-cf.behance.net/projects/404/7845af239614263.Y3JvcCw4MDgsNjMyLDAsMA.png" alt="Integration designs" loading="lazy">
+        <div class="wi-overlay"></div>
+        <div class="wi-overlay-text">View Project ↗</div>
+      </div>
+      <div class="wi-info">
+        <div class="wi-title">Integration Designs</div>
+        <div class="wi-desc">UI explorations for third-party integration pages — communicating technical capabilities in a visually accessible, non-technical way.</div>
+        <div class="wi-footer">
+          <span class="wi-tag">UI Exploration</span>
+          <span class="wi-arrow">→</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- 10. Footer designs -->
+    <a href="https://www.behance.net/gallery/238398369/Footer-section-designs"
+       target="_blank" class="work-item reveal reveal-delay-2" data-tags="components">
+      <div class="wi-thumb">
+        <img src="https://mir-s3-cdn-cf.behance.net/projects/404/032cea238398369.Y3JvcCw4MDgsNjMyLDAsMA.png" alt="Footer designs" loading="lazy">
+        <div class="wi-overlay"></div>
+        <div class="wi-overlay-text">View Project ↗</div>
+      </div>
+      <div class="wi-info">
+        <div class="wi-title">Footer Section Designs</div>
+        <div class="wi-desc">Footer layout explorations — an often-overlooked part of the page, reimagined to be informative, accessible, and visually consistent.</div>
+        <div class="wi-footer">
+          <span class="wi-tag">UI Exploration</span>
+          <span class="wi-arrow">→</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- 11. Divider designs -->
+    <a href="https://www.behance.net/gallery/239614019/Divider-designs"
+       target="_blank" class="work-item reveal" data-tags="components">
+      <div class="wi-thumb">
+        <img src="https://mir-s3-cdn-cf.behance.net/projects/404/ba20bc239614019.692d87f331b90.png" alt="Divider designs" loading="lazy">
+        <div class="wi-overlay"></div>
+        <div class="wi-overlay-text">View Project ↗</div>
+      </div>
+      <div class="wi-info">
+        <div class="wi-title">Divider Designs</div>
+        <div class="wi-desc">The invisible connective tissue of a UI — creative divider and section separator explorations that add rhythm without noise.</div>
+        <div class="wi-footer">
+          <span class="wi-tag">UI Detail</span>
+          <span class="wi-arrow">→</span>
+        </div>
+      </div>
+    </a>
+
+  </div>
+
+  <!-- Behance CTA -->
+  <div class="behance-cta reveal">
+    <div class="behance-cta-text">
+      <h3>See everything on Behance &amp; Dribbble</h3>
+      <p>More explorations, process shots, and UI systems available on my profiles.</p>
+    </div>
+    <div class="behance-cta-btns">
+      <a href="https://www.behance.net/satheesmankul" target="_blank" class="cta-btn cta-btn-blue">🎨 Open Behance ↗</a>
+      <a href="https://dribbble.com/Mankulam" target="_blank" class="cta-btn cta-btn-outline">🏀 Open Dribbble ↗</a>
+    </div>
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <a href="index.html" class="footer-logo">Satheesh<span>.</span></a>
+  <p>© 2025 Satheesh M · UX Designer · Bangalore</p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+    });
+  }, { threshold: 0.08 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Filter
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const items = document.querySelectorAll('.work-item');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      items.forEach(item => {
+        if (filter === 'all') {
+          item.classList.remove('hidden');
+        } else {
+          const tags = (item.dataset.tags || '').split(' ');
+          item.classList.toggle('hidden', !tags.includes(filter));
+        }
+      });
+    });
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 — Page Not Found · Satheesh M</title>
+<style>
+  :root {
+    --blue: #0061FE;
+    --blue-bright: #3B82FF;
+    --blue-dim: rgba(0,97,254,0.15);
+    --red: #FF3B30;
+    --green: #34C759;
+    --yellow: #FFD60A;
+    --bg: #090C13;
+    --surface: #0F1420;
+    --surface-2: #161C2E;
+    --border: rgba(255,255,255,0.07);
+    --text: #F0F4FF;
+    --text-muted: #4A5880;
+    --text-dim: #2A3250;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: -apple-system, 'SF Pro Text', BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ── NOISE GRAIN OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 100;
+    opacity: 0.4;
+  }
+
+  /* ── AMBIENT GLOW ── */
+  .glow-1 {
+    position: fixed;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,97,254,0.12) 0%, transparent 70%);
+    top: -200px; left: -100px;
+    pointer-events: none;
+    animation: driftA 12s ease-in-out infinite alternate;
+  }
+  .glow-2 {
+    position: fixed;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,59,48,0.07) 0%, transparent 70%);
+    bottom: -100px; right: -50px;
+    pointer-events: none;
+    animation: driftB 9s ease-in-out infinite alternate;
+  }
+
+  @keyframes driftA {
+    from { transform: translate(0,0); }
+    to   { transform: translate(60px, 80px); }
+  }
+  @keyframes driftB {
+    from { transform: translate(0,0); }
+    to   { transform: translate(-40px, -60px); }
+  }
+
+  /* ── NAV ── */
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem 5%;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    z-index: 10;
+  }
+
+  .nav-logo {
+    font-family: -apple-system, 'SF Pro Display', BlinkMacSystemFont, sans-serif;
+    font-weight: 800;
+    font-size: 1.1rem;
+    color: var(--text);
+    text-decoration: none;
+    letter-spacing: -0.02em;
+  }
+  .nav-logo span { color: var(--blue); }
+
+  .nav-status {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    background: var(--surface);
+    padding: 0.35rem 0.8rem;
+    border-radius: 100px;
+    border: 1px solid var(--border);
+  }
+  .status-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--red);
+    box-shadow: 0 0 6px var(--red);
+    animation: blink 1.5s ease-in-out infinite;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.3; }
+  }
+
+  /* ── MAIN ── */
+  main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 5%;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── UX AUDIT PANEL ── */
+  .audit-panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    width: 100%;
+    max-width: 860px;
+    overflow: hidden;
+    box-shadow: 0 32px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.04);
+    animation: panelIn 0.7s cubic-bezier(0.16,1,0.3,1) both;
+  }
+
+  @keyframes panelIn {
+    from { opacity: 0; transform: translateY(32px) scale(0.97); }
+    to   { opacity: 1; transform: none; }
+  }
+
+  /* panel titlebar */
+  .panel-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.9rem 1.4rem;
+    background: var(--surface-2);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .panel-dots {
+    display: flex;
+    gap: 6px;
+  }
+  .panel-dots span {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+  }
+  .panel-dots span:nth-child(1) { background: #FF5F57; }
+  .panel-dots span:nth-child(2) { background: #FEBC2E; }
+  .panel-dots span:nth-child(3) { background: #28C840; }
+
+  .panel-title {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    letter-spacing: 0.04em;
+  }
+
+  .panel-tag {
+    font-size: 0.7rem;
+    font-weight: 700;
+    background: rgba(255,59,48,0.15);
+    color: var(--red);
+    padding: 0.2rem 0.6rem;
+    border-radius: 6px;
+    border: 1px solid rgba(255,59,48,0.25);
+    letter-spacing: 0.06em;
+  }
+
+  /* panel body */
+  .panel-body {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    min-height: 420px;
+  }
+
+  /* ── LEFT: BIG 404 ── */
+  .panel-left {
+    padding: 3rem 3rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-right: 1px solid var(--border);
+  }
+
+  .error-code-wrap {
+    position: relative;
+    margin-bottom: 1.5rem;
+  }
+
+  .error-code {
+    font-family: -apple-system, 'SF Pro Display', BlinkMacSystemFont, sans-serif;
+    font-size: clamp(6rem, 14vw, 9rem);
+    font-weight: 900;
+    letter-spacing: -0.06em;
+    line-height: 0.9;
+    color: transparent;
+    -webkit-text-stroke: 1.5px rgba(255,255,255,0.08);
+    position: relative;
+    user-select: none;
+  }
+
+  .error-code-filled {
+    position: absolute;
+    inset: 0;
+    font-family: -apple-system, 'SF Pro Display', BlinkMacSystemFont, sans-serif;
+    font-size: clamp(6rem, 14vw, 9rem);
+    font-weight: 900;
+    letter-spacing: -0.06em;
+    line-height: 0.9;
+    background: linear-gradient(135deg, #0061FE 0%, #3B82FF 40%, rgba(0,97,254,0.3) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer 3s ease-in-out infinite;
+  }
+
+  @keyframes shimmer {
+    0%, 100% { filter: brightness(1); }
+    50%       { filter: brightness(1.25); }
+  }
+
+  .error-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: rgba(255,59,48,0.1);
+    border: 1px solid rgba(255,59,48,0.2);
+    color: var(--red);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.75rem;
+    border-radius: 100px;
+    margin-bottom: 1rem;
+    width: fit-content;
+    animation: panelIn 0.5s 0.3s both;
+  }
+  .error-label::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--red);
+    box-shadow: 0 0 6px var(--red);
+    animation: blink 1.2s infinite;
+  }
+
+  .error-heading {
+    font-family: -apple-system, 'SF Pro Display', BlinkMacSystemFont, sans-serif;
+    font-size: clamp(1.4rem, 3vw, 1.9rem);
+    font-weight: 800;
+    color: var(--text);
+    line-height: 1.2;
+    letter-spacing: -0.025em;
+    margin-bottom: 0.8rem;
+    animation: panelIn 0.5s 0.4s both;
+  }
+
+  .error-desc {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    max-width: 400px;
+    animation: panelIn 0.5s 0.5s both;
+  }
+  .error-desc em {
+    font-style: normal;
+    color: var(--blue-bright);
+    font-weight: 600;
+  }
+
+  /* ── ACTION BUTTONS ── */
+  .error-actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+    animation: panelIn 0.5s 0.6s both;
+  }
+
+  .btn-home {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--blue);
+    color: white;
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 700;
+    padding: 0.7rem 1.4rem;
+    border-radius: 10px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+  }
+  .btn-home:hover {
+    background: #004BC4;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,97,254,0.35);
+  }
+
+  .btn-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: transparent;
+    color: var(--text-muted);
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 0.7rem 1.4rem;
+    border-radius: 10px;
+    text-decoration: none;
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: color 0.2s, border-color 0.2s, transform 0.2s;
+  }
+  .btn-back:hover {
+    color: var(--text);
+    border-color: rgba(255,255,255,0.18);
+    transform: translateY(-2px);
+  }
+
+  /* ── RIGHT: UX AUDIT LOG ── */
+  .panel-right {
+    padding: 1.6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    background: var(--bg);
+  }
+
+  .audit-header {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 0.4rem;
+  }
+
+  /* ── FLOW DIAGRAM ── */
+  .flow-diagram {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.2rem;
+    animation: panelIn 0.5s 0.5s both;
+  }
+
+  .flow-title {
+    font-size: 0.68rem;
+    font-weight: 700;
+    color: var(--text-dim);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .flow-nodes {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .flow-node {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0.55rem 0;
+    position: relative;
+  }
+
+  .flow-node::before {
+    content: '';
+    position: absolute;
+    left: 13px;
+    top: 50%;
+    height: 100%;
+    width: 1.5px;
+    background: var(--border);
+  }
+  .flow-node:last-child::before { display: none; }
+
+  .node-dot {
+    width: 28px; height: 28px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    font-weight: 800;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+  }
+  .node-dot.ok {
+    background: rgba(52,199,89,0.12);
+    color: var(--green);
+    border: 1px solid rgba(52,199,89,0.2);
+  }
+  .node-dot.warn {
+    background: rgba(255,214,10,0.1);
+    color: var(--yellow);
+    border: 1px solid rgba(255,214,10,0.2);
+  }
+  .node-dot.error {
+    background: rgba(255,59,48,0.12);
+    color: var(--red);
+    border: 1px solid rgba(255,59,48,0.25);
+    animation: pulseRed 2s ease-in-out infinite;
+  }
+
+  @keyframes pulseRed {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(255,59,48,0.3); }
+    50%       { box-shadow: 0 0 0 5px rgba(255,59,48,0); }
+  }
+
+  .node-info { flex: 1; }
+  .node-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.2;
+  }
+  .node-sub {
+    font-size: 0.68rem;
+    color: var(--text-muted);
+    margin-top: 1px;
+  }
+
+  .node-badge {
+    font-size: 0.62rem;
+    font-weight: 700;
+    padding: 0.15rem 0.45rem;
+    border-radius: 4px;
+  }
+  .node-badge.ok { background: rgba(52,199,89,0.12); color: var(--green); }
+  .node-badge.err { background: rgba(255,59,48,0.12); color: var(--red); }
+
+  /* ── LOG ENTRIES ── */
+  .log-entries {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    animation: panelIn 0.5s 0.7s both;
+  }
+
+  .log-entry {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    padding: 0.65rem 0.85rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+  }
+
+  .log-icon {
+    font-size: 0.8rem;
+    margin-top: 1px;
+    flex-shrink: 0;
+  }
+
+  .log-text {
+    font-size: 0.74rem;
+    line-height: 1.5;
+    color: var(--text-muted);
+  }
+  .log-text strong {
+    color: var(--text);
+    font-weight: 600;
+    display: block;
+    margin-bottom: 1px;
+  }
+
+  .log-time {
+    font-size: 0.65rem;
+    color: var(--text-dim);
+    margin-left: auto;
+    flex-shrink: 0;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ── QUICK LINKS ── */
+  .quick-links {
+    animation: panelIn 0.5s 0.9s both;
+  }
+
+  .quick-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.65rem 0.85rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    text-decoration: none;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    transition: border-color 0.2s, color 0.2s, background 0.2s;
+  }
+  .quick-link:last-child { margin-bottom: 0; }
+  .quick-link:hover {
+    border-color: rgba(0,97,254,0.35);
+    color: var(--text);
+    background: rgba(0,97,254,0.06);
+  }
+  .quick-link-left {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+  }
+  .quick-link-icon {
+    width: 24px; height: 24px;
+    border-radius: 6px;
+    background: var(--surface-2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+  }
+  .quick-link-arrow {
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    transition: transform 0.2s, color 0.2s;
+  }
+  .quick-link:hover .quick-link-arrow {
+    transform: translateX(3px);
+    color: var(--blue);
+  }
+
+  /* ── PANEL FOOTER ── */
+  .panel-footer {
+    padding: 1rem 1.4rem;
+    border-top: 1px solid var(--border);
+    background: var(--surface-2);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .pf-insight {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+  .pf-insight strong {
+    font-style: normal;
+    color: var(--blue-bright);
+    font-weight: 600;
+  }
+
+  .pf-meta {
+    font-size: 0.7rem;
+    color: var(--text-dim);
+  }
+
+  /* ── TYPING CURSOR ── */
+  .cursor {
+    display: inline-block;
+    width: 2px; height: 0.9em;
+    background: var(--blue);
+    margin-left: 2px;
+    vertical-align: middle;
+    animation: cursorBlink 1.1s step-end infinite;
+  }
+  @keyframes cursorBlink {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0; }
+  }
+
+  /* ── PAGE FOOTER ── */
+  .page-footer {
+    text-align: center;
+    padding: 1.5rem;
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    border-top: 1px solid var(--border);
+    position: relative;
+    z-index: 1;
+  }
+  .page-footer a {
+    color: var(--blue);
+    text-decoration: none;
+  }
+  .page-footer a:hover { text-decoration: underline; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 720px) {
+    .panel-body { grid-template-columns: 1fr; }
+    .panel-left { border-right: none; border-bottom: 1px solid var(--border); padding: 2rem 1.6rem; }
+    .panel-right { padding: 1.4rem; }
+    .error-code, .error-code-filled { font-size: 7rem; }
+  }
+
+  @media (max-width: 480px) {
+    .panel-footer { flex-direction: column; align-items: flex-start; }
+    .error-actions { flex-direction: column; }
+    .btn-home, .btn-back { justify-content: center; text-align: center; }
+    .error-code, .error-code-filled { font-size: 5.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="glow-1"></div>
+<div class="glow-2"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">Satheesh<span>.</span></a>
+  <div class="nav-status">
+    <span class="status-dot"></span>
+    Error State Active
+  </div>
+</nav>
+
+<!-- MAIN -->
+<main>
+  <div class="audit-panel">
+
+    <!-- Panel titlebar -->
+    <div class="panel-bar">
+      <div class="panel-dots">
+        <span></span><span></span><span></span>
+      </div>
+      <div class="panel-title">UX Audit — Dead-End Screen Detected</div>
+      <div class="panel-tag">FRICTION · HIGH</div>
+    </div>
+
+    <!-- Panel body -->
+    <div class="panel-body">
+
+      <!-- LEFT: 404 message -->
+      <div class="panel-left">
+        <div>
+          <div class="error-label">HTTP 404 · Page Not Found</div>
+
+          <div class="error-code-wrap">
+            <div class="error-code">404</div>
+            <div class="error-code-filled">404</div>
+          </div>
+
+          <h1 class="error-heading">You've hit a dead-end screen.<br>Classic friction moment.</h1>
+          <p class="error-desc">
+            The page you're looking for doesn't exist — or moved without telling anyone.<br><br>
+            As someone who writes about <em>dead-end UX</em>, I know exactly how frustrating this is. Let's get you back on track.
+          </p>
+        </div>
+
+        <div class="error-actions">
+          <a href="index.html" class="btn-home">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            Go Home
+          </a>
+          <a href="javascript:history.back()" class="btn-back">
+            ← Go Back
+          </a>
+        </div>
+      </div>
+
+      <!-- RIGHT: Audit panel -->
+      <div class="panel-right">
+
+        <div class="audit-header">User Flow Analysis</div>
+
+        <!-- Flow diagram -->
+        <div class="flow-diagram">
+          <div class="flow-title">Navigation path</div>
+          <div class="flow-nodes">
+
+            <div class="flow-node">
+              <div class="node-dot ok">✓</div>
+              <div class="node-info">
+                <div class="node-label">Entry Point</div>
+                <div class="node-sub">User navigated to portfolio</div>
+              </div>
+              <div class="node-badge ok">200</div>
+            </div>
+
+            <div class="flow-node">
+              <div class="node-dot ok">✓</div>
+              <div class="node-info">
+                <div class="node-label">Clicked a Link</div>
+                <div class="node-sub">Intent detected, path followed</div>
+              </div>
+              <div class="node-badge ok">OK</div>
+            </div>
+
+            <div class="flow-node">
+              <div class="node-dot warn">!</div>
+              <div class="node-info">
+                <div class="node-label">Redirect Attempted</div>
+                <div class="node-sub">Path resolution failed</div>
+              </div>
+              <div class="node-badge err">WARN</div>
+            </div>
+
+            <div class="flow-node">
+              <div class="node-dot error">✕</div>
+              <div class="node-info">
+                <div class="node-label">Dead-End Reached</div>
+                <div class="node-sub">You are here right now</div>
+              </div>
+              <div class="node-badge err">404</div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Log entries -->
+        <div class="log-entries">
+          <div class="log-entry">
+            <div class="log-icon">🔍</div>
+            <div class="log-text">
+              <strong>Friction detected</strong>
+              User intent blocked by missing resource
+            </div>
+            <div class="log-time">just now</div>
+          </div>
+          <div class="log-entry">
+            <div class="log-icon">💡</div>
+            <div class="log-text">
+              <strong>Recommendation</strong>
+              Provide clear escape paths<span class="cursor"></span>
+            </div>
+            <div class="log-time">0ms</div>
+          </div>
+        </div>
+
+        <!-- Quick links -->
+        <div class="quick-links">
+          <div class="audit-header" style="margin-top:0.4rem;">Escape Routes</div>
+          <a href="index.html" class="quick-link">
+            <div class="quick-link-left">
+              <div class="quick-link-icon">🏠</div>
+              Portfolio Home
+            </div>
+            <span class="quick-link-arrow">→</span>
+          </a>
+          <a href="writings.html" class="quick-link">
+            <div class="quick-link-left">
+              <div class="quick-link-icon">✍️</div>
+              UX Writings
+            </div>
+            <span class="quick-link-arrow">→</span>
+          </a>
+          <a href="design-work.html" class="quick-link">
+            <div class="quick-link-left">
+              <div class="quick-link-icon">🎨</div>
+              Design Work
+            </div>
+            <span class="quick-link-arrow">→</span>
+          </a>
+          <a href="index.html#contact" class="quick-link">
+            <div class="quick-link-left">
+              <div class="quick-link-icon">💬</div>
+              Get in Touch
+            </div>
+            <span class="quick-link-arrow">→</span>
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Panel footer -->
+    <div class="panel-footer">
+      <div class="pf-insight">
+        <span>💬</span>
+        <span>I wrote about this exact problem — <strong><a href="https://medium.com/design-bootcamp/tapping-for-nothing-fixing-dead-end-screens-in-rapido-app-21a9a5249ccb?sk=81859be58352d8b9d5d15b4760a2a0e1" target="_blank" style="color:var(--blue-bright);text-decoration:none;">Tapping for Nothing: Fixing Dead-End Screens →</a></strong></span>
+      </div>
+      <div class="pf-meta">Error logged · Satheesh M Portfolio</div>
+    </div>
+
+  </div>
+</main>
+
+<!-- PAGE FOOTER -->
+<div class="page-footer">
+  © 2025 <a href="index.html">Satheesh M</a> · UX Designer · Bangalore
+</div>
+
+</body>
+</html>
