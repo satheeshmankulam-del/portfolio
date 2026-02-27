@@ -3,11 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="favicon.png">
 <title>Satheesh Mankulam | UX Designer & Motion Design Specialist</title>
-<meta name="description" content="UX Designer with 10+ years in visual storytelling and 4+ years in product design. I turn friction into flow — case studies, UI explorations, and a published book on product psychology.">
+<meta name="description" content="UX Designer with 11+ years in visual storytelling and 5+ years in product design. I turn friction into flow — case studies, UI explorations, and a published book on product psychology.">
 <meta name="author" content="Satheesh Mankulam">
 <meta property="og:title" content="Satheesh Mankulam | UX Designer & Motion Design Specialist">
-<meta property="og:description" content="UX Designer with 10+ years in visual storytelling. Case studies, UI work, and a published book on product psychology.">
+<meta property="og:description" content="UX Designer with 11+ years in visual storytelling. Case studies, UI work, and a published book on product psychology.">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Satheesh Mankulam | UX Designer">
@@ -70,10 +71,11 @@
   .nav-logo {
     font-family: -apple-system, 'SF Pro Display', BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
     font-weight: 800;
-    font-size: 1.15rem;
+    font-size: 1.05rem;
     color: var(--black);
     text-decoration: none;
     letter-spacing: -0.02em;
+    white-space: nowrap;
   }
   .nav-logo span { color: var(--blue); }
 
@@ -126,12 +128,12 @@
   .hero {
     min-height: 100vh;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 55% 45%;
     align-items: center;
     padding: 120px 5% 80px;
     position: relative;
     overflow: hidden;
-    gap: 4rem;
+    gap: 2rem;
   }
 
   .hero-bg {
@@ -164,13 +166,15 @@
     align-items: center;
     justify-content: center;
     animation: fadeUp 0.8s 0.4s ease both;
+    overflow: visible;
   }
 
   .hero-visual svg {
     width: 100%;
-    max-width: 520px;
+    max-width: 460px;
     height: auto;
-    filter: drop-shadow(0 24px 48px rgba(0,97,254,0.10));
+    overflow: visible;
+    filter: drop-shadow(0 20px 40px rgba(0,97,254,0.08));
   }
 
   /* floating card animations */
@@ -1191,22 +1195,6 @@
   }
   .mobile-resume:hover { background: var(--blue-dark); padding-left: 1.2rem !important; }
 
-  .mobile-theme-toggle {
-    width: 100% !important;
-    height: auto !important;
-    border-radius: 12px !important;
-    padding: 1rem 1.2rem !important;
-    justify-content: flex-start !important;
-    gap: 0.75rem !important;
-    border-color: var(--gray-5) !important;
-    margin-top: 0.5rem;
-  }
-  .mobile-theme-label {
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--gray-1);
-  }
-  [data-theme="dark"] .mobile-theme-label { color: #E0E8FF; }
 
   /* ── SCROLL REVEAL ── */
   .reveal {
@@ -1244,12 +1232,13 @@
     .hero {
       grid-template-columns: 1fr;
       padding: 100px 5% 60px;
-      gap: 3rem;
+      gap: 2rem;
+      min-height: auto;
     }
     .hero h1 { font-size: clamp(2.2rem, 6vw, 3.2rem); }
     .hero-stats { gap: 1.5rem; flex-wrap: wrap; }
-    .hero-visual { justify-content: center; }
-    .hero-visual svg { max-width: 380px; }
+    .hero-visual { justify-content: center; order: 2; }
+    .hero-visual svg { max-width: 360px; }
 
     /* About */
     .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
@@ -1286,7 +1275,7 @@
     .hero-actions a { text-align: center; justify-content: center; }
     .hero-stats { gap: 1.2rem; }
     .hero-stat-num { font-size: 1.5rem; }
-    .hero-visual svg { max-width: 300px; }
+    .hero-visual svg { max-width: 280px; }
 
     /* About */
     .about-cards { grid-template-columns: 1fr; }
@@ -1427,150 +1416,8 @@
     .skb-btns { flex-direction:column; }
     .skf { flex-direction:column; }
   }
-  /* ══════════════════════════════════
-     DARK MODE
-  ══════════════════════════════════ */
-
-  /* toggle button */
-  .theme-toggle {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 36px; height: 36px;
-    border-radius: 10px;
-    border: 1.5px solid var(--gray-5);
-    background: transparent;
-    cursor: pointer;
-    transition: background 0.2s, border-color 0.2s, transform 0.2s;
-    flex-shrink: 0;
-    color: var(--gray-2);
-  }
-  .theme-toggle:hover {
-    background: var(--blue-light);
-    border-color: var(--blue-mid);
-    transform: rotate(12deg);
-    color: var(--blue);
-  }
-  .theme-toggle svg { pointer-events: none; transition: transform 0.3s; }
-
-  /* sun icon (shown in dark mode) */
-  .icon-sun  { display: none; }
-  .icon-moon { display: block; }
-
-  [data-theme="dark"] .icon-sun  { display: block; }
-  [data-theme="dark"] .icon-moon { display: none; }
-
-  /* ── DARK VARIABLES ── */
-  [data-theme="dark"] {
-    --blue: #4D9BFF;
-    --blue-dark: #2979F5;
-    --blue-light: rgba(77,155,255,0.1);
-    --blue-mid: rgba(77,155,255,0.2);
-    --black: #F0F4FF;
-    --gray-1: #E0E8FF;
-    --gray-2: #A8B8D8;
-    --gray-3: #7A8FAD;
-    --gray-4: #4A5880;
-    --gray-5: rgba(255,255,255,0.08);
-    --gray-6: #0E1424;
-    --white: #0A0F1E;
-    --radius: 12px;
-    --radius-lg: 20px;
-    --shadow: 0 1px 3px rgba(0,0,0,0.3), 0 4px 16px rgba(0,0,0,0.3);
-    --shadow-hover: 0 4px 12px rgba(77,155,255,0.2), 0 12px 40px rgba(77,155,255,0.12);
-  }
-
-  [data-theme="dark"] body { background: #0A0F1E; color: #F0F4FF; }
-
-  [data-theme="dark"] nav {
-    background: rgba(10,15,30,0.95);
-    border-bottom-color: rgba(255,255,255,0.07);
-  }
-  [data-theme="dark"] nav.scrolled {
-    background: rgba(10,15,30,0.98);
-    box-shadow: 0 2px 20px rgba(0,0,0,0.4);
-  }
-  [data-theme="dark"] .nav-links a { color: #A8B8D8; }
-  [data-theme="dark"] .nav-links a:hover { color: #F0F4FF; }
-  [data-theme="dark"] .nav-resume-btn { background: rgba(255,255,255,0.08) !important; border-color: rgba(255,255,255,0.15) !important; color: #F0F4FF !important; }
-  [data-theme="dark"] .nav-resume-btn:hover { background: rgba(255,255,255,0.14) !important; }
-  [data-theme="dark"] .theme-toggle { border-color: rgba(255,255,255,0.1); color: #A8B8D8; }
-  [data-theme="dark"] .theme-toggle:hover { background: rgba(77,155,255,0.12); border-color: rgba(77,155,255,0.3); color: #4D9BFF; }
-
-  [data-theme="dark"] .mobile-nav { background: rgba(10,15,30,0.99); }
-  [data-theme="dark"] .mobile-link { color: #E0E8FF; border-bottom-color: rgba(255,255,255,0.07); }
-  [data-theme="dark"] .nav-hamburger span { background: #E0E8FF; }
-  [data-theme="dark"] .nav-hamburger:hover { background: rgba(255,255,255,0.07); }
-
-  [data-theme="dark"] .hero { background: #0A0F1E; }
-  [data-theme="dark"] .hero-bg { background: radial-gradient(ellipse 80% 60% at 65% 40%, rgba(77,155,255,0.08) 0%, transparent 60%), radial-gradient(ellipse 40% 40% at 80% 80%, rgba(77,155,255,0.05) 0%, transparent 50%); }
-  [data-theme="dark"] .hero-badge { background: rgba(77,155,255,0.1); border-color: rgba(77,155,255,0.2); }
-  [data-theme="dark"] .hero h1 { color: #F0F4FF; }
-  [data-theme="dark"] .hero-desc { color: #A8B8D8; }
-  [data-theme="dark"] .btn-secondary { border-color: rgba(255,255,255,0.12); color: #E0E8FF; }
-  [data-theme="dark"] .btn-secondary:hover { border-color: #4D9BFF; color: #4D9BFF; }
-  [data-theme="dark"] .hero-stat-num { color: #F0F4FF; }
-  [data-theme="dark"] .hero-stat-label { color: #7A8FAD; }
-  [data-theme="dark"] .hero-stats { border-top-color: rgba(255,255,255,0.07); }
-
-  [data-theme="dark"] #about { background: #0E1424; }
-  [data-theme="dark"] .about-text p { color: #A8B8D8; }
-  [data-theme="dark"] .pill { background: rgba(77,155,255,0.1); color: #4D9BFF; border-color: rgba(77,155,255,0.2); }
-  [data-theme="dark"] .about-card { background: #131929; border-color: rgba(255,255,255,0.07); }
-  [data-theme="dark"] .about-card:first-child { background: rgba(77,155,255,0.08); border-color: rgba(77,155,255,0.15); }
-  [data-theme="dark"] .about-card h4 { color: #E0E8FF; }
-  [data-theme="dark"] .about-card p, [data-theme="dark"] .about-card span { color: #7A8FAD; }
-
-  [data-theme="dark"] #casestudies { background: #0A0F1E; }
-  [data-theme="dark"] .section-title { color: #F0F4FF; }
-  [data-theme="dark"] .section-sub { color: #7A8FAD; }
-  [data-theme="dark"] .section-label { color: #4D9BFF; }
-  [data-theme="dark"] .section-label::before { background: #4D9BFF; }
-
-  [data-theme="dark"] .featured-writing-card { background: #131929; border-color: rgba(255,255,255,0.07); }
-  [data-theme="dark"] .featured-writing-card:hover { border-color: rgba(77,155,255,0.3); }
-  [data-theme="dark"] .fw-tag { background: rgba(77,155,255,0.1); color: #4D9BFF; }
-  [data-theme="dark"] .fw-title { color: #E0E8FF; }
-  [data-theme="dark"] .fw-desc { color: #7A8FAD; }
-  [data-theme="dark"] .fw-footer { border-top-color: rgba(255,255,255,0.07); }
-  [data-theme="dark"] .fw-read { color: #A8B8D8; }
-  [data-theme="dark"] .writings-cta { background: #131929; border-color: rgba(255,255,255,0.07); }
-  [data-theme="dark"] .writings-cta-text { color: #A8B8D8; }
-  [data-theme="dark"] .writings-count { color: #4D9BFF; }
-
-  [data-theme="dark"] #work { background: #0E1424; }
-  [data-theme="dark"] .work-card { background: #131929; border-color: rgba(255,255,255,0.07); }
-  [data-theme="dark"] .work-card:hover { border-color: rgba(77,155,255,0.3); }
-  [data-theme="dark"] .work-info h4 { color: #E0E8FF; }
-  [data-theme="dark"] .work-info span { color: #4A5880; }
-  [data-theme="dark"] .work-card-viewall { background: rgba(77,155,255,0.07); border-color: rgba(77,155,255,0.15); }
-  [data-theme="dark"] .work-card-viewall:hover { background: #4D9BFF; }
-  [data-theme="dark"] .viewall-label { color: #E0E8FF; }
-  [data-theme="dark"] .viewall-count { color: #4D9BFF; }
-
-  [data-theme="dark"] #book { background: #0A0F1E; }
-  [data-theme="dark"] .book-eyebrow { color: #4D9BFF; }
-  [data-theme="dark"] .book-content h3 { color: #F0F4FF; }
-  [data-theme="dark"] .book-content p { color: #A8B8D8; }
-  [data-theme="dark"] .book-highlight { background: rgba(77,155,255,0.08); border-color: rgba(77,155,255,0.2); }
-  [data-theme="dark"] .book-highlight p { color: #C0CFEF; }
-  [data-theme="dark"] .book-btn-dark { background: rgba(255,255,255,0.08); color: #E0E8FF; }
-  [data-theme="dark"] .book-btn-outline { background: transparent; border-color: rgba(255,255,255,0.15); color: #E0E8FF; }
-  [data-theme="dark"] .book-btn-outline:hover { border-color: #4D9BFF; color: #4D9BFF; }
-
-  [data-theme="dark"] footer { background: #060A14; border-top-color: rgba(255,255,255,0.05); }
-  [data-theme="dark"] footer p { color: rgba(255,255,255,0.2); }
-  [data-theme="dark"] .footer-logo { color: rgba(255,255,255,0.3); }
-
-  /* skeleton dark */
-  [data-theme="dark"] #skeleton-wrapper { background: #0A0F1E; }
-  [data-theme="dark"] .sk {
-    background: linear-gradient(90deg,#131929 0%,#131929 30%,#1A2340 50%,#131929 70%,#131929 100%);
-    background-size: 400% 100%;
-  }
 
 </style>
-<script src="theme.js"></script>
 </head>
 <body>
 
@@ -1756,7 +1603,7 @@
 
 
 <nav id="navbar">
-  <a href="#" class="nav-logo">Satheesh<span>.</span></a>
+  <a href="#" class="nav-logo">Satheesh <span>Mankulam</span></a>
 
   <!-- Desktop links -->
   <ul class="nav-links">
@@ -1769,12 +1616,7 @@
       Resume
     </a></li>
     <li><a href="#contact" class="nav-cta">Let's Talk</a></li>
-    <li>
-      <button class="theme-toggle" onclick="__toggleTheme()" aria-label="Switch to dark mode">
-        <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-        <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-      </button>
-    </li>
+
   </ul>
 
   <!-- Hamburger button -->
@@ -1795,12 +1637,6 @@
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
       Download Resume
     </a>
-    <!-- Theme toggle in mobile drawer -->
-    <button class="theme-toggle mobile-theme-toggle" onclick="__toggleTheme()" aria-label="Switch to dark mode">
-      <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-      <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-      <span class="mobile-theme-label">Toggle Dark Mode</span>
-    </button>
   </div>
 </div>
 
@@ -1812,7 +1648,7 @@
     <div class="hero-badge">Available for Freelance &amp; Full-time</div>
     <h1>Designing for <em>humans</em>,<br>not just screens.</h1>
     <p class="hero-desc">
-      I'm Satheesh M — a UX Designer with 4+ years in user experience and 10+ years in visual storytelling. I turn friction into flow and confusion into clarity.
+      I'm Satheesh M — a UX Designer with 5+ years in user experience and 11+ years in visual storytelling. I turn friction into flow and confusion into clarity.
     </p>
     <div class="hero-actions">
       <a href="#casestudies" class="btn-primary">View Case Studies →</a>
@@ -1820,11 +1656,11 @@
     </div>
     <div class="hero-stats">
       <div>
-        <div class="hero-stat-num">10<span>+</span></div>
+        <div class="hero-stat-num">11<span>+</span></div>
         <div class="hero-stat-label">Years in Visual Design</div>
       </div>
       <div>
-        <div class="hero-stat-num">4<span>+</span></div>
+        <div class="hero-stat-num">5<span>+</span></div>
         <div class="hero-stat-label">Years in UX</div>
       </div>
       <div>
@@ -1840,178 +1676,192 @@
 
   <!-- HERO ILLUSTRATION -->
   <div class="hero-visual">
-    <svg viewBox="0 0 520 560" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <svg viewBox="0 0 480 540" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
       <defs>
+        <linearGradient id="phoneBodyGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#1C2333"/>
+          <stop offset="100%" stop-color="#0D1117"/>
+        </linearGradient>
         <linearGradient id="screenGrad" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="#F7F9FC"/>
+          <stop offset="0%" stop-color="#F8FAFF"/>
           <stop offset="100%" stop-color="#EEF4FF"/>
         </linearGradient>
-        <linearGradient id="blueGrad" x1="0" y1="0" x2="1" y2="1">
+        <linearGradient id="blueCard" x1="0" y1="0" x2="1" y2="1">
           <stop offset="0%" stop-color="#0061FE"/>
-          <stop offset="100%" stop-color="#004BC4"/>
+          <stop offset="100%" stop-color="#003DB3"/>
         </linearGradient>
-        <linearGradient id="cardGrad" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="#ffffff"/>
-          <stop offset="100%" stop-color="#F7F9FC"/>
-        </linearGradient>
-        <filter id="shadow1" x="-20%" y="-20%" width="140%" height="140%">
-          <feDropShadow dx="0" dy="8" stdDeviation="16" flood-color="#0061FE" flood-opacity="0.12"/>
+        <filter id="phoneShadow" x="-25%" y="-10%" width="150%" height="130%">
+          <feDropShadow dx="0" dy="16" stdDeviation="24" flood-color="#0061FE" flood-opacity="0.15"/>
+          <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000" flood-opacity="0.12"/>
         </filter>
-        <filter id="shadow2" x="-30%" y="-30%" width="160%" height="160%">
-          <feDropShadow dx="0" dy="6" stdDeviation="12" flood-color="#000" flood-opacity="0.08"/>
+        <filter id="cardShadow" x="-20%" y="-20%" width="140%" height="150%">
+          <feDropShadow dx="0" dy="8" stdDeviation="14" flood-color="#000" flood-opacity="0.10"/>
         </filter>
-        <clipPath id="phoneClip">
-          <rect x="148" y="40" width="196" height="380" rx="24"/>
+        <clipPath id="screen">
+          <rect x="150" y="48" width="180" height="356" rx="20"/>
         </clipPath>
       </defs>
 
-      <!-- ── PHONE BODY ── -->
-      <rect x="144" y="36" width="204" height="388" rx="28" fill="#1C2333" filter="url(#shadow1)"/>
-      <rect x="148" y="40" width="196" height="380" rx="24" fill="url(#screenGrad)"/>
+      <!-- ═══ PHONE CHASSIS ═══ -->
+      <rect x="145" y="32" width="190" height="380" rx="30" fill="url(#phoneBodyGrad)" filter="url(#phoneShadow)"/>
+      <rect x="145" y="32" width="4" height="380" rx="2" fill="rgba(255,255,255,0.06)"/>
+      <rect x="150" y="48" width="180" height="356" rx="20" fill="url(#screenGrad)"/>
+      <!-- Dynamic island -->
+      <rect x="204" y="58" width="72" height="20" rx="10" fill="#0D1117"/>
+      <circle cx="257" cy="68" r="4" fill="#1C2333"/>
+      <!-- Side buttons -->
+      <rect x="141" y="120" width="4" height="36" rx="2" fill="#2D3748"/>
+      <rect x="141" y="168" width="4" height="28" rx="2" fill="#2D3748"/>
+      <rect x="335" y="130" width="4" height="44" rx="2" fill="#2D3748"/>
 
-      <!-- status bar -->
-      <rect x="148" y="40" width="196" height="36" rx="0" fill="white" opacity="0.7"/>
-      <!-- notch -->
-      <rect x="210" y="46" width="72" height="18" rx="9" fill="#1C2333"/>
-      <!-- status icons -->
-      <circle cx="172" cy="55" r="4" fill="#E2E8F0"/>
-      <rect x="162" y="52" width="8" height="6" rx="1" fill="#A0AEC0"/>
+      <!-- ═══ SCREEN CONTENT ═══ -->
+      <g clip-path="url(#screen)">
+        <!-- App header -->
+        <rect x="150" y="82" width="180" height="48" fill="white"/>
+        <circle cx="172" cy="106" r="14" fill="#EEF4FF"/>
+        <circle cx="172" cy="102" r="6" fill="#0061FE" opacity="0.7"/>
+        <ellipse cx="172" cy="117" rx="8" ry="5" fill="#0061FE" opacity="0.25"/>
+        <text x="193" y="101" font-size="9.5" font-weight="700" fill="#0D1117" font-family="-apple-system,sans-serif">Satheesh M.</text>
+        <text x="193" y="114" font-size="7.5" fill="#718096" font-family="-apple-system,sans-serif">UX Designer · Bangalore</text>
+        <!-- Live green pulse dot -->
+        <circle cx="183" cy="92" r="4" fill="#22C55E"/>
+        <circle cx="183" cy="92" r="4" fill="#22C55E" opacity="0.4">
+          <animate attributeName="r" values="4;7;4" dur="2s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0.4;0;0.4" dur="2s" repeatCount="indefinite"/>
+        </circle>
+        <!-- Hamburger menu lines -->
+        <rect x="312" y="100" width="12" height="1.5" rx="1" fill="#A0AEC0"/>
+        <rect x="312" y="105" width="9" height="1.5" rx="1" fill="#A0AEC0"/>
+        <rect x="312" y="110" width="12" height="1.5" rx="1" fill="#A0AEC0"/>
+        <!-- Divider -->
+        <rect x="150" y="130" width="180" height="1" fill="#E2E8F0"/>
+        <!-- Section label -->
+        <text x="162" y="148" font-size="7.5" font-weight="700" fill="#A0AEC0" font-family="-apple-system,sans-serif" letter-spacing="1.5">CASE STUDIES</text>
 
-      <!-- ── APP UI CONTENT (clipped to phone screen) ── -->
-      <g clip-path="url(#phoneClip)">
+        <!-- Card 1 (blue featured) -->
+        <rect x="158" y="156" width="164" height="72" rx="12" fill="url(#blueCard)"/>
+        <rect x="158" y="156" width="164" height="36" rx="12" fill="white" opacity="0.05"/>
+        <rect x="158" y="156" width="4" height="72" rx="2" fill="white" opacity="0.15"/>
+        <text x="170" y="174" font-size="7" fill="rgba(255,255,255,0.6)" font-family="-apple-system,sans-serif">🗺️ Google Maps · Android Auto</text>
+        <text x="170" y="188" font-size="8.5" font-weight="700" fill="white" font-family="-apple-system,sans-serif">Smarter Navigation</text>
+        <text x="170" y="200" font-size="7.5" fill="rgba(255,255,255,0.8)" font-family="-apple-system,sans-serif">with Vehicle Profiles</text>
+        <rect x="262" y="206" width="50" height="14" rx="7" fill="rgba(255,255,255,0.15)"/>
+        <text x="272" y="217" font-size="6.5" fill="white" font-family="-apple-system,sans-serif">Read →</text>
 
-        <!-- header bar -->
-        <rect x="148" y="76" width="196" height="44" fill="white"/>
-        <circle cx="172" cy="98" r="12" fill="#EEF4FF"/>
-        <!-- avatar icon -->
-        <circle cx="172" cy="95" r="5" fill="#0061FE" opacity="0.6"/>
-        <ellipse cx="172" cy="107" rx="7" ry="4" fill="#0061FE" opacity="0.3"/>
-        <text x="190" y="94" font-size="9" font-weight="700" fill="#0D1117" font-family="-apple-system,sans-serif">Satheesh M</text>
-        <text x="190" y="106" font-size="7" fill="#718096" font-family="-apple-system,sans-serif">UX Designer</text>
-        <!-- menu dots -->
-        <circle cx="322" cy="98" r="2" fill="#A0AEC0"/>
-        <circle cx="330" cy="98" r="2" fill="#A0AEC0"/>
-        <circle cx="338" cy="98" r="2" fill="#A0AEC0"/>
+        <!-- Card 2 -->
+        <rect x="158" y="236" width="164" height="56" rx="12" fill="white" opacity="0.96"/>
+        <rect x="158" y="236" width="4" height="56" rx="2" fill="#0061FE"/>
+        <text x="170" y="253" font-size="7" fill="#718096" font-family="-apple-system,sans-serif">🧠 Behavioural UX</text>
+        <text x="170" y="267" font-size="8.5" font-weight="700" fill="#0D1117" font-family="-apple-system,sans-serif">Designing for "I Don't Care"</text>
+        <text x="170" y="279" font-size="7" fill="#A0AEC0" font-family="-apple-system,sans-serif">Low-intent user psychology →</text>
 
-        <!-- divider -->
-        <rect x="148" y="120" width="196" height="1" fill="#E2E8F0"/>
+        <!-- Card 3 (purple accent) -->
+        <rect x="158" y="300" width="164" height="56" rx="12" fill="white" opacity="0.96"/>
+        <rect x="158" y="300" width="4" height="56" rx="2" fill="#8B5CF6"/>
+        <text x="170" y="317" font-size="7" fill="#718096" font-family="-apple-system,sans-serif">✨ AI &amp; UX</text>
+        <text x="170" y="331" font-size="8.5" font-weight="700" fill="#0D1117" font-family="-apple-system,sans-serif">When AI Knows Me Too Well</text>
+        <text x="170" y="343" font-size="7" fill="#A0AEC0" font-family="-apple-system,sans-serif">Privacy friction in AI design →</text>
 
-        <!-- section title -->
-        <text x="164" y="140" font-size="8" font-weight="700" fill="#A0AEC0" font-family="-apple-system,sans-serif" letter-spacing="1">CASE STUDIES</text>
-
-        <!-- ── CASE STUDY CARD 1 (blue) ── -->
-        <rect x="160" y="150" width="172" height="68" rx="10" fill="url(#blueGrad)"/>
-        <!-- card accent -->
-        <rect x="160" y="150" width="172" height="68" rx="10" fill="url(#blueGrad)" opacity="0.95"/>
-        <rect x="160" y="150" width="5" height="68" rx="2" fill="white" opacity="0.2"/>
-        <text x="174" y="170" font-size="7.5" font-weight="700" fill="rgba(255,255,255,0.7)" font-family="-apple-system,sans-serif">🗺️ Google Maps</text>
-        <text x="174" y="184" font-size="8" font-weight="700" fill="white" font-family="-apple-system,sans-serif">Smarter Navigation</text>
-        <text x="174" y="195" font-size="7.5" fill="rgba(255,255,255,0.75)" font-family="-apple-system,sans-serif">with Vehicle Profiles</text>
-        <!-- read arrow -->
-        <rect x="292" y="200" width="30" height="12" rx="6" fill="white" opacity="0.2"/>
-        <text x="300" y="210" font-size="7" fill="white" font-family="-apple-system,sans-serif">Read →</text>
-
-        <!-- ── CASE STUDY CARD 2 ── -->
-        <rect x="160" y="228" width="172" height="58" rx="10" fill="white" opacity="0.95"/>
-        <rect x="160" y="228" width="5" height="58" rx="2" fill="#0061FE" opacity="0.6"/>
-        <text x="174" y="246" font-size="7" fill="#718096" font-family="-apple-system,sans-serif">🧠 Behavioural UX</text>
-        <text x="174" y="259" font-size="8" font-weight="700" fill="#0D1117" font-family="-apple-system,sans-serif">I Don't Care Users</text>
-        <text x="174" y="272" font-size="7" fill="#A0AEC0" font-family="-apple-system,sans-serif">Passive psychology →</text>
-
-        <!-- ── CASE STUDY CARD 3 ── -->
-        <rect x="160" y="296" width="172" height="58" rx="10" fill="white" opacity="0.95"/>
-        <rect x="160" y="296" width="5" height="58" rx="2" fill="#0061FE" opacity="0.4"/>
-        <text x="174" y="314" font-size="7" fill="#718096" font-family="-apple-system,sans-serif">✨ AI Design</text>
-        <text x="174" y="327" font-size="8" font-weight="700" fill="#0D1117" font-family="-apple-system,sans-serif">When AI Knows Me</text>
-        <text x="174" y="340" font-size="7" fill="#A0AEC0" font-family="-apple-system,sans-serif">Too Well →</text>
-
-        <!-- bottom nav bar -->
-        <rect x="148" y="390" width="196" height="30" fill="white"/>
-        <rect x="148" y="390" width="196" height="1" fill="#E2E8F0"/>
-        <!-- nav icons -->
-        <rect x="175" y="397" width="14" height="10" rx="2" fill="#0061FE" opacity="0.8"/>
-        <rect x="225" y="400" width="14" height="7" rx="2" fill="#E2E8F0"/>
-        <rect x="275" y="400" width="14" height="7" rx="2" fill="#E2E8F0"/>
-        <circle cx="245" cy="403" r="2" fill="#E2E8F0"/>
-        <circle cx="295" cy="403" r="2" fill="#E2E8F0"/>
-
+        <!-- Bottom tab bar -->
+        <rect x="150" y="380" width="180" height="24" fill="white"/>
+        <rect x="150" y="380" width="180" height="1" fill="#E2E8F0"/>
+        <rect x="166" y="386" width="22" height="12" rx="4" fill="#EEF4FF"/>
+        <rect x="169" y="389" width="16" height="6" rx="2" fill="#0061FE" opacity="0.7"/>
+        <rect x="214" y="389" width="16" height="6" rx="3" fill="#E2E8F0"/>
+        <rect x="262" y="389" width="16" height="6" rx="3" fill="#E2E8F0"/>
+        <rect x="310" y="389" width="16" height="6" rx="3" fill="#E2E8F0"/>
       </g>
 
-      <!-- phone home indicator -->
-      <rect x="218" y="414" width="56" height="4" rx="2" fill="#4A5568" opacity="0.3"/>
+      <!-- Home indicator -->
+      <rect x="210" y="418" width="60" height="4" rx="2" fill="#4A5568" opacity="0.25"/>
 
-      <!-- ── FLOATING ANNOTATION CARD — Friction Detected ── -->
-      <g class="svg-float-a svg-pop-1" transform="translate(0,0)">
-        <rect x="12" y="130" width="136" height="64" rx="14" fill="white" filter="url(#shadow2)"/>
-        <rect x="12" y="130" width="136" height="64" rx="14" stroke="#E2E8F0" stroke-width="1.2"/>
-        <!-- icon bg -->
-        <rect x="24" y="142" width="28" height="28" rx="8" fill="#FFF3E0"/>
-        <text x="31" y="162" font-size="14">⚡</text>
-        <text x="60" y="153" font-size="8" font-weight="700" fill="#0D1117" font-family="-apple-system,sans-serif">Friction Detected</text>
-        <text x="60" y="165" font-size="7" fill="#718096" font-family="-apple-system,sans-serif">3 pain points found</text>
-        <text x="60" y="177" font-size="7" fill="#718096" font-family="-apple-system,sans-serif">in onboarding flow</text>
-        <!-- small dots -->
-        <circle cx="28" cy="185" r="3" fill="#F56565"/>
-        <circle cx="38" cy="185" r="3" fill="#ED8936"/>
-        <circle cx="48" cy="185" r="3" fill="#48BB78"/>
+      <!-- ═══ FLOATING CARD A: Friction Detected (left) ═══ -->
+      <g class="svg-float-a svg-pop-1">
+        <rect x="4" y="120" width="138" height="76" rx="16" fill="white" filter="url(#cardShadow)"/>
+        <rect x="4" y="120" width="138" height="76" rx="16" stroke="#E2E8F0" stroke-width="1"/>
+        <rect x="16" y="132" width="30" height="30" rx="9" fill="#FFF7ED"/>
+        <text x="23" y="153" font-size="15">⚡</text>
+        <text x="54" y="144" font-size="8" font-weight="700" fill="#0D1117" font-family="-apple-system,sans-serif">Friction Detected</text>
+        <text x="54" y="157" font-size="7" fill="#718096" font-family="-apple-system,sans-serif">3 drop-off points</text>
+        <text x="54" y="169" font-size="7" fill="#718096" font-family="-apple-system,sans-serif">in onboarding flow</text>
+        <!-- Severity pills: HIGH / MEDIUM / LOW -->
+        <rect x="16" y="178" width="32" height="10" rx="5" fill="#FEE2E2"/>
+        <text x="21" y="186" font-size="5.5" font-weight="700" fill="#EF4444" font-family="-apple-system,sans-serif">HIGH</text>
+        <rect x="54" y="178" width="38" height="10" rx="5" fill="#FEF3C7"/>
+        <text x="59" y="186" font-size="5.5" font-weight="700" fill="#D97706" font-family="-apple-system,sans-serif">MEDIUM</text>
+        <rect x="98" y="178" width="30" height="10" rx="5" fill="#DCFCE7"/>
+        <text x="103" y="186" font-size="5.5" font-weight="700" fill="#16A34A" font-family="-apple-system,sans-serif">LOW</text>
       </g>
 
-      <!-- connector line from annotation to phone -->
-      <path class="svg-line-1" d="M148 163 Q130 163 128 165" stroke="#D6E4FF" stroke-width="1.5" stroke-dasharray="200"/>
+      <!-- Connector dot -->
+      <circle cx="142" cy="165" r="3" fill="#D6E4FF"/>
+      <circle cx="150" cy="165" r="2" fill="#0061FE" opacity="0.3"/>
 
-      <!-- ── FLOATING ANNOTATION CARD — UX Score ── -->
-      <g class="svg-float-c svg-pop-2" transform="translate(0,0)">
-        <rect x="362" y="80" width="140" height="72" rx="14" fill="white" filter="url(#shadow2)"/>
-        <rect x="362" y="80" width="140" height="72" rx="14" stroke="#E2E8F0" stroke-width="1.2"/>
-        <!-- score arc bg -->
-        <circle cx="390" cy="116" r="20" fill="#EEF4FF"/>
-        <text x="382" y="121" font-size="10" font-weight="800" fill="#0061FE" font-family="-apple-system,sans-serif">92</text>
-        <text x="378" y="130" font-size="6" fill="#A0AEC0" font-family="-apple-system,sans-serif">UX Score</text>
-        <!-- bar chart mini -->
-        <rect x="420" y="120" width="6" height="18" rx="2" fill="#EEF4FF"/>
-        <rect x="430" y="112" width="6" height="26" rx="2" fill="#D6E4FF"/>
-        <rect x="440" y="104" width="6" height="34" rx="2" fill="#0061FE"/>
-        <rect x="450" y="108" width="6" height="30" rx="2" fill="#D6E4FF"/>
-        <text x="416" y="98" font-size="7.5" font-weight="700" fill="#0D1117" font-family="-apple-system,sans-serif">Usability Test</text>
-        <text x="416" y="108" font-size="6.5" fill="#48BB78" font-family="-apple-system,sans-serif">↑ 23% improved</text>
+      <!-- ═══ FLOATING CARD B: UX Score (right top) ═══ -->
+      <g class="svg-float-c svg-pop-2">
+        <rect x="342" y="72" width="132" height="84" rx="16" fill="white" filter="url(#cardShadow)"/>
+        <rect x="342" y="72" width="132" height="84" rx="16" stroke="#E2E8F0" stroke-width="1"/>
+        <text x="354" y="90" font-size="7.5" font-weight="700" fill="#A0AEC0" font-family="-apple-system,sans-serif">USABILITY SCORE</text>
+        <!-- Arc ring -->
+        <circle cx="378" cy="122" r="22" fill="#EEF4FF" stroke="#D6E4FF" stroke-width="1.5"/>
+        <circle cx="378" cy="122" r="22" fill="none" stroke="#0061FE" stroke-width="4"
+          stroke-dasharray="124 138" stroke-dashoffset="35" stroke-linecap="round"
+          transform="rotate(-90 378 122)"/>
+        <text x="370" y="119" font-size="11" font-weight="900" fill="#0061FE" font-family="-apple-system,sans-serif">92</text>
+        <text x="371" y="130" font-size="6" fill="#A0AEC0" font-family="-apple-system,sans-serif">/ 100</text>
+        <!-- Bar chart -->
+        <rect x="414" y="128" width="7" height="14" rx="2" fill="#D6E4FF"/>
+        <rect x="425" y="120" width="7" height="22" rx="2" fill="#93B4FF"/>
+        <rect x="436" y="110" width="7" height="32" rx="2" fill="#0061FE"/>
+        <rect x="447" y="114" width="7" height="28" rx="2" fill="#93B4FF"/>
+        <text x="414" y="102" font-size="7" fill="#48BB78" font-family="-apple-system,sans-serif">↑ 23% improved</text>
       </g>
 
-      <!-- ── FLOATING ANNOTATION CARD — Micro-interaction ── -->
-      <g class="svg-float-b svg-pop-3" transform="translate(0,0)">
-        <rect x="358" y="290" width="148" height="80" rx="14" fill="white" filter="url(#shadow2)"/>
-        <rect x="358" y="290" width="148" height="80" rx="14" stroke="#E2E8F0" stroke-width="1.2"/>
-        <rect x="370" y="302" width="24" height="24" rx="7" fill="#EEF4FF"/>
-        <text x="375" y="319" font-size="13">🎯</text>
-        <text x="403" y="315" font-size="8" font-weight="700" fill="#0D1117" font-family="-apple-system,sans-serif">Micro-Interaction</text>
-        <text x="403" y="326" font-size="7" fill="#718096" font-family="-apple-system,sans-serif">Tap → Feedback → Trust</text>
-        <!-- progress bar -->
-        <rect x="370" y="340" width="124" height="5" rx="3" fill="#EEF4FF"/>
-        <rect x="370" y="340" width="96" height="5" rx="3" fill="#0061FE"/>
-        <text x="370" y="357" font-size="6.5" fill="#A0AEC0" font-family="-apple-system,sans-serif">Response time: 0.2s  ✓ Optimal</text>
+      <!-- ═══ FLOATING CARD C: Micro-interaction (right bottom) ═══ -->
+      <g class="svg-float-b svg-pop-3">
+        <rect x="342" y="294" width="134" height="94" rx="16" fill="white" filter="url(#cardShadow)"/>
+        <rect x="342" y="294" width="134" height="94" rx="16" stroke="#E2E8F0" stroke-width="1"/>
+        <rect x="354" y="306" width="28" height="28" rx="8" fill="#EEF4FF"/>
+        <text x="360" y="326" font-size="14">🎯</text>
+        <text x="390" y="318" font-size="8" font-weight="700" fill="#0D1117" font-family="-apple-system,sans-serif">Micro-Interaction</text>
+        <text x="390" y="330" font-size="6.5" fill="#718096" font-family="-apple-system,sans-serif">Tap → Feedback → Trust</text>
+        <!-- Progress bar -->
+        <rect x="354" y="346" width="110" height="5" rx="3" fill="#EEF4FF"/>
+        <rect x="354" y="346" width="88" height="5" rx="3" fill="#0061FE"/>
+        <text x="354" y="360" font-size="6.5" fill="#A0AEC0" font-family="-apple-system,sans-serif">Response: </text>
+        <text x="392" y="360" font-size="6.5" font-weight="700" fill="#22C55E" font-family="-apple-system,sans-serif">0.2s ✓ Optimal</text>
+        <!-- Sparkline graph -->
+        <polyline points="354,378 362,375 370,377 378,372 386,374 394,369 402,371 410,367 418,369 426,365 434,367 442,362 450,364 458,360 466,362" stroke="#0061FE" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <line x1="354" y1="382" x2="466" y2="382" stroke="#E2E8F0" stroke-width="1"/>
       </g>
 
-      <!-- ── CURSOR ── -->
-      <g class="svg-cursor svg-pop-1" transform="translate(316, 248)">
-        <path d="M0 0 L0 20 L5 16 L8 24 L11 23 L8 15 L14 15 Z" fill="white" stroke="#0D1117" stroke-width="1.2" stroke-linejoin="round"/>
-        <!-- cursor ring -->
-        <circle cx="2" cy="2" r="8" fill="#0061FE" opacity="0.08"/>
+      <!-- ═══ CURSOR ═══ -->
+      <g class="svg-cursor svg-pop-1">
+        <g transform="translate(326, 252)">
+          <path d="M0 0 L0 18 L4.5 14.5 L7.5 22 L10 21 L7 14 L13 14 Z" fill="white" stroke="#1C2333" stroke-width="1.2" stroke-linejoin="round"/>
+          <circle cx="1" cy="1" r="9" fill="#0061FE" opacity="0.07"/>
+        </g>
       </g>
 
-      <!-- ── BOTTOM ANNOTATION — Flow arrow ── -->
-      <g class="svg-pop-2">
-        <path d="M160 480 Q200 470 244 476" stroke="#D6E4FF" stroke-width="1.5" stroke-dasharray="5 3" fill="none"/>
-        <polygon points="244,472 252,476 244,480" fill="#0061FE" opacity="0.4"/>
-        <rect x="52" y="462" width="110" height="32" rx="10" fill="white" filter="url(#shadow2)"/>
-        <rect x="52" y="462" width="110" height="32" rx="10" stroke="#E2E8F0" stroke-width="1"/>
-        <text x="62" y="476" font-size="7.5" font-weight="700" fill="#0D1117" font-family="-apple-system,sans-serif">User Flow</text>
-        <text x="62" y="487" font-size="6.5" fill="#718096" font-family="-apple-system,sans-serif">Onboarding → Activation</text>
-      </g>
-
-      <!-- ── TOP BADGE — Available ── -->
+      <!-- ═══ AVAILABLE BADGE ═══ -->
       <g class="svg-float-b">
-        <rect x="178" y="6" width="136" height="26" rx="13" fill="url(#blueGrad)" opacity="0.9"/>
-        <circle cx="193" cy="19" r="4" fill="#4ADE80"/>
-        <text x="202" y="23" font-size="8" font-weight="700" fill="white" font-family="-apple-system,sans-serif">Open to Work • Bangalore</text>
+        <rect x="177" y="4" width="126" height="24" rx="12" fill="url(#blueCard)" opacity="0.92"/>
+        <circle cx="191" cy="16" r="4" fill="#4ADE80"/>
+        <circle cx="191" cy="16" r="4" fill="#4ADE80" opacity="0.4">
+          <animate attributeName="r" values="4;7;4" dur="1.8s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0.4;0;0.4" dur="1.8s" repeatCount="indefinite"/>
+        </circle>
+        <text x="200" y="20" font-size="7.5" font-weight="700" fill="white" font-family="-apple-system,sans-serif">Open to Work · Bangalore</text>
+      </g>
+
+      <!-- ═══ BOTTOM FLOW TAG ═══ -->
+      <g class="svg-pop-2">
+        <rect x="44" y="468" width="112" height="34" rx="11" fill="white" filter="url(#cardShadow)"/>
+        <rect x="44" y="468" width="112" height="34" rx="11" stroke="#E2E8F0" stroke-width="1"/>
+        <text x="56" y="482" font-size="7.5" font-weight="700" fill="#0D1117" font-family="-apple-system,sans-serif">User Flow</text>
+        <text x="56" y="494" font-size="6.5" fill="#718096" font-family="-apple-system,sans-serif">Onboarding → Activation</text>
+        <path d="M156 485 Q176 480 186 480" stroke="#D6E4FF" stroke-width="1.5" stroke-dasharray="4 3" fill="none"/>
+        <polygon points="184,477 191,480 184,483" fill="#0061FE" opacity="0.5"/>
       </g>
 
     </svg>
@@ -2045,7 +1895,7 @@
       <div class="about-card">
         <div class="about-card-icon">✦</div>
         <h4>Blending craft & empathy</h4>
-        <p>10+ years of visual expertise now applied to user-centered product design — motion thinking meets UX precision.</p>
+        <p>11+ years of visual expertise now applied to user-centered product design — motion thinking meets UX precision.</p>
       </div>
       <div class="about-card">
         <div class="about-card-icon">📍</div>
@@ -2226,7 +2076,7 @@
 
 <!-- FOOTER -->
 <footer>
-  <a href="#" class="footer-logo">Satheesh<span>.</span></a>
+  <a href="#" class="footer-logo">Satheesh <span>Mankulam</span></a>
   <p>© 2025 Satheesh M · UX Designer · Bangalore</p>
 </footer>
 
