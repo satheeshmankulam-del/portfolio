@@ -128,12 +128,21 @@
   .hero {
     min-height: 100vh;
     display: grid;
-    grid-template-columns: 55% 45%;
+    grid-template-columns: 1fr 1fr;
     align-items: center;
-    padding: 120px 5% 80px;
+    padding: 100px 5% 70px;
     position: relative;
     overflow: hidden;
-    gap: 2rem;
+    gap: 3.5rem;
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+  }
+  /* Wrapper to allow full-width bg but constrained content */
+  .hero-outer {
+    position: relative;
+    overflow: hidden;
   }
 
   .hero-bg {
@@ -156,7 +165,7 @@
 
   .hero-content {
     position: relative;
-    max-width: 600px;
+    max-width: 520px;
   }
 
   /* ── HERO ILLUSTRATION ── */
@@ -171,7 +180,7 @@
 
   .hero-visual svg {
     width: 100%;
-    max-width: 460px;
+    max-width: 420px;
     height: auto;
     overflow: visible;
     filter: drop-shadow(0 20px 40px rgba(0,97,254,0.08));
@@ -227,7 +236,7 @@
     font-weight: 600;
     padding: 0.35rem 0.9rem;
     border-radius: 100px;
-    margin-bottom: 1.8rem;
+    margin-bottom: 1.4rem;
     border: 1px solid var(--blue-mid);
     animation: fadeUp 0.6s ease both;
   }
@@ -252,7 +261,7 @@
     line-height: 1.08;
     letter-spacing: -0.03em;
     color: var(--black);
-    margin-bottom: 1.4rem;
+    margin-bottom: 1.1rem;
     animation: fadeUp 0.6s 0.1s ease both;
   }
   .hero h1 em {
@@ -261,12 +270,12 @@
   }
 
   .hero-desc {
-    font-size: 1.15rem;
+    font-size: 1.05rem;
     color: var(--gray-2);
     font-weight: 400;
-    max-width: 540px;
-    line-height: 1.7;
-    margin-bottom: 2.4rem;
+    max-width: 480px;
+    line-height: 1.75;
+    margin-bottom: 2rem;
     animation: fadeUp 0.6s 0.2s ease both;
   }
 
@@ -321,8 +330,8 @@
   .hero-stats {
     display: flex;
     gap: 2.5rem;
-    margin-top: 3.5rem;
-    padding-top: 2.5rem;
+    margin-top: 2.5rem;
+    padding-top: 2rem;
     border-top: 1px solid var(--gray-5);
     animation: fadeUp 0.6s 0.4s ease both;
   }
@@ -347,7 +356,7 @@
   }
 
   /* ── SECTIONS ── */
-  section { padding: 100px 5%; }
+  section { padding: 80px 5%; }
 
   .section-label {
     display: inline-flex;
@@ -374,7 +383,7 @@
     letter-spacing: -0.025em;
     color: var(--black);
     line-height: 1.15;
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
   }
 
   .section-sub {
@@ -390,9 +399,9 @@
   .about-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 5rem;
+    gap: 3.5rem;
     align-items: center;
-    margin-top: 3rem;
+    margin-top: 2.5rem;
   }
 
   .about-text p {
@@ -474,8 +483,8 @@
   .featured-writings-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-    margin-bottom: 2.5rem;
+    gap: 1.25rem;
+    margin-bottom: 2rem;
   }
 
   .featured-writing-card {
@@ -601,7 +610,7 @@
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
     gap: 2rem;
   }
 
@@ -724,7 +733,7 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1.2rem;
-    margin-top: 3rem;
+    margin-top: 2rem;
   }
 
   .work-card {
@@ -876,9 +885,9 @@
   .book-inner {
     display: grid;
     grid-template-columns: 220px 1fr 1fr;
-    gap: 3.5rem;
+    gap: 2.5rem;
     align-items: start;
-    margin-top: 3rem;
+    margin-top: 2.5rem;
   }
 
   /* ── COVER ── */
@@ -1339,8 +1348,8 @@
     /* Hero */
     .hero {
       grid-template-columns: 1fr;
-      padding: 100px 5% 60px;
-      gap: 2rem;
+      padding: 90px 5% 50px;
+      gap: 2.5rem;
       min-height: auto;
     }
     .hero h1 { font-size: clamp(2.2rem, 6vw, 3.2rem); }
@@ -1538,9 +1547,9 @@
   .app-inner {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 5rem;
+    gap: 3.5rem;
     align-items: center;
-    margin-top: 3rem;
+    margin-top: 2.5rem;
   }
 
   .app-mockup-wrap {
