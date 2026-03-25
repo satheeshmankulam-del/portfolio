@@ -1531,6 +1531,229 @@
     .skf { flex-direction:column; }
   }
 
+
+  /* ── ANDROID APP SECTION ── */
+  #app { background: white; }
+
+  .app-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+    margin-top: 3rem;
+  }
+
+  .app-mockup-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .app-phone {
+    width: 220px;
+    height: 420px;
+    background: linear-gradient(160deg, #1C2333 0%, #0D1117 100%);
+    border-radius: 36px;
+    padding: 14px 10px;
+    box-shadow: 0 32px 80px rgba(0,0,0,0.22), 0 0 0 1px rgba(255,255,255,0.06);
+    position: relative;
+    flex-shrink: 0;
+  }
+  .app-screen {
+    background: #0A0A0A;
+    border-radius: 26px;
+    width: 100%; height: 100%;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  .app-screen-header {
+    padding: 14px 14px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #222;
+  }
+  .app-screen-logo {
+    display: flex; align-items: center; gap: 6px;
+  }
+  .app-screen-logo-dot {
+    width: 22px; height: 22px; border-radius: 7px;
+    background: #F44336;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .app-screen-logo-name {
+    font-size: 11px; font-weight: 800;
+    color: #EDEDED; letter-spacing: -0.3px;
+  }
+  .app-screen-tiles {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 7px;
+    padding: 10px 10px 6px;
+  }
+  .app-tile {
+    background: #141414;
+    border-radius: 12px;
+    padding: 10px;
+    border: 1px solid #2A2A2A;
+  }
+  .app-tile-num {
+    font-size: 20px; font-weight: 800;
+    color: #EDEDED; line-height: 1;
+    margin-bottom: 2px;
+  }
+  .app-tile-lbl { font-size: 8px; color: #9A9A9A; font-weight: 600; }
+  .app-tile-bar {
+    height: 3px; border-radius: 2px;
+    background: #2A2A2A; margin-top: 6px; overflow: hidden;
+  }
+  .app-tile-fill {
+    height: 100%; border-radius: 2px;
+    background: linear-gradient(90deg, #60A5FA, #10B981);
+    width: 62%;
+  }
+  .app-med-card {
+    background: #141414;
+    border-radius: 12px;
+    margin: 0 10px 6px;
+    padding: 9px 10px;
+    border: 1px solid #2A2A2A;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .app-med-avatar {
+    width: 30px; height: 30px; border-radius: 9px;
+    background: rgba(96,165,250,0.15);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 800; color: #60A5FA;
+    flex-shrink: 0;
+  }
+  .app-med-body { flex: 1; min-width: 0; }
+  .app-med-name { font-size: 9px; font-weight: 700; color: #EDEDED; margin-bottom: 1px; }
+  .app-med-dose { font-size: 7.5px; color: #9A9A9A; }
+  .app-med-time { font-size: 8px; font-weight: 700; color: #60A5FA; }
+
+  .app-nav-bar {
+    margin-top: auto;
+    border-top: 1px solid #222;
+    display: flex;
+    justify-content: space-around;
+    padding: 8px 0 10px;
+  }
+  .app-nav-dot {
+    width: 20px; height: 4px; border-radius: 2px; background: #2A2A2A;
+  }
+  .app-nav-dot.active { background: #60A5FA; }
+
+  /* Floating badges around phone */
+  .app-badge-float {
+    position: absolute;
+    background: white;
+    border: 1px solid var(--gray-5);
+    border-radius: 12px;
+    padding: 8px 12px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    white-space: nowrap;
+  }
+  .app-badge-float.left {
+    left: -24px; top: 30%;
+  }
+  .app-badge-float.right-top {
+    right: -20px; top: 18%;
+  }
+  .app-badge-float.right-bot {
+    right: -20px; bottom: 22%;
+  }
+  .app-badge-label {
+    font-size: 0.7rem; font-weight: 700; color: var(--black); line-height: 1.3;
+  }
+  .app-badge-sub {
+    font-size: 0.65rem; color: var(--gray-4); margin-top: 1px;
+  }
+  .app-badge-icon { font-size: 0.9rem; margin-bottom: 2px; }
+
+  /* Right content */
+  .app-content-wrap { display: flex; flex-direction: column; gap: 0; }
+
+  .app-store-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: var(--black);
+    color: white;
+    font-size: 0.76rem;
+    font-weight: 700;
+    padding: 0.3rem 0.85rem;
+    border-radius: 100px;
+    margin-bottom: 1.2rem;
+    width: fit-content;
+  }
+
+  .app-feature-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin: 1.5rem 0;
+  }
+  .app-feature-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    background: var(--gray-6);
+    border: 1px solid var(--gray-5);
+    border-radius: 12px;
+    padding: 0.9rem 1rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .app-feature-item:hover {
+    border-color: var(--blue-mid);
+    box-shadow: var(--shadow);
+  }
+  .app-feature-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 1px; }
+  .app-feature-title {
+    font-size: 0.82rem; font-weight: 700; color: var(--black);
+    margin-bottom: 0.15rem; line-height: 1.3;
+  }
+  .app-feature-desc { font-size: 0.75rem; color: var(--gray-3); line-height: 1.4; }
+
+  .app-stack-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .app-stack-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    background: var(--blue-light);
+    border: 1px solid var(--blue-mid);
+    color: var(--blue);
+    font-size: 0.76rem;
+    font-weight: 600;
+    padding: 0.3rem 0.8rem;
+    border-radius: 100px;
+  }
+
+  .app-cta-row {
+    display: flex; gap: 0.75rem; flex-wrap: wrap;
+  }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .app-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .app-mockup-wrap { order: 2; }
+  }
+  @media (max-width: 640px) {
+    .app-feature-grid { grid-template-columns: 1fr; }
+    .app-badge-float.left { left: -10px; }
+    .app-badge-float.right-top, .app-badge-float.right-bot { right: -10px; }
+  }
+
 </style>
 </head>
 <body>
@@ -1666,7 +1889,161 @@
     </div>
   </div>
 
-  <!-- BOOK -->
+  
+<!-- ANDROID APP -->
+<section id="app">
+  <div class="reveal">
+    <div class="section-label">Shipped Product</div>
+    <h2 class="section-title">First Android App — Live on<br><em>Google Play</em></h2>
+    <p class="section-sub" style="margin-top:0.8rem;">Designed in Figma, built with AI, shipped to the Play Store — solo, from scratch.</p>
+  </div>
+
+  <div class="app-inner">
+
+    <!-- Phone Mockup -->
+    <div class="app-mockup-wrap reveal reveal-delay-1">
+      <div class="app-phone">
+        <div class="app-screen">
+          <!-- Header -->
+          <div class="app-screen-header">
+            <div class="app-screen-logo">
+              <div class="app-screen-logo-dot">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+              </div>
+              <span class="app-screen-logo-name">FamilyDose</span>
+            </div>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#5A5A5A" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          </div>
+          <!-- Tiles -->
+          <div class="app-screen-tiles">
+            <div class="app-tile">
+              <div class="app-tile-num">4</div>
+              <div class="app-tile-lbl">Medications</div>
+            </div>
+            <div class="app-tile">
+              <div class="app-tile-lbl">Avg. Progress</div>
+              <div class="app-tile-num" style="font-size:14px;margin-top:2px;">18 <span style="font-size:8px;font-weight:400;color:#9A9A9A;">days</span></div>
+              <div class="app-tile-bar"><div class="app-tile-fill"></div></div>
+            </div>
+          </div>
+          <!-- Med cards -->
+          <div class="app-med-card">
+            <div class="app-med-avatar">P</div>
+            <div class="app-med-body">
+              <div class="app-med-name">Paracetamol 500mg</div>
+              <div class="app-med-dose">Every 8 hrs · Dad</div>
+            </div>
+            <div class="app-med-time">2 PM</div>
+          </div>
+          <div class="app-med-card">
+            <div class="app-med-avatar" style="background:rgba(16,185,129,0.15);color:#10B981;">A</div>
+            <div class="app-med-body">
+              <div class="app-med-name">Amoxicillin 250mg</div>
+              <div class="app-med-dose">Twice daily · Baby</div>
+            </div>
+            <div class="app-med-time" style="color:#10B981;">6 PM</div>
+          </div>
+          <div class="app-med-card">
+            <div class="app-med-avatar" style="background:rgba(245,158,11,0.15);color:#F59E0B;">M</div>
+            <div class="app-med-body">
+              <div class="app-med-name">Metformin 500mg</div>
+              <div class="app-med-dose">Once daily · Mum</div>
+            </div>
+            <div class="app-med-time" style="color:#5A5A5A;font-size:7px;">Done ✓</div>
+          </div>
+          <!-- Nav -->
+          <div class="app-nav-bar">
+            <div class="app-nav-dot active"></div>
+            <div class="app-nav-dot"></div>
+            <div class="app-nav-dot"></div>
+            <div class="app-nav-dot"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Floating badges -->
+      <div class="app-badge-float left">
+        <div class="app-badge-icon">🔒</div>
+        <div class="app-badge-label">100% Offline</div>
+        <div class="app-badge-sub">No cloud, no account</div>
+      </div>
+      <div class="app-badge-float right-top">
+        <div class="app-badge-icon">🌙</div>
+        <div class="app-badge-label">Dark Mode</div>
+        <div class="app-badge-sub">Full system design</div>
+      </div>
+      <div class="app-badge-float right-bot">
+        <div class="app-badge-icon">⭐</div>
+        <div class="app-badge-label">Google Play</div>
+        <div class="app-badge-sub">Live & approved</div>
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div class="app-content-wrap reveal reveal-delay-2">
+      <div class="app-store-badge">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        Live on Google Play Store
+      </div>
+
+      <h3 class="section-title" style="font-size:1.6rem;margin-bottom:0.75rem;">FamilyDose:<br>Daily Reminder</h3>
+      <p style="font-size:0.95rem;color:var(--gray-2);line-height:1.75;margin-bottom:0.5rem;">
+        A medication tracker built for families — designed because my dad kept missing his BP tablets. Free forever, no ads, no account. Every detail designed in Figma and shipped via Claude AI + Android Studio.
+      </p>
+
+      <div class="app-stack-row">
+        <span class="app-stack-pill">🎨 Figma</span>
+        <span class="app-stack-pill">🤖 Claude AI</span>
+        <span class="app-stack-pill">💻 VS Code</span>
+        <span class="app-stack-pill">📱 Android Studio</span>
+        <span class="app-stack-pill">⚛️ React + Capacitor</span>
+      </div>
+
+      <div class="app-feature-grid">
+        <div class="app-feature-item">
+          <span class="app-feature-icon">💊</span>
+          <div>
+            <div class="app-feature-title">Family Tracking</div>
+            <div class="app-feature-desc">Track meds for every family member with filters</div>
+          </div>
+        </div>
+        <div class="app-feature-item">
+          <span class="app-feature-icon">⏰</span>
+          <div>
+            <div class="app-feature-title">Smart Reminders</div>
+            <div class="app-feature-desc">Exact alarm scheduling, never miss a dose</div>
+          </div>
+        </div>
+        <div class="app-feature-item">
+          <span class="app-feature-icon">🔒</span>
+          <div>
+            <div class="app-feature-title">PIN Lock</div>
+            <div class="app-feature-desc">4-digit PIN with full data privacy</div>
+          </div>
+        </div>
+        <div class="app-feature-item">
+          <span class="app-feature-icon">💾</span>
+          <div>
+            <div class="app-feature-title">Export & Import</div>
+            <div class="app-feature-desc">JSON backup — your data, your control</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="app-cta-row">
+        <a href="https://play.google.com/store/apps/details?id=com.familydose.app" target="_blank" class="btn-primary">
+          ↗ View on Google Play
+        </a>
+        <a href="#contact" class="btn-secondary">
+          Learn More →
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- BOOK -->
   <div class="sks">
     <div class="sks-hdr">
       <div class="sk sk-pill sk-d1" style="width:80px;height:10px;margin-bottom:1rem"></div>
@@ -1724,6 +2101,7 @@
     <li><a href="#about">About</a></li>
     <li><a href="writings.html">Writings</a></li>
     <li><a href="design-work.html">Design Work</a></li>
+    <li><a href="#app">Android App</a></li>
     <li><a href="#book">Book</a></li>
     <li><a href="SatheeshM_UXD.pdf" download="SatheeshM_Resume.pdf" class="nav-resume-btn">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
@@ -1745,6 +2123,7 @@
     <a href="#about" class="mobile-link">About</a>
     <a href="writings.html" class="mobile-link">Writings</a>
     <a href="design-work.html" class="mobile-link">Design Work</a>
+    <a href="#app" class="mobile-link">Android App</a>
     <a href="#book" class="mobile-link">Book</a>
     <a href="#contact" class="mobile-link">Let's Talk</a>
     <a href="SatheeshM_UXD.pdf" download="SatheeshM_Resume.pdf" class="mobile-link mobile-resume">
@@ -1783,7 +2162,7 @@
       </div>
       <div>
         <div class="hero-stat-num">1</div>
-        <div class="hero-stat-label">Published Book</div>
+        <div class="hero-stat-label">Android App Live</div>
       </div>
     </div>
   </div>
@@ -2128,6 +2507,160 @@
         </div>
       </div>
     </a>
+
+  </div>
+</section>
+
+
+<!-- ANDROID APP -->
+<section id="app">
+  <div class="reveal">
+    <div class="section-label">Shipped Product</div>
+    <h2 class="section-title">First Android App — Live on<br><em>Google Play</em></h2>
+    <p class="section-sub" style="margin-top:0.8rem;">Designed in Figma, built with AI, shipped to the Play Store — solo, from scratch.</p>
+  </div>
+
+  <div class="app-inner">
+
+    <!-- Phone Mockup -->
+    <div class="app-mockup-wrap reveal reveal-delay-1">
+      <div class="app-phone">
+        <div class="app-screen">
+          <!-- Header -->
+          <div class="app-screen-header">
+            <div class="app-screen-logo">
+              <div class="app-screen-logo-dot">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+              </div>
+              <span class="app-screen-logo-name">FamilyDose</span>
+            </div>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#5A5A5A" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          </div>
+          <!-- Tiles -->
+          <div class="app-screen-tiles">
+            <div class="app-tile">
+              <div class="app-tile-num">4</div>
+              <div class="app-tile-lbl">Medications</div>
+            </div>
+            <div class="app-tile">
+              <div class="app-tile-lbl">Avg. Progress</div>
+              <div class="app-tile-num" style="font-size:14px;margin-top:2px;">18 <span style="font-size:8px;font-weight:400;color:#9A9A9A;">days</span></div>
+              <div class="app-tile-bar"><div class="app-tile-fill"></div></div>
+            </div>
+          </div>
+          <!-- Med cards -->
+          <div class="app-med-card">
+            <div class="app-med-avatar">P</div>
+            <div class="app-med-body">
+              <div class="app-med-name">Paracetamol 500mg</div>
+              <div class="app-med-dose">Every 8 hrs · Dad</div>
+            </div>
+            <div class="app-med-time">2 PM</div>
+          </div>
+          <div class="app-med-card">
+            <div class="app-med-avatar" style="background:rgba(16,185,129,0.15);color:#10B981;">A</div>
+            <div class="app-med-body">
+              <div class="app-med-name">Amoxicillin 250mg</div>
+              <div class="app-med-dose">Twice daily · Baby</div>
+            </div>
+            <div class="app-med-time" style="color:#10B981;">6 PM</div>
+          </div>
+          <div class="app-med-card">
+            <div class="app-med-avatar" style="background:rgba(245,158,11,0.15);color:#F59E0B;">M</div>
+            <div class="app-med-body">
+              <div class="app-med-name">Metformin 500mg</div>
+              <div class="app-med-dose">Once daily · Mum</div>
+            </div>
+            <div class="app-med-time" style="color:#5A5A5A;font-size:7px;">Done ✓</div>
+          </div>
+          <!-- Nav -->
+          <div class="app-nav-bar">
+            <div class="app-nav-dot active"></div>
+            <div class="app-nav-dot"></div>
+            <div class="app-nav-dot"></div>
+            <div class="app-nav-dot"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Floating badges -->
+      <div class="app-badge-float left">
+        <div class="app-badge-icon">🔒</div>
+        <div class="app-badge-label">100% Offline</div>
+        <div class="app-badge-sub">No cloud, no account</div>
+      </div>
+      <div class="app-badge-float right-top">
+        <div class="app-badge-icon">🌙</div>
+        <div class="app-badge-label">Dark Mode</div>
+        <div class="app-badge-sub">Full system design</div>
+      </div>
+      <div class="app-badge-float right-bot">
+        <div class="app-badge-icon">⭐</div>
+        <div class="app-badge-label">Google Play</div>
+        <div class="app-badge-sub">Live & approved</div>
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div class="app-content-wrap reveal reveal-delay-2">
+      <div class="app-store-badge">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        Live on Google Play Store
+      </div>
+
+      <h3 class="section-title" style="font-size:1.6rem;margin-bottom:0.75rem;">FamilyDose:<br>Daily Reminder</h3>
+      <p style="font-size:0.95rem;color:var(--gray-2);line-height:1.75;margin-bottom:0.5rem;">
+        A medication tracker built for families — designed because my dad kept missing his BP tablets. Free forever, no ads, no account. Every detail designed in Figma and shipped via Claude AI + Android Studio.
+      </p>
+
+      <div class="app-stack-row">
+        <span class="app-stack-pill">🎨 Figma</span>
+        <span class="app-stack-pill">🤖 Claude AI</span>
+        <span class="app-stack-pill">💻 VS Code</span>
+        <span class="app-stack-pill">📱 Android Studio</span>
+        <span class="app-stack-pill">⚛️ React + Capacitor</span>
+      </div>
+
+      <div class="app-feature-grid">
+        <div class="app-feature-item">
+          <span class="app-feature-icon">💊</span>
+          <div>
+            <div class="app-feature-title">Family Tracking</div>
+            <div class="app-feature-desc">Track meds for every family member with filters</div>
+          </div>
+        </div>
+        <div class="app-feature-item">
+          <span class="app-feature-icon">⏰</span>
+          <div>
+            <div class="app-feature-title">Smart Reminders</div>
+            <div class="app-feature-desc">Exact alarm scheduling, never miss a dose</div>
+          </div>
+        </div>
+        <div class="app-feature-item">
+          <span class="app-feature-icon">🔒</span>
+          <div>
+            <div class="app-feature-title">PIN Lock</div>
+            <div class="app-feature-desc">4-digit PIN with full data privacy</div>
+          </div>
+        </div>
+        <div class="app-feature-item">
+          <span class="app-feature-icon">💾</span>
+          <div>
+            <div class="app-feature-title">Export & Import</div>
+            <div class="app-feature-desc">JSON backup — your data, your control</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="app-cta-row">
+        <a href="https://play.google.com/store/apps/details?id=com.familydose.app" target="_blank" class="btn-primary">
+          ↗ View on Google Play
+        </a>
+        <a href="#contact" class="btn-secondary">
+          Learn More →
+        </a>
+      </div>
+    </div>
 
   </div>
 </section>
