@@ -451,37 +451,54 @@ footer{background:#080C14;padding:2rem clamp(1.25rem,5vw,4rem);display:flex;alig
         <div class="work-thumb">
           <svg viewBox="0 0 480 300" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
             <!-- bg -->
-            <rect width="480" height="300" fill="#EDE9F4"/>
+            <rect width="480" height="300" fill="var(--bg2)"/>
+            <!-- registration marks -->
+            <line x1="12" y1="8" x2="12" y2="18" stroke="var(--line)" stroke-width=".8"/>
+            <line x1="7" y1="13" x2="17" y2="13" stroke="var(--line)" stroke-width=".8"/>
+            <line x1="468" y1="8" x2="468" y2="18" stroke="var(--line)" stroke-width=".8"/>
+            <line x1="463" y1="13" x2="473" y2="13" stroke="var(--line)" stroke-width=".8"/>
             <!-- nav bar -->
-            <rect x="0" y="0" width="480" height="36" fill="#E4DFF0"/>
-            <rect x="24" y="12" width="52" height="12" rx="3" fill="#C5BDDF"/>
-            <rect x="338" y="13" width="36" height="10" rx="5" fill="#B8B0D4"/>
-            <rect x="380" y="13" width="36" height="10" rx="5" fill="#A89EC8"/>
-            <rect x="422" y="11" width="38" height="14" rx="4" fill="#8B80C0"/>
-            <!-- left content column -->
-            <rect x="24" y="60" width="30" height="5" rx="2" fill="#B8B0D4"/>
-            <rect x="24" y="72" width="180" height="26" rx="4" fill="#7B6FB8"/>
-            <rect x="24" y="104" width="170" height="22" rx="4" fill="#7B6FB8"/>
-            <rect x="24" y="136" width="200" height="9" rx="2" fill="#C5BDDF"/>
-            <rect x="24" y="149" width="180" height="9" rx="2" fill="#C5BDDF"/>
-            <rect x="24" y="162" width="140" height="9" rx="2" fill="#C5BDDF"/>
-            <rect x="24" y="182" width="88" height="28" rx="6" fill="#7B6FB8"/>
-            <rect x="120" y="182" width="80" height="28" rx="6" fill="none" stroke="#A89EC8" stroke-width="1.5"/>
-            <!-- decorative stacked cards right side -->
-            <rect x="270" y="44" width="168" height="220" rx="16" fill="#C5BDDF" transform="rotate(-6 354 154)"/>
-            <rect x="278" y="48" width="168" height="220" rx="16" fill="#D6D0EC" transform="rotate(-2 362 158)"/>
-            <rect x="282" y="52" width="168" height="218" rx="16" fill="#EDE9F4"/>
-            <!-- card inner content -->
-            <rect x="300" y="72" width="130" height="16" rx="4" fill="#B8B0D4"/>
-            <rect x="300" y="94" width="100" height="10" rx="2" fill="#C5BDDF"/>
-            <rect x="300" y="108" width="110" height="10" rx="2" fill="#C5BDDF"/>
-            <rect x="300" y="130" width="130" height="80" rx="8" fill="#D6D0EC"/>
-            <rect x="316" y="146" width="96" height="48" rx="6" fill="#C5BDDF"/>
-            <rect x="300" y="222" width="60" height="22" rx="6" fill="#8B80C0"/>
-            <rect x="370" y="222" width="60" height="22" rx="6" fill="none" stroke="#B8B0D4" stroke-width="1.5"/>
-            <!-- bottom badge -->
-            <rect x="24" y="244" width="80" height="20" rx="10" fill="#A89EC8" opacity=".7"/>
-            <text x="64" y="258" text-anchor="middle" font-family="Outfit,sans-serif" font-size="8" fill="#fff" font-weight="600">Dribbble · Behance</text>
+            <rect x="0" y="0" width="480" height="34" fill="var(--bg3)"/>
+            <line x1="0" y1="34" x2="480" y2="34" stroke="var(--line2)" stroke-width=".8"/>
+            <rect x="22" y="11" width="44" height="12" rx="2" fill="var(--line)"/>
+            <rect x="322" y="13" width="30" height="8" rx="4" fill="var(--line2)"/>
+            <rect x="360" y="13" width="30" height="8" rx="4" fill="var(--line2)"/>
+            <rect x="398" y="11" width="60" height="12" rx="2" fill="var(--ink)" opacity=".12"/>
+            <rect x="402" y="14" width="52" height="6" rx="1" fill="var(--line)"/>
+            <!-- eyebrow label -->
+            <rect x="22" y="52" width="28" height="5" rx="1" fill="var(--line)"/>
+            <!-- hero headline blocks -->
+            <rect x="22" y="64" width="192" height="20" rx="2" fill="var(--line)"/>
+            <rect x="22" y="90" width="172" height="20" rx="2" fill="var(--line)"/>
+            <!-- body text lines -->
+            <rect x="22" y="120" width="200" height="7" rx="1" fill="var(--line2)"/>
+            <rect x="22" y="133" width="184" height="7" rx="1" fill="var(--line2)"/>
+            <rect x="22" y="146" width="152" height="7" rx="1" fill="var(--line2)"/>
+            <!-- CTA buttons -->
+            <rect x="22" y="166" width="82" height="24" rx="2" fill="var(--ink)" opacity=".12"/>
+            <rect x="26" y="169" width="74" height="18" rx="1" fill="var(--line)"/>
+            <rect x="112" y="166" width="72" height="24" rx="2" fill="none" stroke="var(--line)" stroke-width="1"/>
+            <rect x="118" y="173" width="60" height="10" rx="1" fill="var(--line2)"/>
+            <!-- stacked cards — right side -->
+            <rect x="276" y="30" width="158" height="208" rx="8" fill="var(--line2)" opacity=".5" transform="rotate(-5 355 134)"/>
+            <rect x="280" y="34" width="158" height="208" rx="8" fill="var(--line2)" opacity=".7" transform="rotate(-2 359 138)"/>
+            <rect x="284" y="38" width="158" height="208" rx="8" fill="var(--bg3)" stroke="var(--line)" stroke-width=".8"/>
+            <!-- card content -->
+            <rect x="298" y="56" width="128" height="12" rx="2" fill="var(--line)"/>
+            <rect x="298" y="74" width="96" height="8" rx="1" fill="var(--line2)"/>
+            <rect x="298" y="86" width="108" height="8" rx="1" fill="var(--line2)"/>
+            <!-- image placeholder -->
+            <rect x="298" y="104" width="128" height="72" rx="4" fill="var(--bg2)" stroke="var(--line2)" stroke-width=".8"/>
+            <line x1="298" y1="104" x2="426" y2="176" stroke="var(--line2)" stroke-width=".6"/>
+            <line x1="426" y1="104" x2="298" y2="176" stroke="var(--line2)" stroke-width=".6"/>
+            <!-- bottom btns on card -->
+            <rect x="298" y="188" width="56" height="18" rx="2" fill="var(--ink)" opacity=".1"/>
+            <rect x="300" y="191" width="52" height="12" rx="1" fill="var(--line)"/>
+            <rect x="362" y="188" width="56" height="18" rx="2" fill="none" stroke="var(--line)" stroke-width=".8"/>
+            <rect x="366" y="194" width="48" height="6" rx="1" fill="var(--line2)"/>
+            <!-- badge -->
+            <rect x="22" y="212" width="76" height="16" rx="8" fill="var(--bg3)" stroke="var(--line)" stroke-width=".8"/>
+            <rect x="30" y="218" width="60" height="4" rx="1" fill="var(--line2)"/>
           </svg>
         </div>
         <div class="work-info"><h4>Hero Section Designs</h4><span>UI Exploration · 2.1k views</span></div>
@@ -491,34 +508,49 @@ footer{background:#080C14;padding:2rem clamp(1.25rem,5vw,4rem);display:flex;alig
       <a href="https://www.behance.net/gallery/228867433/Micro-Interactions" target="_blank" class="work-card">
         <div class="work-thumb">
           <svg viewBox="0 0 480 300" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-            <!-- bg with subtle grid -->
-            <rect width="480" height="300" fill="#F5EEF0"/>
-            <defs><pattern id="mgrid" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse"><path d="M 28 0 L 0 0 0 28" fill="none" stroke="#E8D8DC" stroke-width=".8"/></pattern></defs>
-            <rect width="480" height="300" fill="url(#mgrid)"/>
-            <!-- vertical accent bars -->
-            <rect x="158" y="0" width="28" height="300" fill="#F0D8E0" opacity=".5"/>
-            <rect x="214" y="0" width="28" height="300" fill="#F0D8E0" opacity=".5"/>
-            <rect x="270" y="0" width="28" height="300" fill="#F0D8E0" opacity=".5"/>
-            <rect x="326" y="0" width="28" height="300" fill="#F0D8E0" opacity=".5"/>
-            <!-- center title -->
-            <text x="240" y="162" text-anchor="middle" font-family="Outfit,sans-serif" font-size="28" font-weight="700" fill="#C47080" opacity=".85">Micro-Interactions</text>
-            <!-- floating label pills -->
-            <rect x="44" y="68" width="72" height="26" rx="13" fill="#7BA8C8"/>
-            <text x="80" y="85" text-anchor="middle" font-family="Outfit,sans-serif" font-size="11" font-weight="600" fill="#fff">Trigger</text>
-            <rect x="176" y="44" width="58" height="26" rx="13" fill="#9B7EC8"/>
-            <text x="205" y="61" text-anchor="middle" font-family="Outfit,sans-serif" font-size="11" font-weight="600" fill="#fff">Rule</text>
-            <rect x="274" y="52" width="90" height="26" rx="13" fill="#C87878"/>
-            <text x="319" y="69" text-anchor="middle" font-family="Outfit,sans-serif" font-size="11" font-weight="600" fill="#fff">Feedback</text>
-            <rect x="338" y="96" width="112" height="26" rx="13" fill="#C89060"/>
-            <text x="394" y="113" text-anchor="middle" font-family="Outfit,sans-serif" font-size="11" font-weight="600" fill="#fff">Loops &amp; Modes</text>
-            <!-- toggle element bottom center -->
-            <rect x="172" y="198" width="136" height="52" rx="26" fill="#E8D0D6"/>
-            <circle cx="280" cy="224" r="20" fill="#C47080"/>
-            <rect x="190" y="220" width="52" height="8" rx="4" fill="#C4A8B0" opacity=".5"/>
-            <!-- small indicator dots -->
-            <circle cx="120" cy="224" r="5" fill="#7BA8C8" opacity=".7"/>
-            <circle cx="140" cy="224" r="5" fill="#9B7EC8" opacity=".7"/>
-            <circle cx="160" cy="224" r="5" fill="#C87878" opacity=".5"/>
+            <defs>
+              <pattern id="mi-grid" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
+                <path d="M 28 0 L 0 0 0 28" fill="none" stroke="var(--line2)" stroke-width=".6"/>
+              </pattern>
+            </defs>
+            <!-- bg -->
+            <rect width="480" height="300" fill="var(--bg2)"/>
+            <rect width="480" height="300" fill="url(#mi-grid)"/>
+            <!-- vertical accent columns -->
+            <rect x="152" y="0" width="28" height="300" fill="var(--line2)" opacity=".35"/>
+            <rect x="208" y="0" width="28" height="300" fill="var(--line2)" opacity=".35"/>
+            <rect x="264" y="0" width="28" height="300" fill="var(--line2)" opacity=".35"/>
+            <rect x="320" y="0" width="28" height="300" fill="var(--line2)" opacity=".35"/>
+            <!-- center title text -->
+            <text x="240" y="158" text-anchor="middle" font-family="Outfit,sans-serif" font-size="30" font-weight="700" fill="var(--ink)" opacity=".1">Micro-Interactions</text>
+            <text x="240" y="158" text-anchor="middle" font-family="Outfit,sans-serif" font-size="30" font-weight="600" fill="none" stroke="var(--line)" stroke-width=".6">Micro-Interactions</text>
+            <!-- floating pill labels — outlined only, no fill color -->
+            <!-- Trigger (bottom-left) -->
+            <rect x="38" y="74" width="72" height="26" rx="13" fill="var(--bg3)" stroke="var(--line)" stroke-width="1"/>
+            <text x="74" y="91" text-anchor="middle" font-family="Outfit,sans-serif" font-size="10" font-weight="600" fill="var(--ink2)">Trigger</text>
+            <!-- Rule (top-center) -->
+            <rect x="178" y="44" width="56" height="26" rx="13" fill="var(--bg3)" stroke="var(--line)" stroke-width="1"/>
+            <text x="206" y="61" text-anchor="middle" font-family="Outfit,sans-serif" font-size="10" font-weight="600" fill="var(--ink2)">Rule</text>
+            <!-- Feedback (top-right) -->
+            <rect x="270" y="52" width="88" height="26" rx="13" fill="var(--bg)" stroke="var(--ink)" stroke-width="1"/>
+            <text x="314" y="69" text-anchor="middle" font-family="Outfit,sans-serif" font-size="10" font-weight="600" fill="var(--ink)">Feedback</text>
+            <!-- Loops & Modes (right) -->
+            <rect x="334" y="96" width="112" height="26" rx="13" fill="var(--bg3)" stroke="var(--line)" stroke-width="1"/>
+            <text x="390" y="113" text-anchor="middle" font-family="Outfit,sans-serif" font-size="9.5" font-weight="600" fill="var(--ink2)">Loops &amp; Modes</text>
+            <!-- toggle element — bottom center -->
+            <rect x="168" y="200" width="144" height="52" rx="26" fill="var(--bg3)" stroke="var(--line)" stroke-width="1"/>
+            <!-- track dots left -->
+            <circle cx="194" cy="226" r="5" fill="var(--line2)"/>
+            <circle cx="212" cy="226" r="5" fill="var(--line2)"/>
+            <circle cx="230" cy="226" r="5" fill="var(--line)"/>
+            <!-- thumb (active, filled) -->
+            <circle cx="282" cy="226" r="20" fill="var(--bg)" stroke="var(--ink)" stroke-width="1.2"/>
+            <circle cx="282" cy="226" r="8" fill="var(--ink)" opacity=".15"/>
+            <circle cx="282" cy="226" r="4" fill="var(--ink)"/>
+            <!-- connector lines from pills to title -->
+            <line x1="110" y1="87" x2="178" y2="100" stroke="var(--line2)" stroke-width=".6" stroke-dasharray="3 2"/>
+            <line x1="234" y1="70" x2="240" y2="128" stroke="var(--line2)" stroke-width=".6" stroke-dasharray="3 2"/>
+            <line x1="314" y1="78" x2="280" y2="128" stroke="var(--line2)" stroke-width=".6" stroke-dasharray="3 2"/>
           </svg>
         </div>
         <div class="work-info"><h4>Micro-Interactions</h4><span>Interaction Design</span></div>
@@ -529,45 +561,51 @@ footer{background:#080C14;padding:2rem clamp(1.25rem,5vw,4rem);display:flex;alig
         <div class="work-thumb">
           <svg viewBox="0 0 480 300" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
             <!-- bg -->
-            <rect width="480" height="300" fill="#EAF2F0"/>
+            <rect width="480" height="300" fill="var(--bg2)"/>
             <!-- section heading -->
-            <rect x="164" y="28" width="152" height="16" rx="4" fill="#A8CBBF"/>
-            <rect x="204" y="50" width="72" height="10" rx="3" fill="#C0DAD4"/>
-            <!-- three pricing cards -->
-            <!-- card 1 (basic) -->
-            <rect x="24" y="76" width="128" height="192" rx="10" fill="#D4EAE4"/>
-            <rect x="40" y="96" width="60" height="12" rx="3" fill="#A8CBBF"/>
-            <rect x="40" y="116" width="40" height="22" rx="4" fill="#7BBDAF"/>
-            <rect x="40" y="146" width="96" height="1" fill="#A8CBBF"/>
-            <rect x="40" y="158" width="80" height="8" rx="2" fill="#B8D5CF"/>
-            <rect x="40" y="172" width="72" height="8" rx="2" fill="#B8D5CF"/>
-            <rect x="40" y="186" width="88" height="8" rx="2" fill="#B8D5CF"/>
-            <rect x="40" y="218" width="96" height="28" rx="6" fill="none" stroke="#7BBDAF" stroke-width="1.5"/>
-            <rect x="60" y="228" width="56" height="8" rx="2" fill="#7BBDAF"/>
-            <!-- card 2 (pro - featured) -->
-            <rect x="168" y="56" width="144" height="220" rx="10" fill="#4E8E80"/>
-            <rect x="200" y="72" width="50" height="12" rx="6" fill="#8ECFC4" opacity=".7"/>
-            <text x="225" y="82" text-anchor="middle" font-family="Outfit,sans-serif" font-size="8" font-weight="700" fill="#fff">POPULAR</text>
-            <rect x="184" y="96" width="64" height="12" rx="3" fill="rgba(255,255,255,.5)"/>
-            <rect x="184" y="116" width="44" height="26" rx="4" fill="rgba(255,255,255,.9)"/>
-            <rect x="184" y="150" width="112" height="1" fill="rgba(255,255,255,.2)"/>
-            <rect x="184" y="162" width="88" height="8" rx="2" fill="rgba(255,255,255,.5)"/>
-            <rect x="184" y="176" width="80" height="8" rx="2" fill="rgba(255,255,255,.5)"/>
-            <rect x="184" y="190" width="96" height="8" rx="2" fill="rgba(255,255,255,.5)"/>
-            <rect x="184" y="204" width="72" height="8" rx="2" fill="rgba(255,255,255,.5)"/>
-            <rect x="184" y="224" width="112" height="30" rx="6" fill="rgba(255,255,255,.95)"/>
-            <rect x="206" y="233" width="68" height="12" rx="2" fill="#4E8E80"/>
-            <!-- card 3 (enterprise) -->
-            <rect x="328" y="76" width="128" height="192" rx="10" fill="#D4EAE4"/>
-            <rect x="344" y="96" width="72" height="12" rx="3" fill="#A8CBBF"/>
-            <rect x="344" y="116" width="40" height="22" rx="4" fill="#7BBDAF"/>
-            <rect x="344" y="146" width="96" height="1" fill="#A8CBBF"/>
-            <rect x="344" y="158" width="80" height="8" rx="2" fill="#B8D5CF"/>
-            <rect x="344" y="172" width="88" height="8" rx="2" fill="#B8D5CF"/>
-            <rect x="344" y="186" width="64" height="8" rx="2" fill="#B8D5CF"/>
-            <rect x="344" y="200" width="80" height="8" rx="2" fill="#B8D5CF"/>
-            <rect x="344" y="218" width="96" height="28" rx="6" fill="none" stroke="#7BBDAF" stroke-width="1.5"/>
-            <rect x="364" y="228" width="56" height="8" rx="2" fill="#7BBDAF"/>
+            <rect x="160" y="22" width="160" height="14" rx="2" fill="var(--line)"/>
+            <rect x="200" y="42" width="80" height="8" rx="1" fill="var(--line2)"/>
+            <!-- card 1 — basic (outlined) -->
+            <rect x="22" y="66" width="132" height="210" rx="4" fill="var(--bg3)" stroke="var(--line2)" stroke-width=".8"/>
+            <rect x="38" y="84" width="60" height="10" rx="1" fill="var(--line)"/>
+            <rect x="38" y="102" width="42" height="18" rx="2" fill="var(--line2)"/>
+            <line x1="38" y1="130" x2="134" y2="130" stroke="var(--line2)" stroke-width=".8"/>
+            <rect x="38" y="140" width="80" height="7" rx="1" fill="var(--line2)"/>
+            <rect x="38" y="153" width="68" height="7" rx="1" fill="var(--line2)"/>
+            <rect x="38" y="166" width="76" height="7" rx="1" fill="var(--line2)"/>
+            <rect x="38" y="179" width="60" height="7" rx="1" fill="var(--line2)"/>
+            <rect x="38" y="206" width="96" height="22" rx="2" fill="none" stroke="var(--line)" stroke-width="1"/>
+            <rect x="52" y="214" width="68" height="6" rx="1" fill="var(--line)"/>
+            <!-- card 2 — featured / pro (filled) -->
+            <rect x="170" y="44" width="140" height="236" rx="4" fill="var(--ink)" opacity=".06"/>
+            <rect x="170" y="44" width="140" height="236" rx="4" fill="none" stroke="var(--ink)" stroke-width="1.2"/>
+            <!-- popular badge -->
+            <rect x="210" y="56" width="60" height="16" rx="8" fill="var(--bg)" stroke="var(--line)" stroke-width=".8"/>
+            <rect x="218" y="61" width="44" height="6" rx="1" fill="var(--line)"/>
+            <rect x="186" y="82" width="64" height="10" rx="1" fill="var(--line)"/>
+            <rect x="186" y="100" width="44" height="22" rx="2" fill="var(--ink)" opacity=".12"/>
+            <rect x="188" y="103" width="40" height="16" rx="1" fill="var(--line)"/>
+            <line x1="186" y1="132" x2="294" y2="132" stroke="var(--line)" stroke-width=".8" opacity=".4"/>
+            <rect x="186" y="142" width="88" height="7" rx="1" fill="var(--line)"/>
+            <rect x="186" y="155" width="76" height="7" rx="1" fill="var(--line)"/>
+            <rect x="186" y="168" width="96" height="7" rx="1" fill="var(--line)"/>
+            <rect x="186" y="181" width="68" height="7" rx="1" fill="var(--line)"/>
+            <rect x="186" y="194" width="84" height="7" rx="1" fill="var(--line)"/>
+            <!-- featured CTA — solid -->
+            <rect x="186" y="216" width="108" height="24" rx="2" fill="var(--ink)" opacity=".85"/>
+            <rect x="208" y="224" width="64" height="8" rx="1" fill="var(--bg2)"/>
+            <!-- card 3 — enterprise (outlined) -->
+            <rect x="326" y="66" width="132" height="210" rx="4" fill="var(--bg3)" stroke="var(--line2)" stroke-width=".8"/>
+            <rect x="342" y="84" width="72" height="10" rx="1" fill="var(--line)"/>
+            <rect x="342" y="102" width="42" height="18" rx="2" fill="var(--line2)"/>
+            <line x1="342" y1="130" x2="438" y2="130" stroke="var(--line2)" stroke-width=".8"/>
+            <rect x="342" y="140" width="80" height="7" rx="1" fill="var(--line2)"/>
+            <rect x="342" y="153" width="88" height="7" rx="1" fill="var(--line2)"/>
+            <rect x="342" y="166" width="60" height="7" rx="1" fill="var(--line2)"/>
+            <rect x="342" y="179" width="76" height="7" rx="1" fill="var(--line2)"/>
+            <rect x="342" y="192" width="68" height="7" rx="1" fill="var(--line2)"/>
+            <rect x="342" y="206" width="96" height="22" rx="2" fill="none" stroke="var(--line)" stroke-width="1"/>
+            <rect x="356" y="214" width="68" height="6" rx="1" fill="var(--line)"/>
           </svg>
         </div>
         <div class="work-info"><h4>Pricing Designs</h4><span>UI Exploration</span></div>
