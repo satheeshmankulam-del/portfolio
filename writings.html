@@ -1,632 +1,209 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/png" href="favicon.png">
 <title>Writings — Satheesh Mankulam | UX Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garant:ital,wght@0,300;0,400;1,300;1,400&family=JetBrains+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --blue: #0061FE;
-    --blue-dark: #004BC4;
-    --blue-light: #EEF4FF;
-    --blue-mid: #D6E4FF;
-    --black: #0D1117;
-    --gray-1: #1C2333;
-    --gray-2: #4A5568;
-    --gray-3: #718096;
-    --gray-4: #A0AEC0;
-    --gray-5: #E2E8F0;
-    --gray-6: #F7F9FC;
-    --white: #FFFFFF;
-    --radius: 12px;
-    --radius-lg: 20px;
-    --shadow-hover: 0 4px 12px rgba(0,97,254,0.12), 0 12px 40px rgba(0,97,254,0.08);
-  }
-
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
-
-  body {
-    font-family: -apple-system, 'SF Pro Text', 'SF Pro Display', BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
-    background: var(--white);
-    color: var(--black);
-    line-height: 1.6;
-    overflow-x: hidden;
-  }
-
-  /* ── NAV ── */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 5%;
-    height: 68px;
-    background: rgba(255,255,255,0.92);
-    backdrop-filter: blur(16px);
-    border-bottom: 1px solid var(--gray-5);
-    box-shadow: 0 2px 20px rgba(0,0,0,0.06);
-  }
-
-  .nav-logo {
-    font-family: -apple-system, 'SF Pro Display', BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
-    font-weight: 800;
-    font-size: 1.05rem;
-    color: var(--black);
-    text-decoration: none;
-    letter-spacing: -0.02em;
-    white-space: nowrap;
-  }
-  .nav-logo span { color: var(--blue); }
-
-  .nav-back {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    font-size: 0.88rem;
-    font-weight: 600;
-    color: var(--gray-2);
-    text-decoration: none;
-    padding: 0.45rem 1rem;
-    border-radius: 8px;
-    border: 1.5px solid var(--gray-5);
-    transition: color 0.2s, border-color 0.2s;
-  }
-  .nav-back:hover { color: var(--blue); border-color: var(--blue); }
-
-  /* ── PAGE HERO ── */
-  .page-hero {
-    padding: 110px 5% 60px;
-    background: var(--white);
-    border-bottom: 1px solid var(--gray-5);
-    position: relative;
-    overflow: hidden;
-  }
-  .page-hero-bg {
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse 60% 100% at 90% 50%, #EEF4FF 0%, transparent 60%);
-    pointer-events: none;
-  }
-
-  .page-hero-inner {
-    position: relative;
-    max-width: 760px;
-  }
-
-  .page-label {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.78rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--blue);
-    margin-bottom: 1rem;
-  }
-  .page-label::before {
-    content: '';
-    width: 20px; height: 2px;
-    background: var(--blue);
-    border-radius: 2px;
-  }
-
-  .page-hero h1 {
-    font-family: -apple-system, 'SF Pro Display', BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
-    font-size: clamp(2rem, 4vw, 3rem);
-    font-weight: 800;
-    letter-spacing: -0.03em;
-    color: var(--black);
-    line-height: 1.1;
-    margin-bottom: 1rem;
-  }
-
-  .page-hero p {
-    font-size: 1.05rem;
-    color: var(--gray-2);
-    line-height: 1.7;
-    max-width: 560px;
-  }
-
-  .page-hero-stats {
-    display: flex;
-    gap: 2rem;
-    margin-top: 2.5rem;
-    flex-wrap: wrap;
-  }
-  .ph-stat {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.85rem;
-    color: var(--gray-3);
-    font-weight: 500;
-  }
-  .ph-stat strong { color: var(--black); font-weight: 700; }
-
-  /* ── FILTER BAR ── */
-  .filter-bar {
-    padding: 1.5rem 5%;
-    background: var(--gray-6);
-    border-bottom: 1px solid var(--gray-5);
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    flex-wrap: wrap;
-  }
-
-  .filter-label {
-    font-size: 0.78rem;
-    font-weight: 700;
-    color: var(--gray-4);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-right: 0.4rem;
-  }
-
-  .filter-btn {
-    font-family: inherit;
-    font-size: 0.82rem;
-    font-weight: 600;
-    color: var(--gray-2);
-    background: white;
-    border: 1.5px solid var(--gray-5);
-    padding: 0.35rem 0.85rem;
-    border-radius: 100px;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-  .filter-btn:hover, .filter-btn.active {
-    background: var(--blue);
-    color: white;
-    border-color: var(--blue);
-  }
-
-  /* ── WRITINGS GRID ── */
-  .writings-main {
-    padding: 3rem 5% 6rem;
-  }
-
-  .writings-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.2rem;
-  }
-
-  .writing-card {
-    display: flex;
-    flex-direction: column;
-    gap: 0.9rem;
-    background: var(--gray-6);
-    border: 1.5px solid var(--gray-5);
-    border-radius: var(--radius-lg);
-    padding: 1.6rem;
-    text-decoration: none;
-    color: inherit;
-    transition: box-shadow 0.25s, transform 0.25s, border-color 0.25s, background 0.25s;
-    position: relative;
-    overflow: hidden;
-  }
-  .writing-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 3px;
-    background: var(--blue);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.3s ease;
-    border-radius: 3px 3px 0 0;
-  }
-  .writing-card:hover {
-    box-shadow: var(--shadow-hover);
-    transform: translateY(-4px);
-    border-color: var(--blue-mid);
-    background: white;
-  }
-  .writing-card:hover::before { transform: scaleX(1); }
-
-  .writing-card.featured-card {
-    grid-column: 1 / -1;
-    flex-direction: row;
-    align-items: flex-start;
-    gap: 2rem;
-    background: var(--blue-light);
-    border-color: var(--blue-mid);
-  }
-  .writing-card.featured-card::before { transform: scaleX(1); }
-  .writing-card.featured-card:hover { background: var(--blue-light); }
-
-  .wc-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.35rem;
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: var(--blue);
-    background: white;
-    border: 1px solid var(--blue-mid);
-    padding: 0.25rem 0.7rem;
-    border-radius: 100px;
-    width: fit-content;
-  }
-  .featured-card .wc-badge { background: white; }
-
-  .wc-title {
-    font-family: -apple-system, 'SF Pro Display', BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
-    font-size: 1rem;
-    font-weight: 700;
-    line-height: 1.38;
-    color: var(--black);
-    letter-spacing: -0.01em;
-    flex: 1;
-  }
-  .featured-card .wc-title { font-size: 1.25rem; }
-
-  .wc-desc {
-    font-size: 0.85rem;
-    color: var(--gray-2);
-    line-height: 1.65;
-    flex: 1;
-  }
-
-  .wc-footer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: auto;
-    padding-top: 0.9rem;
-    border-top: 1px solid var(--gray-5);
-  }
-  .featured-card .wc-footer { border-top-color: var(--blue-mid); }
-
-  .wc-category {
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: var(--gray-4);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-  }
-
-  .wc-arrow {
-    font-size: 0.88rem;
-    color: var(--blue);
-    font-weight: 700;
-    transition: transform 0.2s;
-    display: inline-block;
-  }
-  .writing-card:hover .wc-arrow { transform: translateX(4px); }
-
-  .featured-content { flex: 1; display: flex; flex-direction: column; gap: 0.9rem; }
-
-  /* hidden via filter */
-  .writing-card.hidden {
-    display: none;
-  }
-
-  /* ── MEDIUM CTA ── */
-  .medium-cta {
-    margin-top: 3rem;
-    text-align: center;
-    padding: 3rem 2rem;
-    background: var(--gray-6);
-    border-radius: var(--radius-lg);
-    border: 1px solid var(--gray-5);
-  }
-  .medium-cta p {
-    font-size: 1rem;
-    color: var(--gray-2);
-    margin-bottom: 1.2rem;
-  }
-  .medium-cta p strong { color: var(--black); }
-
-  .btn-primary {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: var(--blue);
-    color: white;
-    font-family: inherit;
-    font-size: 0.95rem;
-    font-weight: 600;
-    padding: 0.75rem 1.6rem;
-    border-radius: 10px;
-    text-decoration: none;
-    transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
-  }
-  .btn-primary:hover {
-    background: var(--blue-dark);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(0,97,254,0.3);
-  }
-
-  /* ── FOOTER ── */
-  footer {
-    background: #080C14;
-    padding: 2rem 5%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-top: 1px solid rgba(255,255,255,0.05);
-  }
-  footer p { font-size: 0.82rem; color: rgba(255,255,255,0.25); }
-  .footer-logo {
-    font-family: -apple-system, 'SF Pro Display', BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
-    font-weight: 800;
-    font-size: 1rem;
-    color: rgba(255,255,255,0.3);
-    text-decoration: none;
-  }
-  .footer-logo span { color: var(--blue); }
-
-  /* ── REVEAL ── */
-  .reveal {
-    opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.55s ease, transform 0.55s ease;
-  }
-  .reveal.visible { opacity: 1; transform: none; }
-  .reveal-delay-1 { transition-delay: 0.07s; }
-  .reveal-delay-2 { transition-delay: 0.14s; }
-  .reveal-delay-3 { transition-delay: 0.21s; }
-
-  /* ── RESPONSIVE ── */
-  @media (max-width: 960px) {
-    .writings-grid { grid-template-columns: repeat(2, 1fr); }
-    .writing-card.featured-card { grid-column: 1 / -1; flex-direction: column; gap: 1rem; }
-  }
-  @media (max-width: 600px) {
-    .writings-grid { grid-template-columns: 1fr; }
-    .writing-card.featured-card { grid-column: 1; }
-    .page-hero { padding: 90px 5% 40px; }
-    .writings-main { padding: 2rem 5% 4rem; }
-  }
-  /* ── THEME TOGGLE ── */
-  
-  
-  
-  
-
-  /* ── DARK MODE ── */
-
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'Outfit',sans-serif;line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased;transition:background .3s,color .3s}
+a{color:inherit;text-decoration:none}ul{list-style:none}
+[data-theme="light"]{--bg:#F8F7F3;--bg2:#EFEDE7;--bg3:#E5E2DB;--ink:#0D0D0D;--ink2:#444;--ink3:#888;--line:#D8D5CE;--line2:#E8E5DF;--nav-bg:rgba(248,247,243,0.94);--mono:'JetBrains Mono',monospace;--serif:'Cormorant Garant',serif;--sans:'Outfit',sans-serif;}
+[data-theme="dark"]{--bg:#111110;--bg2:#1A1A18;--bg3:#222220;--ink:#F0EEE8;--ink2:#B8B6B0;--ink3:#777672;--line:#333330;--line2:#2A2A28;--nav-bg:rgba(17,17,16,0.94);--mono:'JetBrains Mono',monospace;--serif:'Cormorant Garant',serif;--sans:'Outfit',sans-serif;}
+body{background:var(--bg);color:var(--ink)}
+.wrap{max-width:1200px;margin:0 auto;padding:0 clamp(1.25rem,5vw,4rem)}
+.grid-bg{position:fixed;inset:0;pointer-events:none;z-index:0;background-image:linear-gradient(var(--line2) 1px,transparent 1px),linear-gradient(90deg,var(--line2) 1px,transparent 1px);background-size:80px 80px;opacity:.28;mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 40%,transparent 100%)}
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(1.25rem,5vw,4rem);background:var(--nav-bg);backdrop-filter:blur(16px);border-bottom:1px solid var(--line2);transition:border-color .3s,box-shadow .3s}
+nav.scrolled{border-color:var(--line);box-shadow:0 2px 24px rgba(0,0,0,.06)}
+.nav-logo{font-family:var(--mono);font-size:.88rem;font-weight:500;letter-spacing:.06em;color:var(--ink)}
+.nav-logo em{font-style:normal;opacity:.35;margin-left:.15rem}
+.nav-back{display:inline-flex;align-items:center;gap:.4rem;font-family:var(--sans);font-size:.92rem;font-weight:500;color:var(--ink3);border:1px solid var(--line);padding:.42rem 1rem;transition:color .2s,border-color .2s}
+.nav-back:hover{color:var(--ink);border-color:var(--ink)}
+.dark-toggle{display:flex;align-items:center;justify-content:center;width:36px;height:36px;border:1px solid var(--line);background:none;cursor:pointer;color:var(--ink3);transition:color .2s,border-color .2s}
+.dark-toggle:hover{color:var(--ink);border-color:var(--ink)}
+.dark-toggle svg{width:16px;height:16px}
+.icon-sun{display:none}.icon-moon{display:block}
+[data-theme="dark"] .icon-sun{display:block}[data-theme="dark"] .icon-moon{display:none}
+.nav-right{display:flex;align-items:center;gap:.75rem}
+/* PAGE HERO */
+.page-hero{padding:clamp(6rem,10vw,8rem) 0 clamp(3rem,5vw,4rem);border-bottom:1px solid var(--line)}
+.stag{display:inline-flex;align-items:center;gap:.55rem;font-family:var(--mono);font-size:.75rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink3);margin-bottom:1.25rem}
+.stag::before{content:'';display:block;width:28px;height:1px;background:var(--line)}
+.page-hero h1{font-family:var(--serif);font-size:clamp(2.4rem,5vw,4rem);font-weight:300;line-height:1.1;letter-spacing:-.015em;color:var(--ink);margin-bottom:1rem}
+.page-hero h1 em{font-style:italic}
+.page-hero p{font-size:1.05rem;color:var(--ink2);line-height:1.75;max-width:560px;font-weight:300;margin-bottom:2rem}
+.hero-stats{display:flex;gap:2rem;flex-wrap:wrap;padding-top:2rem;border-top:1px solid var(--line2)}
+.hstat{display:flex;align-items:center;gap:.5rem;font-size:.95rem;color:var(--ink3);font-weight:300}
+.hstat strong{font-weight:600;color:var(--ink)}
+/* FILTER */
+.filter-bar{padding:1.2rem 0;border-bottom:1px solid var(--line2);display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;position:sticky;top:68px;background:var(--bg);z-index:100;backdrop-filter:blur(12px)}
+.filter-label{font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3);margin-right:.4rem}
+.filter-btn{font-family:var(--sans);font-size:.88rem;font-weight:400;color:var(--ink3);background:var(--bg2);border:1px solid var(--line2);padding:.35rem .85rem;cursor:pointer;transition:all .2s}
+.filter-btn:hover{color:var(--ink);border-color:var(--line)}
+.filter-btn.active{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+/* WRITINGS GRID */
+.writings-main{padding:clamp(3rem,5vw,4rem) 0 clamp(5rem,8vw,7rem)}
+.writings-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-bottom:3rem}
+.writing-card{display:flex;flex-direction:column;gap:.9rem;background:var(--bg);padding:2rem;text-decoration:none;color:inherit;transition:background .2s;position:relative;overflow:hidden}
+.writing-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--ink);transform:scaleX(0);transform-origin:left;transition:transform .3s ease}
+.writing-card:hover{background:var(--bg2)}
+.writing-card:hover::before{transform:scaleX(1)}
+.writing-card.featured-card{grid-column:1/-1;flex-direction:row;align-items:flex-start;gap:2.5rem}
+.writing-card.hidden{display:none}
+.wc-badge{display:inline-flex;align-items:center;font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);border:1px solid var(--line2);padding:.25rem .7rem;width:fit-content}
+.wc-title{font-family:var(--serif);font-size:1.3rem;font-weight:400;line-height:1.3;color:var(--ink);flex:1}
+.featured-card .wc-title{font-size:1.65rem}
+.wc-desc{font-size:.95rem;color:var(--ink3);line-height:1.72;font-weight:300;flex:1}
+.wc-footer{display:flex;align-items:center;justify-content:space-between;margin-top:auto;padding-top:.9rem;border-top:1px solid var(--line2)}
+.wc-category{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3)}
+.wc-arrow{font-size:1.1rem;color:var(--ink3);transition:transform .2s,color .2s}
+.writing-card:hover .wc-arrow{transform:translateX(4px);color:var(--ink)}
+.featured-content{flex:1;display:flex;flex-direction:column;gap:.9rem}
+.featured-right{flex:1.2}
+/* MEDIUM CTA */
+.medium-cta{display:flex;align-items:center;justify-content:space-between;border:1px solid var(--line2);padding:1.5rem 2rem;gap:1.5rem;flex-wrap:wrap;background:var(--bg2)}
+.medium-cta p{font-size:.97rem;color:var(--ink2);font-weight:300}
+.medium-cta p strong{font-weight:600;color:var(--ink)}
+.btn-primary{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--sans);font-size:1rem;font-weight:600;background:var(--ink);color:var(--bg);padding:.85rem 1.8rem;border:1.5px solid var(--ink);transition:background .2s,color .2s;text-decoration:none}
+.btn-primary:hover{background:transparent;color:var(--ink)}
+/* FOOTER */
+footer{background:#080C14;padding:2rem clamp(1.25rem,5vw,4rem);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;border-top:1px solid rgba(255,255,255,.05)}
+.footer-logo{font-family:var(--mono);font-size:.82rem;letter-spacing:.08em;color:rgba(255,255,255,.3)}
+.footer-copy{font-size:.85rem;color:rgba(255,255,255,.2)}
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:none}
+.reveal-delay-1{transition-delay:.1s}.reveal-delay-2{transition-delay:.2s}
+/* RESPONSIVE */
+@media(max-width:900px){.writings-grid{grid-template-columns:1fr 1fr}.writing-card.featured-card{flex-direction:column;gap:1.5rem}}
+@media(max-width:640px){.writings-grid{grid-template-columns:1fr}.medium-cta{flex-direction:column;align-items:flex-start}.hero-stats{flex-direction:column;gap:1rem}}
 </style>
 </head>
 <body>
-
-<!-- NAV -->
-<nav>
-  <a href="index.html" class="nav-logo">Satheesh <span>Mankulam</span></a>
-  <div style="display:flex;align-items:center;gap:0.75rem;">
-    <a href="index.html" class="nav-back">← Back to Portfolio</a>
+<div class="grid-bg" aria-hidden="true"></div>
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">Satheesh <em>Mankulam</em></a>
+  <div class="nav-right">
+    <a href="index.html" class="nav-back">← Portfolio</a>
+    <button class="dark-toggle" id="darkToggle" aria-label="Toggle dark mode">
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
   </div>
 </nav>
 
-<!-- PAGE HERO -->
-<section class="page-hero">
-  <div class="page-hero-bg"></div>
-  <div class="page-hero-inner">
-    <div class="page-label">UX Writings</div>
-    <h1>Case Studies &amp;<br>UX Thinking</h1>
-    <p>Real products, real friction, real insight. I write about the small moments that quietly shape how users feel — and what designers can do better.</p>
-    <div class="page-hero-stats">
-      <div class="ph-stat"><strong>12</strong> published articles</div>
-      <div class="ph-stat"><strong>Design Bootcamp</strong> publication on Medium</div>
-      <div class="ph-stat">🎯 Focus: <strong>Product moments, not screens</strong></div>
+<div class="wrap">
+  <section class="page-hero reveal">
+    <div class="stag">Writings & Case Studies</div>
+    <h1>UX <em>Thinking</em> —<br>Published on Medium</h1>
+    <p>12+ articles exploring friction, flow, AI design, mobile UX, and the psychology behind product decisions. All published in Design Bootcamp on Medium.</p>
+    <div class="hero-stats">
+      <div class="hstat"><strong>12+</strong> Published Articles</div>
+      <div class="hstat"><strong>Design Bootcamp</strong> Publication</div>
+      <div class="hstat"><strong>Medium</strong> Platform</div>
     </div>
-  </div>
-</section>
-
-<!-- FILTER BAR -->
-<div class="filter-bar">
-  <span class="filter-label">Filter</span>
-  <button class="filter-btn active" data-filter="all">All</button>
-  <button class="filter-btn" data-filter="friction">Friction</button>
-  <button class="filter-btn" data-filter="ai">AI Design</button>
-  <button class="filter-btn" data-filter="mobile">Mobile Apps</button>
-  <button class="filter-btn" data-filter="linkedin">LinkedIn</button>
-  <button class="filter-btn" data-filter="navigation">Navigation</button>
+  </section>
 </div>
 
-<!-- WRITINGS GRID -->
-<main class="writings-main">
-  <div class="writings-grid">
-
-    <!-- 1. Google Maps — FEATURED -->
-    <a href="https://medium.com/design-bootcamp/smarter-navigation-with-vehicle-profiles-a-ux-case-study-for-google-maps-android-auto-879bd58b21c8?sk=cdb1348b9ebd13e613d2c1906e63cd58"
-       target="_blank" class="writing-card featured-card reveal" data-tags="friction navigation">
-      <div class="featured-content">
-        <div class="wc-badge">🗺️ Google Maps · Android Auto</div>
-        <div class="wc-title">Smarter Navigation with Vehicle Profiles: A UX Case Study for Google Maps &amp; Android Auto</div>
-        <div class="wc-desc">Exploring how vehicle-aware navigation could reduce cognitive load and deliver truly contextual routing experiences. A deep dive into a single missing feature inside a mature, billion-user product — and what it reveals about assumption-driven design.</div>
-        <div class="wc-footer">
-          <span class="wc-category">Navigation · Feature UX</span>
-          <span class="wc-arrow">→</span>
-        </div>
-      </div>
-    </a>
-
-    <!-- 2. I Don't Care -->
-    <a href="https://medium.com/design-bootcamp/designing-for-i-dont-care-users-f4ae4b0eca39?sk=62b19af25b81abed237a12bdf693994b"
-       target="_blank" class="writing-card reveal" data-tags="ai friction">
-      <div class="wc-badge">🧠 Behavioural UX</div>
-      <div class="wc-title">Designing for "I Don't Care" Users</div>
-      <div class="wc-desc">What happens when users simply don't have the motivation to engage? A look into passive user psychology and how product moments can lose or capture low-intent users entirely.</div>
-      <div class="wc-footer">
-        <span class="wc-category">Behavioural UX</span>
-        <span class="wc-arrow">→</span>
-      </div>
-    </a>
-
-    <!-- 3. Google Stitch -->
-    <a href="https://medium.com/design-bootcamp/a-small-menu-a-big-difference-reducing-friction-in-googles-stitch-db829ab27b55?sk=20b641dd6ca461e2ec981214358118d2"
-       target="_blank" class="writing-card reveal reveal-delay-1" data-tags="friction">
-      <div class="wc-badge">🪡 Google Stitch</div>
-      <div class="wc-title">A Small Menu, A Big Difference: Reducing Friction in Google's Stitch</div>
-      <div class="wc-desc">How a single overlooked menu can cascade into a frustrating experience — and how one small change could fix it entirely.</div>
-      <div class="wc-footer">
-        <span class="wc-category">Friction Audit</span>
-        <span class="wc-arrow">→</span>
-      </div>
-    </a>
-
-    <!-- 4. AI knows me -->
-    <a href="https://medium.com/design-bootcamp/when-ai-knows-me-too-well-d9493bf6fe61?sk=0518e09a4249c386de2bb64d672d9304"
-       target="_blank" class="writing-card reveal reveal-delay-2" data-tags="ai">
-      <div class="wc-badge">✨ AI Design</div>
-      <div class="wc-title">When AI Knows Me Too Well</div>
-      <div class="wc-desc">The fine line between personalisation and privacy — and how over-smart AI design can quietly creep users out instead of winning their trust.</div>
-      <div class="wc-footer">
-        <span class="wc-category">AI · Privacy UX</span>
-        <span class="wc-arrow">→</span>
-      </div>
-    </a>
-
-    <!-- 5. Download micro-friction -->
-    <a href="https://medium.com/design-bootcamp/what-a-simple-download-taught-me-about-micro-friction-3de831c69a1a?sk=7d8f6a272d2ae7b8b30a3837a46be3d5"
-       target="_blank" class="writing-card reveal" data-tags="friction">
-      <div class="wc-badge">⬇️ Micro-Friction</div>
-      <div class="wc-title">What a Simple Download Taught Me About Micro-Friction</div>
-      <div class="wc-desc">Sometimes the smallest interaction reveals the biggest design gaps. A single download button that silently breaks user trust — and the lesson it holds.</div>
-      <div class="wc-footer">
-        <span class="wc-category">Micro-interactions</span>
-        <span class="wc-arrow">→</span>
-      </div>
-    </a>
-
-    <!-- 6. LinkedIn post silence -->
-    <a href="https://medium.com/design-bootcamp/the-post-that-never-appeared-a-ux-story-of-silence-on-linkedin-89e9f585cdc9?sk=3b214807b73b6511a4f1afcf80765431"
-       target="_blank" class="writing-card reveal reveal-delay-1" data-tags="linkedin friction">
-      <div class="wc-badge">💼 LinkedIn</div>
-      <div class="wc-title">The Post That Never Appeared: A UX Story of Silence on LinkedIn</div>
-      <div class="wc-desc">When silence is the only feedback a user gets, what does that do to trust? A quiet failure in LinkedIn's content publishing flow.</div>
-      <div class="wc-footer">
-        <span class="wc-category">Feedback Design</span>
-        <span class="wc-arrow">→</span>
-      </div>
-    </a>
-
-    <!-- 7. Wanderlog -->
-    <a href="https://medium.com/design-bootcamp/wanderlog-trip-planner-onboarding-friction-3db7a990e657?sk=6a6595229118c22cb99cb03f6b17543a"
-       target="_blank" class="writing-card reveal reveal-delay-2" data-tags="friction mobile">
-      <div class="wc-badge">✈️ Wanderlog</div>
-      <div class="wc-title">Wanderlog — Trip Planner: Onboarding Friction</div>
-      <div class="wc-desc">Mapping the exact moments where new users drop off in Wanderlog — and how a few thoughtful onboarding changes could recover them.</div>
-      <div class="wc-footer">
-        <span class="wc-category">Onboarding UX</span>
-        <span class="wc-arrow">→</span>
-      </div>
-    </a>
-
-    <!-- 8. WhatsApp -->
-    <a href="https://medium.com/design-bootcamp/the-channels-i-didnt-ask-for-a-missed-opportunity-in-whatsapp-s-ux-6de655a74b2d?sk=deebc069052838957fa9264c519cbbe0"
-       target="_blank" class="writing-card reveal" data-tags="mobile friction">
-      <div class="wc-badge">💬 WhatsApp</div>
-      <div class="wc-title">The Channels I Didn't Ask For — A Missed Opportunity in WhatsApp's UX</div>
-      <div class="wc-desc">Unsolicited channels and notification overload — a UX breakdown of forced discoverability inside one of the world's most-used apps.</div>
-      <div class="wc-footer">
-        <span class="wc-category">Notification Design</span>
-        <span class="wc-arrow">→</span>
-      </div>
-    </a>
-
-    <!-- 9. Rapido -->
-    <a href="https://medium.com/design-bootcamp/tapping-for-nothing-fixing-dead-end-screens-in-rapido-app-21a9a5249ccb?sk=81859be58352d8b9d5d15b4760a2a0e1"
-       target="_blank" class="writing-card reveal reveal-delay-1" data-tags="mobile friction">
-      <div class="wc-badge">🛵 Rapido</div>
-      <div class="wc-title">Tapping for Nothing: Fixing Dead-End Screens in Rapido App</div>
-      <div class="wc-desc">Dead-end states that leave users stranded with no path forward — and how simple design changes could rescue the entire experience.</div>
-      <div class="wc-footer">
-        <span class="wc-category">Error States</span>
-        <span class="wc-arrow">→</span>
-      </div>
-    </a>
-
-    <!-- 10. Inbox emails -->
-    <a href="https://medium.com/design-bootcamp/lost-in-the-inbox-why-backup-reminder-emails-are-failing-80f66d47b480?sk=b4914cdaf56601ae8bea846beee62d77"
-       target="_blank" class="writing-card reveal reveal-delay-2" data-tags="friction">
-      <div class="wc-badge">📧 Email UX</div>
-      <div class="wc-title">Lost in the Inbox: Why Backup Reminder Emails Are Failing</div>
-      <div class="wc-desc">Transactional emails that feel like spam — a case for intentional email design, clear hierarchy, and communication that actually reaches users.</div>
-      <div class="wc-footer">
-        <span class="wc-category">Email Design</span>
-        <span class="wc-arrow">→</span>
-      </div>
-    </a>
-
-    <!-- 11. Swiggy -->
-    <a href="https://medium.com/design-bootcamp/designing-for-trust-addressing-last-mile-gaps-in-swiggy-instamart-d9b1a7d9ccab?sk=1a072536f8dc0ff14e96b3ea6eec1cac"
-       target="_blank" class="writing-card reveal" data-tags="mobile friction">
-      <div class="wc-badge">🛒 Swiggy Instamart</div>
-      <div class="wc-title">Designing for Trust: Addressing Last-Mile Gaps in Swiggy Instamart</div>
-      <div class="wc-desc">The delivery experience is the product. How last-mile UX failures quietly erode hard-won user trust in one of India's fastest-growing quick-commerce apps.</div>
-      <div class="wc-footer">
-        <span class="wc-category">Trust Design</span>
-        <span class="wc-arrow">→</span>
-      </div>
-    </a>
-
-    <!-- 12. LinkedIn scheduled -->
-    <a href="https://medium.com/design-bootcamp/reducing-friction-in-linkedins-scheduled-post-flow-5887710e351e?sk=e8d128a76146b4a35f8255e1d40c3822"
-       target="_blank" class="writing-card reveal reveal-delay-1" data-tags="linkedin friction">
-      <div class="wc-badge">💼 LinkedIn</div>
-      <div class="wc-title">Reducing Friction in LinkedIn's Scheduled Post Flow</div>
-      <div class="wc-desc">A step-by-step teardown of how scheduling content on LinkedIn creates unnecessary cognitive overhead — and what a cleaner flow would look like.</div>
-      <div class="wc-footer">
-        <span class="wc-category">Task Flow Design</span>
-        <span class="wc-arrow">→</span>
-      </div>
-    </a>
-
+<div class="wrap">
+  <div class="filter-bar">
+    <span class="filter-label">Filter</span>
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="friction">Friction</button>
+    <button class="filter-btn" data-filter="ai">AI Design</button>
+    <button class="filter-btn" data-filter="mobile">Mobile Apps</button>
+    <button class="filter-btn" data-filter="linkedin">LinkedIn</button>
+    <button class="filter-btn" data-filter="navigation">Navigation</button>
   </div>
+</div>
 
-  <!-- Medium CTA -->
-  <div class="medium-cta reveal">
-    <p>All articles published in <strong>Design Bootcamp</strong> on Medium.</p>
-    <a href="https://medium.com/@satheesh.mankulam" target="_blank" class="btn-primary">Follow on Medium →</a>
+<main class="writings-main">
+  <div class="wrap">
+    <div class="writings-grid">
+      <a href="https://medium.com/design-bootcamp/smarter-navigation-with-vehicle-profiles-a-ux-case-study-for-google-maps-android-auto-879bd58b21c8?sk=cdb1348b9ebd13e613d2c1906e63cd58" target="_blank" class="writing-card featured-card reveal" data-tags="friction navigation">
+        <div class="featured-content"><div class="wc-badge">🗺️ Google Maps · Android Auto</div><div class="wc-title">Smarter Navigation with Vehicle Profiles: A UX Case Study for Google Maps &amp; Android Auto</div><div class="wc-footer"><span class="wc-category">Navigation · Feature UX</span><span class="wc-arrow">→</span></div></div>
+        <div class="featured-right"><div class="wc-desc">Exploring how vehicle-aware navigation could reduce cognitive load and deliver truly contextual routing experiences. A deep dive into a single missing feature inside a mature, billion-user product — and what it reveals about assumption-driven design.</div></div>
+      </a>
+      <a href="https://medium.com/design-bootcamp/designing-for-i-dont-care-users-f4ae4b0eca39?sk=62b19af25b81abed237a12bdf693994b" target="_blank" class="writing-card reveal" data-tags="ai friction">
+        <div class="wc-badge">🧠 Behavioural UX</div><div class="wc-title">Designing for "I Don't Care" Users</div>
+        <div class="wc-desc">What happens when users simply don't have the motivation to engage? A look into passive user psychology and how product moments can lose or capture low-intent users entirely.</div>
+        <div class="wc-footer"><span class="wc-category">Behavioural UX</span><span class="wc-arrow">→</span></div>
+      </a>
+      <a href="https://medium.com/design-bootcamp/a-small-menu-a-big-difference-reducing-friction-in-googles-stitch-db829ab27b55?sk=20b641dd6ca461e2ec981214358118d2" target="_blank" class="writing-card reveal reveal-delay-1" data-tags="friction">
+        <div class="wc-badge">🪡 Google Stitch</div><div class="wc-title">A Small Menu, A Big Difference: Reducing Friction in Google's Stitch</div>
+        <div class="wc-desc">How a single overlooked menu can cascade into a frustrating experience — and how one small change could fix it entirely.</div>
+        <div class="wc-footer"><span class="wc-category">Friction Audit</span><span class="wc-arrow">→</span></div>
+      </a>
+      <a href="https://medium.com/design-bootcamp/when-ai-knows-me-too-well-d9493bf6fe61?sk=0518e09a4249c386de2bb64d672d9304" target="_blank" class="writing-card reveal reveal-delay-2" data-tags="ai">
+        <div class="wc-badge">✨ AI Design</div><div class="wc-title">When AI Knows Me Too Well</div>
+        <div class="wc-desc">The fine line between personalisation and privacy — and how over-smart AI design can quietly creep users out instead of winning their trust.</div>
+        <div class="wc-footer"><span class="wc-category">AI · Privacy UX</span><span class="wc-arrow">→</span></div>
+      </a>
+      <a href="https://medium.com/design-bootcamp/what-a-simple-download-taught-me-about-micro-friction-3de831c69a1a?sk=7d8f6a272d2ae7b8b30a3837a46be3d5" target="_blank" class="writing-card reveal" data-tags="friction">
+        <div class="wc-badge">⬇️ Micro-Friction</div><div class="wc-title">What a Simple Download Taught Me About Micro-Friction</div>
+        <div class="wc-desc">Sometimes the smallest interaction reveals the biggest design gaps. A single download button that silently breaks user trust — and the lesson it holds.</div>
+        <div class="wc-footer"><span class="wc-category">Micro-interactions</span><span class="wc-arrow">→</span></div>
+      </a>
+      <a href="https://medium.com/design-bootcamp/the-post-that-never-appeared-a-ux-story-of-silence-on-linkedin-89e9f585cdc9?sk=3b214807b73b6511a4f1afcf80765431" target="_blank" class="writing-card reveal reveal-delay-1" data-tags="linkedin friction">
+        <div class="wc-badge">💼 LinkedIn</div><div class="wc-title">The Post That Never Appeared: A UX Story of Silence on LinkedIn</div>
+        <div class="wc-desc">When silence is the only feedback a user gets, what does that do to trust? A quiet failure in LinkedIn's content publishing flow.</div>
+        <div class="wc-footer"><span class="wc-category">Feedback Design</span><span class="wc-arrow">→</span></div>
+      </a>
+      <a href="https://medium.com/design-bootcamp/wanderlog-trip-planner-onboarding-friction-3db7a990e657?sk=6a6595229118c22cb99cb03f6b17543a" target="_blank" class="writing-card reveal reveal-delay-2" data-tags="friction mobile">
+        <div class="wc-badge">✈️ Wanderlog</div><div class="wc-title">Wanderlog — Trip Planner: Onboarding Friction</div>
+        <div class="wc-desc">Mapping the exact moments where new users drop off in Wanderlog — and how a few thoughtful onboarding changes could recover them.</div>
+        <div class="wc-footer"><span class="wc-category">Onboarding UX</span><span class="wc-arrow">→</span></div>
+      </a>
+      <a href="https://medium.com/design-bootcamp/the-channels-i-didnt-ask-for-a-missed-opportunity-in-whatsapp-s-ux-6de655a74b2d?sk=deebc069052838957fa9264c519cbbe0" target="_blank" class="writing-card reveal" data-tags="mobile friction">
+        <div class="wc-badge">💬 WhatsApp</div><div class="wc-title">The Channels I Didn't Ask For — A Missed Opportunity in WhatsApp's UX</div>
+        <div class="wc-desc">Unsolicited channels and notification overload — a UX breakdown of forced discoverability inside one of the world's most-used apps.</div>
+        <div class="wc-footer"><span class="wc-category">Notification Design</span><span class="wc-arrow">→</span></div>
+      </a>
+      <a href="https://medium.com/design-bootcamp/tapping-for-nothing-fixing-dead-end-screens-in-rapido-app-21a9a5249ccb?sk=81859be58352d8b9d5d15b4760a2a0e1" target="_blank" class="writing-card reveal reveal-delay-1" data-tags="mobile friction">
+        <div class="wc-badge">🛵 Rapido</div><div class="wc-title">Tapping for Nothing: Fixing Dead-End Screens in Rapido App</div>
+        <div class="wc-desc">Dead-end states that leave users stranded with no path forward — and how simple design changes could rescue the entire experience.</div>
+        <div class="wc-footer"><span class="wc-category">Error States</span><span class="wc-arrow">→</span></div>
+      </a>
+      <a href="https://medium.com/design-bootcamp/lost-in-the-inbox-why-backup-reminder-emails-are-failing-80f66d47b480?sk=b4914cdaf56601ae8bea846beee62d77" target="_blank" class="writing-card reveal reveal-delay-2" data-tags="friction">
+        <div class="wc-badge">📧 Email UX</div><div class="wc-title">Lost in the Inbox: Why Backup Reminder Emails Are Failing</div>
+        <div class="wc-desc">Transactional emails that feel like spam — a case for intentional email design, clear hierarchy, and communication that actually reaches users.</div>
+        <div class="wc-footer"><span class="wc-category">Email Design</span><span class="wc-arrow">→</span></div>
+      </a>
+      <a href="https://medium.com/design-bootcamp/designing-for-trust-addressing-last-mile-gaps-in-swiggy-instamart-d9b1a7d9ccab?sk=1a072536f8dc0ff14e96b3ea6eec1cac" target="_blank" class="writing-card reveal" data-tags="mobile friction">
+        <div class="wc-badge">🛒 Swiggy Instamart</div><div class="wc-title">Designing for Trust: Addressing Last-Mile Gaps in Swiggy Instamart</div>
+        <div class="wc-desc">The delivery experience is the product. How last-mile UX failures quietly erode hard-won user trust in one of India's fastest-growing quick-commerce apps.</div>
+        <div class="wc-footer"><span class="wc-category">Trust Design</span><span class="wc-arrow">→</span></div>
+      </a>
+      <a href="https://medium.com/design-bootcamp/reducing-friction-in-linkedins-scheduled-post-flow-5887710e351e?sk=e8d128a76146b4a35f8255e1d40c3822" target="_blank" class="writing-card reveal reveal-delay-1" data-tags="linkedin friction">
+        <div class="wc-badge">💼 LinkedIn</div><div class="wc-title">Reducing Friction in LinkedIn's Scheduled Post Flow</div>
+        <div class="wc-desc">A step-by-step teardown of how scheduling content on LinkedIn creates unnecessary cognitive overhead — and what a cleaner flow would look like.</div>
+        <div class="wc-footer"><span class="wc-category">Task Flow Design</span><span class="wc-arrow">→</span></div>
+      </a>
+    </div>
+    <div class="medium-cta reveal">
+      <p>All articles published in <strong>Design Bootcamp</strong> on Medium.</p>
+      <a href="https://medium.com/@satheesh.mankulam" target="_blank" class="btn-primary">Follow on Medium →</a>
+    </div>
   </div>
 </main>
 
-<!-- FOOTER -->
-<footer>
-  <a href="index.html" class="footer-logo">Satheesh <span>Mankulam</span></a>
-  <p>© 2025 Satheesh Mankulam · UX Designer · Bangalore</p>
-</footer>
+<footer><a href="index.html" class="footer-logo">Satheesh Mankulam</a><p class="footer-copy">© 2025 Satheesh Mankulam · UX Designer · Bangalore</p></footer>
 
 <script>
-  // Scroll reveal
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
-    });
-  }, { threshold: 0.08 });
-  reveals.forEach(el => observer.observe(el));
-
-  // Filter
-  const filterBtns = document.querySelectorAll('.filter-btn');
-  const cards = document.querySelectorAll('.writing-card');
-
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      filterBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-
-      const filter = btn.dataset.filter;
-
-      cards.forEach(card => {
-        if (filter === 'all') {
-          card.classList.remove('hidden');
-        } else {
-          const tags = (card.dataset.tags || '').split(' ');
-          card.classList.toggle('hidden', !tags.includes(filter));
-        }
-      });
-    });
-  });
+const html=document.documentElement,t=document.getElementById('darkToggle'),s=localStorage.getItem('sm-theme')||'light';html.setAttribute('data-theme',s);
+t.addEventListener('click',()=>{const n=html.getAttribute('data-theme')==='light'?'dark':'light';html.setAttribute('data-theme',n);localStorage.setItem('sm-theme',n)});
+const nav=document.getElementById('navbar');window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>20),{passive:true});
+const obs=new IntersectionObserver(e=>e.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}}),{threshold:0.08});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+document.querySelectorAll('.filter-btn').forEach(btn=>btn.addEventListener('click',()=>{
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');
+  const f=btn.dataset.filter;
+  document.querySelectorAll('.writing-card').forEach(c=>{if(f==='all'){c.classList.remove('hidden')}else{const t=(c.dataset.tags||'').split(' ');c.classList.toggle('hidden',!t.includes(f))}});
+}));
 </script>
 </body>
 </html>
