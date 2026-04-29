@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="favicon.png">
+<title>Designing for "I Don't Care" Users | Satheesh Mankulam</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garant:ital,wght@0,300;0,400;1,300;1,400&family=JetBrains+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'Outfit',sans-serif;line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased;transition:background .3s,color .3s}
+a{color:inherit;text-decoration:none}ul{list-style:none}
+[data-theme="light"]{--bg:#F8F7F3;--bg2:#EFEDE7;--bg3:#E5E2DB;--ink:#0D0D0D;--ink2:#444;--ink3:#888;--line:#D8D5CE;--line2:#E8E5DF;--nav-bg:rgba(248,247,243,0.94)}
+[data-theme="dark"]{--bg:#111110;--bg2:#1A1A18;--bg3:#222220;--ink:#F0EEE8;--ink2:#B8B6B0;--ink3:#777672;--line:#333330;--line2:#2A2A28;--nav-bg:rgba(17,17,16,0.94)}
+body{background:var(--bg);color:var(--ink)}
+.wrap{max-width:860px;margin:0 auto;padding:0 clamp(1.25rem,5vw,3rem)}.wrap-wide{max-width:1100px;margin:0 auto;padding:0 clamp(1.25rem,5vw,3rem)}
+.grid-bg{position:fixed;inset:0;pointer-events:none;z-index:0;background-image:linear-gradient(var(--line2) 1px,transparent 1px),linear-gradient(90deg,var(--line2) 1px,transparent 1px);background-size:80px 80px;opacity:.28;mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 40%,transparent 100%)}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(1.25rem,5vw,4rem);background:var(--nav-bg);backdrop-filter:blur(16px);border-bottom:1px solid var(--line2);transition:border-color .3s}
+nav.scrolled{border-color:var(--line);box-shadow:0 2px 24px rgba(0,0,0,.06)}
+.nav-logo{font-family:'JetBrains Mono',monospace;font-size:.88rem;font-weight:500;letter-spacing:.06em;color:var(--ink)}.nav-logo em{font-style:normal;opacity:.35;margin-left:.15rem}
+.nav-right{display:flex;align-items:center;gap:.75rem}
+.nav-back{display:inline-flex;align-items:center;gap:.4rem;font-size:.92rem;font-weight:500;color:var(--ink3);border:1px solid var(--line);padding:.42rem 1rem;transition:color .2s,border-color .2s}.nav-back:hover{color:var(--ink);border-color:var(--ink)}
+.dark-toggle{display:flex;align-items:center;justify-content:center;width:36px;height:36px;border:1px solid var(--line);background:none;cursor:pointer;color:var(--ink3);transition:color .2s,border-color .2s}.dark-toggle:hover{color:var(--ink);border-color:var(--ink)}.dark-toggle svg{width:16px;height:16px}
+.icon-sun{display:none}.icon-moon{display:block}[data-theme="dark"] .icon-sun{display:block}[data-theme="dark"] .icon-moon{display:none}
+.cs-header{padding:clamp(6rem,10vw,8rem) 0 0}
+.cs-breadcrumb{display:flex;align-items:center;gap:.5rem;font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:2rem}.cs-breadcrumb a{color:var(--ink3);transition:color .2s}.cs-breadcrumb a:hover{color:var(--ink)}.cs-breadcrumb span{opacity:.4}
+.cs-type{display:inline-flex;align-items:center;gap:.4rem;font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);border:1px solid var(--line2);padding:.25rem .7rem;margin-bottom:1.2rem}
+.cs-h1{font-family:'Cormorant Garant',serif;font-size:clamp(2.4rem,6vw,4.5rem);font-weight:300;line-height:1.08;letter-spacing:-.02em;color:var(--ink);margin-bottom:1.25rem}.cs-h1 em{font-style:italic}
+.cs-lead{font-size:1.15rem;color:var(--ink2);line-height:1.8;font-weight:300;max-width:680px;margin-bottom:2.5rem}
+.cs-meta-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-bottom:0}.cs-meta-item{background:var(--bg);padding:1.1rem 1.25rem}.cs-meta-label{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3);margin-bottom:.35rem}.cs-meta-value{font-size:.95rem;font-weight:500;color:var(--ink)}
+.cs-cover{background:var(--bg2);border:1px solid var(--line);border-top:none;padding:3rem;display:flex;align-items:center;justify-content:center;min-height:300px;margin-bottom:clamp(3rem,6vw,5rem)}
+.cs-section{padding:clamp(3rem,5vw,4rem) 0;border-top:1px solid var(--line2)}.cs-section-num{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink3);margin-bottom:.75rem;display:flex;align-items:center;gap:.5rem}.cs-section-num::before{content:'';display:block;width:20px;height:1px;background:var(--line)}
+.cs-section h2{font-family:'Cormorant Garant',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:300;color:var(--ink);line-height:1.15;letter-spacing:-.01em;margin-bottom:1.25rem}.cs-section h2 em{font-style:italic}
+.cs-section p{font-size:1.05rem;color:var(--ink2);line-height:1.85;margin-bottom:1.25rem;font-weight:300}.cs-section p strong{color:var(--ink);font-weight:600}.cs-section p:last-child{margin-bottom:0}
+.cs-quote{border-left:3px solid var(--ink);padding:1.25rem 1.5rem;margin:2rem 0;background:var(--bg2)}.cs-quote p{font-family:'Cormorant Garant',serif;font-size:1.5rem;font-weight:300;font-style:italic;color:var(--ink);line-height:1.4;margin:0}
+.cs-steps{display:flex;flex-direction:column;gap:0;border:1px solid var(--line);margin:2rem 0}.cs-step{display:grid;grid-template-columns:56px 1fr;gap:1.5rem;align-items:start;padding:1.5rem;border-bottom:1px solid var(--line2);transition:background .2s}.cs-step:last-child{border-bottom:none}.cs-step:hover{background:var(--bg2)}.cs-step-num{font-family:'JetBrains Mono',monospace;font-size:.7rem;font-weight:500;color:var(--ink);background:var(--bg3);width:36px;height:36px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}.cs-step-title{font-size:1rem;font-weight:600;color:var(--ink);margin-bottom:.35rem}.cs-step-desc{font-size:.95rem;color:var(--ink3);line-height:1.65;font-weight:300}
+.cs-insights{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);margin:2rem 0}.cs-insight{background:var(--bg);padding:1.5rem;transition:background .2s}.cs-insight:hover{background:var(--bg2)}.cs-insight-icon{font-size:1.5rem;margin-bottom:.75rem}.cs-insight-title{font-size:.95rem;font-weight:600;color:var(--ink);margin-bottom:.35rem}.cs-insight-desc{font-size:.88rem;color:var(--ink3);line-height:1.6;font-weight:300}@media(max-width:540px){.cs-insights{grid-template-columns:1fr}}
+.cs-outcomes{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin:2rem 0}.cs-outcome{background:var(--bg);padding:1.75rem 1.25rem;text-align:center}.cs-outcome-num{font-family:'Cormorant Garant',serif;font-size:3rem;font-weight:300;color:var(--ink);line-height:1;letter-spacing:-.03em;margin-bottom:.35rem}.cs-outcome-label{font-size:.88rem;color:var(--ink3);font-weight:300;line-height:1.4}@media(max-width:540px){.cs-outcomes{grid-template-columns:1fr 1fr}}
+.cs-nav{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);margin:clamp(3rem,5vw,4rem) 0}.cs-nav-item{background:var(--bg);padding:1.75rem;display:flex;flex-direction:column;gap:.4rem;text-decoration:none;transition:background .2s}.cs-nav-item:hover{background:var(--bg2)}.cs-nav-item.next{text-align:right}.cs-nav-dir{font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3)}.cs-nav-title{font-family:'Cormorant Garant',serif;font-size:1.4rem;font-weight:400;color:var(--ink);line-height:1.2}.cs-nav-title em{font-style:italic}
+footer{background:#080C14;padding:2rem clamp(1.25rem,5vw,4rem);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;border-top:1px solid rgba(255,255,255,.05)}.footer-logo{font-family:'JetBrains Mono',monospace;font-size:.82rem;letter-spacing:.08em;color:rgba(255,255,255,.3)}.footer-copy{font-size:.85rem;color:rgba(255,255,255,.2)}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease}.reveal.visible{opacity:1;transform:none}.rv1{transition-delay:.1s}.rv2{transition-delay:.2s}
+@media(max-width:720px){.cs-meta-bar{grid-template-columns:1fr 1fr}}@media(max-width:420px){.cs-meta-bar{grid-template-columns:1fr}.cs-nav{grid-template-columns:1fr}}
+</style>
+</head><body>
+<div class="grid-bg" aria-hidden="true"></div>
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">Satheesh <em>Mankulam</em></a>
+  <div class="nav-right">
+    <a href="index.html#casestudies" class="nav-back">← Case Studies</a>
+    <button class="dark-toggle" id="darkToggle" aria-label="Toggle dark mode">
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+  </div>
+</nav>
+<main>
+<div class="wrap">
+  <div class="cs-header">
+    <div class="cs-breadcrumb reveal"><a href="index.html">Portfolio</a><span>/</span><a href="index.html#casestudies">Case Studies</a><span>/</span>Behavioural UX</div>
+    <div class="cs-type reveal">Behavioural UX · Psychology · Engagement Design</div>
+    <h1 class="cs-h1 reveal">Designing for<br><em>"I Don't Care" Users</em></h1>
+    <p class="cs-lead reveal">What happens when your user has zero interest in engaging? A study of low-intent behaviour patterns, passive users, and how design can create just enough pull — without tipping into manipulation.</p>
+  </div>
+</div>
+<div class="wrap-wide">
+  <div class="cs-meta-bar reveal">
+    <div class="cs-meta-item"><div class="cs-meta-label">Type</div><div class="cs-meta-value">Behavioural UX Research</div></div>
+    <div class="cs-meta-item"><div class="cs-meta-label">Focus</div><div class="cs-meta-value">Engagement · Intent</div></div>
+    <div class="cs-meta-item"><div class="cs-meta-label">Tools</div><div class="cs-meta-value">Figma · Miro · Writing</div></div>
+    <div class="cs-meta-item"><div class="cs-meta-label">Published</div><div class="cs-meta-value">Medium · Design Bootcamp</div></div>
+  </div>
+  <div class="cs-cover reveal rv1">
+    <svg viewBox="0 0 860 260" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:860px">
+      <text x="430" y="14" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7.5" fill="var(--ink3)" letter-spacing="2">CASE STUDY 06 — USER INTENT SPECTRUM</text>
+      <!-- Intent spectrum bar -->
+      <rect x="60" y="40" width="740" height="28" rx="14" fill="var(--bg3)" stroke="var(--line)" stroke-width=".8"/>
+      <rect x="60" y="40" width="220" height="28" rx="14" fill="var(--line2)" opacity=".7"/>
+      <rect x="60" y="40" width="100" height="28" rx="14" fill="var(--line)" opacity=".5"/>
+      <text x="60" y="88" font-family="JetBrains Mono,monospace" font-size="6.5" fill="var(--ink3)">Completely passive</text>
+      <text x="380" y="88" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="6.5" fill="var(--ink3)">Low intent</text>
+      <text x="620" y="88" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="6.5" fill="var(--ink3)">Moderate intent</text>
+      <text x="800" y="88" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="6.5" fill="var(--ink3)">High intent</text>
+      <!-- needle pointing to low-intent -->
+      <line x1="220" y1="68" x2="220" y2="100" stroke="var(--ink)" stroke-width="1.2"/>
+      <polygon points="215,98 220,108 225,98" fill="var(--ink)"/>
+      <rect x="158" y="112" width="124" height="18" rx="4" fill="var(--bg2)" stroke="var(--line)" stroke-width=".6"/>
+      <rect x="166" y="119" width="108" height="5" rx="1" fill="var(--line)"/>
+      <text x="220" y="145" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="6.5" fill="var(--ink3)">Design target zone</text>
+      <!-- Three user types -->
+      <rect x="20" y="158" width="250" height="82" rx="6" fill="var(--bg3)" stroke="var(--line)" stroke-width=".8"/>
+      <text x="145" y="176" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="6.5" fill="var(--ink3)" letter-spacing="1">THE SCROLLER</text>
+      <rect x="36" y="183" width="218" height="6" rx="1" fill="var(--line2)"/>
+      <rect x="36" y="194" width="180" height="6" rx="1" fill="var(--line2)"/>
+      <rect x="36" y="205" width="200" height="6" rx="1" fill="var(--line2)"/>
+      <rect x="36" y="223" width="80" height="12" rx="4" fill="var(--line)" opacity=".5"/>
+      <rect x="124" y="223" width="80" height="12" rx="4" fill="var(--line2)"/>
+      <rect x="305" y="158" width="250" height="82" rx="6" fill="var(--bg)" stroke="var(--ink)" stroke-width="1.2"/>
+      <text x="430" y="176" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="6.5" fill="var(--ink3)" letter-spacing="1">THE BROWSER</text>
+      <rect x="321" y="183" width="218" height="6" rx="1" fill="var(--line)"/>
+      <rect x="321" y="194" width="180" height="6" rx="1" fill="var(--line)"/>
+      <rect x="321" y="205" width="200" height="6" rx="1" fill="var(--line2)"/>
+      <rect x="321" y="223" width="100" height="12" rx="4" fill="var(--ink)" opacity=".85"/>
+      <rect x="429" y="223" width="60" height="12" rx="4" fill="var(--bg3)" stroke="var(--line)" stroke-width=".6"/>
+      <rect x="590" y="158" width="250" height="82" rx="6" fill="var(--bg3)" stroke="var(--line)" stroke-width=".8"/>
+      <text x="715" y="176" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="6.5" fill="var(--ink3)" letter-spacing="1">THE RETURNER</text>
+      <rect x="606" y="183" width="218" height="6" rx="1" fill="var(--line2)"/>
+      <rect x="606" y="194" width="140" height="6" rx="1" fill="var(--line2)"/>
+      <rect x="606" y="205" width="180" height="6" rx="1" fill="var(--line2)"/>
+      <rect x="606" y="223" width="60" height="12" rx="4" fill="var(--line2)"/>
+      <rect x="674" y="223" width="100" height="12" rx="4" fill="var(--line)" opacity=".5"/>
+    </svg>
+  </div>
+</div>
+<div class="wrap">
+  <div class="cs-section reveal">
+    <div class="cs-section-num">01 — Problem</div>
+    <h2>Most UX assumes<br><em>users want to be there</em></h2>
+    <p>Product design almost always assumes a motivated user — someone who arrived with intent, knows what they want, and is ready to engage. But a significant portion of real users are passive: they opened the app out of habit, scrolled without purpose, or arrived via a notification they barely registered.</p>
+    <div class="cs-quote"><p>"Designing for 'I don't care' users isn't about tricking them. It's about creating just enough friction to pause the scroll — and enough value to make them glad they did."</p></div>
+    <p>The challenge: <strong>how do you design for someone whose default state is disengagement</strong> — without resorting to dark patterns, notification spam, or manufactured urgency?</p>
+  </div>
+  <div class="cs-section reveal">
+    <div class="cs-section-num">02 — Research</div>
+    <h2>Understanding<br><em>low-intent behaviour</em></h2>
+    <p>I studied three distinct passive user archetypes and the specific interaction patterns that cause them to engage — or disengage further.</p>
+    <div class="cs-insights">
+      <div class="cs-insight"><div class="cs-insight-icon">🌀</div><div class="cs-insight-title">The Scroller — habits without goals</div><div class="cs-insight-desc">Opens the app because they always open the app. No specific intent. Will leave within 30 seconds unless something creates a pattern interrupt — a visual anomaly, a number that means something personal, an unexpected moment of relevance.</div></div>
+      <div class="cs-insight"><div class="cs-insight-icon">👀</div><div class="cs-insight-title">The Browser — ambient awareness</div><div class="cs-insight-desc">Has a vague interest in the category but no specific need today. Will engage with content that feels like ambient value — easy to consume, low commitment, personally relevant. The design task: reduce commitment friction to zero.</div></div>
+      <div class="cs-insight"><div class="cs-insight-icon">🔄</div><div class="cs-insight-title">The Returner — forgotten intent</div><div class="cs-insight-desc">Was engaged once, lost the habit. Returns occasionally but needs a re-onboarding moment — a "here's where you left off" or "here's what's new" that reconnects them to the value they once found.</div></div>
+      <div class="cs-insight"><div class="cs-insight-icon">⚖️</div><div class="cs-insight-title">The manipulation line</div><div class="cs-insight-desc">Low-intent design sits dangerously close to dark patterns. The difference: dark patterns extract engagement through anxiety and FOMO. Good design creates engagement through genuine value and reduced friction.</div></div>
+    </div>
+  </div>
+  <div class="cs-section reveal">
+    <div class="cs-section-num">03 — Design Principles</div>
+    <h2>Nudge without<br><em>manipulation</em></h2>
+    <div class="cs-steps">
+      <div class="cs-step"><div class="cs-step-num">01</div><div><div class="cs-step-title">Personalised ambient value</div><div class="cs-step-desc">For scrollers and browsers, the first 3 seconds must feel personally relevant. This isn't about trapping them — it's about showing them something that makes them feel the product knows them. Personalisation at the content level, not notification level.</div></div></div>
+      <div class="cs-step"><div class="cs-step-num">02</div><div><div class="cs-step-title">Zero-commitment entry points</div><div class="cs-step-desc">Every piece of content or feature that targets low-intent users should be completable in one tap with no commitment. No account creation, no "continue where you left off" pressure, no progress bars that imply obligation.</div></div></div>
+      <div class="cs-step"><div class="cs-step-num">03</div><div><div class="cs-step-title">Pattern interrupts without anxiety</div><div class="cs-step-desc">Visual or interactive interrupts that break the scroll — unusual layout, a number that means something real (your streak, your savings, your usage) — work for low-intent users without creating FOMO or urgency pressure.</div></div></div>
+      <div class="cs-step"><div class="cs-step-num">04</div><div><div class="cs-step-title">Re-onboarding for returners</div><div class="cs-step-desc">Users who return after a gap need a single-screen "here's where you left off" moment. Not a full tutorial — a warm contextual hand-off that re-establishes the product's value in the context of their personal history with it.</div></div></div>
+    </div>
+  </div>
+  <div class="cs-section reveal">
+    <div class="cs-section-num">04 — Outcomes</div>
+    <h2>Designing for<br><em>the disengaged majority</em></h2>
+    <div class="cs-outcomes">
+      <div class="cs-outcome"><div class="cs-outcome-num">3</div><div class="cs-outcome-label">Low-intent user<br>archetypes defined</div></div>
+      <div class="cs-outcome"><div class="cs-outcome-num">4</div><div class="cs-outcome-label">Design principles<br>for passive users</div></div>
+      <div class="cs-outcome"><div class="cs-outcome-num">0</div><div class="cs-outcome-label">Dark patterns<br>in the solution set</div></div>
+    </div>
+    <p>Published in Design Bootcamp on Medium. The essay argues that <strong>the passive user is the majority, not the edge case</strong> — and products that only design for high-intent users are leaving most of their audience behind, or worse, driving them away with manipulation.</p>
+    <p style="margin-top:1.25rem"><a href="https://medium.com/design-bootcamp/designing-for-i-dont-care-users-f4ae4b0eca39" target="_blank" style="color:var(--ink);font-weight:600;border-bottom:1px solid var(--line);padding-bottom:2px">Read the full article on Medium →</a></p>
+  </div>
+  <div class="cs-nav reveal">
+    <a href="case-swiggy.html" class="cs-nav-item"><div class="cs-nav-dir">← Previous</div><div class="cs-nav-title">Swiggy Instamart —<br><em>Designing for Trust</em></div></a>
+    <a href="case-google-stitch.html" class="cs-nav-item next"><div class="cs-nav-dir">Next →</div><div class="cs-nav-title">Google Stitch —<br><em>A Small Menu, A Big Difference</em></div></a>
+  </div>
+</div>
+</main>
+<footer><span class="footer-logo">Satheesh Mankulam</span><p class="footer-copy">© 2025 · UX Designer · Bangalore</p></footer>
+<script>
+const html=document.documentElement,t=document.getElementById('darkToggle'),s=localStorage.getItem('sm-theme')||'light';html.setAttribute('data-theme',s);
+t.addEventListener('click',()=>{const n=html.getAttribute('data-theme')==='light'?'dark':'light';html.setAttribute('data-theme',n);localStorage.setItem('sm-theme',n)});
+window.addEventListener('scroll',()=>document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>20),{passive:true});
+const obs=new IntersectionObserver(e=>e.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}}),{threshold:0.08});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body></html>

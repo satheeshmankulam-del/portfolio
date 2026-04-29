@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="favicon.png">
+<title>When AI Knows Me Too Well | Satheesh Mankulam</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garant:ital,wght@0,300;0,400;1,300;1,400&family=JetBrains+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'Outfit',sans-serif;line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased;transition:background .3s,color .3s}
+a{color:inherit;text-decoration:none}ul{list-style:none}
+[data-theme="light"]{--bg:#F8F7F3;--bg2:#EFEDE7;--bg3:#E5E2DB;--ink:#0D0D0D;--ink2:#444;--ink3:#888;--line:#D8D5CE;--line2:#E8E5DF;--nav-bg:rgba(248,247,243,0.94)}
+[data-theme="dark"]{--bg:#111110;--bg2:#1A1A18;--bg3:#222220;--ink:#F0EEE8;--ink2:#B8B6B0;--ink3:#777672;--line:#333330;--line2:#2A2A28;--nav-bg:rgba(17,17,16,0.94)}
+body{background:var(--bg);color:var(--ink)}
+.wrap{max-width:860px;margin:0 auto;padding:0 clamp(1.25rem,5vw,3rem)}.wrap-wide{max-width:1100px;margin:0 auto;padding:0 clamp(1.25rem,5vw,3rem)}
+.grid-bg{position:fixed;inset:0;pointer-events:none;z-index:0;background-image:linear-gradient(var(--line2) 1px,transparent 1px),linear-gradient(90deg,var(--line2) 1px,transparent 1px);background-size:80px 80px;opacity:.28;mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 40%,transparent 100%)}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(1.25rem,5vw,4rem);background:var(--nav-bg);backdrop-filter:blur(16px);border-bottom:1px solid var(--line2);transition:border-color .3s}
+nav.scrolled{border-color:var(--line);box-shadow:0 2px 24px rgba(0,0,0,.06)}
+.nav-logo{font-family:'JetBrains Mono',monospace;font-size:.88rem;font-weight:500;letter-spacing:.06em;color:var(--ink)}.nav-logo em{font-style:normal;opacity:.35;margin-left:.15rem}
+.nav-right{display:flex;align-items:center;gap:.75rem}
+.nav-back{display:inline-flex;align-items:center;gap:.4rem;font-size:.92rem;font-weight:500;color:var(--ink3);border:1px solid var(--line);padding:.42rem 1rem;transition:color .2s,border-color .2s}.nav-back:hover{color:var(--ink);border-color:var(--ink)}
+.dark-toggle{display:flex;align-items:center;justify-content:center;width:36px;height:36px;border:1px solid var(--line);background:none;cursor:pointer;color:var(--ink3);transition:color .2s,border-color .2s}.dark-toggle:hover{color:var(--ink);border-color:var(--ink)}.dark-toggle svg{width:16px;height:16px}
+.icon-sun{display:none}.icon-moon{display:block}[data-theme="dark"] .icon-sun{display:block}[data-theme="dark"] .icon-moon{display:none}
+.cs-header{padding:clamp(6rem,10vw,8rem) 0 0}
+.cs-breadcrumb{display:flex;align-items:center;gap:.5rem;font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:2rem}.cs-breadcrumb a{color:var(--ink3);transition:color .2s}.cs-breadcrumb a:hover{color:var(--ink)}.cs-breadcrumb span{opacity:.4}
+.cs-type{display:inline-flex;align-items:center;gap:.4rem;font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);border:1px solid var(--line2);padding:.25rem .7rem;margin-bottom:1.2rem}
+.cs-h1{font-family:'Cormorant Garant',serif;font-size:clamp(2.4rem,6vw,4.5rem);font-weight:300;line-height:1.08;letter-spacing:-.02em;color:var(--ink);margin-bottom:1.25rem}.cs-h1 em{font-style:italic}
+.cs-lead{font-size:1.15rem;color:var(--ink2);line-height:1.8;font-weight:300;max-width:680px;margin-bottom:2.5rem}
+.cs-meta-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-bottom:0}.cs-meta-item{background:var(--bg);padding:1.1rem 1.25rem}.cs-meta-label{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3);margin-bottom:.35rem}.cs-meta-value{font-size:.95rem;font-weight:500;color:var(--ink)}
+.cs-cover{background:var(--bg2);border:1px solid var(--line);border-top:none;padding:3rem;display:flex;align-items:center;justify-content:center;min-height:300px;margin-bottom:clamp(3rem,6vw,5rem)}
+.cs-section{padding:clamp(3rem,5vw,4rem) 0;border-top:1px solid var(--line2)}.cs-section-num{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink3);margin-bottom:.75rem;display:flex;align-items:center;gap:.5rem}.cs-section-num::before{content:'';display:block;width:20px;height:1px;background:var(--line)}
+.cs-section h2{font-family:'Cormorant Garant',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:300;color:var(--ink);line-height:1.15;letter-spacing:-.01em;margin-bottom:1.25rem}.cs-section h2 em{font-style:italic}
+.cs-section p{font-size:1.05rem;color:var(--ink2);line-height:1.85;margin-bottom:1.25rem;font-weight:300}.cs-section p strong{color:var(--ink);font-weight:600}.cs-section p:last-child{margin-bottom:0}
+.cs-quote{border-left:3px solid var(--ink);padding:1.25rem 1.5rem;margin:2rem 0;background:var(--bg2)}.cs-quote p{font-family:'Cormorant Garant',serif;font-size:1.5rem;font-weight:300;font-style:italic;color:var(--ink);line-height:1.4;margin:0}
+.cs-steps{display:flex;flex-direction:column;gap:0;border:1px solid var(--line);margin:2rem 0}.cs-step{display:grid;grid-template-columns:56px 1fr;gap:1.5rem;align-items:start;padding:1.5rem;border-bottom:1px solid var(--line2);transition:background .2s}.cs-step:last-child{border-bottom:none}.cs-step:hover{background:var(--bg2)}.cs-step-num{font-family:'JetBrains Mono',monospace;font-size:.7rem;font-weight:500;color:var(--ink);background:var(--bg3);width:36px;height:36px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}.cs-step-title{font-size:1rem;font-weight:600;color:var(--ink);margin-bottom:.35rem}.cs-step-desc{font-size:.95rem;color:var(--ink3);line-height:1.65;font-weight:300}
+.cs-insights{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);margin:2rem 0}.cs-insight{background:var(--bg);padding:1.5rem;transition:background .2s}.cs-insight:hover{background:var(--bg2)}.cs-insight-icon{font-size:1.5rem;margin-bottom:.75rem}.cs-insight-title{font-size:.95rem;font-weight:600;color:var(--ink);margin-bottom:.35rem}.cs-insight-desc{font-size:.88rem;color:var(--ink3);line-height:1.6;font-weight:300}@media(max-width:540px){.cs-insights{grid-template-columns:1fr}}
+.cs-outcomes{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin:2rem 0}.cs-outcome{background:var(--bg);padding:1.75rem 1.25rem;text-align:center}.cs-outcome-num{font-family:'Cormorant Garant',serif;font-size:3rem;font-weight:300;color:var(--ink);line-height:1;letter-spacing:-.03em;margin-bottom:.35rem}.cs-outcome-label{font-size:.88rem;color:var(--ink3);font-weight:300;line-height:1.4}@media(max-width:540px){.cs-outcomes{grid-template-columns:1fr 1fr}}
+.cs-nav{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);margin:clamp(3rem,5vw,4rem) 0}.cs-nav-item{background:var(--bg);padding:1.75rem;display:flex;flex-direction:column;gap:.4rem;text-decoration:none;transition:background .2s}.cs-nav-item:hover{background:var(--bg2)}.cs-nav-item.next{text-align:right}.cs-nav-dir{font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3)}.cs-nav-title{font-family:'Cormorant Garant',serif;font-size:1.4rem;font-weight:400;color:var(--ink);line-height:1.2}.cs-nav-title em{font-style:italic}
+footer{background:#080C14;padding:2rem clamp(1.25rem,5vw,4rem);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;border-top:1px solid rgba(255,255,255,.05)}.footer-logo{font-family:'JetBrains Mono',monospace;font-size:.82rem;letter-spacing:.08em;color:rgba(255,255,255,.3)}.footer-copy{font-size:.85rem;color:rgba(255,255,255,.2)}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease}.reveal.visible{opacity:1;transform:none}.rv1{transition-delay:.1s}.rv2{transition-delay:.2s}
+@media(max-width:720px){.cs-meta-bar{grid-template-columns:1fr 1fr}}@media(max-width:420px){.cs-meta-bar{grid-template-columns:1fr}.cs-nav{grid-template-columns:1fr}}
+</style>
+</head><body>
+<div class="grid-bg" aria-hidden="true"></div>
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">Satheesh <em>Mankulam</em></a>
+  <div class="nav-right">
+    <a href="index.html#casestudies" class="nav-back">← Case Studies</a>
+    <button class="dark-toggle" id="darkToggle" aria-label="Toggle dark mode">
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+  </div>
+</nav>
+<main>
+<div class="wrap">
+  <div class="cs-header">
+    <div class="cs-breadcrumb reveal"><a href="index.html">Portfolio</a><span>/</span><a href="index.html#casestudies">Case Studies</a><span>/</span>AI Design</div>
+    <div class="cs-type reveal">AI Design · Privacy UX · Personalisation</div>
+    <h1 class="cs-h1 reveal">When AI Knows<br><em>Me Too Well</em></h1>
+    <p class="cs-lead reveal">The fine line between helpful personalisation and creepy familiarity — and how UX design either builds or destroys user trust in AI-powered products.</p>
+  </div>
+</div>
+<div class="wrap-wide">
+  <div class="cs-meta-bar reveal">
+    <div class="cs-meta-item"><div class="cs-meta-label">Type</div><div class="cs-meta-value">AI Design Research</div></div>
+    <div class="cs-meta-item"><div class="cs-meta-label">Focus</div><div class="cs-meta-value">Privacy · Trust · AI UX</div></div>
+    <div class="cs-meta-item"><div class="cs-meta-label">Tools</div><div class="cs-meta-value">Figma · Research · Writing</div></div>
+    <div class="cs-meta-item"><div class="cs-meta-label">Published</div><div class="cs-meta-value">Medium · Design Bootcamp</div></div>
+  </div>
+  <div class="cs-cover reveal rv1">
+    <svg viewBox="0 0 860 240" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:860px">
+      <text x="430" y="14" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7.5" fill="var(--ink3)" letter-spacing="2">CASE STUDY 08 — AI PERSONALISATION · THE TRUST DIAL</text>
+      <!-- Trust dial spectrum -->
+      <text x="100" y="50" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="6.5" fill="var(--ink3)">Too little</text>
+      <text x="430" y="50" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="6.5" fill="var(--ink)">Just right</text>
+      <text x="760" y="50" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="6.5" fill="#C0392B">Too much</text>
+      <!-- bar -->
+      <rect x="40" y="60" width="780" height="20" rx="10" fill="var(--bg3)" stroke="var(--line)" stroke-width=".8"/>
+      <rect x="40" y="60" width="390" height="20" rx="10" fill="var(--line2)" opacity=".6"/>
+      <rect x="390" y="60" width="80" height="20" fill="var(--ink)" opacity=".12"/>
+      <rect x="390" y="62" width="80" height="16" rx="8" fill="var(--ink)" opacity=".3"/>
+      <!-- dial needle -->
+      <line x1="430" y1="55" x2="430" y2="85" stroke="var(--ink)" stroke-width="1.5"/>
+      <circle cx="430" cy="88" r="5" fill="var(--ink)"/>
+      <!-- Labels below -->
+      <text x="100" y="105" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="6" fill="var(--ink3)">Generic · Useless</text>
+      <text x="430" y="105" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="6" fill="var(--ink)">Helpful · Trusted</text>
+      <text x="760" y="105" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="6" fill="#C0392B">Creepy · Distrusted</text>
+      <!-- Three example cards -->
+      <rect x="20" y="120" width="240" height="100" rx="6" fill="var(--bg3)" stroke="var(--line)" stroke-width=".8"/>
+      <text x="140" y="138" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="6.5" fill="var(--ink3)" letter-spacing="1">UNDER-PERSONALISED</text>
+      <rect x="36" y="146" width="208" height="36" rx="4" fill="var(--bg2)" stroke="var(--line2)" stroke-width=".6"/>
+      <rect x="44" y="156" width="140" height="6" rx="1" fill="var(--line2)"/>
+      <rect x="44" y="166" width="100" height="6" rx="1" fill="var(--line2)"/>
+      <rect x="36" y="190" width="208" height="20" rx="3" fill="var(--line2)" opacity=".4"/>
+      <rect x="44" y="197" width="80" height="5" rx="1" fill="var(--line2)"/>
+      <rect x="310" y="120" width="240" height="100" rx="6" fill="var(--bg)" stroke="var(--ink)" stroke-width="1.2"/>
+      <text x="430" y="138" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="6.5" fill="var(--ink3)" letter-spacing="1">RIGHT PERSONALISATION</text>
+      <rect x="326" y="146" width="208" height="36" rx="4" fill="var(--bg2)" stroke="var(--line)" stroke-width=".8"/>
+      <rect x="334" y="156" width="160" height="6" rx="1" fill="var(--line)"/>
+      <rect x="334" y="166" width="120" height="6" rx="1" fill="var(--line2)"/>
+      <rect x="326" y="190" width="208" height="20" rx="3" fill="var(--ink)" opacity=".08" stroke="var(--line)" stroke-width=".6"/>
+      <rect x="334" y="197" width="80" height="5" rx="1" fill="var(--line)"/>
+      <rect x="600" y="120" width="240" height="100" rx="6" fill="var(--bg3)" stroke="#C0392B" stroke-width=".8" stroke-dasharray="3 2"/>
+      <text x="720" y="138" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="6.5" fill="#C0392B" letter-spacing="1">OVER-PERSONALISED</text>
+      <rect x="616" y="146" width="208" height="36" rx="4" fill="var(--bg2)" stroke="var(--line2)" stroke-width=".6"/>
+      <rect x="624" y="156" width="180" height="6" rx="1" fill="var(--line)"/>
+      <rect x="624" y="166" width="160" height="6" rx="1" fill="var(--line2)"/>
+      <rect x="624" y="176" width="120" height="6" rx="1" fill="var(--line2)"/>
+      <rect x="616" y="190" width="208" height="20" rx="3" fill="rgba(192,57,43,.06)" stroke="rgba(192,57,43,.2)" stroke-width=".6"/>
+      <rect x="624" y="197" width="80" height="5" rx="1" fill="var(--line2)"/>
+    </svg>
+  </div>
+</div>
+<div class="wrap">
+  <div class="cs-section reveal">
+    <div class="cs-section-num">01 — Problem</div>
+    <h2>Helpful or<br><em>surveillance?</em></h2>
+    <p>AI-powered personalisation can make a product feel like it truly understands you. But there's a tipping point — a moment where "this knows me" becomes "this is watching me" — and once crossed, trust is very hard to recover.</p>
+    <div class="cs-quote"><p>"The problem isn't that AI knows too much. It's that it shows too much of what it knows, at the wrong moment."</p></div>
+    <p>The design challenge for AI-powered products: <strong>how do you use user data to create genuine value without making the user feel surveilled, profiled, or violated?</strong></p>
+  </div>
+  <div class="cs-section reveal">
+    <div class="cs-section-num">02 — Research</div>
+    <h2>The four dimensions<br><em>of AI trust</em></h2>
+    <div class="cs-insights">
+      <div class="cs-insight"><div class="cs-insight-icon">👁️</div><div class="cs-insight-title">Visibility of inference</div><div class="cs-insight-desc">Users become uncomfortable when AI reveals the depth of its inference — "Because you visited three mortgage calculators this week..." is helpful information delivered in a way that feels like surveillance. The insight is valid; the framing is wrong.</div></div>
+      <div class="cs-insight"><div class="cs-insight-icon">⏰</div><div class="cs-insight-title">Timing of personalisation</div><div class="cs-insight-desc">Personalisation shown at the right moment feels helpful. The same personalisation shown out of context feels intrusive. A recommendation immediately after a relevant action is natural. The same recommendation on first launch feels premature.</div></div>
+      <div class="cs-insight"><div class="cs-insight-icon">🎛️</div><div class="cs-insight-title">User control and transparency</div><div class="cs-insight-desc">The difference between trust and distrust is often just a visible control. "We noticed X — based on this" with an option to dismiss or adjust transforms a potentially creepy inference into a transparent, respectable feature.</div></div>
+      <div class="cs-insight"><div class="cs-insight-icon">🔒</div><div class="cs-insight-title">Data source clarity</div><div class="cs-insight-desc">Users are more comfortable with personalisation when they understand its source. "Based on your recent searches" is acceptable. "Based on your location history combined with purchase patterns" is alarming — even if it's exactly what the first one means.</div></div>
+    </div>
+  </div>
+  <div class="cs-section reveal">
+    <div class="cs-section-num">03 — Design Principles</div>
+    <h2>Building trust in<br><em>AI-powered products</em></h2>
+    <div class="cs-steps">
+      <div class="cs-step"><div class="cs-step-num">01</div><div><div class="cs-step-title">Show the value, not the inference</div><div class="cs-step-desc">Don't expose the data model. "You might like this" is fine. "Because you read 3 articles about minimalism last Tuesday" is unsettling. The value (the recommendation) is what the user wants — the inference pathway should be invisible unless the user asks.</div></div></div>
+      <div class="cs-step"><div class="cs-step-num">02</div><div><div class="cs-step-title">Always provide a control</div><div class="cs-step-desc">Every AI-generated recommendation, suggestion, or personalised element should have a visible "not for me" or "why am I seeing this" option. This single design pattern reduces the feeling of surveillance dramatically.</div></div></div>
+      <div class="cs-step"><div class="cs-step-num">03</div><div><div class="cs-step-title">Contextual timing over constant presence</div><div class="cs-step-desc">AI personalisation should fire at moments of clear relevance — not on every screen. Showing personalisation at 100% frequency makes it invisible and also normalises data usage in a way that can feel oppressive.</div></div></div>
+      <div class="cs-step"><div class="cs-step-num">04</div><div><div class="cs-step-title">Privacy-first language in AI copy</div><div class="cs-step-desc">UX writing for AI features should minimise the perception of data collection even when data is being used. "Suggestions for you" feels benign. "Inferred from your profile" does not. Same data, completely different trust response.</div></div></div>
+    </div>
+  </div>
+  <div class="cs-section reveal">
+    <div class="cs-section-num">04 — Outcomes</div>
+    <h2>Design as<br><em>a trust mechanism for AI</em></h2>
+    <div class="cs-outcomes">
+      <div class="cs-outcome"><div class="cs-outcome-num">4</div><div class="cs-outcome-label">AI trust dimensions<br>identified</div></div>
+      <div class="cs-outcome"><div class="cs-outcome-num">4</div><div class="cs-outcome-label">Design principles<br>for trustworthy AI</div></div>
+      <div class="cs-outcome"><div class="cs-outcome-num">1</div><div class="cs-outcome-label">Control that changes<br>everything: "not for me"</div></div>
+    </div>
+    <p>Published in Design Bootcamp on Medium. As AI becomes the default layer in every product, <strong>the designer's role shifts from layout to ethics</strong> — from "how does this look" to "how does this make someone feel about their own data."</p>
+    <p style="margin-top:1.25rem"><a href="https://medium.com/design-bootcamp/when-ai-knows-me-too-well-d9493bf6fe61" target="_blank" style="color:var(--ink);font-weight:600;border-bottom:1px solid var(--line);padding-bottom:2px">Read the full article on Medium →</a></p>
+  </div>
+  <div class="cs-nav reveal">
+    <a href="case-google-stitch.html" class="cs-nav-item"><div class="cs-nav-dir">← Previous</div><div class="cs-nav-title">Google Stitch —<br><em>A Small Menu</em></div></a>
+    <a href="case-wanderlog.html" class="cs-nav-item next"><div class="cs-nav-dir">Next →</div><div class="cs-nav-title">Wanderlog —<br><em>Onboarding Friction</em></div></a>
+  </div>
+</div>
+</main>
+<footer><span class="footer-logo">Satheesh Mankulam</span><p class="footer-copy">© 2025 · UX Designer · Bangalore</p></footer>
+<script>
+const html=document.documentElement,t=document.getElementById('darkToggle'),s=localStorage.getItem('sm-theme')||'light';html.setAttribute('data-theme',s);
+t.addEventListener('click',()=>{const n=html.getAttribute('data-theme')==='light'?'dark':'light';html.setAttribute('data-theme',n);localStorage.setItem('sm-theme',n)});
+window.addEventListener('scroll',()=>document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>20),{passive:true});
+const obs=new IntersectionObserver(e=>e.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}}),{threshold:0.08});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body></html>

@@ -250,6 +250,25 @@ section{padding:clamp(5rem,9vw,8rem) 0;border-bottom:1px solid var(--line)}
 .book-stat-num span{font-family:var(--mono);font-size:1rem}
 .book-stat-label{font-size:.8rem;color:var(--ink3);margin-top:.3rem;font-weight:300;line-height:1.3}
 
+/* CASE STUDY LIST */
+.cs-divider{display:flex;align-items:center;gap:.75rem;margin-bottom:2.5rem}
+.cs-divider-label{font-family:var(--mono);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink3)}
+.cs-divider-line{flex:1;height:1px;background:var(--line2)}
+.cs-list{display:flex;flex-direction:column;border-top:1px solid var(--line);margin-bottom:3rem}
+.cs-item{display:grid;grid-template-columns:56px 1fr auto;align-items:center;gap:1.5rem;padding:1.75rem 0;border-bottom:1px solid var(--line2);text-decoration:none;color:inherit;transition:background .15s;position:relative}
+.cs-item::before{content:'';position:absolute;left:calc(-1 * clamp(1.25rem,5vw,4rem));right:calc(-1 * clamp(1.25rem,5vw,4rem));top:0;bottom:0;background:var(--bg2);opacity:0;transition:opacity .2s;z-index:-1}
+.cs-item:hover::before{opacity:1}
+.cs-num{font-family:var(--mono);font-size:.68rem;color:var(--ink3);letter-spacing:.08em;transition:color .2s}
+.cs-item:hover .cs-num{color:var(--ink)}
+.cs-tags{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:.4rem}
+.cs-tag{font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);border:1px solid var(--line2);padding:.18rem .5rem}
+.cs-title{font-family:var(--serif);font-size:clamp(1.3rem,2.5vw,1.8rem);font-weight:400;color:var(--ink);line-height:1.2;transition:text-decoration .2s}
+.cs-item:hover .cs-title{text-decoration:underline;text-underline-offset:4px}
+.cs-desc{font-size:.88rem;color:var(--ink3);font-weight:300;margin-top:.3rem;line-height:1.55}
+.cs-arrow{font-size:1.3rem;color:var(--line);transition:color .2s,transform .2s;flex-shrink:0}
+.cs-item:hover .cs-arrow{color:var(--ink);transform:translateX(4px)}
+@media(max-width:640px){.cs-item{grid-template-columns:1fr}.cs-num,.cs-arrow{display:none}}
+
 /* CONTACT */
 #contact{background:var(--ink);color:var(--bg);border-bottom:none;text-align:center}
 .contact-stag{display:inline-flex;align-items:center;gap:.55rem;font-family:var(--mono);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.32);margin-bottom:1.25rem;justify-content:center}
@@ -402,14 +421,79 @@ footer{background:#080C14;padding:2rem clamp(1.25rem,5vw,4rem);display:flex;alig
   </div>
 </section>
 
-<!-- WRITINGS -->
+<!-- CASE STUDIES & WRITINGS -->
 <section id="casestudies">
   <div class="wrap">
     <div class="sec-header reveal">
-      <div><div class="stag">Writings & Case Studies</div><h2 class="stitle">UX <em>Thinking</em></h2></div>
-      <a href="writings.html" class="view-all">View All Articles →</a>
+      <div><div class="stag">Selected Work</div><h2 class="stitle">UX Case <em>Studies</em></h2></div>
+      <a href="writings.html" class="view-all">All Articles →</a>
     </div>
-    <div class="fw-grid reveal rv1">
+
+    <!-- Case study list -->
+    <div class="cs-list reveal rv1">
+      <a href="case-google-maps.html" class="cs-item">
+        <div class="cs-num">01</div>
+        <div class="cs-body">
+          <div class="cs-tags"><span class="cs-tag">UX Research</span><span class="cs-tag">Navigation</span><span class="cs-tag">Feature Design</span></div>
+          <div class="cs-title">Google Maps × Android Auto</div>
+          <div class="cs-desc">How vehicle profiles could eliminate navigation friction for millions of drivers — a feature UX study on one of the world's most-used apps.</div>
+        </div>
+        <div class="cs-arrow">→</div>
+      </a>
+      <a href="case-familydose.html" class="cs-item">
+        <div class="cs-num">02</div>
+        <div class="cs-body">
+          <div class="cs-tags"><span class="cs-tag">Product Design</span><span class="cs-tag">Android App</span><span class="cs-tag">AI-assisted Dev</span></div>
+          <div class="cs-title">FamilyDose — From Figma to Play Store</div>
+          <div class="cs-desc">Designed and shipped a full Android app solo as a non-coder — medication tracker built because my dad kept missing his BP tablets.</div>
+        </div>
+        <div class="cs-arrow">→</div>
+      </a>
+      <a href="case-rapido.html" class="cs-item">
+        <div class="cs-num">03</div>
+        <div class="cs-body">
+          <div class="cs-tags"><span class="cs-tag">Mobile UX</span><span class="cs-tag">Error States</span><span class="cs-tag">Friction Audit</span></div>
+          <div class="cs-title">Rapido — Tapping for Nothing</div>
+          <div class="cs-desc">Dead-end screens that strand users with no way forward — a UX teardown of high-stakes friction in India's fastest-growing cab app.</div>
+        </div>
+        <div class="cs-arrow">→</div>
+      </a>
+      <a href="case-linkedin-post.html" class="cs-item">
+        <div class="cs-num">04</div>
+        <div class="cs-body">
+          <div class="cs-tags"><span class="cs-tag">Social UX</span><span class="cs-tag">Feedback Design</span><span class="cs-tag">LinkedIn</span></div>
+          <div class="cs-title">LinkedIn — The Post That Never Appeared</div>
+          <div class="cs-desc">When silence is the only feedback a user gets, what does that do to trust? A quiet publishing failure inside the world's largest professional network.</div>
+        </div>
+        <div class="cs-arrow">→</div>
+      </a>
+      <a href="case-swiggy.html" class="cs-item">
+        <div class="cs-num">05</div>
+        <div class="cs-body">
+          <div class="cs-tags"><span class="cs-tag">Trust Design</span><span class="cs-tag">Last-mile UX</span><span class="cs-tag">Mobile</span></div>
+          <div class="cs-title">Swiggy Instamart — Designing for Trust</div>
+          <div class="cs-desc">The delivery experience is the product. How last-mile UX failures quietly erode hard-won trust in quick-commerce.</div>
+        </div>
+        <div class="cs-arrow">→</div>
+      </a>
+      <a href="case-dont-care.html" class="cs-item">
+        <div class="cs-num">06</div>
+        <div class="cs-body">
+          <div class="cs-tags"><span class="cs-tag">Behavioural UX</span><span class="cs-tag">Psychology</span><span class="cs-tag">Engagement</span></div>
+          <div class="cs-title">Designing for "I Don't Care" Users</div>
+          <div class="cs-desc">What happens when your user is completely low-intent? How design can nudge disengaged users without manipulating them.</div>
+        </div>
+        <div class="cs-arrow">→</div>
+      </a>
+    </div>
+
+    <!-- Writings divider -->
+    <div class="cs-divider reveal rv2">
+      <span class="cs-divider-label">From Medium</span>
+      <div class="cs-divider-line"></div>
+    </div>
+
+    <div class="fw-grid reveal rv2">
       <a href="https://medium.com/@satheesh.mankulam" target="_blank" class="fw-card featured">
         <div class="fw-featured-left"><div class="fw-badge">Featured · 2025</div><div class="fw-title">Designers Can Ship Now.<br><em>I Did.</em></div><div class="fw-foot"><span class="fw-read">Read on Medium →</span><span class="fw-tag">Personal Essay</span></div></div>
         <div class="fw-featured-right"><div class="fw-desc">How I designed and shipped two Android apps to the Google Play Store without writing a single line of code by hand — and what it means for designers everywhere. A story about AI, Figma, stubbornness, and shipping.</div></div>

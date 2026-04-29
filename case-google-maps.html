@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="favicon.png">
+<title>Google Maps × Android Auto — UX Case Study | Satheesh Mankulam</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garant:ital,wght@0,300;0,400;1,300;1,400&family=JetBrains+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'Outfit',sans-serif;line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased;transition:background .3s,color .3s}
+a{color:inherit;text-decoration:none}ul{list-style:none}
+[data-theme="light"]{--bg:#F8F7F3;--bg2:#EFEDE7;--bg3:#E5E2DB;--ink:#0D0D0D;--ink2:#444;--ink3:#888;--line:#D8D5CE;--line2:#E8E5DF;--nav-bg:rgba(248,247,243,0.94)}
+[data-theme="dark"]{--bg:#111110;--bg2:#1A1A18;--bg3:#222220;--ink:#F0EEE8;--ink2:#B8B6B0;--ink3:#777672;--line:#333330;--line2:#2A2A28;--nav-bg:rgba(17,17,16,0.94)}
+body{background:var(--bg);color:var(--ink)}
+.wrap{max-width:860px;margin:0 auto;padding:0 clamp(1.25rem,5vw,3rem)}
+.wrap-wide{max-width:1100px;margin:0 auto;padding:0 clamp(1.25rem,5vw,3rem)}
+.grid-bg{position:fixed;inset:0;pointer-events:none;z-index:0;background-image:linear-gradient(var(--line2) 1px,transparent 1px),linear-gradient(90deg,var(--line2) 1px,transparent 1px);background-size:80px 80px;opacity:.28;mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 40%,transparent 100%)}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(1.25rem,5vw,4rem);background:var(--nav-bg);backdrop-filter:blur(16px);border-bottom:1px solid var(--line2);transition:border-color .3s}
+nav.scrolled{border-color:var(--line);box-shadow:0 2px 24px rgba(0,0,0,.06)}
+.nav-logo{font-family:'JetBrains Mono',monospace;font-size:.88rem;font-weight:500;letter-spacing:.06em;color:var(--ink)}
+.nav-logo em{font-style:normal;opacity:.35;margin-left:.15rem}
+.nav-right{display:flex;align-items:center;gap:.75rem}
+.nav-back{display:inline-flex;align-items:center;gap:.4rem;font-size:.92rem;font-weight:500;color:var(--ink3);border:1px solid var(--line);padding:.42rem 1rem;transition:color .2s,border-color .2s}
+.nav-back:hover{color:var(--ink);border-color:var(--ink)}
+.dark-toggle{display:flex;align-items:center;justify-content:center;width:36px;height:36px;border:1px solid var(--line);background:none;cursor:pointer;color:var(--ink3);transition:color .2s,border-color .2s}
+.dark-toggle:hover{color:var(--ink);border-color:var(--ink)}
+.dark-toggle svg{width:16px;height:16px}
+.icon-sun{display:none}.icon-moon{display:block}
+[data-theme="dark"] .icon-sun{display:block}[data-theme="dark"] .icon-moon{display:none}
+
+/* CASE STUDY */
+.cs-header{padding:clamp(6rem,10vw,8rem) 0 0}
+.cs-breadcrumb{display:flex;align-items:center;gap:.5rem;font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:2rem}
+.cs-breadcrumb a{color:var(--ink3);transition:color .2s}.cs-breadcrumb a:hover{color:var(--ink)}
+.cs-breadcrumb span{opacity:.4}
+.cs-type{display:inline-flex;align-items:center;gap:.4rem;font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);border:1px solid var(--line2);padding:.25rem .7rem;margin-bottom:1.2rem}
+.cs-h1{font-family:'Cormorant Garant',serif;font-size:clamp(2.4rem,6vw,4.5rem);font-weight:300;line-height:1.08;letter-spacing:-.02em;color:var(--ink);margin-bottom:1.25rem}
+.cs-h1 em{font-style:italic}
+.cs-lead{font-size:1.15rem;color:var(--ink2);line-height:1.8;font-weight:300;max-width:680px;margin-bottom:2.5rem}
+.cs-meta-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-bottom:0}
+.cs-meta-item{background:var(--bg);padding:1.1rem 1.25rem}
+.cs-meta-label{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3);margin-bottom:.35rem}
+.cs-meta-value{font-size:.95rem;font-weight:500;color:var(--ink)}
+
+/* COVER */
+.cs-cover{background:var(--bg2);border:1px solid var(--line);border-top:none;padding:3rem;display:flex;align-items:center;justify-content:center;min-height:320px;margin-bottom:clamp(3rem,6vw,5rem)}
+
+/* SECTIONS */
+.cs-section{padding:clamp(3rem,5vw,4rem) 0;border-top:1px solid var(--line2)}
+.cs-section:first-child{border-top:none}
+.cs-section-num{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink3);margin-bottom:.75rem;display:flex;align-items:center;gap:.5rem}
+.cs-section-num::before{content:'';display:block;width:20px;height:1px;background:var(--line)}
+.cs-section h2{font-family:'Cormorant Garant',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:300;color:var(--ink);line-height:1.15;letter-spacing:-.01em;margin-bottom:1.25rem}
+.cs-section h2 em{font-style:italic}
+.cs-section p{font-size:1.05rem;color:var(--ink2);line-height:1.85;margin-bottom:1.25rem;font-weight:300}
+.cs-section p strong{color:var(--ink);font-weight:600}
+.cs-section p:last-child{margin-bottom:0}
+
+/* PULL QUOTE */
+.cs-quote{border-left:3px solid var(--ink);padding:1.25rem 1.5rem;margin:2rem 0;background:var(--bg2)}
+.cs-quote p{font-family:'Cormorant Garant',serif;font-size:1.5rem;font-weight:300;font-style:italic;color:var(--ink);line-height:1.4;margin:0}
+
+/* TWO COL */
+.cs-two-col{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin:2rem 0}
+@media(max-width:640px){.cs-two-col{grid-template-columns:1fr}}
+
+/* PROCESS STEPS */
+.cs-steps{display:flex;flex-direction:column;gap:0;border:1px solid var(--line);margin:2rem 0}
+.cs-step{display:grid;grid-template-columns:56px 1fr;gap:1.5rem;align-items:start;padding:1.5rem;border-bottom:1px solid var(--line2);transition:background .2s}
+.cs-step:last-child{border-bottom:none}
+.cs-step:hover{background:var(--bg2)}
+.cs-step-num{font-family:'JetBrains Mono',monospace;font-size:.7rem;font-weight:500;color:var(--ink);background:var(--bg3);width:36px;height:36px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.cs-step-title{font-size:1rem;font-weight:600;color:var(--ink);margin-bottom:.35rem}
+.cs-step-desc{font-size:.95rem;color:var(--ink3);line-height:1.65;font-weight:300}
+
+/* INSIGHT CARDS */
+.cs-insights{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);margin:2rem 0}
+.cs-insight{background:var(--bg);padding:1.5rem;transition:background .2s}
+.cs-insight:hover{background:var(--bg2)}
+.cs-insight-icon{font-size:1.5rem;margin-bottom:.75rem}
+.cs-insight-title{font-size:.95rem;font-weight:600;color:var(--ink);margin-bottom:.35rem}
+.cs-insight-desc{font-size:.88rem;color:var(--ink3);line-height:1.6;font-weight:300}
+@media(max-width:540px){.cs-insights{grid-template-columns:1fr}}
+
+/* OUTCOME STATS */
+.cs-outcomes{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin:2rem 0}
+.cs-outcome{background:var(--bg);padding:1.75rem 1.25rem;text-align:center}
+.cs-outcome-num{font-family:'Cormorant Garant',serif;font-size:3rem;font-weight:300;color:var(--ink);line-height:1;letter-spacing:-.03em;margin-bottom:.35rem}
+.cs-outcome-label{font-size:.88rem;color:var(--ink3);font-weight:300;line-height:1.4}
+@media(max-width:540px){.cs-outcomes{grid-template-columns:1fr 1fr}}
+
+/* NEXT / PREV NAV */
+.cs-nav{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);margin:clamp(3rem,5vw,4rem) 0}
+.cs-nav-item{background:var(--bg);padding:1.75rem;display:flex;flex-direction:column;gap:.4rem;text-decoration:none;transition:background .2s}
+.cs-nav-item:hover{background:var(--bg2)}
+.cs-nav-item.next{text-align:right}
+.cs-nav-dir{font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3)}
+.cs-nav-title{font-family:'Cormorant Garant',serif;font-size:1.4rem;font-weight:400;color:var(--ink);line-height:1.2}
+.cs-nav-title em{font-style:italic}
+
+footer{background:#080C14;padding:2rem clamp(1.25rem,5vw,4rem);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;border-top:1px solid rgba(255,255,255,.05)}
+.footer-logo{font-family:'JetBrains Mono',monospace;font-size:.82rem;letter-spacing:.08em;color:rgba(255,255,255,.3)}
+.footer-copy{font-size:.85rem;color:rgba(255,255,255,.2)}
+
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:none}
+.rv1{transition-delay:.1s}.rv2{transition-delay:.2s}
+
+@media(max-width:720px){.cs-meta-bar{grid-template-columns:1fr 1fr}}
+@media(max-width:420px){.cs-meta-bar{grid-template-columns:1fr}.cs-nav{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="grid-bg" aria-hidden="true"></div>
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">Satheesh <em>Mankulam</em></a>
+  <div class="nav-right">
+    <a href="index.html#casestudies" class="nav-back">← Case Studies</a>
+    <button class="dark-toggle" id="darkToggle" aria-label="Toggle dark mode">
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+  </div>
+</nav>
+
+<main>
+<div class="wrap">
+  <div class="cs-header">
+    <div class="cs-breadcrumb reveal"><a href="index.html">Portfolio</a><span>/</span><a href="index.html#casestudies">Case Studies</a><span>/</span>Google Maps</div>
+    <div class="cs-type reveal">UX Research · Feature Design</div>
+    <h1 class="cs-h1 reveal">Smarter Navigation<br>with <em>Vehicle Profiles</em></h1>
+    <p class="cs-lead reveal">A UX case study on Google Maps & Android Auto — exploring how a single missing feature creates friction for millions of drivers every day, and what the solution could look like.</p>
+  </div>
+</div>
+
+<div class="wrap-wide">
+  <div class="cs-meta-bar reveal">
+    <div class="cs-meta-item"><div class="cs-meta-label">Role</div><div class="cs-meta-value">UX Researcher & Designer</div></div>
+    <div class="cs-meta-item"><div class="cs-meta-label">Type</div><div class="cs-meta-value">Feature UX Case Study</div></div>
+    <div class="cs-meta-item"><div class="cs-meta-label">Tools</div><div class="cs-meta-value">Figma · Miro · Medium</div></div>
+    <div class="cs-meta-item"><div class="cs-meta-label">Status</div><div class="cs-meta-value">Published · 2025</div></div>
+  </div>
+
+  <div class="cs-cover reveal rv1">
+    <svg viewBox="0 0 900 340" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:900px">
+      <!-- registration marks -->
+      <line x1="12" y1="8" x2="12" y2="20" stroke="var(--line)" stroke-width=".8"/>
+      <line x1="6" y1="14" x2="18" y2="14" stroke="var(--line)" stroke-width=".8"/>
+      <line x1="888" y1="8" x2="888" y2="20" stroke="var(--line)" stroke-width=".8"/>
+      <line x1="882" y1="14" x2="894" y2="14" stroke="var(--line)" stroke-width=".8"/>
+      <text x="450" y="14" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="8" fill="var(--ink3)" letter-spacing="2">CASE STUDY 01 — GOOGLE MAPS × ANDROID AUTO</text>
+
+      <!-- LEFT: Current state phone nav -->
+      <rect x="40" y="28" width="240" height="300" rx="16" fill="var(--bg3)" stroke="var(--line)" stroke-width="1"/>
+      <text x="160" y="52" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7" fill="var(--ink3)" letter-spacing="1">CURRENT STATE</text>
+      <!-- nav header -->
+      <rect x="56" y="60" width="208" height="32" rx="4" fill="var(--bg2)" stroke="var(--line2)" stroke-width=".6"/>
+      <circle cx="76" cy="76" r="10" fill="var(--line2)"/>
+      <rect x="92" y="70" width="80" height="6" rx="1" fill="var(--line)"/>
+      <rect x="92" y="80" width="56" height="5" rx="1" fill="var(--line2)"/>
+      <!-- map area -->
+      <rect x="56" y="100" width="208" height="120" rx="4" fill="var(--bg2)" stroke="var(--line2)" stroke-width=".6"/>
+      <!-- map roads -->
+      <path d="M 96 160 L 160 120 L 224 140 L 244 200" fill="none" stroke="var(--line)" stroke-width="3" stroke-linecap="round"/>
+      <path d="M 80 180 L 140 160 L 200 170 L 240 150" fill="none" stroke="var(--line2)" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="4 3"/>
+      <!-- current location pin -->
+      <circle cx="160" cy="120" r="6" fill="var(--ink)" opacity=".7"/>
+      <circle cx="160" cy="120" r="3" fill="var(--bg)"/>
+      <!-- route info bottom -->
+      <rect x="56" y="228" width="208" height="52" rx="4" fill="var(--bg)" stroke="var(--line2)" stroke-width=".6"/>
+      <rect x="68" y="238" width="60" height="10" rx="2" fill="var(--line)"/>
+      <rect x="68" y="252" width="90" height="6" rx="1" fill="var(--line2)"/>
+      <rect x="200" y="234" width="52" height="18" rx="3" fill="var(--ink)" opacity=".1"/>
+      <rect x="204" y="239" width="44" height="8" rx="1" fill="var(--line)"/>
+      <!-- problem badge -->
+      <rect x="68" y="272" width="136" height="16" rx="8" fill="var(--bg2)" stroke="var(--line)" stroke-width=".8"/>
+      <rect x="76" y="277" width="6" height="6" rx="3" fill="#C0392B" opacity=".7"/>
+      <rect x="88" y="279" width="100" height="4" rx="1" fill="var(--line2)"/>
+
+      <!-- CENTER: Arrow + label -->
+      <line x1="310" y1="178" x2="360" y2="178" stroke="var(--line)" stroke-width="1" stroke-dasharray="4 3"/>
+      <polygon points="358,174 366,178 358,182" fill="var(--line)"/>
+      <rect x="314" y="164" width="44" height="12" rx="2" fill="var(--bg2)" stroke="var(--line2)" stroke-width=".6"/>
+      <rect x="318" y="168" width="36" height="4" rx="1" fill="var(--line2)"/>
+      <text x="338" y="200" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7" fill="var(--ink3)" letter-spacing="1">VEHICLE</text>
+      <text x="338" y="211" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7" fill="var(--ink3)" letter-spacing="1">PROFILE</text>
+
+      <!-- RIGHT: Proposed Android Auto UI -->
+      <rect x="380" y="28" width="490" height="300" rx="8" fill="var(--bg3)" stroke="var(--ink)" stroke-width="1.2"/>
+      <text x="625" y="50" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7" fill="var(--ink3)" letter-spacing="1">PROPOSED — ANDROID AUTO WITH VEHICLE PROFILE</text>
+      <!-- top bar -->
+      <rect x="380" y="28" width="490" height="36" rx="8" fill="var(--bg2)" stroke="none"/>
+      <rect x="380" y="56" width="490" height="1" fill="var(--line2)"/>
+      <rect x="396" y="38" width="60" height="8" rx="2" fill="var(--line)"/>
+      <!-- vehicle chip -->
+      <rect x="718" y="34" width="140" height="20" rx="10" fill="var(--bg)" stroke="var(--line)" stroke-width=".8"/>
+      <rect x="726" y="39" width="8" height="8" rx="4" fill="var(--line)"/>
+      <rect x="740" y="42" width="60" height="5" rx="1" fill="var(--line)"/>
+      <rect x="808" y="40" width="38" height="8" rx="4" fill="var(--ink)" opacity=".08"/>
+      <!-- map area -->
+      <rect x="380" y="57" width="350" height="200" fill="var(--bg2)"/>
+      <!-- map roads wider -->
+      <path d="M 420 200 L 500 140 L 580 160 L 660 120 L 720 150" fill="none" stroke="var(--line)" stroke-width="4" stroke-linecap="round"/>
+      <path d="M 440 230 L 520 180 L 600 190 L 680 160 L 720 170" fill="none" stroke="var(--line2)" stroke-width="2" stroke-linecap="round" stroke-dasharray="6 4"/>
+      <!-- current pos -->
+      <circle cx="500" cy="140" r="8" fill="var(--ink)" opacity=".7"/>
+      <circle cx="500" cy="140" r="3.5" fill="var(--bg)"/>
+      <!-- height warning badge on map -->
+      <rect x="540" y="98" width="100" height="24" rx="4" fill="var(--bg)" stroke="var(--line)" stroke-width=".8"/>
+      <rect x="548" y="107" width="8" height="8" rx="2" fill="var(--ink)" opacity=".2"/>
+      <rect x="560" y="108" width="72" height="6" rx="1" fill="var(--line)"/>
+      <!-- right info panel -->
+      <rect x="730" y="57" width="140" height="200" rx="0" fill="var(--bg)" stroke="var(--line2)" stroke-width=".6"/>
+      <rect x="742" y="70" width="100" height="8" rx="2" fill="var(--line)"/>
+      <rect x="742" y="84" width="80" height="5" rx="1" fill="var(--line2)"/>
+      <rect x="742" y="93" width="90" height="5" rx="1" fill="var(--line2)"/>
+      <!-- ETA block -->
+      <rect x="742" y="112" width="116" height="40" rx="4" fill="var(--bg2)" stroke="var(--line2)" stroke-width=".6"/>
+      <rect x="750" y="120" width="30" height="16" rx="2" fill="var(--line)"/>
+      <rect x="786" y="122" width="60" height="6" rx="1" fill="var(--line2)"/>
+      <rect x="786" y="132" width="48" height="5" rx="1" fill="var(--line2)"/>
+      <!-- vehicle-aware route options -->
+      <rect x="742" y="162" width="116" height="22" rx="3" fill="var(--ink)" opacity=".08" stroke="var(--line)" stroke-width=".6"/>
+      <rect x="750" y="169" width="50" height="5" rx="1" fill="var(--line)"/>
+      <rect x="750" y="178" width="70" height="4" rx="1" fill="var(--line2)"/>
+      <rect x="742" y="190" width="116" height="22" rx="3" fill="var(--bg2)" stroke="var(--line2)" stroke-width=".6"/>
+      <rect x="750" y="197" width="60" height="5" rx="1" fill="var(--line2)"/>
+      <rect x="750" y="206" width="40" height="4" rx="1" fill="var(--line2)"/>
+      <!-- bottom CTA bar -->
+      <rect x="380" y="257" width="490" height="71" rx="0" fill="var(--bg2)" stroke="none"/>
+      <rect x="380" y="257" width="490" height="1" fill="var(--line2)"/>
+      <rect x="396" y="270" width="80" height="12" rx="3" fill="var(--line)"/>
+      <rect x="396" y="286" width="120" height="8" rx="2" fill="var(--line2)"/>
+      <rect x="730" y="268" width="128" height="30" rx="4" fill="var(--ink)" opacity=".85"/>
+      <rect x="754" y="279" width="80" height="8" rx="2" fill="var(--bg2)"/>
+    </svg>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="cs-section reveal">
+    <div class="cs-section-num">01 — Problem</div>
+    <h2>Google Maps doesn't know<br><em>what you're driving.</em></h2>
+    <p>Every time you open Google Maps for navigation, it treats you the same way whether you're on a bicycle, in a compact car, or driving a large van. There's no awareness of vehicle type — and that single gap creates friction that affects millions of people every day.</p>
+    <p>When you switch from your phone to Android Auto, the interface changes — but the logic doesn't. You still get the same routing, the same POI suggestions, the same information density. <strong>The context of being in a vehicle — hands-free, larger display, focused on driving — isn't reflected in how the product behaves.</strong></p>
+
+    <div class="cs-quote">
+      <p>"A truck driver gets routed under a low bridge. A van driver is shown parking spots too small for their vehicle. A camper gets highway routes instead of scenic drives."</p>
+    </div>
+
+    <p>These aren't edge cases. They're daily friction points for a significant portion of Google Maps' 2 billion users.</p>
+  </div>
+
+  <div class="cs-section reveal">
+    <div class="cs-section-num">02 — Research</div>
+    <h2>Understanding the <em>gap</em></h2>
+    <p>I mapped the journey of a typical driver who uses both Google Maps on their phone and Android Auto in their car. The context switch between the two reveals a fundamental assumption baked into the product: <strong>the user's vehicle doesn't matter.</strong></p>
+
+    <div class="cs-insights">
+      <div class="cs-insight">
+        <div class="cs-insight-icon">🚗</div>
+        <div class="cs-insight-title">Vehicle type shapes routing needs</div>
+        <div class="cs-insight-desc">Height restrictions, weight limits, narrow roads, parking dimensions — all vary dramatically by vehicle type, and Maps ignores all of them by default.</div>
+      </div>
+      <div class="cs-insight">
+        <div class="cs-insight-icon">📱→🚙</div>
+        <div class="cs-insight-title">Context changes on Android Auto</div>
+        <div class="cs-insight-desc">Hands-free mode, larger display, driver focus state — the interface acknowledges these, but the underlying navigation intelligence doesn't adapt.</div>
+      </div>
+      <div class="cs-insight">
+        <div class="cs-insight-icon">🔁</div>
+        <div class="cs-insight-title">Same car, every day — zero memory</div>
+        <div class="cs-insight-desc">Most users drive the same vehicle daily. Google Maps saves routes, favourites, home — but not the thing the user interacts with most: their car.</div>
+      </div>
+      <div class="cs-insight">
+        <div class="cs-insight-icon">📍</div>
+        <div class="cs-insight-title">POI suggestions are vehicle-blind</div>
+        <div class="cs-insight-desc">Parking suggestions, fuel stops, EV charging — all shown without vehicle context. A petrol car gets EV charger suggestions. A small car gets multi-storey parking for trucks.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cs-section reveal">
+    <div class="cs-section-num">03 — Design Process</div>
+    <h2>Designing the <em>solution</em></h2>
+    <div class="cs-steps">
+      <div class="cs-step">
+        <div class="cs-step-num">01</div>
+        <div><div class="cs-step-title">Define the Vehicle Profile</div><div class="cs-step-desc">A one-time setup screen during Google Maps onboarding or in Settings — vehicle type (car, van, truck, EV, motorbike), dimensions (optional), fuel type. Syncs across phone and Android Auto via Google account.</div></div>
+      </div>
+      <div class="cs-step">
+        <div class="cs-step-num">02</div>
+        <div><div class="cs-step-title">Adapt Route Options</div><div class="cs-step-desc">When a vehicle profile exists, the routing engine applies relevant filters by default — no low bridges for tall vehicles, no narrow roads for wide ones. Users can still override manually.</div></div>
+      </div>
+      <div class="cs-step">
+        <div class="cs-step-num">03</div>
+        <div><div class="cs-step-title">Context-Aware Android Auto UI</div><div class="cs-step-desc">On Android Auto, the right-side info panel surfaces vehicle-relevant data: height clearance warnings, EV charge status, fuel-efficient routes — based on the saved profile, not generic defaults.</div></div>
+      </div>
+      <div class="cs-step">
+        <div class="cs-step-num">04</div>
+        <div><div class="cs-step-title">Smart POI Suggestions</div><div class="cs-step-desc">Parking, fuel, and stop suggestions filtered by vehicle type. A van gets larger parking options. An EV gets charging stations ordered by compatibility and wait time, not just proximity.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cs-section reveal">
+    <div class="cs-section-num">04 — Outcomes</div>
+    <h2>Why this <em>matters</em></h2>
+    <p>This is a conceptual case study — the feature doesn't exist yet in Google Maps. But the opportunity is real, and the design principles translate directly to any product that serves users across different contexts.</p>
+
+    <div class="cs-outcomes">
+      <div class="cs-outcome"><div class="cs-outcome-num">2B+</div><div class="cs-outcome-label">Monthly active<br>Google Maps users</div></div>
+      <div class="cs-outcome"><div class="cs-outcome-num">1</div><div class="cs-outcome-label">Setup interaction<br>to reduce daily friction</div></div>
+      <div class="cs-outcome"><div class="cs-outcome-num">∞</div><div class="cs-outcome-label">Routes made safer<br>and more relevant</div></div>
+    </div>
+
+    <p>Published as a full article on Medium in <strong>Design Bootcamp</strong>. The case study demonstrates how even the most mature products have meaningful UX gaps — and how a single, well-designed feature can eliminate recurring friction for millions of users.</p>
+    <p style="margin-top:1.25rem"><a href="https://medium.com/design-bootcamp/smarter-navigation-with-vehicle-profiles-a-ux-case-study-for-google-maps-android-auto-879bd58b21c8" target="_blank" style="color:var(--ink);font-weight:600;border-bottom:1px solid var(--line);padding-bottom:2px;transition:border-color .2s">Read the full article on Medium →</a></p>
+  </div>
+
+  <div class="cs-nav reveal">
+    <a href="index.html#casestudies" class="cs-nav-item">
+      <div class="cs-nav-dir">← All Case Studies</div>
+      <div class="cs-nav-title">Back to <em>Portfolio</em></div>
+    </a>
+    <a href="case-familydose.html" class="cs-nav-item next">
+      <div class="cs-nav-dir">Next Case Study →</div>
+      <div class="cs-nav-title"><em>FamilyDose</em> App</div>
+    </a>
+  </div>
+
+</div>
+</main>
+
+<footer><span class="footer-logo">Satheesh Mankulam</span><p class="footer-copy">© 2025 · UX Designer · Bangalore</p></footer>
+
+<script>
+const html=document.documentElement,t=document.getElementById('darkToggle'),s=localStorage.getItem('sm-theme')||'light';html.setAttribute('data-theme',s);
+t.addEventListener('click',()=>{const n=html.getAttribute('data-theme')==='light'?'dark':'light';html.setAttribute('data-theme',n);localStorage.setItem('sm-theme',n)});
+window.addEventListener('scroll',()=>document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>20),{passive:true});
+const obs=new IntersectionObserver(e=>e.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}}),{threshold:0.08});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>

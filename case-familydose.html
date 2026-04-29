@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="favicon.png">
+<title>FamilyDose — UX Case Study | Satheesh Mankulam</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garant:ital,wght@0,300;0,400;1,300;1,400&family=JetBrains+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'Outfit',sans-serif;line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased;transition:background .3s,color .3s}
+a{color:inherit;text-decoration:none}ul{list-style:none}
+[data-theme="light"]{--bg:#F8F7F3;--bg2:#EFEDE7;--bg3:#E5E2DB;--ink:#0D0D0D;--ink2:#444;--ink3:#888;--line:#D8D5CE;--line2:#E8E5DF;--nav-bg:rgba(248,247,243,0.94)}
+[data-theme="dark"]{--bg:#111110;--bg2:#1A1A18;--bg3:#222220;--ink:#F0EEE8;--ink2:#B8B6B0;--ink3:#777672;--line:#333330;--line2:#2A2A28;--nav-bg:rgba(17,17,16,0.94)}
+body{background:var(--bg);color:var(--ink)}
+.wrap{max-width:860px;margin:0 auto;padding:0 clamp(1.25rem,5vw,3rem)}
+.wrap-wide{max-width:1100px;margin:0 auto;padding:0 clamp(1.25rem,5vw,3rem)}
+.grid-bg{position:fixed;inset:0;pointer-events:none;z-index:0;background-image:linear-gradient(var(--line2) 1px,transparent 1px),linear-gradient(90deg,var(--line2) 1px,transparent 1px);background-size:80px 80px;opacity:.28;mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 40%,transparent 100%)}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(1.25rem,5vw,4rem);background:var(--nav-bg);backdrop-filter:blur(16px);border-bottom:1px solid var(--line2);transition:border-color .3s}
+nav.scrolled{border-color:var(--line);box-shadow:0 2px 24px rgba(0,0,0,.06)}
+.nav-logo{font-family:'JetBrains Mono',monospace;font-size:.88rem;font-weight:500;letter-spacing:.06em;color:var(--ink)}
+.nav-logo em{font-style:normal;opacity:.35;margin-left:.15rem}
+.nav-right{display:flex;align-items:center;gap:.75rem}
+.nav-back{display:inline-flex;align-items:center;gap:.4rem;font-size:.92rem;font-weight:500;color:var(--ink3);border:1px solid var(--line);padding:.42rem 1rem;transition:color .2s,border-color .2s}
+.nav-back:hover{color:var(--ink);border-color:var(--ink)}
+.dark-toggle{display:flex;align-items:center;justify-content:center;width:36px;height:36px;border:1px solid var(--line);background:none;cursor:pointer;color:var(--ink3);transition:color .2s,border-color .2s}
+.dark-toggle:hover{color:var(--ink);border-color:var(--ink)}
+.dark-toggle svg{width:16px;height:16px}
+.icon-sun{display:none}.icon-moon{display:block}
+[data-theme="dark"] .icon-sun{display:block}[data-theme="dark"] .icon-moon{display:none}
+.cs-header{padding:clamp(6rem,10vw,8rem) 0 0}
+.cs-breadcrumb{display:flex;align-items:center;gap:.5rem;font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:2rem}
+.cs-breadcrumb a{color:var(--ink3);transition:color .2s}.cs-breadcrumb a:hover{color:var(--ink)}
+.cs-breadcrumb span{opacity:.4}
+.cs-type{display:inline-flex;align-items:center;gap:.4rem;font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);border:1px solid var(--line2);padding:.25rem .7rem;margin-bottom:1.2rem}
+.cs-h1{font-family:'Cormorant Garant',serif;font-size:clamp(2.4rem,6vw,4.5rem);font-weight:300;line-height:1.08;letter-spacing:-.02em;color:var(--ink);margin-bottom:1.25rem}
+.cs-h1 em{font-style:italic}
+.cs-lead{font-size:1.15rem;color:var(--ink2);line-height:1.8;font-weight:300;max-width:680px;margin-bottom:2.5rem}
+.cs-meta-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-bottom:0}
+.cs-meta-item{background:var(--bg);padding:1.1rem 1.25rem}
+.cs-meta-label{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3);margin-bottom:.35rem}
+.cs-meta-value{font-size:.95rem;font-weight:500;color:var(--ink)}
+.cs-cover{background:var(--bg2);border:1px solid var(--line);border-top:none;padding:3rem;display:flex;align-items:center;justify-content:center;min-height:320px;margin-bottom:clamp(3rem,6vw,5rem)}
+.cs-section{padding:clamp(3rem,5vw,4rem) 0;border-top:1px solid var(--line2)}
+.cs-section-num{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink3);margin-bottom:.75rem;display:flex;align-items:center;gap:.5rem}
+.cs-section-num::before{content:'';display:block;width:20px;height:1px;background:var(--line)}
+.cs-section h2{font-family:'Cormorant Garant',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:300;color:var(--ink);line-height:1.15;letter-spacing:-.01em;margin-bottom:1.25rem}
+.cs-section h2 em{font-style:italic}
+.cs-section p{font-size:1.05rem;color:var(--ink2);line-height:1.85;margin-bottom:1.25rem;font-weight:300}
+.cs-section p strong{color:var(--ink);font-weight:600}
+.cs-section p:last-child{margin-bottom:0}
+.cs-quote{border-left:3px solid var(--ink);padding:1.25rem 1.5rem;margin:2rem 0;background:var(--bg2)}
+.cs-quote p{font-family:'Cormorant Garant',serif;font-size:1.5rem;font-weight:300;font-style:italic;color:var(--ink);line-height:1.4;margin:0}
+.cs-steps{display:flex;flex-direction:column;gap:0;border:1px solid var(--line);margin:2rem 0}
+.cs-step{display:grid;grid-template-columns:56px 1fr;gap:1.5rem;align-items:start;padding:1.5rem;border-bottom:1px solid var(--line2);transition:background .2s}
+.cs-step:last-child{border-bottom:none}
+.cs-step:hover{background:var(--bg2)}
+.cs-step-num{font-family:'JetBrains Mono',monospace;font-size:.7rem;font-weight:500;color:var(--ink);background:var(--bg3);width:36px;height:36px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.cs-step-title{font-size:1rem;font-weight:600;color:var(--ink);margin-bottom:.35rem}
+.cs-step-desc{font-size:.95rem;color:var(--ink3);line-height:1.65;font-weight:300}
+.cs-insights{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);margin:2rem 0}
+.cs-insight{background:var(--bg);padding:1.5rem;transition:background .2s}
+.cs-insight:hover{background:var(--bg2)}
+.cs-insight-icon{font-size:1.5rem;margin-bottom:.75rem}
+.cs-insight-title{font-size:.95rem;font-weight:600;color:var(--ink);margin-bottom:.35rem}
+.cs-insight-desc{font-size:.88rem;color:var(--ink3);line-height:1.6;font-weight:300}
+@media(max-width:540px){.cs-insights{grid-template-columns:1fr}}
+.cs-outcomes{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin:2rem 0}
+.cs-outcome{background:var(--bg);padding:1.75rem 1.25rem;text-align:center}
+.cs-outcome-num{font-family:'Cormorant Garant',serif;font-size:3rem;font-weight:300;color:var(--ink);line-height:1;letter-spacing:-.03em;margin-bottom:.35rem}
+.cs-outcome-label{font-size:.88rem;color:var(--ink3);font-weight:300;line-height:1.4}
+@media(max-width:540px){.cs-outcomes{grid-template-columns:1fr 1fr}}
+.cs-nav{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);margin:clamp(3rem,5vw,4rem) 0}
+.cs-nav-item{background:var(--bg);padding:1.75rem;display:flex;flex-direction:column;gap:.4rem;text-decoration:none;transition:background .2s}
+.cs-nav-item:hover{background:var(--bg2)}
+.cs-nav-item.next{text-align:right}
+.cs-nav-dir{font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3)}
+.cs-nav-title{font-family:'Cormorant Garant',serif;font-size:1.4rem;font-weight:400;color:var(--ink);line-height:1.2}
+.cs-nav-title em{font-style:italic}
+footer{background:#080C14;padding:2rem clamp(1.25rem,5vw,4rem);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;border-top:1px solid rgba(255,255,255,.05)}
+.footer-logo{font-family:'JetBrains Mono',monospace;font-size:.82rem;letter-spacing:.08em;color:rgba(255,255,255,.3)}
+.footer-copy{font-size:.85rem;color:rgba(255,255,255,.2)}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:none}
+.rv1{transition-delay:.1s}.rv2{transition-delay:.2s}
+@media(max-width:720px){.cs-meta-bar{grid-template-columns:1fr 1fr}}
+@media(max-width:420px){.cs-meta-bar{grid-template-columns:1fr}.cs-nav{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="grid-bg" aria-hidden="true"></div>
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">Satheesh <em>Mankulam</em></a>
+  <div class="nav-right">
+    <a href="index.html#casestudies" class="nav-back">← Case Studies</a>
+    <button class="dark-toggle" id="darkToggle" aria-label="Toggle dark mode">
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+  </div>
+</nav>
+
+<main>
+<div class="wrap">
+  <div class="cs-header">
+    <div class="cs-breadcrumb reveal"><a href="index.html">Portfolio</a><span>/</span><a href="index.html#casestudies">Case Studies</a><span>/</span>FamilyDose</div>
+    <div class="cs-type reveal">Product Design · Android App · AI-assisted Dev</div>
+    <h1 class="cs-h1 reveal">FamilyDose —<br><em>From Figma to Play Store</em></h1>
+    <p class="cs-lead reveal">How I designed and shipped a full Android medication tracker — solo, as a non-coder — using Figma for design and Claude AI for code generation. My dad kept missing his BP tablets. So I built the solution.</p>
+  </div>
+</div>
+
+<div class="wrap-wide">
+  <div class="cs-meta-bar reveal">
+    <div class="cs-meta-item"><div class="cs-meta-label">Role</div><div class="cs-meta-value">Designer + Product Owner</div></div>
+    <div class="cs-meta-item"><div class="cs-meta-label">Platform</div><div class="cs-meta-value">Android · Google Play</div></div>
+    <div class="cs-meta-item"><div class="cs-meta-label">Stack</div><div class="cs-meta-value">Figma · Claude AI · React</div></div>
+    <div class="cs-meta-item"><div class="cs-meta-label">Status</div><div class="cs-meta-value">Live · v7.1</div></div>
+  </div>
+
+  <div class="cs-cover reveal rv1">
+    <svg viewBox="0 0 900 340" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:900px">
+      <text x="450" y="14" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7.5" fill="var(--ink3)" letter-spacing="2">CASE STUDY 02 — FAMILYDOSE · DESIGN TO PLAY STORE</text>
+
+      <!-- Step labels at bottom -->
+      <!-- STEP 1: Problem -->
+      <rect x="20" y="28" width="155" height="280" rx="8" fill="var(--bg3)" stroke="var(--line)" stroke-width=".8"/>
+      <text x="97" y="46" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="6.5" fill="var(--ink3)" letter-spacing="1">01 PROBLEM</text>
+      <rect x="34" y="54" width="127" height="10" rx="2" fill="var(--line)"/>
+      <rect x="34" y="70" width="127" height="140" rx="4" fill="var(--bg2)" stroke="var(--line2)" stroke-width=".6"/>
+      <!-- symptom items -->
+      <rect x="42" y="80" width="16" height="16" rx="8" fill="var(--line2)"/>
+      <rect x="64" y="84" width="90" height="6" rx="1" fill="var(--line)"/>
+      <rect x="64" y="94" width="68" height="4" rx="1" fill="var(--line2)"/>
+      <rect x="42" y="108" width="16" height="16" rx="8" fill="var(--line2)"/>
+      <rect x="64" y="112" width="80" height="6" rx="1" fill="var(--line)"/>
+      <rect x="64" y="122" width="70" height="4" rx="1" fill="var(--line2)"/>
+      <rect x="42" y="136" width="16" height="16" rx="8" fill="var(--line)"/>
+      <rect x="64" y="140" width="90" height="6" rx="1" fill="var(--ink)" opacity=".4"/>
+      <rect x="64" y="150" width="60" height="4" rx="1" fill="var(--line2)"/>
+      <rect x="42" y="164" width="16" height="16" rx="8" fill="var(--line2)"/>
+      <rect x="64" y="168" width="75" height="6" rx="1" fill="var(--line)"/>
+      <rect x="64" y="178" width="55" height="4" rx="1" fill="var(--line2)"/>
+      <rect x="34" y="222" width="127" height="22" rx="4" fill="var(--bg3)" stroke="var(--line2)" stroke-width=".6"/>
+      <rect x="42" y="229" width="111" height="7" rx="1" fill="var(--line2)"/>
+      <rect x="34" y="254" width="127" height="28" rx="4" fill="var(--ink)" opacity=".08" stroke="var(--line)" stroke-width=".6"/>
+      <rect x="50" y="264" width="95" height="8" rx="2" fill="var(--line)"/>
+
+      <!-- Arrow -->
+      <line x1="183" y1="168" x2="208" y2="168" stroke="var(--line)" stroke-width="1"/>
+      <polygon points="206,164 214,168 206,172" fill="var(--line)"/>
+
+      <!-- STEP 2: Figma Design -->
+      <rect x="220" y="28" width="155" height="280" rx="8" fill="var(--bg3)" stroke="var(--line)" stroke-width=".8"/>
+      <text x="297" y="46" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="6.5" fill="var(--ink3)" letter-spacing="1">02 FIGMA</text>
+      <!-- phone wireframe -->
+      <rect x="248" y="54" width="99" height="176" rx="14" fill="var(--bg2)" stroke="var(--line)" stroke-width="1"/>
+      <rect x="253" y="60" width="89" height="165" rx="10" fill="var(--bg)"/>
+      <rect x="284" y="58" width="27" height="5" rx="3" fill="var(--line)" opacity=".4"/>
+      <!-- screen content -->
+      <rect x="260" y="70" width="75" height="8" rx="2" fill="var(--line)"/>
+      <rect x="260" y="84" width="75" height="30" rx="4" fill="var(--bg2)" stroke="var(--line2)" stroke-width=".5"/>
+      <rect x="266" y="91" width="14" height="14" rx="7" fill="var(--line2)"/>
+      <rect x="284" y="93" width="42" height="5" rx="1" fill="var(--line)"/>
+      <rect x="284" y="101" width="32" height="4" rx="1" fill="var(--line2)"/>
+      <rect x="260" y="120" width="75" height="30" rx="4" fill="var(--bg2)" stroke="var(--line2)" stroke-width=".5"/>
+      <rect x="266" y="127" width="14" height="14" rx="7" fill="var(--line2)"/>
+      <rect x="284" y="129" width="38" height="5" rx="1" fill="var(--line)"/>
+      <rect x="284" y="137" width="28" height="4" rx="1" fill="var(--line2)"/>
+      <rect x="260" y="156" width="75" height="30" rx="4" fill="var(--bg)" stroke="var(--ink)" stroke-width=".8"/>
+      <rect x="266" y="163" width="14" height="14" rx="7" fill="var(--line)"/>
+      <rect x="284" y="165" width="44" height="5" rx="1" fill="var(--ink)" opacity=".6"/>
+      <rect x="284" y="173" width="30" height="4" rx="1" fill="var(--line2)"/>
+      <rect x="260" y="194" width="75" height="22" rx="4" fill="var(--ink)" opacity=".85"/>
+      <rect x="278" y="202" width="39" height="6" rx="1" fill="var(--bg2)"/>
+      <!-- style notes -->
+      <rect x="234" y="242" width="127" height="46" rx="4" fill="var(--bg2)" stroke="var(--line2)" stroke-width=".6"/>
+      <rect x="242" y="251" width="60" height="6" rx="1" fill="var(--line)"/>
+      <rect x="242" y="263" width="111" height="4" rx="1" fill="var(--line2)"/>
+      <rect x="242" y="272" width="90" height="4" rx="1" fill="var(--line2)"/>
+
+      <!-- Arrow -->
+      <line x1="383" y1="168" x2="408" y2="168" stroke="var(--line)" stroke-width="1"/>
+      <polygon points="406,164 414,168 406,172" fill="var(--line)"/>
+
+      <!-- STEP 3: Claude AI -->
+      <rect x="420" y="28" width="155" height="280" rx="8" fill="var(--bg3)" stroke="var(--line)" stroke-width=".8"/>
+      <text x="497" y="46" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="6.5" fill="var(--ink3)" letter-spacing="1">03 CLAUDE AI</text>
+      <rect x="434" y="54" width="127" height="170" rx="4" fill="var(--bg2)" stroke="var(--line2)" stroke-width=".6"/>
+      <!-- chat messages -->
+      <rect x="442" y="64" width="100" height="18" rx="4" fill="var(--bg3)" stroke="var(--line2)" stroke-width=".5"/>
+      <rect x="448" y="70" width="88" height="6" rx="1" fill="var(--line2)"/>
+      <rect x="468" y="89" width="84" height="18" rx="4" fill="var(--ink)" opacity=".1" stroke="var(--line)" stroke-width=".5"/>
+      <rect x="474" y="95" width="72" height="6" rx="1" fill="var(--line)"/>
+      <rect x="442" y="114" width="110" height="28" rx="4" fill="var(--bg3)" stroke="var(--line2)" stroke-width=".5"/>
+      <rect x="448" y="121" width="98" height="5" rx="1" fill="var(--line2)"/>
+      <rect x="448" y="130" width="80" height="5" rx="1" fill="var(--line2)"/>
+      <rect x="460" y="150" width="96" height="26" rx="4" fill="var(--ink)" opacity=".1" stroke="var(--line)" stroke-width=".5"/>
+      <rect x="466" y="158" width="84" height="5" rx="1" fill="var(--line)"/>
+      <rect x="466" y="167" width="64" height="4" rx="1" fill="var(--line2)"/>
+      <rect x="442" y="184" width="90" height="18" rx="4" fill="var(--bg3)" stroke="var(--line2)" stroke-width=".5"/>
+      <rect x="448" y="190" width="78" height="5" rx="1" fill="var(--line2)"/>
+      <rect x="448" y="199" width="60" height="4" rx="1" fill="var(--line2)"/>
+      <!-- iterate badge -->
+      <rect x="434" y="236" width="127" height="20" rx="10" fill="var(--bg)" stroke="var(--line)" stroke-width=".8"/>
+      <rect x="444" y="243" width="8" height="8" rx="4" fill="var(--line)"/>
+      <rect x="458" y="245" width="80" height="4" rx="1" fill="var(--line2)"/>
+      <rect x="434" y="262" width="127" height="28" rx="4" fill="var(--bg2)" stroke="var(--line2)" stroke-width=".6"/>
+      <rect x="442" y="271" width="111" height="5" rx="1" fill="var(--line2)"/>
+      <rect x="442" y="281" width="80" height="4" rx="1" fill="var(--line2)"/>
+
+      <!-- Arrow -->
+      <line x1="583" y1="168" x2="608" y2="168" stroke="var(--line)" stroke-width="1"/>
+      <polygon points="606,164 614,168 606,172" fill="var(--line)"/>
+
+      <!-- STEP 4: Play Store (LIVE) -->
+      <rect x="620" y="28" width="260" height="280" rx="8" fill="var(--ink)" opacity=".05" stroke="var(--ink)" stroke-width="1.2"/>
+      <text x="750" y="46" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="6.5" fill="var(--ink3)" letter-spacing="1">04 GOOGLE PLAY · LIVE</text>
+      <!-- phone -->
+      <rect x="648" y="58" width="110" height="196" rx="18" fill="var(--bg3)" stroke="var(--line)" stroke-width="1"/>
+      <rect x="654" y="64" width="98" height="184" rx="13" fill="var(--bg2)"/>
+      <rect x="690" y="61" width="36" height="5" rx="3" fill="var(--line)" opacity=".4"/>
+      <!-- app header -->
+      <rect x="660" y="72" width="86" height="20" rx="4" fill="var(--bg)" stroke="var(--line2)" stroke-width=".5"/>
+      <rect x="664" y="77" width="16" height="10" rx="3" fill="var(--line)"/>
+      <rect x="684" y="79" width="50" height="6" rx="1" fill="var(--line)"/>
+      <!-- tiles -->
+      <rect x="660" y="98" width="40" height="34" rx="5" fill="var(--bg)" stroke="var(--line2)" stroke-width=".5"/>
+      <rect x="666" y="106" width="16" height="12" rx="2" fill="var(--line)"/>
+      <rect x="666" y="121" width="28" height="4" rx="1" fill="var(--line2)"/>
+      <rect x="706" y="98" width="40" height="34" rx="5" fill="var(--bg)" stroke="var(--line2)" stroke-width=".5"/>
+      <rect x="712" y="106" width="16" height="12" rx="2" fill="var(--line)"/>
+      <rect x="712" y="121" width="28" height="4" rx="1" fill="var(--line2)"/>
+      <!-- med cards -->
+      <rect x="660" y="138" width="86" height="18" rx="4" fill="var(--bg)" stroke="var(--line2)" stroke-width=".5"/>
+      <rect x="664" y="142" width="12" height="12" rx="3" fill="var(--line)"/>
+      <rect x="680" y="144" width="50" height="4" rx="1" fill="var(--line)"/>
+      <rect x="680" y="151" width="36" height="3" rx="1" fill="var(--line2)"/>
+      <rect x="660" y="162" width="86" height="18" rx="4" fill="var(--bg)" stroke="var(--line2)" stroke-width=".5"/>
+      <rect x="664" y="166" width="12" height="12" rx="3" fill="var(--line)"/>
+      <rect x="680" y="168" width="44" height="4" rx="1" fill="var(--line)"/>
+      <rect x="680" y="175" width="32" height="3" rx="1" fill="var(--line2)"/>
+      <!-- nav bar -->
+      <rect x="654" y="228" width="98" height="16" rx="0" fill="var(--bg)" stroke="var(--line2)" stroke-width=".5"/>
+      <rect x="664" y="232" width="20" height="6" rx="2" fill="var(--ink)" opacity=".7"/>
+      <rect x="692" y="233" width="14" height="4" rx="1" fill="var(--line2)"/>
+      <rect x="714" y="233" width="14" height="4" rx="1" fill="var(--line2)"/>
+      <rect x="732" y="233" width="10" height="4" rx="1" fill="var(--line2)"/>
+      <!-- live badge + stats -->
+      <rect x="770" y="70" width="100" height="24" rx="4" fill="var(--bg)" stroke="var(--line)" stroke-width=".8"/>
+      <rect x="778" y="78" width="8" height="8" rx="4" fill="#22C55E"/>
+      <rect x="792" y="79" width="70" height="6" rx="1" fill="var(--line)"/>
+      <rect x="770" y="102" width="100" height="14" rx="2" fill="var(--bg2)" stroke="var(--line2)" stroke-width=".6"/>
+      <rect x="778" y="107" width="60" height="4" rx="1" fill="var(--line2)"/>
+      <rect x="770" y="124" width="100" height="50" rx="4" fill="var(--bg2)" stroke="var(--line2)" stroke-width=".6"/>
+      <rect x="778" y="132" width="30" height="18" rx="2" fill="var(--line)"/>
+      <rect x="814" y="134" width="48" height="6" rx="1" fill="var(--line)"/>
+      <rect x="814" y="144" width="40" height="4" rx="1" fill="var(--line2)"/>
+      <rect x="778" y="158" width="84" height="10" rx="2" fill="var(--line2)" opacity=".4"/>
+      <rect x="770" y="184" width="100" height="30" rx="4" fill="var(--bg2)" stroke="var(--line2)" stroke-width=".6"/>
+      <rect x="778" y="193" width="70" height="5" rx="1" fill="var(--line2)"/>
+      <rect x="778" y="202" width="50" height="4" rx="1" fill="var(--line2)"/>
+    </svg>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="cs-section reveal">
+    <div class="cs-section-num">01 — Problem</div>
+    <h2>My dad kept missing<br><em>his BP tablets.</em></h2>
+    <p>It started personal. My father has been on daily blood pressure medication for years. Despite reminders, he'd forget doses — especially when the routine changed. Existing apps were either too complex, required cloud accounts, or weren't built for families tracking multiple people's medications.</p>
+    <div class="cs-quote"><p>"Every existing app assumed you were tracking your own meds. Nobody had built one for the person managing everyone else's."</p></div>
+    <p>That observation became the brief: <strong>build a medication tracker that works offline, requires no account, and is designed for family-level management</strong> — not just individual use.</p>
+  </div>
+
+  <div class="cs-section reveal">
+    <div class="cs-section-num">02 — Research</div>
+    <h2>Understanding what<br><em>families actually need</em></h2>
+    <p>I audited 8 existing medication apps and spoke to family members who manage others' medications. Four clear gaps emerged across every existing solution.</p>
+    <div class="cs-insights">
+      <div class="cs-insight"><div class="cs-insight-icon">🔒</div><div class="cs-insight-title">Privacy over convenience</div><div class="cs-insight-desc">Users managing family health data strongly resist cloud sync. The trust barrier of uploading medication records to a stranger's server was the #1 reason people abandoned existing apps.</div></div>
+      <div class="cs-insight"><div class="cs-insight-icon">👨‍👩‍👧</div><div class="cs-insight-title">One person manages many</div><div class="cs-insight-desc">The key user isn't the patient — it's the family member who tracks everyone else. Apps designed for self-tracking create friction when the user is managing their parents, spouse, and child simultaneously.</div></div>
+      <div class="cs-insight"><div class="cs-insight-icon">🔔</div><div class="cs-insight-title">Reminders that actually fire</div><div class="cs-insight-desc">On aggressive battery-management devices (Samsung, Xiaomi, OnePlus), background alarms are frequently killed. This makes medication reminders unreliable on the exact phones most used in India.</div></div>
+      <div class="cs-insight"><div class="cs-insight-icon">📱</div><div class="cs-insight-title">Zero friction to start</div><div class="cs-insight-desc">Every onboarding screen between install and first use is a dropout risk. The app needs to get users to their first medication entry in under 60 seconds — no tutorials, no account creation.</div></div>
+    </div>
+  </div>
+
+  <div class="cs-section reveal">
+    <div class="cs-section-num">03 — Design Process</div>
+    <h2>Figma to Play Store —<br><em>the full journey</em></h2>
+    <div class="cs-steps">
+      <div class="cs-step"><div class="cs-step-num">01</div><div><div class="cs-step-title">Information architecture in Figma</div><div class="cs-step-desc">Mapped the core flows: add medication → set schedule → view today's doses → mark as taken → history. Designed 40+ screens including dark mode, empty states, error states, and all edge cases before writing a single line of code.</div></div></div>
+      <div class="cs-step"><div class="cs-step-num">02</div><div><div class="cs-step-title">Family-first data model</div><div class="cs-step-desc">Structured the data model around family members as the top-level entity, not medications. Each member has their own medication list, schedule, and history. Filters and views are member-scoped by default.</div></div></div>
+      <div class="cs-step"><div class="cs-step-num">03</div><div><div class="cs-step-title">AI-assisted development with Claude</div><div class="cs-step-desc">Described each screen and interaction in plain English to Claude. Iterated on the generated React JSX until every screen matched the Figma designs. No formal coding knowledge — just clear UX thinking translated into working code.</div></div></div>
+      <div class="cs-step"><div class="cs-step-num">04</div><div><div class="cs-step-title">Real device testing across Android variants</div><div class="cs-step-desc">Tested specifically on Samsung S23 Ultra, OnePlus, and Xiaomi — notorious for killing background processes. Fixed alarm persistence for all three by implementing foreground service notifications and battery exemption prompts.</div></div></div>
+      <div class="cs-step"><div class="cs-step-num">05</div><div><div class="cs-step-title">Google Play submission and iteration</div><div class="cs-step-desc">Passed Play Store review on the first attempt. Now at v7.1 (versionCode 13) with 13+ features including PIN lock, JSON export/import, trilingual support (English, Malayalam, Hindi), image lightbox, and a 100-entry cap with compression.</div></div></div>
+    </div>
+  </div>
+
+  <div class="cs-section reveal">
+    <div class="cs-section-num">04 — Outcomes</div>
+    <h2>Shipped, live,<br><em>and used by real families</em></h2>
+    <div class="cs-outcomes">
+      <div class="cs-outcome"><div class="cs-outcome-num">v7.1</div><div class="cs-outcome-label">Current version<br>on Play Store</div></div>
+      <div class="cs-outcome"><div class="cs-outcome-num">13+</div><div class="cs-outcome-label">Features shipped<br>across versions</div></div>
+      <div class="cs-outcome"><div class="cs-outcome-num">0</div><div class="cs-outcome-label">Cloud accounts<br>required</div></div>
+    </div>
+    <p>FamilyDose is <strong>free, offline, and available on Google Play</strong>. My dad hasn't missed a dose since. That's the metric that matters most.</p>
+    <p style="margin-top:1.25rem"><a href="https://play.google.com/store/apps/details?id=com.familydose.app" target="_blank" style="color:var(--ink);font-weight:600;border-bottom:1px solid var(--line);padding-bottom:2px;transition:border-color .2s">View on Google Play →</a></p>
+  </div>
+
+  <div class="cs-nav reveal">
+    <a href="case-google-maps.html" class="cs-nav-item">
+      <div class="cs-nav-dir">← Previous</div>
+      <div class="cs-nav-title"><em>Google Maps</em> × Android Auto</div>
+    </a>
+    <a href="case-idrive.html" class="cs-nav-item next">
+      <div class="cs-nav-dir">Next →</div>
+      <div class="cs-nav-title">IDrive India —<br><em>Product UX</em></div>
+    </a>
+  </div>
+
+</div>
+</main>
+
+<footer><span class="footer-logo">Satheesh Mankulam</span><p class="footer-copy">© 2025 · UX Designer · Bangalore</p></footer>
+<script>
+const html=document.documentElement,t=document.getElementById('darkToggle'),s=localStorage.getItem('sm-theme')||'light';html.setAttribute('data-theme',s);
+t.addEventListener('click',()=>{const n=html.getAttribute('data-theme')==='light'?'dark':'light';html.setAttribute('data-theme',n);localStorage.setItem('sm-theme',n)});
+window.addEventListener('scroll',()=>document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>20),{passive:true});
+const obs=new IntersectionObserver(e=>e.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}}),{threshold:0.08});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>

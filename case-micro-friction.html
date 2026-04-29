@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="favicon.png">
+<title>What a Simple Download Taught Me About Micro-Friction — UX Case Study | Satheesh Mankulam</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garant:ital,wght@0,300;0,400;1,300;1,400&family=JetBrains+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'Outfit',sans-serif;line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased;transition:background .3s,color .3s}
+a{color:inherit;text-decoration:none}ul{list-style:none}
+[data-theme="light"]{--bg:#F8F7F3;--bg2:#EFEDE7;--bg3:#E5E2DB;--ink:#0D0D0D;--ink2:#444;--ink3:#888;--line:#D8D5CE;--line2:#E8E5DF;--nav-bg:rgba(248,247,243,0.94)}
+[data-theme="dark"]{--bg:#111110;--bg2:#1A1A18;--bg3:#222220;--ink:#F0EEE8;--ink2:#B8B6B0;--ink3:#777672;--line:#333330;--line2:#2A2A28;--nav-bg:rgba(17,17,16,0.94)}
+body{background:var(--bg);color:var(--ink)}
+.wrap{max-width:860px;margin:0 auto;padding:0 clamp(1.25rem,5vw,3rem)}
+.wrap-wide{max-width:1100px;margin:0 auto;padding:0 clamp(1.25rem,5vw,3rem)}
+.grid-bg{position:fixed;inset:0;pointer-events:none;z-index:0;background-image:linear-gradient(var(--line2) 1px,transparent 1px),linear-gradient(90deg,var(--line2) 1px,transparent 1px);background-size:80px 80px;opacity:.28;mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 40%,transparent 100%)}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(1.25rem,5vw,4rem);background:var(--nav-bg);backdrop-filter:blur(16px);border-bottom:1px solid var(--line2);transition:border-color .3s}
+nav.scrolled{border-color:var(--line);box-shadow:0 2px 24px rgba(0,0,0,.06)}
+.nav-logo{font-family:'JetBrains Mono',monospace;font-size:.88rem;font-weight:500;letter-spacing:.06em;color:var(--ink)}
+.nav-logo em{font-style:normal;opacity:.35;margin-left:.15rem}
+.nav-right{display:flex;align-items:center;gap:.75rem}
+.nav-back{display:inline-flex;align-items:center;gap:.4rem;font-size:.92rem;font-weight:500;color:var(--ink3);border:1px solid var(--line);padding:.42rem 1rem;transition:color .2s,border-color .2s}
+.nav-back:hover{color:var(--ink);border-color:var(--ink)}
+.dark-toggle{display:flex;align-items:center;justify-content:center;width:36px;height:36px;border:1px solid var(--line);background:none;cursor:pointer;color:var(--ink3);transition:color .2s,border-color .2s}
+.dark-toggle:hover{color:var(--ink);border-color:var(--ink)}
+.dark-toggle svg{width:16px;height:16px}
+.icon-sun{display:none}.icon-moon{display:block}
+[data-theme="dark"] .icon-sun{display:block}[data-theme="dark"] .icon-moon{display:none}
+.cs-header{padding:clamp(6rem,10vw,8rem) 0 0}
+.cs-breadcrumb{display:flex;align-items:center;gap:.5rem;font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:2rem}
+.cs-breadcrumb a{color:var(--ink3);transition:color .2s}.cs-breadcrumb a:hover{color:var(--ink)}
+.cs-breadcrumb span{opacity:.4}
+.cs-type{display:inline-flex;align-items:center;font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);border:1px solid var(--line2);padding:.25rem .7rem;margin-bottom:1.2rem}
+.cs-h1{font-family:'Cormorant Garant',serif;font-size:clamp(2.4rem,6vw,4.5rem);font-weight:300;line-height:1.08;letter-spacing:-.02em;color:var(--ink);margin-bottom:1.25rem}
+.cs-h1 em{font-style:italic}
+.cs-lead{font-size:1.15rem;color:var(--ink2);line-height:1.8;font-weight:300;max-width:680px;margin-bottom:2.5rem}
+.cs-meta-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-bottom:0}
+.cs-meta-item{background:var(--bg);padding:1.1rem 1.25rem}
+.cs-meta-label{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3);margin-bottom:.35rem}
+.cs-meta-value{font-size:.95rem;font-weight:500;color:var(--ink)}
+.cs-cover{background:var(--bg2);border:1px solid var(--line);border-top:none;padding:3rem;display:flex;align-items:center;justify-content:center;min-height:240px;margin-bottom:clamp(3rem,6vw,5rem)}
+.cs-section{padding:clamp(3rem,5vw,4rem) 0;border-top:1px solid var(--line2)}
+.cs-section-num{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink3);margin-bottom:.75rem;display:flex;align-items:center;gap:.5rem}
+.cs-section-num::before{content:'';display:block;width:20px;height:1px;background:var(--line)}
+.cs-section h2{font-family:'Cormorant Garant',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:300;color:var(--ink);line-height:1.15;letter-spacing:-.01em;margin-bottom:1.25rem}
+.cs-section h2 em{font-style:italic}
+.cs-section p{font-size:1.05rem;color:var(--ink2);line-height:1.85;margin-bottom:1.25rem;font-weight:300}
+.cs-section p strong{color:var(--ink);font-weight:600}
+.cs-section p:last-child{margin-bottom:0}
+.cs-quote{border-left:3px solid var(--ink);padding:1.25rem 1.5rem;margin:2rem 0;background:var(--bg2)}
+.cs-quote p{font-family:'Cormorant Garant',serif;font-size:1.5rem;font-weight:300;font-style:italic;color:var(--ink);line-height:1.4;margin:0}
+.cs-insights{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);margin:2rem 0}
+.cs-insight{background:var(--bg);padding:1.5rem;transition:background .2s}
+.cs-insight:hover{background:var(--bg2)}
+.cs-insight-icon{font-size:1.5rem;margin-bottom:.75rem}
+.cs-insight-title{font-size:.95rem;font-weight:600;color:var(--ink);margin-bottom:.35rem}
+.cs-insight-desc{font-size:.88rem;color:var(--ink3);line-height:1.6;font-weight:300}
+.cs-steps{display:flex;flex-direction:column;gap:0;border:1px solid var(--line);margin:2rem 0}
+.cs-step{display:grid;grid-template-columns:56px 1fr;gap:1.5rem;align-items:start;padding:1.5rem;border-bottom:1px solid var(--line2);transition:background .2s}
+.cs-step:last-child{border-bottom:none}
+.cs-step:hover{background:var(--bg2)}
+.cs-step-num{font-family:'JetBrains Mono',monospace;font-size:.7rem;font-weight:500;color:var(--ink);background:var(--bg3);width:36px;height:36px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.cs-step-title{font-size:1rem;font-weight:600;color:var(--ink);margin-bottom:.35rem}
+.cs-step-desc{font-size:.95rem;color:var(--ink3);line-height:1.65;font-weight:300}
+.cs-outcomes{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin:2rem 0}
+.cs-outcome{background:var(--bg);padding:1.75rem 1.25rem;text-align:center}
+.cs-outcome-num{font-family:'Cormorant Garant',serif;font-size:3rem;font-weight:300;color:var(--ink);line-height:1;letter-spacing:-.03em;margin-bottom:.35rem}
+.cs-outcome-label{font-size:.88rem;color:var(--ink3);font-weight:300;line-height:1.4}
+.cs-nav{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);margin:clamp(3rem,5vw,4rem) 0}
+.cs-nav-item{background:var(--bg);padding:1.75rem;display:flex;flex-direction:column;gap:.4rem;text-decoration:none;transition:background .2s}
+.cs-nav-item:hover{background:var(--bg2)}
+.cs-nav-item.next{text-align:right}
+.cs-nav-dir{font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3)}
+.cs-nav-title{font-family:'Cormorant Garant',serif;font-size:1.4rem;font-weight:400;color:var(--ink);line-height:1.2}
+.cs-nav-title em{font-style:italic}
+footer{background:#080C14;padding:2rem clamp(1.25rem,5vw,4rem);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;border-top:1px solid rgba(255,255,255,.05)}
+.footer-logo{font-family:'JetBrains Mono',monospace;font-size:.82rem;letter-spacing:.08em;color:rgba(255,255,255,.3)}
+.footer-copy{font-size:.85rem;color:rgba(255,255,255,.2)}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:none}
+.rv1{transition-delay:.1s}.rv2{transition-delay:.2s}
+@media(max-width:720px){.cs-meta-bar{grid-template-columns:1fr 1fr}.cs-insights{grid-template-columns:1fr}}
+@media(max-width:420px){.cs-meta-bar{grid-template-columns:1fr}.cs-nav{grid-template-columns:1fr}.cs-outcomes{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<div class="grid-bg" aria-hidden="true"></div>
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">Satheesh <em>Mankulam</em></a>
+  <div class="nav-right">
+    <a href="index.html#casestudies" class="nav-back">← Case Studies</a>
+    <button class="dark-toggle" id="darkToggle" aria-label="Toggle dark mode">
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+  </div>
+</nav>
+<main>
+<div class="wrap">
+  <div class="cs-header">
+    <div class="cs-breadcrumb reveal"><a href="index.html">Portfolio</a><span>/</span><a href="index.html#casestudies">Case Studies</a><span>/</span>Micro-Friction</div>
+    <div class="cs-type reveal">Micro-interactions · Friction Audit · Trust</div>
+    <h1 class="cs-h1 reveal">What a Simple Download<br><em>Taught Me About Micro-Friction</em></h1>
+    <p class="cs-lead reveal">A single download button — one of the simplest interactions in any UI — broke my trust in a product I'd been using for months. This is a study of how micro-friction accumulates, and how the smallest interactions carry disproportionate weight in user perception.</p>
+  </div>
+</div>
+<div class="wrap-wide">
+  <div class="cs-meta-bar reveal">
+    <div class="cs-meta-item"><div class="cs-meta-label">Role</div><div class="cs-meta-value">UX Researcher & Writer</div></div>
+    <div class="cs-meta-item"><div class="cs-meta-label">Type</div><div class="cs-meta-value">Interaction Audit</div></div>
+    <div class="cs-meta-item"><div class="cs-meta-label">Tools</div><div class="cs-meta-value">Research · Medium · Figma</div></div>
+    <div class="cs-meta-item"><div class="cs-meta-label">Status</div><div class="cs-meta-value">Published · 2025</div></div>
+  </div>
+  <div class="cs-cover reveal rv1">
+    <svg viewBox="0 0 760 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:760px">
+      <text x="380" y="14" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7.5" fill="var(--ink3)" letter-spacing="2">FRICTION AUDIT — DOWNLOAD INTERACTION</text>
+      <!-- registration marks -->
+      <line x1="12" y1="8" x2="12" y2="20" stroke="var(--line)" stroke-width=".8"/><line x1="6" y1="14" x2="18" y2="14" stroke="var(--line)" stroke-width=".8"/>
+      <line x1="748" y1="8" x2="748" y2="20" stroke="var(--line)" stroke-width=".8"/><line x1="742" y1="14" x2="754" y2="14" stroke="var(--line)" stroke-width=".8"/>
+      <!-- device outline -->
+      <rect x="260" y="24" width="240" height="180" rx="12" fill="var(--bg3)" stroke="var(--ink)" stroke-width="1"/>
+      <!-- screen -->
+      <rect x="268" y="32" width="224" height="164" rx="8" fill="var(--bg2)"/>
+      <!-- nav bar -->
+      <rect x="268" y="32" width="224" height="28" rx="8" fill="var(--bg3)"/>
+      <rect x="268" y="52" width="224" height="1" fill="var(--line2)"/>
+      <rect x="280" y="40" width="60" height="8" rx="2" fill="var(--line)"/>
+      <rect x="440" y="40" width="40" height="8" rx="2" fill="var(--line2)"/>
+      <!-- content rows -->
+      <rect x="280" y="70" width="200" height="10" rx="2" fill="var(--line)"/>
+      <rect x="280" y="86" width="180" height="7" rx="1" fill="var(--line2)"/>
+      <rect x="280" y="97" width="160" height="7" rx="1" fill="var(--line2)"/>
+      <!-- highlighted element (the problem element) -->
+      <rect x="280" y="114" width="200" height="28" rx="4" fill="var(--bg)" stroke="var(--ink)" stroke-width="1"/>
+      <rect x="288" y="122" width="100" height="6" rx="1" fill="var(--line)"/>
+      <rect x="288" y="132" width="70" height="5" rx="1" fill="var(--line2)"/>
+      <!-- indicator -->
+      <circle cx="462" cy="128" r="6" fill="var(--ink)" opacity=".15"/>
+      <circle cx="462" cy="128" r="3" fill="var(--ink)"/>
+      <!-- bottom rows -->
+      <rect x="280" y="152" width="200" height="1" fill="var(--line2)"/>
+      <rect x="280" y="158" width="140" height="6" rx="1" fill="var(--line2)"/>
+      <rect x="280" y="168" width="160" height="6" rx="1" fill="var(--line2)"/>
+      <rect x="280" y="178" width="100" height="6" rx="1" fill="var(--line2)"/>
+      <!-- left annotation -->
+      <rect x="20" y="80" width="110" height="52" rx="4" fill="var(--bg)" stroke="var(--line)" stroke-width=".8"/>
+      <line x1="130" y1="100" x2="260" y2="110" stroke="var(--line2)" stroke-width=".6" stroke-dasharray="3 2"/>
+      <text x="28" y="97" font-family="JetBrains Mono,monospace" font-size="6" fill="var(--ink3)" letter-spacing="1">FRICTION</text>
+      <rect x="28" y="101" width="80" height="4" rx="1" fill="var(--line2)"/>
+      <rect x="28" y="109" width="60" height="4" rx="1" fill="var(--line2)"/>
+      <rect x="28" y="117" width="70" height="4" rx="1" fill="var(--line2)"/>
+      <!-- right annotation -->
+      <rect x="630" y="80" width="110" height="52" rx="4" fill="var(--ink)" stroke="var(--ink)" stroke-width="0"/>
+      <line x1="500" y1="110" x2="630" y2="100" stroke="var(--line2)" stroke-width=".6" stroke-dasharray="3 2"/>
+      <text x="638" y="97" font-family="JetBrains Mono,monospace" font-size="6" fill="rgba(255,255,255,.4)" letter-spacing="1">FIX</text>
+      <rect x="638" y="101" width="80" height="4" rx="1" fill="rgba(255,255,255,.2)"/>
+      <rect x="638" y="109" width="60" height="4" rx="1" fill="rgba(255,255,255,.15)"/>
+      <rect x="638" y="117" width="70" height="4" rx="1" fill="rgba(255,255,255,.1)"/>
+      <text x="380" y="210" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7" fill="var(--line)" letter-spacing="1">UX FRICTION AUDIT · MICRO-FRICTION</text>
+    </svg>
+  </div>
+</div>
+<div class="wrap">
+  <div class="cs-section reveal">
+    <div class="cs-section-num">01 — Observation</div>
+    <h2>The download that<br><em>didn't download</em></h2>
+    <p>I clicked a download button. Nothing happened. I clicked it again. Still nothing. I waited. Then I refreshed the page, losing the context I was in. The file eventually appeared in my downloads folder — 40 seconds later, with no feedback that anything was processing.</p><p>This is a trivially simple interaction. Download button → file downloads. But the absence of a single feedback signal — a progress indicator, a toast message, anything — turned a routine action into a <strong>moment of doubt that damaged my confidence in the entire product.</strong></p>
+    <div class="cs-quote"><p>The smallest interactions are the ones users remember most — because they happen the most.</p></div>
+  </div>
+  <div class="cs-section reveal">
+    <div class="cs-section-num">02 — Analysis</div>
+    <h2>How micro-friction<br><em>quietly accumulates</em></h2>
+    <div class="cs-insights">
+      <div class="cs-insight"><div class="cs-insight-icon">⚡</div><div class="cs-insight-title">Frequency amplifies impact</div><div class="cs-insight-desc">Download happens dozens of times per session for power users. Each instance of missing feedback is a small trust deduction. Compounded, it becomes a quality perception problem.</div></div>
+      <div class="cs-insight"><div class="cs-insight-icon">❓</div><div class="cs-insight-title">Uncertainty is exhausting</div><div class="cs-insight-desc">When a user can't tell if their action worked, they have to hold that uncertainty in working memory while they wait. This cognitive load is invisible but real.</div></div>
+      <div class="cs-insight"><div class="cs-insight-icon">🔁</div><div class="cs-insight-title">Double-clicks and rage-clicks</div><div class="cs-insight-desc">No feedback triggers repeat interactions — the user clicks again, potentially triggering duplicate downloads or unintended state changes.</div></div>
+      <div class="cs-insight"><div class="cs-insight-icon">📉</div><div class="cs-insight-title">Silent failures damage brands</div><div class="cs-insight-desc">When a process fails silently, the user doesn't know what went wrong. They assume the product is unreliable — even if it was a one-time network issue.</div></div>
+    </div>
+  </div>
+  <div class="cs-section reveal">
+    <div class="cs-section-num">03 — The Fix</div>
+    <h2>Four interactions that<br><em>eliminate micro-friction</em></h2>
+    <p><strong>1. Instant acknowledgement.</strong> The moment a user clicks download, something should change — a spinner, a colour shift, a label change to 'Downloading…'. The feedback gap between click and result is where anxiety lives.</p><p><strong>2. Progress for longer waits.</strong> If a process takes more than 1 second, show a progress indicator. Not just a spinner — a bar or percentage if possible. Users tolerate waiting; they don't tolerate not knowing how long to wait.</p><p><strong>3. Completion signal.</strong> A subtle toast or checkmark when the file is ready. Not intrusive — just present enough to close the mental loop the user opened when they clicked.</p><p><strong>4. Failure with a path forward.</strong> If something goes wrong, say so. And give the user one clear action: retry. Don't leave them guessing.</p>
+  </div>
+  <div class="cs-section reveal">
+    <div class="cs-section-num">04 — Takeaway</div>
+    <h2>The smallest interactions<br><em>carry the biggest trust</em></h2>
+    <p>Micro-friction rarely appears in usability tests, because individual instances feel too small to flag. But <strong>product quality is experienced as the sum of micro-interactions</strong>, not the evaluation of headline features. Users don't consciously think 'that download had no feedback' — they just feel slightly less confident in the product, every time.</p>
+    <div class="cs-outcomes">
+      <div class="cs-outcome"><div class="cs-outcome-num">1</div><div class="cs-outcome-label">click with
+zero feedback</div></div>
+      <div class="cs-outcome"><div class="cs-outcome-num">4</div><div class="cs-outcome-label">interaction fixes
+for full closure</div></div>
+      <div class="cs-outcome"><div class="cs-outcome-num">∞</div><div class="cs-outcome-label">trust compounded
+over time</div></div>
+    </div>
+    <p style="margin-top:1.5rem"><a href="https://medium.com/design-bootcamp/what-a-simple-download-taught-me-about-micro-friction-3de831c69a1a" target="_blank" style="color:var(--ink);font-weight:600;border-bottom:1px solid var(--line);padding-bottom:2px;transition:border-color .2s">Read the full article on Medium →</a></p>
+  </div>
+  <div class="cs-nav reveal">
+    <a href="case-ai-privacy.html" class="cs-nav-item">
+      <div class="cs-nav-dir">← Previous</div>
+      <div class="cs-nav-title">← AI Privacy UX</div>
+    </a>
+    <a href="case-linkedin-post.html" class="cs-nav-item next">
+      <div class="cs-nav-dir">Next →</div>
+      <div class="cs-nav-title">LinkedIn Post →</div>
+    </a>
+  </div>
+</div>
+</main>
+<footer><span class="footer-logo">Satheesh Mankulam</span><p class="footer-copy">© 2025 · UX Designer · Bangalore</p></footer>
+<script>
+const html=document.documentElement,t=document.getElementById('darkToggle'),s=localStorage.getItem('sm-theme')||'light';html.setAttribute('data-theme',s);
+t.addEventListener('click',()=>{const n=html.getAttribute('data-theme')==='light'?'dark':'light';html.setAttribute('data-theme',n);localStorage.setItem('sm-theme',n)});
+window.addEventListener('scroll',()=>document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>20),{passive:true});
+const obs=new IntersectionObserver(e=>e.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}}),{threshold:0.08});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
