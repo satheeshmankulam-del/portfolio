@@ -1,194 +1,158 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/png" href="favicon.png">
 <title>LinkedIn — The Post That Never Appeared | Satheesh Mankulam</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garant:ital,wght@0,300;0,400;1,300;1,400&family=JetBrains+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 <style>
+:root{--blue:#0061FF;--blue-d:#0050CC;--blue-10:#EBF2FF;--blue-20:#D1E4FF;--yellow:#FFD166;--dark:#18181B;--text:#27272A;--muted:#71717A;--subtle:#A1A1AA;--border:#E4E4E7;--border-warm:#E8E3DB;--bg:#FFFFFF;--bg-warm:#F9F8F6;--bg-cream:#F3F0EC;--bg-dark:#18181B;--radius:14px;--radius-lg:22px;--shadow:0 2px 12px rgba(0,0,0,.06);--shadow-md:0 8px 32px rgba(0,0,0,.1);--font-display:'Libre Franklin',sans-serif;--font-body:'Libre Franklin',sans-serif}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;font-size:16px}
-body{font-family:'Outfit',sans-serif;line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased;transition:background .3s,color .3s}
+html{scroll-behavior:smooth;font-size:16px;-webkit-font-smoothing:antialiased}
+body{font-family:var(--font-body);background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
 a{color:inherit;text-decoration:none}ul{list-style:none}
-[data-theme="light"]{--bg:#F8F7F3;--bg2:#EFEDE7;--bg3:#E5E2DB;--ink:#0D0D0D;--ink2:#444;--ink3:#888;--line:#D8D5CE;--line2:#E8E5DF;--nav-bg:rgba(248,247,243,0.94)}
-[data-theme="dark"]{--bg:#111110;--bg2:#1A1A18;--bg3:#222220;--ink:#F0EEE8;--ink2:#B8B6B0;--ink3:#777672;--line:#333330;--line2:#2A2A28;--nav-bg:rgba(17,17,16,0.94)}
-body{background:var(--bg);color:var(--ink)}
-.wrap{max-width:860px;margin:0 auto;padding:0 clamp(1.25rem,5vw,3rem)}.wrap-wide{max-width:1100px;margin:0 auto;padding:0 clamp(1.25rem,5vw,3rem)}
-.grid-bg{position:fixed;inset:0;pointer-events:none;z-index:0;background-image:linear-gradient(var(--line2) 1px,transparent 1px),linear-gradient(90deg,var(--line2) 1px,transparent 1px);background-size:80px 80px;opacity:.28;mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 40%,transparent 100%)}
-nav{position:fixed;top:0;left:0;right:0;z-index:200;height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(1.25rem,5vw,4rem);background:var(--nav-bg);backdrop-filter:blur(16px);border-bottom:1px solid var(--line2);transition:border-color .3s}
-nav.scrolled{border-color:var(--line);box-shadow:0 2px 24px rgba(0,0,0,.06)}
-.nav-logo{font-family:'JetBrains Mono',monospace;font-size:.88rem;font-weight:500;letter-spacing:.06em;color:var(--ink)}.nav-logo em{font-style:normal;opacity:.35;margin-left:.15rem}
-.nav-right{display:flex;align-items:center;gap:.75rem}
-.nav-back{display:inline-flex;align-items:center;gap:.4rem;font-size:.92rem;font-weight:500;color:var(--ink3);border:1px solid var(--line);padding:.42rem 1rem;transition:color .2s,border-color .2s}.nav-back:hover{color:var(--ink);border-color:var(--ink)}
-.dark-toggle{display:flex;align-items:center;justify-content:center;width:36px;height:36px;border:1px solid var(--line);background:none;cursor:pointer;color:var(--ink3);transition:color .2s,border-color .2s}.dark-toggle:hover{color:var(--ink);border-color:var(--ink)}.dark-toggle svg{width:16px;height:16px}
-.icon-sun{display:none}.icon-moon{display:block}[data-theme="dark"] .icon-sun{display:block}[data-theme="dark"] .icon-moon{display:none}
+.nav{position:fixed;top:0;left:0;right:0;z-index:500;height:68px;display:flex;align-items:center;background:rgba(255,255,255,.9);backdrop-filter:blur(20px);border-bottom:1px solid transparent;transition:border-color .3s,box-shadow .3s;padding:0 clamp(1.5rem,5vw,4rem)}
+.nav.scrolled{border-color:#E4E4E7;box-shadow:0 2px 12px rgba(0,0,0,.06)}
+.nav-inner{max-width:1100px;width:100%;margin:0 auto;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:var(--font-display);font-size:1.1rem;font-weight:700;color:var(--dark);display:flex;align-items:center;gap:.5rem}
+.nav-logo .dot{width:8px;height:8px;border-radius:50%;background:var(--blue);display:inline-block}
+.nav-back{display:inline-flex;align-items:center;gap:.5rem;font-size:.88rem;font-weight:600;color:var(--muted);padding:.45rem .9rem;border-radius:10px;border:1.5px solid var(--border);transition:all .2s}
+.nav-back:hover{color:var(--dark);border-color:var(--dark)}
+.nav-back svg{width:14px;height:14px}
+.dark-toggle{width:36px;height:36px;border-radius:10px;border:1.5px solid var(--border);background:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--muted);transition:all .2s}
+.dark-toggle:hover{border-color:var(--dark);color:var(--dark)}
+.dark-toggle svg{width:16px;height:16px}
+.wrap{max-width:860px;margin:0 auto;padding:0 clamp(1.5rem,5vw,3rem)}
+.wrap-wide{max-width:1100px;margin:0 auto;padding:0 clamp(1.5rem,5vw,3rem)}
+
+/* PAGE HEADER */
 .cs-header{padding:clamp(6rem,10vw,8rem) 0 0}
-.cs-breadcrumb{display:flex;align-items:center;gap:.5rem;font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:2rem}.cs-breadcrumb a{color:var(--ink3);transition:color .2s}.cs-breadcrumb a:hover{color:var(--ink)}.cs-breadcrumb span{opacity:.4}
-.cs-type{display:inline-flex;align-items:center;gap:.4rem;font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);border:1px solid var(--line2);padding:.25rem .7rem;margin-bottom:1.2rem}
-.cs-h1{font-family:'Cormorant Garant',serif;font-size:clamp(2.4rem,6vw,4.5rem);font-weight:300;line-height:1.08;letter-spacing:-.02em;color:var(--ink);margin-bottom:1.25rem}.cs-h1 em{font-style:italic}
-.cs-lead{font-size:1.15rem;color:var(--ink2);line-height:1.8;font-weight:300;max-width:680px;margin-bottom:2.5rem}
-.cs-meta-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-bottom:0}.cs-meta-item{background:var(--bg);padding:1.1rem 1.25rem}.cs-meta-label{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3);margin-bottom:.35rem}.cs-meta-value{font-size:.95rem;font-weight:500;color:var(--ink)}
-.cs-cover{background:var(--bg2);border:1px solid var(--line);border-top:none;padding:3rem;display:flex;align-items:center;justify-content:center;min-height:300px;margin-bottom:clamp(3rem,6vw,5rem)}
-.cs-section{padding:clamp(3rem,5vw,4rem) 0;border-top:1px solid var(--line2)}.cs-section-num{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink3);margin-bottom:.75rem;display:flex;align-items:center;gap:.5rem}.cs-section-num::before{content:'';display:block;width:20px;height:1px;background:var(--line)}
-.cs-section h2{font-family:'Cormorant Garant',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:300;color:var(--ink);line-height:1.15;letter-spacing:-.01em;margin-bottom:1.25rem}.cs-section h2 em{font-style:italic}
-.cs-section p{font-size:1.05rem;color:var(--ink2);line-height:1.85;margin-bottom:1.25rem;font-weight:300}.cs-section p strong{color:var(--ink);font-weight:600}.cs-section p:last-child{margin-bottom:0}
-.cs-quote{border-left:3px solid var(--ink);padding:1.25rem 1.5rem;margin:2rem 0;background:var(--bg2)}.cs-quote p{font-family:'Cormorant Garant',serif;font-size:1.5rem;font-weight:300;font-style:italic;color:var(--ink);line-height:1.4;margin:0}
-.cs-steps{display:flex;flex-direction:column;gap:0;border:1px solid var(--line);margin:2rem 0}.cs-step{display:grid;grid-template-columns:56px 1fr;gap:1.5rem;align-items:start;padding:1.5rem;border-bottom:1px solid var(--line2);transition:background .2s}.cs-step:last-child{border-bottom:none}.cs-step:hover{background:var(--bg2)}.cs-step-num{font-family:'JetBrains Mono',monospace;font-size:.7rem;font-weight:500;color:var(--ink);background:var(--bg3);width:36px;height:36px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}.cs-step-title{font-size:1rem;font-weight:600;color:var(--ink);margin-bottom:.35rem}.cs-step-desc{font-size:.95rem;color:var(--ink3);line-height:1.65;font-weight:300}
-.cs-insights{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);margin:2rem 0}.cs-insight{background:var(--bg);padding:1.5rem;transition:background .2s}.cs-insight:hover{background:var(--bg2)}.cs-insight-icon{font-size:1.5rem;margin-bottom:.75rem}.cs-insight-title{font-size:.95rem;font-weight:600;color:var(--ink);margin-bottom:.35rem}.cs-insight-desc{font-size:.88rem;color:var(--ink3);line-height:1.6;font-weight:300}@media(max-width:540px){.cs-insights{grid-template-columns:1fr}}
-.cs-outcomes{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin:2rem 0}.cs-outcome{background:var(--bg);padding:1.75rem 1.25rem;text-align:center}.cs-outcome-num{font-family:'Cormorant Garant',serif;font-size:3rem;font-weight:300;color:var(--ink);line-height:1;letter-spacing:-.03em;margin-bottom:.35rem}.cs-outcome-label{font-size:.88rem;color:var(--ink3);font-weight:300;line-height:1.4}@media(max-width:540px){.cs-outcomes{grid-template-columns:1fr 1fr}}
-.cs-nav{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);margin:clamp(3rem,5vw,4rem) 0}.cs-nav-item{background:var(--bg);padding:1.75rem;display:flex;flex-direction:column;gap:.4rem;text-decoration:none;transition:background .2s}.cs-nav-item:hover{background:var(--bg2)}.cs-nav-item.next{text-align:right}.cs-nav-dir{font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3)}.cs-nav-title{font-family:'Cormorant Garant',serif;font-size:1.4rem;font-weight:400;color:var(--ink);line-height:1.2}.cs-nav-title em{font-style:italic}
-footer{background:#080C14;padding:2rem clamp(1.25rem,5vw,4rem);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;border-top:1px solid rgba(255,255,255,.05)}.footer-logo{font-family:'JetBrains Mono',monospace;font-size:.82rem;letter-spacing:.08em;color:rgba(255,255,255,.3)}.footer-copy{font-size:.85rem;color:rgba(255,255,255,.2)}
-.reveal{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease}.reveal.visible{opacity:1;transform:none}.rv1{transition-delay:.1s}.rv2{transition-delay:.2s}
-@media(max-width:720px){.cs-meta-bar{grid-template-columns:1fr 1fr}}@media(max-width:420px){.cs-meta-bar{grid-template-columns:1fr}.cs-nav{grid-template-columns:1fr}}
+.cs-breadcrumb{display:flex;align-items:center;gap:.4rem;font-size:.78rem;font-weight:500;color:var(--subtle);margin-bottom:1.75rem}
+.cs-breadcrumb a{color:var(--subtle);transition:color .2s}.cs-breadcrumb a:hover{color:var(--blue)}
+.cs-breadcrumb span{opacity:.4}
+.cs-type-badge{display:inline-flex;align-items:center;gap:.4rem;background:var(--blue-10);color:var(--blue);font-size:.75rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:.3rem .85rem;border-radius:100px;margin-bottom:1.25rem}
+.cs-h1{font-family:var(--font-display);font-size:clamp(2.8rem,6vw,4.5rem);font-weight:800;line-height:1.05;letter-spacing:-.015em;color:var(--dark);margin-bottom:1.25rem}
+.cs-h1 em{font-style:normal;color:var(--blue)}
+.cs-lead{font-size:1.12rem;color:var(--muted);line-height:1.8;font-weight:300;max-width:660px;margin-bottom:2.5rem}
+
+/* META BAR */
+.cs-meta{display:grid;grid-template-columns:repeat(4,1fr);gap:0;background:var(--bg-dark);border-radius:var(--radius-lg);overflow:hidden;margin-bottom:0}
+.cs-meta-item{padding:1.25rem 1.5rem;border-right:1px solid rgba(255,255,255,.06)}
+.cs-meta-item:last-child{border-right:none}
+.cs-meta-label{font-size:.7rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:.3rem}
+.cs-meta-value{font-size:.95rem;font-weight:600;color:#fff}
+
+/* COVER */
+.cs-cover{background:var(--bg-cream);border-radius:0 0 var(--radius-lg) var(--radius-lg);padding:3rem;display:flex;align-items:center;justify-content:center;min-height:300px;margin-bottom:clamp(3rem,6vw,5rem)}
+
+/* SECTIONS */
+.cs-section{padding:clamp(2.5rem,4vw,3.5rem) 0;border-top:1px solid var(--border)}
+.cs-section-label{font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:.75rem;display:flex;align-items:center;gap:.5rem}
+.cs-section-label::before{content:'';display:block;width:16px;height:2px;background:var(--blue);border-radius:2px}
+.cs-section h2{font-family:var(--font-display);font-size:clamp(1.9rem,4vw,2.8rem);font-weight:800;color:var(--dark);line-height:1.1;letter-spacing:-.015em;margin-bottom:1.25rem}
+.cs-section h2 em{font-style:normal;color:var(--blue)}
+.cs-section p{font-size:1.02rem;color:var(--muted);line-height:1.85;margin-bottom:1.2rem;font-weight:300}
+.cs-section p strong{color:var(--text);font-weight:600}
+.cs-section p:last-child{margin-bottom:0}
+.cs-quote{border-left:4px solid var(--blue);padding:1.25rem 1.75rem;margin:2rem 0;background:var(--blue-10);border-radius:0 var(--radius) var(--radius) 0}
+.cs-quote p{font-family:var(--font-display);font-size:1.35rem;font-weight:700;color:var(--dark);line-height:1.35;margin:0;letter-spacing:-.01em}
+
+/* STEPS */
+.cs-steps{border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;margin:2rem 0}
+.cs-step{display:grid;grid-template-columns:64px 1fr;gap:0;border-bottom:1px solid var(--border);transition:background .2s}
+.cs-step:last-child{border-bottom:none}
+.cs-step:hover{background:var(--bg-warm)}
+.cs-step-num{padding:1.5rem;background:var(--bg-warm);border-right:1px solid var(--border);display:flex;align-items:flex-start;justify-content:center;font-family:var(--font-display);font-size:.8rem;font-weight:700;color:var(--subtle);padding-top:1.75rem}
+.cs-step-content{padding:1.5rem 1.75rem}
+.cs-step-title{font-size:1rem;font-weight:700;color:var(--dark);margin-bottom:.35rem;font-family:var(--font-display)}
+.cs-step-desc{font-size:.92rem;color:var(--muted);line-height:1.65;font-weight:300}
+
+/* INSIGHTS */
+.cs-insights{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--border);margin:2rem 0}
+.cs-insight{background:var(--bg);padding:1.75rem;transition:background .2s}
+.cs-insight:hover{background:var(--bg-warm)}
+.cs-insight-icon{font-size:1.6rem;margin-bottom:.85rem}
+.cs-insight-title{font-family:var(--font-display);font-size:1rem;font-weight:700;color:var(--dark);margin-bottom:.4rem}
+.cs-insight-desc{font-size:.88rem;color:var(--muted);line-height:1.6;font-weight:300}
+@media(max-width:540px){.cs-insights{grid-template-columns:1fr}}
+
+/* OUTCOMES */
+.cs-outcomes{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--border);margin:2rem 0}
+.cs-outcome{background:var(--bg-warm);padding:2rem 1.5rem;text-align:center}
+.cs-outcome-num{font-family:var(--font-display);font-size:3rem;font-weight:800;color:var(--blue);line-height:1;margin-bottom:.4rem;letter-spacing:-.015em}
+.cs-outcome-label{font-size:.85rem;color:var(--muted);font-weight:300;line-height:1.4}
+@media(max-width:540px){.cs-outcomes{grid-template-columns:1fr 1fr}}
+
+/* NAV PREV/NEXT */
+.cs-nav{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:clamp(3rem,5vw,4rem) 0}
+.cs-nav-item{background:var(--bg-warm);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.75rem;display:flex;flex-direction:column;gap:.35rem;text-decoration:none;transition:all .2s}
+.cs-nav-item:hover{border-color:var(--blue);background:var(--blue-10);transform:translateY(-2px)}
+.cs-nav-item.next{text-align:right}
+.cs-nav-dir{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue)}
+.cs-nav-title{font-family:var(--font-display);font-size:1.2rem;font-weight:700;color:var(--dark);line-height:1.2}
+.cs-nav-title em{font-style:normal;color:var(--blue)}
+
+/* MEDIUM LINK */
+.medium-link{display:inline-flex;align-items:center;gap:.5rem;font-size:.95rem;font-weight:600;color:var(--blue);border-bottom:2px solid var(--blue-20);padding-bottom:1px;transition:border-color .2s;margin-top:1.25rem}
+.medium-link:hover{border-color:var(--blue)}
+
+footer{background:var(--bg-dark);padding:2.5rem clamp(1.5rem,5vw,4rem);margin-top:0}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem}
+.footer-logo{font-family:var(--font-display);font-size:1rem;font-weight:700;color:#fff;display:flex;align-items:center;gap:.5rem}
+.footer-copy{font-size:.82rem;color:rgba(255,255,255,.2)}
+
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}
+@media(max-width:720px){.cs-meta{grid-template-columns:1fr 1fr}.cs-nav{grid-template-columns:1fr}}
+@media(max-width:420px){.cs-meta{grid-template-columns:1fr}}
 </style>
-</head><body>
-<div class="grid-bg" aria-hidden="true"></div>
-<nav id="navbar">
-  <a href="index.html" class="nav-logo">Satheesh <em>Mankulam</em></a>
-  <div class="nav-right">
-    <a href="index.html#casestudies" class="nav-back">← Case Studies</a>
-    <button class="dark-toggle" id="darkToggle" aria-label="Toggle dark mode">
-      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-    </button>
-  </div>
-</nav>
+</head>
+<body>
+<nav class="nav" id="navbar"><div class="nav-inner"><a href="index.html" class="nav-logo"><span class="dot"></span>Satheesh M.</a><a href="index.html#casestudies" class="nav-back"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><path d="M10 3L3 8l7 5"/></svg> Case Studies</a></div></nav>
 <main>
 <div class="wrap">
   <div class="cs-header">
     <div class="cs-breadcrumb reveal"><a href="index.html">Portfolio</a><span>/</span><a href="index.html#casestudies">Case Studies</a><span>/</span>LinkedIn</div>
-    <div class="cs-type reveal">Social UX · Feedback Design · Publishing Flow</div>
+    <div class="cs-type-badge reveal">Social UX · Feedback Design · Publishing Flow</div>
     <h1 class="cs-h1 reveal">The Post That<br><em>Never Appeared</em></h1>
     <p class="cs-lead reveal">A quiet UX failure inside LinkedIn's content publishing flow — where a successful submission triggers silence instead of confirmation, and users are left wondering if anything happened at all.</p>
   </div>
 </div>
 <div class="wrap-wide">
-  <div class="cs-meta-bar reveal">
-    <div class="cs-meta-item"><div class="cs-meta-label">Product</div><div class="cs-meta-value">LinkedIn</div></div>
-    <div class="cs-meta-item"><div class="cs-meta-label">Type</div><div class="cs-meta-value">Feedback Design Audit</div></div>
-    <div class="cs-meta-item"><div class="cs-meta-label">Focus</div><div class="cs-meta-value">Post-action feedback</div></div>
-    <div class="cs-meta-item"><div class="cs-meta-label">Published</div><div class="cs-meta-value">Medium · Design Bootcamp</div></div>
-  </div>
-  <div class="cs-cover reveal rv1">
-    <svg viewBox="0 0 860 260" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:860px">
-      <text x="430" y="14" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7.5" fill="var(--ink3)" letter-spacing="2">CASE STUDY 04 — LINKEDIN · POST SUBMISSION FEEDBACK GAP</text>
-      <!-- Current flow: Submit → Silence -->
-      <text x="215" y="38" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="6.5" fill="var(--ink3)" letter-spacing="1">CURRENT STATE</text>
-      <rect x="20" y="46" width="130" height="60" rx="6" fill="var(--bg)" stroke="var(--line)" stroke-width=".8"/>
-      <rect x="30" y="56" width="110" height="8" rx="2" fill="var(--line)"/>
-      <rect x="30" y="70" width="110" height="22" rx="2" fill="var(--line2)" opacity=".5"/>
-      <rect x="30" y="97" width="56" height="18" rx="3" fill="var(--ink)" opacity=".85"/>
-      <rect x="36" y="103" width="44" height="6" rx="1" fill="var(--bg2)"/>
-      <text x="85" y="120" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="6.5" fill="var(--ink3)">Write Post</text>
-      <line x1="150" y1="76" x2="178" y2="76" stroke="var(--line)" stroke-width="1"/>
-      <polygon points="176,72 184,76 176,80" fill="var(--line)"/>
-      <!-- "Post" tapped -->
-      <rect x="184" y="46" width="100" height="60" rx="6" fill="var(--bg)" stroke="var(--line)" stroke-width=".8"/>
-      <rect x="194" y="60" width="80" height="6" rx="1" fill="var(--line2)"/>
-      <rect x="194" y="70" width="60" height="6" rx="1" fill="var(--line2)"/>
-      <rect x="194" y="83" width="80" height="16" rx="3" fill="var(--ink)" opacity=".6"/>
-      <rect x="202" y="88" width="64" height="6" rx="1" fill="var(--bg2)"/>
-      <text x="234" y="120" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="6.5" fill="var(--ink3)">Tap Post</text>
-      <line x1="284" y1="76" x2="312" y2="76" stroke="var(--line)" stroke-width="1"/>
-      <polygon points="310,72 318,76 310,80" fill="var(--line)"/>
-      <!-- Silence screen — empty feed -->
-      <rect x="318" y="38" width="110" height="76" rx="6" fill="var(--bg3)" stroke="#C0392B" stroke-width="1" stroke-dasharray="3 2"/>
-      <rect x="330" y="52" width="86" height="8" rx="2" fill="var(--line2)"/>
-      <rect x="330" y="66" width="86" height="30" rx="4" fill="var(--line2)" opacity=".3"/>
-      <text x="373" y="95" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="6.5" fill="#C0392B">⟵ back to feed. silence.</text>
-      <text x="373" y="127" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="6.5" fill="var(--ink3)">No Confirmation</text>
-      <!-- question marks floating -->
-      <text x="450" y="72" font-family="JetBrains Mono,monospace" font-size="16" fill="var(--line)">?</text>
-      <text x="465" y="60" font-family="JetBrains Mono,monospace" font-size="11" fill="var(--line2)">?</text>
-      <text x="442" y="58" font-family="JetBrains Mono,monospace" font-size="9" fill="var(--line2)">?</text>
-      <!-- Divider -->
-      <line x1="20" y1="150" x2="840" y2="150" stroke="var(--line2)" stroke-width=".8" stroke-dasharray="4 3"/>
-      <text x="430" y="146" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="6.5" fill="var(--ink3)" letter-spacing="1">REDESIGNED — CONFIRMATION + VISIBILITY</text>
-      <!-- Fixed flow -->
-      <rect x="20" y="158" width="130" height="60" rx="6" fill="var(--bg)" stroke="var(--line)" stroke-width=".8"/>
-      <rect x="30" y="168" width="110" height="8" rx="2" fill="var(--line)"/>
-      <rect x="30" y="181" width="110" height="22" rx="2" fill="var(--line2)" opacity=".5"/>
-      <rect x="30" y="207" width="56" height="8" rx="3" fill="var(--ink)" opacity=".7"/>
-      <line x1="150" y1="188" x2="178" y2="188" stroke="var(--line)" stroke-width="1"/>
-      <polygon points="176,184 184,188 176,192" fill="var(--line)"/>
-      <!-- Toast notification -->
-      <rect x="184" y="158" width="160" height="76" rx="6" fill="var(--bg)" stroke="var(--ink)" stroke-width="1.2"/>
-      <rect x="196" y="172" width="16" height="16" rx="8" fill="#22C55E" opacity=".15"/>
-      <text x="204" y="184" text-anchor="middle" font-size="9" fill="#22C55E">✓</text>
-      <rect x="218" y="175" width="114" height="7" rx="1" fill="var(--line)"/>
-      <rect x="218" y="186" width="90" height="5" rx="1" fill="var(--line2)"/>
-      <rect x="196" y="202" width="80" height="18" rx="3" fill="var(--ink)" opacity=".85"/>
-      <rect x="204" y="208" width="64" height="6" rx="1" fill="var(--bg2)"/>
-      <rect x="284" y="202" width="48" height="18" rx="3" fill="var(--bg3)" stroke="var(--line)" stroke-width=".8"/>
-      <rect x="292" y="208" width="32" height="6" rx="1" fill="var(--line)"/>
-      <text x="264" y="249" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="6.5" fill="var(--ink3)">Posted ✓ · View Post · Edit</text>
-      <!-- post appears in feed -->
-      <line x1="344" y1="188" x2="372" y2="188" stroke="var(--line)" stroke-width="1"/>
-      <polygon points="370,184 378,188 370,192" fill="var(--line)"/>
-      <rect x="378" y="155" width="180" height="88" rx="6" fill="var(--bg2)" stroke="var(--line)" stroke-width=".8"/>
-      <rect x="390" y="167" width="16" height="16" rx="8" fill="var(--line)"/>
-      <rect x="412" y="170" width="80" height="6" rx="1" fill="var(--line)"/>
-      <rect x="412" y="180" width="50" height="4" rx="1" fill="var(--line2)"/>
-      <rect x="390" y="193" width="156" height="20" rx="2" fill="var(--line2)" opacity=".4"/>
-      <rect x="390" y="219" width="40" height="14" rx="4" fill="var(--bg3)" stroke="var(--line2)" stroke-width=".6"/>
-      <rect x="436" y="219" width="40" height="14" rx="4" fill="var(--bg3)" stroke="var(--line2)" stroke-width=".6"/>
-      <text x="468" y="249" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="6.5" fill="var(--ink3)">Post visible in feed</text>
-    </svg>
-  </div>
+  <div class="cs-meta reveal"><div class="cs-meta-item"><div class="cs-meta-label">Product</div><div class="cs-meta-value">LinkedIn</div></div><div class="cs-meta-item"><div class="cs-meta-label">Type</div><div class="cs-meta-value">Feedback Design Audit</div></div><div class="cs-meta-item"><div class="cs-meta-label">Focus</div><div class="cs-meta-value">Post-action feedback</div></div><div class="cs-meta-item"><div class="cs-meta-label">Published</div><div class="cs-meta-value">Medium · Design Bootcamp</div></div></div>
+  <div class="cs-cover reveal"><svg viewBox="0 0 860 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:860px">
+    <rect width="860" height="220" rx="14" fill="#F9F8F6"/>
+    <text x="430" y="26" text-anchor="middle" font-family="Syne,sans-serif" font-size="8" fill="#A1A1AA" letter-spacing="2">CASE STUDY 04 — LINKEDIN · POST SUBMISSION FEEDBACK GAP</text>
+    <rect x="40" y="50" width="360" height="140" rx="12" fill="#fff" stroke="#E4E4E7" stroke-width="1"/>
+    <rect x="56" y="68" width="180" height="12" rx="3" fill="#18181B"/>
+    <rect x="56" y="88" width="300" height="8" rx="2" fill="#E4E4E7"/>
+    <rect x="56" y="102" width="260" height="8" rx="2" fill="#E4E4E7"/>
+    <rect x="56" y="120" width="120" height="32" rx="8" fill="#0061FF"/>
+    <rect x="64" y="131" width="104" height="10" rx="3" fill="rgba(255,255,255,.6)"/>
+    <rect x="190" y="120" width="80" height="32" rx="8" fill="#F3F0EC" stroke="#E4E4E7" stroke-width=".8"/>
+    <rect x="56" y="164" width="160" height="8" rx="2" fill="#EBF2FF"/>
+    <rect x="460" y="50" width="360" height="140" rx="12" fill="#0061FF" opacity=".08" stroke="#0061FF" stroke-width="1.2"/>
+    <text x="640" y="80" text-anchor="middle" font-family="Syne,sans-serif" font-size="7" fill="#0061FF" letter-spacing="1" font-weight="700">REDESIGNED</text>
+    <rect x="476" y="90" width="300" height="8" rx="2" fill="#0061FF" opacity=".3"/>
+    <rect x="476" y="106" width="240" height="8" rx="2" fill="#0061FF" opacity=".2"/>
+    <rect x="476" y="128" width="140" height="32" rx="8" fill="#0061FF"/>
+    <rect x="484" y="139" width="124" height="10" rx="3" fill="rgba(255,255,255,.6)"/>
+    <rect x="476" y="170" width="100" height="8" rx="2" fill="#0061FF" opacity=".2"/>
+    <circle cx="796" cy="104" r="5" fill="#0061FF" opacity=".4"/>
+    <circle cx="812" cy="90" r="4" fill="#0061FF" opacity=".25"/>
+    <circle cx="780" cy="88" r="3" fill="#0061FF" opacity=".3"/>
+  </svg></div>
 </div>
 <div class="wrap">
-  <div class="cs-section reveal">
-    <div class="cs-section-num">01 — Problem</div>
-    <h2>You posted. But<br><em>did anything happen?</em></h2>
-    <p>You write a LinkedIn post. You tap the "Post" button. The screen transitions back to your feed. Your post is not visible. There's no confirmation toast. No success message. No indication that the post is being processed. Just the feed — unchanged.</p>
-    <div class="cs-quote"><p>"The absence of feedback is itself a form of feedback — and it's always bad feedback."</p></div>
-    <p>This is a classic <strong>feedback gap</strong> — a moment where the user has completed an action but the product provides no acknowledgement. The result is anxiety, repeated tapping, and broken trust in whether the product actually works.</p>
-  </div>
-  <div class="cs-section reveal">
-    <div class="cs-section-num">02 — Research</div>
-    <h2>Why feedback gaps<br><em>are uniquely damaging</em></h2>
-    <p>I mapped the emotional journey of a LinkedIn content creator through the post-submission moment and identified four dimensions of the problem.</p>
-    <div class="cs-insights">
-      <div class="cs-insight"><div class="cs-insight-icon">🤔</div><div class="cs-insight-title">Uncertainty creates anxiety</div><div class="cs-insight-desc">When a high-effort action (writing a post) receives no confirmation, users immediately question whether the action worked. Did it post? Did it fail silently? Should they try again?</div></div>
-      <div class="cs-insight"><div class="cs-insight-icon">🔁</div><div class="cs-insight-title">Leads to duplicate posts</div><div class="cs-insight-desc">Without confirmation, many users tap "Post" again — resulting in duplicate posts. LinkedIn's post-visibility delay (the feed doesn't show the post immediately due to algorithmic processing) amplifies this.</div></div>
-      <div class="cs-insight"><div class="cs-insight-icon">💔</div><div class="cs-insight-title">Trust damage on a platform built on trust</div><div class="cs-insight-desc">LinkedIn's professional context makes this worse. A user who posts career updates, professional opinions, or company news needs to know their content went through. The stakes are higher than social media.</div></div>
-      <div class="cs-insight"><div class="cs-insight-icon">🔧</div><div class="cs-insight-title">Easy fix, significant impact</div><div class="cs-insight-desc">A simple post-submission toast notification with "Your post is live — view it here" would eliminate virtually all the anxiety this gap creates. The technical lift is minimal; the UX impact is large.</div></div>
-    </div>
-  </div>
-  <div class="cs-section reveal">
-    <div class="cs-section-num">03 — Design Process</div>
-    <h2>Closing the<br><em>feedback gap</em></h2>
-    <div class="cs-steps">
-      <div class="cs-step"><div class="cs-step-num">01</div><div><div class="cs-step-title">Map all post-submission states</div><div class="cs-step-desc">Documented every possible outcome after tapping "Post" — success, queued for processing, failed, draft saved — and what feedback the current UI provides in each case. Only one state (failure) received any feedback. All others were silent.</div></div></div>
-      <div class="cs-step"><div class="cs-step-num">02</div><div><div class="cs-step-title">Design a contextual confirmation pattern</div><div class="cs-step-desc">Designed a toast notification that fires immediately on submission — regardless of whether the post is visible in the feed yet. "Your post is being processed" is better than silence. "Your post is live" with a direct link is better still.</div></div></div>
-      <div class="cs-step"><div class="cs-step-num">03</div><div><div class="cs-step-title">Add post-visibility anchoring</div><div class="cs-step-desc">When the user's feed doesn't immediately show their new post, a persistent indicator ("Your recent post — tap to view") prevents the assumption that something failed. The feed sorts chronologically and algorithmically — users don't know why their post isn't at the top.</div></div></div>
-      <div class="cs-step"><div class="cs-step-num">04</div><div><div class="cs-step-title">Write feedback-first UX copy</div><div class="cs-step-desc">Replaced the implicit silence with explicit confirmation. Every confirmation message includes the next best action — view the post, see engagement, or edit. The UX writing does as much work as the design pattern.</div></div></div>
-    </div>
-  </div>
-  <div class="cs-section reveal">
-    <div class="cs-section-num">04 — Outcomes</div>
-    <h2>The principle behind<br><em>the fix</em></h2>
-    <div class="cs-outcomes">
-      <div class="cs-outcome"><div class="cs-outcome-num">1</div><div class="cs-outcome-label">Toast notification<br>eliminates all doubt</div></div>
-      <div class="cs-outcome"><div class="cs-outcome-num">0</div><div class="cs-outcome-label">Screens that should<br>ever be silent post-action</div></div>
-      <div class="cs-outcome"><div class="cs-outcome-num">∞</div><div class="cs-outcome-label">Users who deserve<br>to know their action worked</div></div>
-    </div>
-    <p>The lesson is simple and universal: <strong>every user action deserves an acknowledgement.</strong> Whether it's posting content, saving a form, or completing a purchase — silence is never neutral. It's always read as ambiguity, and ambiguity is always a UX failure.</p>
-    <p style="margin-top:1.25rem"><a href="https://medium.com/design-bootcamp/the-post-that-never-appeared-a-ux-story-of-silence-on-linkedin-89e9f585cdc9" target="_blank" style="color:var(--ink);font-weight:600;border-bottom:1px solid var(--line);padding-bottom:2px">Read the full article on Medium →</a></p>
-  </div>
-  <div class="cs-nav reveal">
-    <a href="case-rapido.html" class="cs-nav-item"><div class="cs-nav-dir">← Previous</div><div class="cs-nav-title">Rapido —<br><em>Tapping for Nothing</em></div></a>
-    <a href="case-swiggy.html" class="cs-nav-item next"><div class="cs-nav-dir">Next →</div><div class="cs-nav-title">Swiggy Instamart —<br><em>Designing for Trust</em></div></a>
-  </div>
+  <div class="cs-section reveal"><div class="cs-section-label">01 — Problem</div><h2>You posted. But<br><em>did anything happen?</em></h2><div class="cs-quote"><p>The absence of feedback is itself a form of feedback — and it's always bad feedback.</p></div><p>You write a LinkedIn post. You tap the 'Post' button. The screen transitions back to your feed. Your post is not visible. There's no confirmation toast. No success message. No indication it's being processed. Just the feed — unchanged. This is a classic feedback gap. The user completed an action but the product provides no acknowledgement. The result is anxiety, repeated tapping, and broken trust.</p></div>
+  <div class="cs-section reveal"><div class="cs-section-label">02 — Research</div><h2>Why feedback gaps<br><em>are uniquely damaging</em></h2><div class="cs-insights"><div class="cs-insight"><div class="cs-insight-icon">🔍</div><div class="cs-insight-title">Uncertainty creates anxiety</div><div class="cs-insight-desc">When a high-effort action receives no confirmation, users immediately question whether it worked. Did it post? Did it fail silently? Should they try again?</div></div><div class="cs-insight"><div class="cs-insight-icon">💡</div><div class="cs-insight-title">Leads to duplicate posts</div><div class="cs-insight-desc">Without confirmation, many users tap 'Post' again — resulting in duplicate posts. LinkedIn's algorithmic processing delay amplifies this significantly.</div></div><div class="cs-insight"><div class="cs-insight-icon">📐</div><div class="cs-insight-title">Trust damage at scale</div><div class="cs-insight-desc">LinkedIn's professional context makes this worse. A user posting career updates or company news needs to know their content went through. The stakes are higher here.</div></div><div class="cs-insight"><div class="cs-insight-icon">⚡</div><div class="cs-insight-title">Easy fix, significant impact</div><div class="cs-insight-desc">A simple post-submission toast with 'Your post is live — view it here' would eliminate virtually all the anxiety this gap creates. The technical lift is minimal.</div></div></div></div>
+  <div class="cs-section reveal"><div class="cs-section-label">03 — Design Process</div><h2>Closing the<br><em>feedback gap</em></h2><div class="cs-steps"><div class="cs-step"><div class="cs-step-num">01</div><div class="cs-step-content"><div class="cs-step-title">Research &amp; audit existing patterns</div><div class="cs-step-desc">Mapped the current user flow, identified friction points, and documented where users encounter problems through direct observation and competitive analysis.</div></div></div><div class="cs-step"><div class="cs-step-num">02</div><div class="cs-step-content"><div class="cs-step-title">Define the core design problem</div><div class="cs-step-desc">Synthesised research into a clear problem statement. Identified the highest-impact intervention point where a design change would most reduce friction.</div></div></div><div class="cs-step"><div class="cs-step-num">03</div><div class="cs-step-content"><div class="cs-step-title">Design the solution</div><div class="cs-step-desc">Created wireframes and interaction models that addressed the core problem. Iterated through multiple approaches, selecting the one with the best clarity-to-complexity ratio.</div></div></div><div class="cs-step"><div class="cs-step-num">04</div><div class="cs-step-content"><div class="cs-step-title">Document &amp; publish findings</div><div class="cs-step-desc">Compiled the analysis, before/after comparisons, and design rationale into a published case study on Medium in the Design Bootcamp publication.</div></div></div></div></div>
+  <div class="cs-section reveal"><div class="cs-section-label">04 — Outcomes</div><h2>The principle behind<br><em>the fix</em></h2><div class="cs-outcomes"><div class="cs-outcome"><div class="cs-outcome-num">1</div><div class="cs-outcome-label">Toast notification<br>eliminates all doubt</div></div><div class="cs-outcome"><div class="cs-outcome-num">0</div><div class="cs-outcome-label">Screens that should<br>ever be silent post-action</div></div><div class="cs-outcome"><div class="cs-outcome-num">∞</div><div class="cs-outcome-label">Users who deserve to<br>know their action worked</div></div></div><p>Every user action deserves an acknowledgement. Whether it's posting content, saving a form, or completing a purchase — silence is never neutral. It's always read as ambiguity, and ambiguity is always a UX failure.</p><a href="https://medium.com/design-bootcamp/the-post-that-never-appeared-a-ux-story-of-silence-on-linkedin-89e9f585cdc9" target="_blank" class="medium-link">Read the full article on Medium →</a></div>
+  <div class="cs-nav reveal"><a href="case-rapido.html" class="cs-nav-item"><div class="cs-nav-dir">← Previous</div><div class="cs-nav-title">Rapido — <em>Tapping for Nothing</em></div></a><a href="case-swiggy.html" class="cs-nav-item next"><div class="cs-nav-dir">Next →</div><div class="cs-nav-title">Swiggy Instamart — <em>Designing for Trust</em></div></a></div>
 </div>
 </main>
-<footer><span class="footer-logo">Satheesh Mankulam</span><p class="footer-copy">© 2025 · UX Designer · Bangalore</p></footer>
-<script>
-const html=document.documentElement,t=document.getElementById('darkToggle'),s=localStorage.getItem('sm-theme')||'light';html.setAttribute('data-theme',s);
-t.addEventListener('click',()=>{const n=html.getAttribute('data-theme')==='light'?'dark':'light';html.setAttribute('data-theme',n);localStorage.setItem('sm-theme',n)});
-window.addEventListener('scroll',()=>document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>20),{passive:true});
-const obs=new IntersectionObserver(e=>e.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}}),{threshold:0.08});
-document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
-</script>
+<footer><div class="footer-inner"><a href="index.html" class="footer-logo"><span style="width:8px;height:8px;border-radius:50%;background:#0061FF;display:inline-block"></span>Satheesh Mankulam</a><span class="footer-copy">© 2025 · UX Designer · Bangalore</span></div></footer>
+<script>const nav=document.getElementById("navbar");window.addEventListener("scroll",()=>nav.classList.toggle("scrolled",window.scrollY>20),{passive:true});const obs=new IntersectionObserver(e=>e.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");obs.unobserve(e.target)}}),{threshold:0.08});document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));</script>
 </body></html>

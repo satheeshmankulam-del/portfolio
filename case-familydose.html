@@ -1,336 +1,351 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/png" href="favicon.png">
-<title>FamilyDose — UX Case Study | Satheesh Mankulam</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garant:ital,wght@0,300;0,400;1,300;1,400&family=JetBrains+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<title>FamilyDose — Designers Can Ship Now. I Did. | Satheesh Mankulam</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 <style>
+:root{--blue:#0061FF;--blue-d:#0050CC;--blue-10:#EBF2FF;--yellow:#FFD166;--mint:#06D6A0;--dark:#18181B;--text:#27272A;--muted:#71717A;--subtle:#A1A1AA;--border:#E4E4E7;--bg:#FFFFFF;--bg-warm:#F9F8F6;--bg-cream:#F3F0EC;--bg-dark:#18181B;--radius:14px;--radius-lg:22px;--radius-xl:32px;--shadow:0 2px 12px rgba(0,0,0,.06);--shadow-md:0 8px 32px rgba(0,0,0,.1);--shadow-lg:0 24px 64px rgba(0,0,0,.14);--font-display:'Libre Franklin',sans-serif;--font-body:'Libre Franklin',sans-serif}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;font-size:16px}
-body{font-family:'Outfit',sans-serif;line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased;transition:background .3s,color .3s}
-a{color:inherit;text-decoration:none}ul{list-style:none}
-[data-theme="light"]{--bg:#F8F7F3;--bg2:#EFEDE7;--bg3:#E5E2DB;--ink:#0D0D0D;--ink2:#444;--ink3:#888;--line:#D8D5CE;--line2:#E8E5DF;--nav-bg:rgba(248,247,243,0.94)}
-[data-theme="dark"]{--bg:#111110;--bg2:#1A1A18;--bg3:#222220;--ink:#F0EEE8;--ink2:#B8B6B0;--ink3:#777672;--line:#333330;--line2:#2A2A28;--nav-bg:rgba(17,17,16,0.94)}
-body{background:var(--bg);color:var(--ink)}
-.wrap{max-width:860px;margin:0 auto;padding:0 clamp(1.25rem,5vw,3rem)}
-.wrap-wide{max-width:1100px;margin:0 auto;padding:0 clamp(1.25rem,5vw,3rem)}
-.grid-bg{position:fixed;inset:0;pointer-events:none;z-index:0;background-image:linear-gradient(var(--line2) 1px,transparent 1px),linear-gradient(90deg,var(--line2) 1px,transparent 1px);background-size:80px 80px;opacity:.28;mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 40%,transparent 100%)}
-nav{position:fixed;top:0;left:0;right:0;z-index:200;height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(1.25rem,5vw,4rem);background:var(--nav-bg);backdrop-filter:blur(16px);border-bottom:1px solid var(--line2);transition:border-color .3s}
-nav.scrolled{border-color:var(--line);box-shadow:0 2px 24px rgba(0,0,0,.06)}
-.nav-logo{font-family:'JetBrains Mono',monospace;font-size:.88rem;font-weight:500;letter-spacing:.06em;color:var(--ink)}
-.nav-logo em{font-style:normal;opacity:.35;margin-left:.15rem}
-.nav-right{display:flex;align-items:center;gap:.75rem}
-.nav-back{display:inline-flex;align-items:center;gap:.4rem;font-size:.92rem;font-weight:500;color:var(--ink3);border:1px solid var(--line);padding:.42rem 1rem;transition:color .2s,border-color .2s}
-.nav-back:hover{color:var(--ink);border-color:var(--ink)}
-.dark-toggle{display:flex;align-items:center;justify-content:center;width:36px;height:36px;border:1px solid var(--line);background:none;cursor:pointer;color:var(--ink3);transition:color .2s,border-color .2s}
-.dark-toggle:hover{color:var(--ink);border-color:var(--ink)}
-.dark-toggle svg{width:16px;height:16px}
-.icon-sun{display:none}.icon-moon{display:block}
-[data-theme="dark"] .icon-sun{display:block}[data-theme="dark"] .icon-moon{display:none}
-.cs-header{padding:clamp(6rem,10vw,8rem) 0 0}
-.cs-breadcrumb{display:flex;align-items:center;gap:.5rem;font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:2rem}
-.cs-breadcrumb a{color:var(--ink3);transition:color .2s}.cs-breadcrumb a:hover{color:var(--ink)}
-.cs-breadcrumb span{opacity:.4}
-.cs-type{display:inline-flex;align-items:center;gap:.4rem;font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);border:1px solid var(--line2);padding:.25rem .7rem;margin-bottom:1.2rem}
-.cs-h1{font-family:'Cormorant Garant',serif;font-size:clamp(2.4rem,6vw,4.5rem);font-weight:300;line-height:1.08;letter-spacing:-.02em;color:var(--ink);margin-bottom:1.25rem}
-.cs-h1 em{font-style:italic}
-.cs-lead{font-size:1.15rem;color:var(--ink2);line-height:1.8;font-weight:300;max-width:680px;margin-bottom:2.5rem}
-.cs-meta-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-bottom:0}
-.cs-meta-item{background:var(--bg);padding:1.1rem 1.25rem}
-.cs-meta-label{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3);margin-bottom:.35rem}
-.cs-meta-value{font-size:.95rem;font-weight:500;color:var(--ink)}
-.cs-cover{background:var(--bg2);border:1px solid var(--line);border-top:none;padding:3rem;display:flex;align-items:center;justify-content:center;min-height:320px;margin-bottom:clamp(3rem,6vw,5rem)}
-.cs-section{padding:clamp(3rem,5vw,4rem) 0;border-top:1px solid var(--line2)}
-.cs-section-num{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink3);margin-bottom:.75rem;display:flex;align-items:center;gap:.5rem}
-.cs-section-num::before{content:'';display:block;width:20px;height:1px;background:var(--line)}
-.cs-section h2{font-family:'Cormorant Garant',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:300;color:var(--ink);line-height:1.15;letter-spacing:-.01em;margin-bottom:1.25rem}
-.cs-section h2 em{font-style:italic}
-.cs-section p{font-size:1.05rem;color:var(--ink2);line-height:1.85;margin-bottom:1.25rem;font-weight:300}
-.cs-section p strong{color:var(--ink);font-weight:600}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{font-family:var(--font-body);background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+.nav{position:fixed;top:0;left:0;right:0;z-index:500;height:68px;display:flex;align-items:center;background:rgba(255,255,255,.9);backdrop-filter:blur(20px);border-bottom:1px solid transparent;transition:border-color .3s,box-shadow .3s;padding:0 clamp(1.5rem,5vw,4rem)}
+.nav.scrolled{border-color:var(--border);box-shadow:var(--shadow)}
+.nav-inner{max-width:1200px;width:100%;margin:0 auto;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:var(--font-display);font-size:1.15rem;font-weight:700;color:var(--dark);display:flex;align-items:center;gap:.5rem}
+.nav-logo .dot{width:8px;height:8px;border-radius:50%;background:var(--blue);display:inline-block}
+.nav-back{display:inline-flex;align-items:center;gap:.4rem;font-size:.88rem;font-weight:600;color:var(--muted);padding:.4rem .85rem;border-radius:8px;transition:all .2s}
+.nav-back:hover{color:var(--blue);background:var(--blue-10)}
+.wrap{max-width:1200px;margin:0 auto;padding:0 clamp(1.5rem,5vw,4rem)}
+.wrap-wide{max-width:1300px;margin:0 auto;padding:0 clamp(1rem,3vw,2rem)}
+
+/* CS HEADER */
+.cs-header{padding:clamp(6rem,12vw,9rem) 0 2rem}
+.cs-breadcrumb{font-size:.78rem;color:var(--subtle);margin-bottom:1.25rem;display:flex;align-items:center;gap:.4rem}
+.cs-breadcrumb a{color:var(--muted);transition:color .15s}
+.cs-breadcrumb a:hover{color:var(--blue)}
+.cs-breadcrumb span{color:var(--border)}
+.cs-type-badge{display:inline-flex;align-items:center;gap:.4rem;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);background:var(--blue-10);padding:.3rem .8rem;border-radius:100px;margin-bottom:1.1rem}
+.cs-h1{font-family:var(--font-display);font-size:clamp(2.8rem,6vw,4.5rem);font-weight:800;line-height:1.05;letter-spacing:-.015em;color:var(--dark);margin-bottom:1.25rem}
+.cs-h1 em{font-style:normal;color:var(--blue)}
+.cs-lead{font-size:1.12rem;color:var(--muted);line-height:1.8;font-weight:300;max-width:680px}
+
+/* META BAR */
+.cs-meta{display:grid;grid-template-columns:repeat(4,1fr);background:var(--bg-warm);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;margin:2.5rem 0}
+.cs-meta-item{padding:1.5rem 2rem;border-right:1px solid var(--border)}
+.cs-meta-item:last-child{border-right:none}
+.cs-meta-label{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--subtle);margin-bottom:.4rem}
+.cs-meta-value{font-size:.97rem;font-weight:600;color:var(--dark);line-height:1.3}
+
+/* COVER */
+.cs-cover{background:var(--bg-cream);border-radius:var(--radius-lg);overflow:hidden;margin-bottom:clamp(3rem,6vw,5rem)}
+
+/* SECTIONS */
+.cs-section{padding:clamp(2.5rem,5vw,4rem) 0;border-bottom:1px solid var(--border)}
+.cs-section:last-of-type{border-bottom:none}
+.cs-section-label{font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin-bottom:.85rem;opacity:.8}
+.cs-section h2{font-family:var(--font-display);font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:800;color:var(--dark);line-height:1.1;letter-spacing:-.012em;margin-bottom:1.5rem}
+.cs-section h2 em{font-style:normal;color:var(--blue)}
+.cs-section p{font-size:1rem;color:var(--text);line-height:1.85;font-weight:300;margin-bottom:1.15rem;max-width:740px}
 .cs-section p:last-child{margin-bottom:0}
-.cs-quote{border-left:3px solid var(--ink);padding:1.25rem 1.5rem;margin:2rem 0;background:var(--bg2)}
-.cs-quote p{font-family:'Cormorant Garant',serif;font-size:1.5rem;font-weight:300;font-style:italic;color:var(--ink);line-height:1.4;margin:0}
-.cs-steps{display:flex;flex-direction:column;gap:0;border:1px solid var(--line);margin:2rem 0}
-.cs-step{display:grid;grid-template-columns:56px 1fr;gap:1.5rem;align-items:start;padding:1.5rem;border-bottom:1px solid var(--line2);transition:background .2s}
-.cs-step:last-child{border-bottom:none}
-.cs-step:hover{background:var(--bg2)}
-.cs-step-num{font-family:'JetBrains Mono',monospace;font-size:.7rem;font-weight:500;color:var(--ink);background:var(--bg3);width:36px;height:36px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
-.cs-step-title{font-size:1rem;font-weight:600;color:var(--ink);margin-bottom:.35rem}
-.cs-step-desc{font-size:.95rem;color:var(--ink3);line-height:1.65;font-weight:300}
-.cs-insights{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);margin:2rem 0}
-.cs-insight{background:var(--bg);padding:1.5rem;transition:background .2s}
-.cs-insight:hover{background:var(--bg2)}
+.cs-section p strong{color:var(--dark);font-weight:600}
+
+/* QUOTE */
+.cs-quote{background:var(--bg-dark);border-radius:var(--radius-lg);padding:2.25rem 2.5rem;margin:2rem 0;position:relative}
+.cs-quote::before{content:'"';font-family:var(--font-display);font-size:5rem;font-weight:800;color:rgba(255,255,255,.06);position:absolute;top:-.5rem;left:1.5rem;line-height:1}
+.cs-quote p{font-family:var(--font-display);font-size:1.35rem;font-weight:700;color:#fff;line-height:1.5;letter-spacing:-.01em;font-style:normal;margin:0;position:relative}
+.cs-quote p em{color:var(--yellow);font-style:normal}
+
+/* INSIGHTS GRID */
+.cs-insights{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-top:2rem}
+.cs-insight{background:var(--bg-warm);border-radius:var(--radius);padding:1.5rem;border:1px solid var(--border)}
 .cs-insight-icon{font-size:1.5rem;margin-bottom:.75rem}
-.cs-insight-title{font-size:.95rem;font-weight:600;color:var(--ink);margin-bottom:.35rem}
-.cs-insight-desc{font-size:.88rem;color:var(--ink3);line-height:1.6;font-weight:300}
-@media(max-width:540px){.cs-insights{grid-template-columns:1fr}}
-.cs-outcomes{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin:2rem 0}
-.cs-outcome{background:var(--bg);padding:1.75rem 1.25rem;text-align:center}
-.cs-outcome-num{font-family:'Cormorant Garant',serif;font-size:3rem;font-weight:300;color:var(--ink);line-height:1;letter-spacing:-.03em;margin-bottom:.35rem}
-.cs-outcome-label{font-size:.88rem;color:var(--ink3);font-weight:300;line-height:1.4}
-@media(max-width:540px){.cs-outcomes{grid-template-columns:1fr 1fr}}
-.cs-nav{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);margin:clamp(3rem,5vw,4rem) 0}
-.cs-nav-item{background:var(--bg);padding:1.75rem;display:flex;flex-direction:column;gap:.4rem;text-decoration:none;transition:background .2s}
-.cs-nav-item:hover{background:var(--bg2)}
+.cs-insight-title{font-family:var(--font-display);font-size:1rem;font-weight:700;color:var(--dark);margin-bottom:.45rem;line-height:1.2}
+.cs-insight-desc{font-size:.88rem;color:var(--muted);line-height:1.65;font-weight:300}
+
+/* STEPS */
+.cs-steps{display:flex;flex-direction:column;gap:0;margin-top:2rem;border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden}
+.cs-step{display:grid;grid-template-columns:80px 1fr;gap:1.5rem;padding:1.75rem 2rem;border-bottom:1px solid var(--border);background:var(--bg)}
+.cs-step:last-child{border-bottom:none}
+.cs-step-num{font-family:var(--font-display);font-size:2rem;font-weight:800;color:var(--blue-10);line-height:1;padding-top:.15rem}
+.cs-step-title{font-family:var(--font-display);font-size:1.05rem;font-weight:700;color:var(--dark);margin-bottom:.4rem}
+.cs-step-desc{font-size:.9rem;color:var(--muted);line-height:1.7;font-weight:300}
+
+/* OUTCOMES */
+.cs-outcomes{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin:2rem 0}
+.cs-outcome{background:var(--blue);border-radius:var(--radius-lg);padding:2rem;text-align:center}
+.cs-outcome-num{font-family:var(--font-display);font-size:2.8rem;font-weight:800;color:#fff;line-height:1;margin-bottom:.4rem}
+.cs-outcome-label{font-size:.82rem;color:rgba(255,255,255,.6);line-height:1.4;font-weight:300}
+
+/* MEDIUM LINK */
+.medium-link{display:inline-flex;align-items:center;gap:.5rem;font-size:.92rem;font-weight:700;color:var(--blue);border:1.5px solid var(--blue-20);background:var(--blue-10);padding:.65rem 1.25rem;border-radius:10px;margin-top:2rem;transition:all .2s}
+.medium-link:hover{background:var(--blue);color:#fff}
+
+/* NAV */
+.cs-nav{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;margin:clamp(3rem,5vw,4.5rem) 0}
+.cs-nav-item{background:var(--bg);padding:1.75rem 2rem;display:flex;flex-direction:column;gap:.4rem;text-decoration:none;transition:background .2s}
+.cs-nav-item:hover{background:var(--bg-warm)}
 .cs-nav-item.next{text-align:right}
-.cs-nav-dir{font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3)}
-.cs-nav-title{font-family:'Cormorant Garant',serif;font-size:1.4rem;font-weight:400;color:var(--ink);line-height:1.2}
-.cs-nav-title em{font-style:italic}
-footer{background:#080C14;padding:2rem clamp(1.25rem,5vw,4rem);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;border-top:1px solid rgba(255,255,255,.05)}
-.footer-logo{font-family:'JetBrains Mono',monospace;font-size:.82rem;letter-spacing:.08em;color:rgba(255,255,255,.3)}
-.footer-copy{font-size:.85rem;color:rgba(255,255,255,.2)}
-.reveal{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease}
-.reveal.visible{opacity:1;transform:none}
-.rv1{transition-delay:.1s}.rv2{transition-delay:.2s}
-@media(max-width:720px){.cs-meta-bar{grid-template-columns:1fr 1fr}}
-@media(max-width:420px){.cs-meta-bar{grid-template-columns:1fr}.cs-nav{grid-template-columns:1fr}}
+.cs-nav-dir{font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--subtle)}
+.cs-nav-title{font-family:var(--font-display);font-size:1.2rem;font-weight:700;color:var(--dark);line-height:1.2}
+.cs-nav-title em{font-style:normal;color:var(--blue)}
+
+footer{background:var(--bg-dark);padding:2.5rem clamp(1.5rem,5vw,4rem)}
+.footer-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem}
+.footer-logo{font-family:var(--font-display);font-size:1rem;font-weight:700;color:#fff;display:flex;align-items:center;gap:.5rem}
+.footer-copy{font-size:.8rem;color:rgba(255,255,255,.2)}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+.d1{transition-delay:.1s}.d2{transition-delay:.18s}
+@media(max-width:860px){.cs-meta{grid-template-columns:1fr 1fr}.cs-insights{grid-template-columns:1fr}.cs-outcomes{grid-template-columns:1fr}}
+@media(max-width:580px){.cs-step{grid-template-columns:48px 1fr}.cs-nav{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-<div class="grid-bg" aria-hidden="true"></div>
-<nav id="navbar">
-  <a href="index.html" class="nav-logo">Satheesh <em>Mankulam</em></a>
-  <div class="nav-right">
-    <a href="index.html#casestudies" class="nav-back">← Case Studies</a>
-    <button class="dark-toggle" id="darkToggle" aria-label="Toggle dark mode">
-      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-    </button>
+
+<nav class="nav" id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><span class="dot"></span>Satheesh <span style="color:var(--blue)">Mankulam</span></a>
+    <a href="index.html#casestudies" class="nav-back">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><path d="M10 3L3 8l7 5"/></svg>
+      Case Studies
+    </a>
   </div>
 </nav>
 
 <main>
 <div class="wrap">
   <div class="cs-header">
-    <div class="cs-breadcrumb reveal"><a href="index.html">Portfolio</a><span>/</span><a href="index.html#casestudies">Case Studies</a><span>/</span>FamilyDose</div>
-    <div class="cs-type reveal">Product Design · Android App · AI-assisted Dev</div>
-    <h1 class="cs-h1 reveal">FamilyDose —<br><em>From Figma to Play Store</em></h1>
-    <p class="cs-lead reveal">How I designed and shipped a full Android medication tracker — solo, as a non-coder — using Figma for design and Claude AI for code generation. My dad kept missing his BP tablets. So I built the solution.</p>
+    <div class="cs-breadcrumb reveal">
+      <a href="index.html">Portfolio</a><span>/</span>
+      <a href="index.html#casestudies">Case Studies</a><span>/</span>
+      FamilyDose
+    </div>
+    <div class="cs-type-badge reveal">Product Design · Android App · AI-assisted Dev</div>
+    <h1 class="cs-h1 reveal">FamilyDose —<br><em>Designers Can Ship Now.</em><br>I Did.</h1>
+    <p class="cs-lead reveal">The story behind FamilyDose — a medication tracker built by a UX designer, powered by stubbornness. How a sick child, a sleepless night, and an AI coding partner became a real app on the Play Store.</p>
   </div>
 </div>
 
 <div class="wrap-wide">
-  <div class="cs-meta-bar reveal">
+  <div class="cs-meta reveal">
     <div class="cs-meta-item"><div class="cs-meta-label">Role</div><div class="cs-meta-value">Designer + Product Owner</div></div>
     <div class="cs-meta-item"><div class="cs-meta-label">Platform</div><div class="cs-meta-value">Android · Google Play</div></div>
     <div class="cs-meta-item"><div class="cs-meta-label">Stack</div><div class="cs-meta-value">Figma · Claude AI · React</div></div>
     <div class="cs-meta-item"><div class="cs-meta-label">Status</div><div class="cs-meta-value">Live · v7.1</div></div>
   </div>
 
-  <div class="cs-cover reveal rv1">
-    <svg viewBox="0 0 900 340" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:900px">
-      <text x="450" y="14" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7.5" fill="var(--ink3)" letter-spacing="2">CASE STUDY 02 — FAMILYDOSE · DESIGN TO PLAY STORE</text>
+  <!-- Cover SVG: phone + fever visual -->
+  <div class="cs-cover reveal">
+    <svg viewBox="0 0 860 280" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:860px">
+      <rect width="860" height="280" fill="#F3F0EC"/>
+      <text x="430" y="22" text-anchor="middle" font-family="Libre Franklin,sans-serif" font-size="7.5" fill="#A1A1AA" letter-spacing="2">CASE STUDY 02 — FAMILYDOSE · FROM FIGMA TO PLAY STORE</text>
 
-      <!-- Step labels at bottom -->
-      <!-- STEP 1: Problem -->
-      <rect x="20" y="28" width="155" height="280" rx="8" fill="var(--bg3)" stroke="var(--line)" stroke-width=".8"/>
-      <text x="97" y="46" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="6.5" fill="var(--ink3)" letter-spacing="1">01 PROBLEM</text>
-      <rect x="34" y="54" width="127" height="10" rx="2" fill="var(--line)"/>
-      <rect x="34" y="70" width="127" height="140" rx="4" fill="var(--bg2)" stroke="var(--line2)" stroke-width=".6"/>
-      <!-- symptom items -->
-      <rect x="42" y="80" width="16" height="16" rx="8" fill="var(--line2)"/>
-      <rect x="64" y="84" width="90" height="6" rx="1" fill="var(--line)"/>
-      <rect x="64" y="94" width="68" height="4" rx="1" fill="var(--line2)"/>
-      <rect x="42" y="108" width="16" height="16" rx="8" fill="var(--line2)"/>
-      <rect x="64" y="112" width="80" height="6" rx="1" fill="var(--line)"/>
-      <rect x="64" y="122" width="70" height="4" rx="1" fill="var(--line2)"/>
-      <rect x="42" y="136" width="16" height="16" rx="8" fill="var(--line)"/>
-      <rect x="64" y="140" width="90" height="6" rx="1" fill="var(--ink)" opacity=".4"/>
-      <rect x="64" y="150" width="60" height="4" rx="1" fill="var(--line2)"/>
-      <rect x="42" y="164" width="16" height="16" rx="8" fill="var(--line2)"/>
-      <rect x="64" y="168" width="75" height="6" rx="1" fill="var(--line)"/>
-      <rect x="64" y="178" width="55" height="4" rx="1" fill="var(--line2)"/>
-      <rect x="34" y="222" width="127" height="22" rx="4" fill="var(--bg3)" stroke="var(--line2)" stroke-width=".6"/>
-      <rect x="42" y="229" width="111" height="7" rx="1" fill="var(--line2)"/>
-      <rect x="34" y="254" width="127" height="28" rx="4" fill="var(--ink)" opacity=".08" stroke="var(--line)" stroke-width=".6"/>
-      <rect x="50" y="264" width="95" height="8" rx="2" fill="var(--line)"/>
+      <!-- Left: problem moment -->
+      <rect x="30" y="38" width="230" height="220" rx="14" fill="#fff" stroke="#E4E4E7" stroke-width="1"/>
+      <text x="145" y="64" text-anchor="middle" font-family="Libre Franklin,sans-serif" font-size="8.5" fill="#71717A" letter-spacing="1">THE PROBLEM MOMENT</text>
+      <rect x="50" y="76" width="190" height="70" rx="10" fill="#FFF5F5" stroke="#FFCFCF" stroke-width=".8"/>
+      <text x="145" y="102" text-anchor="middle" font-family="Libre Franklin,sans-serif" font-size="10" fill="#E8452A">🌡️</text>
+      <rect x="64" y="108" width="162" height="7" rx="2" fill="#F0C0C0"/>
+      <rect x="80" y="120" width="130" height="7" rx="2" fill="#F0C0C0" opacity=".6"/>
+      <text x="145" y="167" text-anchor="middle" font-family="Libre Franklin,sans-serif" font-size="8" fill="#71717A">Which tablet? Last dose?</text>
+      <rect x="50" y="176" width="80" height="60" rx="10" fill="#F9F8F6" stroke="#E4E4E7" stroke-width=".8"/>
+      <text x="90" y="200" text-anchor="middle" font-family="Libre Franklin,sans-serif" font-size="7" fill="#A1A1AA">Paper log</text>
+      <rect x="60" y="208" width="60" height="5" rx="2" fill="#E4E4E7"/>
+      <rect x="60" y="217" width="40" height="5" rx="2" fill="#E4E4E7" opacity=".7"/>
+      <rect x="60" y="226" width="50" height="5" rx="2" fill="#E4E4E7" opacity=".5"/>
+      <rect x="140" y="176" width="80" height="60" rx="10" fill="#FFF5F5" stroke="#FFCFCF" stroke-width=".8"/>
+      <text x="180" y="205" text-anchor="middle" font-family="Libre Franklin,sans-serif" font-size="18">😰</text>
+      <text x="180" y="226" text-anchor="middle" font-family="Libre Franklin,sans-serif" font-size="7" fill="#E8452A">Missing!</text>
 
       <!-- Arrow -->
-      <line x1="183" y1="168" x2="208" y2="168" stroke="var(--line)" stroke-width="1"/>
-      <polygon points="206,164 214,168 206,172" fill="var(--line)"/>
+      <line x1="276" y1="148" x2="316" y2="148" stroke="#0061FF" stroke-width="2"/>
+      <polygon points="314,143 322,148 314,153" fill="#0061FF"/>
+      <text x="296" y="168" text-anchor="middle" font-family="Libre Franklin,sans-serif" font-size="7" fill="#0061FF" font-weight="700">BUILD</text>
 
-      <!-- STEP 2: Figma Design -->
-      <rect x="220" y="28" width="155" height="280" rx="8" fill="var(--bg3)" stroke="var(--line)" stroke-width=".8"/>
-      <text x="297" y="46" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="6.5" fill="var(--ink3)" letter-spacing="1">02 FIGMA</text>
-      <!-- phone wireframe -->
-      <rect x="248" y="54" width="99" height="176" rx="14" fill="var(--bg2)" stroke="var(--line)" stroke-width="1"/>
-      <rect x="253" y="60" width="89" height="165" rx="10" fill="var(--bg)"/>
-      <rect x="284" y="58" width="27" height="5" rx="3" fill="var(--line)" opacity=".4"/>
-      <!-- screen content -->
-      <rect x="260" y="70" width="75" height="8" rx="2" fill="var(--line)"/>
-      <rect x="260" y="84" width="75" height="30" rx="4" fill="var(--bg2)" stroke="var(--line2)" stroke-width=".5"/>
-      <rect x="266" y="91" width="14" height="14" rx="7" fill="var(--line2)"/>
-      <rect x="284" y="93" width="42" height="5" rx="1" fill="var(--line)"/>
-      <rect x="284" y="101" width="32" height="4" rx="1" fill="var(--line2)"/>
-      <rect x="260" y="120" width="75" height="30" rx="4" fill="var(--bg2)" stroke="var(--line2)" stroke-width=".5"/>
-      <rect x="266" y="127" width="14" height="14" rx="7" fill="var(--line2)"/>
-      <rect x="284" y="129" width="38" height="5" rx="1" fill="var(--line)"/>
-      <rect x="284" y="137" width="28" height="4" rx="1" fill="var(--line2)"/>
-      <rect x="260" y="156" width="75" height="30" rx="4" fill="var(--bg)" stroke="var(--ink)" stroke-width=".8"/>
-      <rect x="266" y="163" width="14" height="14" rx="7" fill="var(--line)"/>
-      <rect x="284" y="165" width="44" height="5" rx="1" fill="var(--ink)" opacity=".6"/>
-      <rect x="284" y="173" width="30" height="4" rx="1" fill="var(--line2)"/>
-      <rect x="260" y="194" width="75" height="22" rx="4" fill="var(--ink)" opacity=".85"/>
-      <rect x="278" y="202" width="39" height="6" rx="1" fill="var(--bg2)"/>
-      <!-- style notes -->
-      <rect x="234" y="242" width="127" height="46" rx="4" fill="var(--bg2)" stroke="var(--line2)" stroke-width=".6"/>
-      <rect x="242" y="251" width="60" height="6" rx="1" fill="var(--line)"/>
-      <rect x="242" y="263" width="111" height="4" rx="1" fill="var(--line2)"/>
-      <rect x="242" y="272" width="90" height="4" rx="1" fill="var(--line2)"/>
+      <!-- Center: App screen -->
+      <g transform="translate(322,38)">
+        <rect width="216" height="220" rx="14" fill="#18181B"/>
+        <rect x="70" y="7" width="76" height="7" rx="3" fill="rgba(255,255,255,.1)"/>
+        <rect x="8" y="20" width="200" height="192" rx="12" fill="#fff"/>
+        <rect x="8" y="20" width="200" height="44" rx="12" fill="#0061FF"/>
+        <rect x="8" y="44" width="200" height="20" fill="#0061FF"/>
+        <rect x="20" y="32" width="80" height="8" rx="2" fill="rgba(255,255,255,.7)"/>
+        <rect x="20" y="46" width="54" height="5" rx="2" fill="rgba(255,255,255,.38)"/>
+        <rect x="16" y="74" width="184" height="32" rx="8" fill="#F3F0EC"/>
+        <circle cx="30" cy="90" r="8" fill="#0061FF" opacity=".18"/>
+        <circle cx="30" cy="90" r="4" fill="#0061FF" opacity=".5"/>
+        <rect x="44" y="85" width="60" height="6" rx="2" fill="#18181B"/>
+        <rect x="44" y="94" width="44" height="4" rx="2" fill="#A1A1AA"/>
+        <rect x="16" y="114" width="184" height="36" rx="8" fill="#fff" stroke="#E4E4E7" stroke-width=".8"/>
+        <rect x="26" y="124" width="7" height="7" rx="2" fill="#0061FF"/>
+        <rect x="38" y="125" width="70" height="6" rx="2" fill="#18181B"/>
+        <rect x="38" y="134" width="50" height="4" rx="2" fill="#A1A1AA"/>
+        <rect x="170" y="122" width="24" height="18" rx="6" fill="#06D6A0"/>
+        <rect x="16" y="158" width="184" height="36" rx="8" fill="#fff" stroke="#E4E4E7" stroke-width=".8"/>
+        <rect x="26" y="168" width="7" height="7" rx="2" fill="#FFD166"/>
+        <rect x="38" y="169" width="64" height="6" rx="2" fill="#18181B"/>
+        <rect x="38" y="178" width="42" height="4" rx="2" fill="#A1A1AA"/>
+        <rect x="170" y="166" width="24" height="18" rx="6" fill="#E4E4E7"/>
+        <rect x="8" y="196" width="200" height="16" fill="#F9F8F6"/>
+        <rect x="8" y="196" width="200" height="1.5" fill="#E4E4E7"/>
+        <rect x="24" y="201" width="20" height="7" rx="2" fill="#0061FF" opacity=".15"/>
+        <rect x="28" y="202" width="12" height="5" rx="2" fill="#0061FF" opacity=".6"/>
+      </g>
 
-      <!-- Arrow -->
-      <line x1="383" y1="168" x2="408" y2="168" stroke="var(--line)" stroke-width="1"/>
-      <polygon points="406,164 414,168 406,172" fill="var(--line)"/>
-
-      <!-- STEP 3: Claude AI -->
-      <rect x="420" y="28" width="155" height="280" rx="8" fill="var(--bg3)" stroke="var(--line)" stroke-width=".8"/>
-      <text x="497" y="46" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="6.5" fill="var(--ink3)" letter-spacing="1">03 CLAUDE AI</text>
-      <rect x="434" y="54" width="127" height="170" rx="4" fill="var(--bg2)" stroke="var(--line2)" stroke-width=".6"/>
-      <!-- chat messages -->
-      <rect x="442" y="64" width="100" height="18" rx="4" fill="var(--bg3)" stroke="var(--line2)" stroke-width=".5"/>
-      <rect x="448" y="70" width="88" height="6" rx="1" fill="var(--line2)"/>
-      <rect x="468" y="89" width="84" height="18" rx="4" fill="var(--ink)" opacity=".1" stroke="var(--line)" stroke-width=".5"/>
-      <rect x="474" y="95" width="72" height="6" rx="1" fill="var(--line)"/>
-      <rect x="442" y="114" width="110" height="28" rx="4" fill="var(--bg3)" stroke="var(--line2)" stroke-width=".5"/>
-      <rect x="448" y="121" width="98" height="5" rx="1" fill="var(--line2)"/>
-      <rect x="448" y="130" width="80" height="5" rx="1" fill="var(--line2)"/>
-      <rect x="460" y="150" width="96" height="26" rx="4" fill="var(--ink)" opacity=".1" stroke="var(--line)" stroke-width=".5"/>
-      <rect x="466" y="158" width="84" height="5" rx="1" fill="var(--line)"/>
-      <rect x="466" y="167" width="64" height="4" rx="1" fill="var(--line2)"/>
-      <rect x="442" y="184" width="90" height="18" rx="4" fill="var(--bg3)" stroke="var(--line2)" stroke-width=".5"/>
-      <rect x="448" y="190" width="78" height="5" rx="1" fill="var(--line2)"/>
-      <rect x="448" y="199" width="60" height="4" rx="1" fill="var(--line2)"/>
-      <!-- iterate badge -->
-      <rect x="434" y="236" width="127" height="20" rx="10" fill="var(--bg)" stroke="var(--line)" stroke-width=".8"/>
-      <rect x="444" y="243" width="8" height="8" rx="4" fill="var(--line)"/>
-      <rect x="458" y="245" width="80" height="4" rx="1" fill="var(--line2)"/>
-      <rect x="434" y="262" width="127" height="28" rx="4" fill="var(--bg2)" stroke="var(--line2)" stroke-width=".6"/>
-      <rect x="442" y="271" width="111" height="5" rx="1" fill="var(--line2)"/>
-      <rect x="442" y="281" width="80" height="4" rx="1" fill="var(--line2)"/>
-
-      <!-- Arrow -->
-      <line x1="583" y1="168" x2="608" y2="168" stroke="var(--line)" stroke-width="1"/>
-      <polygon points="606,164 614,168 606,172" fill="var(--line)"/>
-
-      <!-- STEP 4: Play Store (LIVE) -->
-      <rect x="620" y="28" width="260" height="280" rx="8" fill="var(--ink)" opacity=".05" stroke="var(--ink)" stroke-width="1.2"/>
-      <text x="750" y="46" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="6.5" fill="var(--ink3)" letter-spacing="1">04 GOOGLE PLAY · LIVE</text>
-      <!-- phone -->
-      <rect x="648" y="58" width="110" height="196" rx="18" fill="var(--bg3)" stroke="var(--line)" stroke-width="1"/>
-      <rect x="654" y="64" width="98" height="184" rx="13" fill="var(--bg2)"/>
-      <rect x="690" y="61" width="36" height="5" rx="3" fill="var(--line)" opacity=".4"/>
-      <!-- app header -->
-      <rect x="660" y="72" width="86" height="20" rx="4" fill="var(--bg)" stroke="var(--line2)" stroke-width=".5"/>
-      <rect x="664" y="77" width="16" height="10" rx="3" fill="var(--line)"/>
-      <rect x="684" y="79" width="50" height="6" rx="1" fill="var(--line)"/>
-      <!-- tiles -->
-      <rect x="660" y="98" width="40" height="34" rx="5" fill="var(--bg)" stroke="var(--line2)" stroke-width=".5"/>
-      <rect x="666" y="106" width="16" height="12" rx="2" fill="var(--line)"/>
-      <rect x="666" y="121" width="28" height="4" rx="1" fill="var(--line2)"/>
-      <rect x="706" y="98" width="40" height="34" rx="5" fill="var(--bg)" stroke="var(--line2)" stroke-width=".5"/>
-      <rect x="712" y="106" width="16" height="12" rx="2" fill="var(--line)"/>
-      <rect x="712" y="121" width="28" height="4" rx="1" fill="var(--line2)"/>
-      <!-- med cards -->
-      <rect x="660" y="138" width="86" height="18" rx="4" fill="var(--bg)" stroke="var(--line2)" stroke-width=".5"/>
-      <rect x="664" y="142" width="12" height="12" rx="3" fill="var(--line)"/>
-      <rect x="680" y="144" width="50" height="4" rx="1" fill="var(--line)"/>
-      <rect x="680" y="151" width="36" height="3" rx="1" fill="var(--line2)"/>
-      <rect x="660" y="162" width="86" height="18" rx="4" fill="var(--bg)" stroke="var(--line2)" stroke-width=".5"/>
-      <rect x="664" y="166" width="12" height="12" rx="3" fill="var(--line)"/>
-      <rect x="680" y="168" width="44" height="4" rx="1" fill="var(--line)"/>
-      <rect x="680" y="175" width="32" height="3" rx="1" fill="var(--line2)"/>
-      <!-- nav bar -->
-      <rect x="654" y="228" width="98" height="16" rx="0" fill="var(--bg)" stroke="var(--line2)" stroke-width=".5"/>
-      <rect x="664" y="232" width="20" height="6" rx="2" fill="var(--ink)" opacity=".7"/>
-      <rect x="692" y="233" width="14" height="4" rx="1" fill="var(--line2)"/>
-      <rect x="714" y="233" width="14" height="4" rx="1" fill="var(--line2)"/>
-      <rect x="732" y="233" width="10" height="4" rx="1" fill="var(--line2)"/>
-      <!-- live badge + stats -->
-      <rect x="770" y="70" width="100" height="24" rx="4" fill="var(--bg)" stroke="var(--line)" stroke-width=".8"/>
-      <rect x="778" y="78" width="8" height="8" rx="4" fill="#22C55E"/>
-      <rect x="792" y="79" width="70" height="6" rx="1" fill="var(--line)"/>
-      <rect x="770" y="102" width="100" height="14" rx="2" fill="var(--bg2)" stroke="var(--line2)" stroke-width=".6"/>
-      <rect x="778" y="107" width="60" height="4" rx="1" fill="var(--line2)"/>
-      <rect x="770" y="124" width="100" height="50" rx="4" fill="var(--bg2)" stroke="var(--line2)" stroke-width=".6"/>
-      <rect x="778" y="132" width="30" height="18" rx="2" fill="var(--line)"/>
-      <rect x="814" y="134" width="48" height="6" rx="1" fill="var(--line)"/>
-      <rect x="814" y="144" width="40" height="4" rx="1" fill="var(--line2)"/>
-      <rect x="778" y="158" width="84" height="10" rx="2" fill="var(--line2)" opacity=".4"/>
-      <rect x="770" y="184" width="100" height="30" rx="4" fill="var(--bg2)" stroke="var(--line2)" stroke-width=".6"/>
-      <rect x="778" y="193" width="70" height="5" rx="1" fill="var(--line2)"/>
-      <rect x="778" y="202" width="50" height="4" rx="1" fill="var(--line2)"/>
+      <!-- Right: outcome stats -->
+      <rect x="554" y="38" width="276" height="220" rx="14" fill="#0061FF"/>
+      <text x="692" y="70" text-anchor="middle" font-family="Libre Franklin,sans-serif" font-size="9" fill="rgba(255,255,255,.5)" letter-spacing="1">THE OUTCOME</text>
+      <text x="692" y="108" text-anchor="middle" font-family="Libre Franklin,sans-serif" font-size="40" font-weight="800" fill="#fff">v7.1</text>
+      <text x="692" y="124" text-anchor="middle" font-family="Libre Franklin,sans-serif" font-size="8" fill="rgba(255,255,255,.55)">Live on Play Store</text>
+      <line x1="574" y1="140" x2="810" y2="140" stroke="rgba(255,255,255,.12)" stroke-width="1"/>
+      <text x="622" y="168" text-anchor="middle" font-family="Libre Franklin,sans-serif" font-size="24" font-weight="800" fill="#fff">13+</text>
+      <text x="622" y="182" text-anchor="middle" font-family="Libre Franklin,sans-serif" font-size="7.5" fill="rgba(255,255,255,.5)">Features shipped</text>
+      <text x="760" y="168" text-anchor="middle" font-family="Libre Franklin,sans-serif" font-size="24" font-weight="800" fill="#fff">0</text>
+      <text x="760" y="182" text-anchor="middle" font-family="Libre Franklin,sans-serif" font-size="7.5" fill="rgba(255,255,255,.5)">Cloud accounts needed</text>
+      <line x1="692" y1="140" x2="692" y2="200" stroke="rgba(255,255,255,.12)" stroke-width="1"/>
+      <line x1="574" y1="196" x2="810" y2="196" stroke="rgba(255,255,255,.12)" stroke-width="1"/>
+      <text x="692" y="224" text-anchor="middle" font-family="Libre Franklin,sans-serif" font-size="8" fill="rgba(255,255,255,.4)">🎨 Figma  →  🤖 Claude AI  →  📱 Play Store</text>
     </svg>
   </div>
 </div>
 
 <div class="wrap">
 
+  <!-- 01 Problem -->
   <div class="cs-section reveal">
-    <div class="cs-section-num">01 — Problem</div>
-    <h2>My dad kept missing<br><em>his BP tablets.</em></h2>
-    <p>It started personal. My father has been on daily blood pressure medication for years. Despite reminders, he'd forget doses — especially when the routine changed. Existing apps were either too complex, required cloud accounts, or weren't built for families tracking multiple people's medications.</p>
-    <div class="cs-quote"><p>"Every existing app assumed you were tracking your own meds. Nobody had built one for the person managing everyone else's."</p></div>
-    <p>That observation became the brief: <strong>build a medication tracker that works offline, requires no account, and is designed for family-level management</strong> — not just individual use.</p>
+    <div class="cs-section-label">01 — The Story</div>
+    <h2>It started with<br><em>a fever.</em></h2>
+    <p>My kid was sick, and my wife and I were taking turns through the night. Medicines every six hours, but which one did we give last? Was it the tablet or the syrup? Did we already give the second dose? We were exhausted, second-guessing ourselves, scribbling on paper that kept going missing.</p>
+    <p>That night I thought: <strong>this is a UX problem.</strong></p>
+    <div class="cs-quote">
+      <p>"I design interfaces and interaction flows. I know Figma inside out, I can sketch a user flow in my sleep. But ask me to write a line of code? I'd have stared at you blankly — until I built FamilyDose."</p>
+    </div>
+    <p>So I decided to build it myself. A simple medicine log. Free. No subscriptions, no accounts, no nonsense. Just something a tired parent or a caretaker could open and say — yes, this dose was given, at this time.</p>
+    <p>The brief was clear: <strong>build a medication tracker that works offline, requires no account, and is designed for family-level management</strong> — not just individual use.</p>
   </div>
 
+  <!-- 02 Process -->
   <div class="cs-section reveal">
-    <div class="cs-section-num">02 — Research</div>
-    <h2>Understanding what<br><em>families actually need</em></h2>
-    <p>I audited 8 existing medication apps and spoke to family members who manage others' medications. Four clear gaps emerged across every existing solution.</p>
+    <div class="cs-section-label">02 — The Build</div>
+    <h2>Claude as coding partner,<br>wife as<em> tester.</em></h2>
     <div class="cs-insights">
-      <div class="cs-insight"><div class="cs-insight-icon">🔒</div><div class="cs-insight-title">Privacy over convenience</div><div class="cs-insight-desc">Users managing family health data strongly resist cloud sync. The trust barrier of uploading medication records to a stranger's server was the #1 reason people abandoned existing apps.</div></div>
-      <div class="cs-insight"><div class="cs-insight-icon">👨‍👩‍👧</div><div class="cs-insight-title">One person manages many</div><div class="cs-insight-desc">The key user isn't the patient — it's the family member who tracks everyone else. Apps designed for self-tracking create friction when the user is managing their parents, spouse, and child simultaneously.</div></div>
-      <div class="cs-insight"><div class="cs-insight-icon">🔔</div><div class="cs-insight-title">Reminders that actually fire</div><div class="cs-insight-desc">On aggressive battery-management devices (Samsung, Xiaomi, OnePlus), background alarms are frequently killed. This makes medication reminders unreliable on the exact phones most used in India.</div></div>
-      <div class="cs-insight"><div class="cs-insight-icon">📱</div><div class="cs-insight-title">Zero friction to start</div><div class="cs-insight-desc">Every onboarding screen between install and first use is a dropout risk. The app needs to get users to their first medication entry in under 60 seconds — no tutorials, no account creation.</div></div>
+      <div class="cs-insight">
+        <div class="cs-insight-icon">🤖</div>
+        <div class="cs-insight-title">Claude as coding partner</div>
+        <div class="cs-insight-desc">I used Claude and Android Studio as my build environment. I fed it my Figma sketches and described user flows in plain English — the way I'd write a design brief. Claude generated the code.</div>
+      </div>
+      <div class="cs-insight">
+        <div class="cs-insight-icon">👩‍💻</div>
+        <div class="cs-insight-title">Wife as sharpest tester</div>
+        <div class="cs-insight-desc">My wife sat beside me almost every evening — tapping through screens, flagging what felt confusing, questioning flows I'd convinced myself were obvious. No filter, no politeness. Exactly what I needed.</div>
+      </div>
+      <div class="cs-insight">
+        <div class="cs-insight-icon">🌙</div>
+        <div class="cs-insight-title">Sleepless nights on token limits</div>
+        <div class="cs-insight-desc">One of the earliest walls I hit was token limits — they ran out faster than I expected. I spent sleepless nights experimenting. Prompting effectively took me nearly a week to figure out even after going Pro.</div>
+      </div>
+      <div class="cs-insight">
+        <div class="cs-insight-icon">🐛</div>
+        <div class="cs-insight-title">Real bugs from real users</div>
+        <div class="cs-insight-desc">After launch, a close friend picked it up and used it for real. He came back with small but important bugs. We fixed them together. Nothing about this was solo — the product shaped itself around real use.</div>
+      </div>
     </div>
   </div>
 
+  <!-- 03 Challenges -->
   <div class="cs-section reveal">
-    <div class="cs-section-num">03 — Design Process</div>
-    <h2>Figma to Play Store —<br><em>the full journey</em></h2>
+    <div class="cs-section-label">03 — The Hard Parts</div>
+    <h2>Play Store rejections,<br>cryptic errors, and<em> wanting to quit.</em></h2>
     <div class="cs-steps">
-      <div class="cs-step"><div class="cs-step-num">01</div><div><div class="cs-step-title">Information architecture in Figma</div><div class="cs-step-desc">Mapped the core flows: add medication → set schedule → view today's doses → mark as taken → history. Designed 40+ screens including dark mode, empty states, error states, and all edge cases before writing a single line of code.</div></div></div>
-      <div class="cs-step"><div class="cs-step-num">02</div><div><div class="cs-step-title">Family-first data model</div><div class="cs-step-desc">Structured the data model around family members as the top-level entity, not medications. Each member has their own medication list, schedule, and history. Filters and views are member-scoped by default.</div></div></div>
-      <div class="cs-step"><div class="cs-step-num">03</div><div><div class="cs-step-title">AI-assisted development with Claude</div><div class="cs-step-desc">Described each screen and interaction in plain English to Claude. Iterated on the generated React JSX until every screen matched the Figma designs. No formal coding knowledge — just clear UX thinking translated into working code.</div></div></div>
-      <div class="cs-step"><div class="cs-step-num">04</div><div><div class="cs-step-title">Real device testing across Android variants</div><div class="cs-step-desc">Tested specifically on Samsung S23 Ultra, OnePlus, and Xiaomi — notorious for killing background processes. Fixed alarm persistence for all three by implementing foreground service notifications and battery exemption prompts.</div></div></div>
-      <div class="cs-step"><div class="cs-step-num">05</div><div><div class="cs-step-title">Google Play submission and iteration</div><div class="cs-step-desc">Passed Play Store review on the first attempt. Now at v7.1 (versionCode 13) with 13+ features including PIN lock, JSON export/import, trilingual support (English, Malayalam, Hindi), image lightbox, and a 100-entry cap with compression.</div></div></div>
+      <div class="cs-step">
+        <div class="cs-step-num">01</div>
+        <div class="cs-step-content">
+          <div class="cs-step-title">Designing 40+ screens before writing code</div>
+          <div class="cs-step-desc">Mapped the core flows in Figma first: add medication → set schedule → view today's doses → mark as taken → history. Designed all edge cases, empty states, and error states before touching Android Studio.</div>
+        </div>
+      </div>
+      <div class="cs-step">
+        <div class="cs-step-num">02</div>
+        <div class="cs-step-content">
+          <div class="cs-step-title">Figma designs → plain English → Claude → working code</div>
+          <div class="cs-step-desc">Each screen and interaction described in plain language — the way I'd write a design spec. Claude generated the React JSX. I iterated on the generated code until every screen matched the Figma designs.</div>
+        </div>
+      </div>
+      <div class="cs-step">
+        <div class="cs-step-num">03</div>
+        <div class="cs-step-content">
+          <div class="cs-step-title">Real device testing — the screens that looked broken</div>
+          <div class="cs-step-desc">Tested specifically on Samsung, OnePlus, and Xiaomi — notorious for killing background processes. Fixed alarm persistence by implementing foreground service notifications and battery exemption prompts.</div>
+        </div>
+      </div>
+      <div class="cs-step">
+        <div class="cs-step-num">04</div>
+        <div class="cs-step-content">
+          <div class="cs-step-title">Play Store submission — passed review on first attempt</div>
+          <div class="cs-step-desc">There were nights I wanted to quit. Play Store rejections, cryptic build errors. But the moment the app passed review and went live — I sat there staring at a Play Store listing with my name on it.</div>
+        </div>
+      </div>
     </div>
   </div>
 
+  <!-- 04 Outcomes -->
   <div class="cs-section reveal">
-    <div class="cs-section-num">04 — Outcomes</div>
-    <h2>Shipped, live,<br><em>and used by real families</em></h2>
+    <div class="cs-section-label">04 — Outcomes</div>
+    <h2>Shipped, live, and<br><em>used by real families.</em></h2>
     <div class="cs-outcomes">
-      <div class="cs-outcome"><div class="cs-outcome-num">v7.1</div><div class="cs-outcome-label">Current version<br>on Play Store</div></div>
-      <div class="cs-outcome"><div class="cs-outcome-num">13+</div><div class="cs-outcome-label">Features shipped<br>across versions</div></div>
-      <div class="cs-outcome"><div class="cs-outcome-num">0</div><div class="cs-outcome-label">Cloud accounts<br>required</div></div>
+      <div class="cs-outcome">
+        <div class="cs-outcome-num">v7.1</div>
+        <div class="cs-outcome-label">Current version<br>on Play Store</div>
+      </div>
+      <div class="cs-outcome">
+        <div class="cs-outcome-num">13+</div>
+        <div class="cs-outcome-label">Features shipped<br>across versions</div>
+      </div>
+      <div class="cs-outcome">
+        <div class="cs-outcome-num">0</div>
+        <div class="cs-outcome-label">Cloud accounts<br>required</div>
+      </div>
     </div>
-    <p>FamilyDose is <strong>free, offline, and available on Google Play</strong>. My dad hasn't missed a dose since. That's the metric that matters most.</p>
-    <p style="margin-top:1.25rem"><a href="https://play.google.com/store/apps/details?id=com.familydose.app" target="_blank" style="color:var(--ink);font-weight:600;border-bottom:1px solid var(--line);padding-bottom:2px;transition:border-color .2s">View on Google Play →</a></p>
+    <div class="cs-quote" style="background:var(--bg-cream);margin-top:1.5rem">
+      <p style="color:var(--dark)">Whether AI will replace engineers or replace designers is still a loud argument. But what I know from living it is this: <em>that gap — the one that used to keep ideas locked inside Figma forever — is closing fast.</em></p>
+    </div>
+    <p>FamilyDose is <strong>free, offline, and available on Google Play</strong>. Trilingual — English, Malayalam, and Hindi. With PIN lock, JSON export, image lightbox, and 100-entry cap with compression.</p>
+    <p>If you're a designer sitting on an idea, waiting until you "learn to code properly" — stop waiting. <strong>You already understand the user. You already know what good feels like. Go build the thing.</strong></p>
+    <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.75rem">
+      <a href="https://play.google.com/store/apps/details?id=com.familydose.app" target="_blank" class="medium-link">↗ View on Google Play</a>
+    </div>
+    <a href="https://medium.com/design-bootcamp/designers-can-ship-now-i-did-571eccf9be78" target="_blank" class="medium-link" style="margin-left:1rem">Read the full article on Medium →</a>
   </div>
 
   <div class="cs-nav reveal">
     <a href="case-google-maps.html" class="cs-nav-item">
       <div class="cs-nav-dir">← Previous</div>
-      <div class="cs-nav-title"><em>Google Maps</em> × Android Auto</div>
+      <div class="cs-nav-title">Google Maps × <em>Android Auto</em></div>
     </a>
-    <a href="case-idrive.html" class="cs-nav-item next">
+    <a href="case-rapido.html" class="cs-nav-item next">
       <div class="cs-nav-dir">Next →</div>
-      <div class="cs-nav-title">IDrive India —<br><em>Product UX</em></div>
+      <div class="cs-nav-title">Rapido — <em>Tapping for Nothing</em></div>
     </a>
   </div>
-
 </div>
 </main>
 
-<footer><span class="footer-logo">Satheesh Mankulam</span><p class="footer-copy">© 2025 · UX Designer · Bangalore</p></footer>
+<footer>
+  <div class="footer-inner">
+    <a href="index.html" class="footer-logo"><span style="width:8px;height:8px;border-radius:50%;background:#0061FF;display:inline-block"></span>Satheesh Mankulam</a>
+    <span class="footer-copy">© 2025 · UX Designer · Bangalore</span>
+  </div>
+</footer>
+
 <script>
-const html=document.documentElement,t=document.getElementById('darkToggle'),s=localStorage.getItem('sm-theme')||'light';html.setAttribute('data-theme',s);
-t.addEventListener('click',()=>{const n=html.getAttribute('data-theme')==='light'?'dark':'light';html.setAttribute('data-theme',n);localStorage.setItem('sm-theme',n)});
-window.addEventListener('scroll',()=>document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>20),{passive:true});
-const obs=new IntersectionObserver(e=>e.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}}),{threshold:0.08});
+const nav=document.getElementById('navbar');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>20),{passive:true});
+const obs=new IntersectionObserver(e=>e.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target)}}),{threshold:0.08});
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 </script>
 </body>
