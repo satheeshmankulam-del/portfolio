@@ -4,14 +4,13 @@
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/png" href="favicon.png">
 <title>What a Download Taught Me About Micro-Friction | Satheesh Mankulam</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-<style>:root{--blue:#0061FF;--blue-d:#0050CC;--blue-10:#EBF2FF;--blue-20:#D1E4FF;--yellow:#FFD166;--dark:#18181B;--text:#27272A;--muted:#71717A;--subtle:#A1A1AA;--border:#E4E4E7;--border-warm:#E8E3DB;--bg:#FFFFFF;--bg-warm:#F9F8F6;--bg-cream:#F3F0EC;--bg-dark:#18181B;--radius:14px;--radius-lg:22px;--shadow:0 2px 12px rgba(0,0,0,.06);--shadow-md:0 8px 32px rgba(0,0,0,.1);--font-display:'Libre Franklin',sans-serif;--font-body:'Libre Franklin',sans-serif}
+
+<style>:root{--blue:#0061FF;--blue-d:#0050CC;--blue-10:#EBF2FF;--blue-20:#D1E4FF;--yellow:#FFD166;--dark:#ECECF4;--text:#ECECF4;--muted:#7A7A90;--subtle:#3C3C50;--border:rgba(255,255,255,.08);--border-warm:rgba(255,255,255,.07);--bg:#0C0C10;--bg-warm:#141418;--bg-cream:#1C1C24;--bg-dark:#080810;--radius:14px;--radius-lg:22px;--shadow:0 2px 12px rgba(0,0,0,.4);--shadow-md:0 8px 32px rgba(0,0,0,.6);--font-display:'Helvetica Neue',Helvetica,-apple-system,Arial,sans-serif;--font-body:'Helvetica Neue',Helvetica,-apple-system,Arial,sans-serif}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;font-size:16px;-webkit-font-smoothing:antialiased}
 body{font-family:var(--font-body);background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
 a{color:inherit;text-decoration:none}ul{list-style:none}
-.nav{position:fixed;top:0;left:0;right:0;z-index:500;height:68px;display:flex;align-items:center;background:rgba(255,255,255,.9);backdrop-filter:blur(20px);border-bottom:1px solid transparent;transition:border-color .3s,box-shadow .3s;padding:0 clamp(1.5rem,5vw,4rem)}
+.nav{position:fixed;top:0;left:0;right:0;z-index:500;height:68px;display:flex;align-items:center;background:rgba(12,12,16,.92);backdrop-filter:blur(20px);border-bottom:1px solid transparent;transition:border-color .3s,box-shadow .3s;padding:0 clamp(1.5rem,5vw,4rem)}
 .nav.scrolled{border-color:#E4E4E7;box-shadow:0 2px 12px rgba(0,0,0,.06)}
 .nav-inner{max-width:1100px;width:100%;margin:0 auto;display:flex;align-items:center;justify-content:space-between}
 .nav-logo{font-family:var(--font-display);font-size:1.1rem;font-weight:700;color:var(--dark);display:flex;align-items:center;gap:.5rem}
@@ -105,7 +104,27 @@ footer{background:var(--bg-dark);padding:2.5rem clamp(1.5rem,5vw,4rem);margin-to
 .reveal.in{opacity:1;transform:none}
 .d1{transition-delay:.1s}.d2{transition-delay:.2s}
 @media(max-width:720px){.cs-meta{grid-template-columns:1fr 1fr}.cs-nav{grid-template-columns:1fr}}
-@media(max-width:420px){.cs-meta{grid-template-columns:1fr}}</style>
+@media(max-width:420px){.cs-meta{grid-template-columns:1fr}}
+/* ── DARK THEME OVERRIDES ── */
+body{background:#0C0C10;color:#ECECF4}
+.nav-logo,.nav-logo span{color:#ECECF4!important}
+.nav-back{color:rgba(255,255,255,.45)!important}
+.nav-back:hover{color:#fff!important;background:rgba(255,255,255,.06)!important}
+.cs-step{background:#141418!important}
+.cs-section p strong{color:#fff!important}
+.cs-meta{background:#141418!important}
+.cs-nav-item{background:#0C0C10!important}
+.cs-nav-item:hover{background:#141418!important}
+.cs-nav-title{color:#ECECF4!important}
+.cs-nav-dir{color:#3C3C50!important}
+.medium-link{background:rgba(0,97,255,.12)!important;border-color:rgba(0,97,255,.28)!important;color:#60A5FF!important}
+.medium-link:hover{background:var(--blue)!important;color:#fff!important}
+footer{background:#080810!important}
+.footer-inner a,.footer-copy{color:rgba(255,255,255,.25)!important}
+.footer-inner a:hover{color:rgba(255,255,255,.6)!important}
+.cs-cover{background:#141418!important}
+.wrap-wide .cs-meta{border-color:rgba(255,255,255,.08)!important}
+</style>
 </head>
 <body>
 <nav class="nav" id="navbar"><div class="nav-inner"><a href="index.html" class="nav-logo"><span class="dot"></span>Satheesh M.</a><a href="index.html#casestudies" class="nav-back"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><path d="M10 3L3 8l7 5"/></svg> Case Studies</a></div></nav>
@@ -126,7 +145,7 @@ footer{background:var(--bg-dark);padding:2.5rem clamp(1.5rem,5vw,4rem);margin-to
   <div class="cs-section reveal"><div class="cs-section-label">01 — Problem</div><h2>The interaction that<br><em>broke everything</em></h2><div class="cs-quote"><p>Micro-friction doesn't announce itself. It accumulates quietly — tap by tap, second by second — until one day the user just stops.</p></div><p>The download button was grey. I clicked it. Nothing happened. I clicked again. Still nothing. A spinner appeared — but only after 3 clicks, so I now had 3 downloads queued. This is micro-friction: a small interaction failure that, in isolation, seems trivial. But it happened on a product I used daily, at a moment of high intent, and it broke my trust in a way I couldn't fully explain. That's worth studying.</p></div>
   <div class="cs-section reveal"><div class="cs-section-label">02 — Research</div><h2>How micro-friction<br><em>accumulates invisibly</em></h2><div class="cs-insights"><div class="cs-insight"><div class="cs-insight-icon">🔍</div><div class="cs-insight-title">Single-instance blindness</div><div class="cs-insight-desc">Any single micro-friction moment seems trivial. The loading delay, the unclear button state, the missing feedback — each is too small to consciously register as a problem.</div></div><div class="cs-insight"><div class="cs-insight-icon">💡</div><div class="cs-insight-title">Cumulative trust erosion</div><div class="cs-insight-desc">But micro-friction accumulates. Each small failure deposits a tiny amount of distrust. After enough deposits, the product feels unreliable — even if no single moment was obviously broken.</div></div><div class="cs-insight"><div class="cs-insight-icon">📐</div><div class="cs-insight-title">Intent amplification</div><div class="cs-insight-desc">Friction hurts more when intent is high. A broken download button during casual browsing is annoying. The same broken button when you urgently need a file feels catastrophic.</div></div><div class="cs-insight"><div class="cs-insight-icon">⚡</div><div class="cs-insight-title">No visual feedback = no confirmation</div><div class="cs-insight-desc">The root cause of most micro-friction is missing feedback. Users need to know their action was received. Without confirmation, they act again — creating duplicate actions and confusion.</div></div></div></div>
   <div class="cs-section reveal"><div class="cs-section-label">03 — Design Process</div><h2>Eliminating micro-friction<br><em>at the source</em></h2><div class="cs-steps"><div class="cs-step"><div class="cs-step-num">01</div><div class="cs-step-content"><div class="cs-step-title">Identify the core friction point</div><div class="cs-step-desc">Mapped the user journey to find exactly where and why the experience breaks down, focusing on the highest-impact intervention point.</div></div></div><div class="cs-step"><div class="cs-step-num">02</div><div class="cs-step-content"><div class="cs-step-title">Research existing patterns</div><div class="cs-step-desc">Studied how comparable products handle the same scenario and identified design patterns that reduce friction without adding cognitive complexity.</div></div></div><div class="cs-step"><div class="cs-step-num">03</div><div class="cs-step-content"><div class="cs-step-title">Design the intervention</div><div class="cs-step-desc">Created wireframes targeting the core problem. Prioritised the simplest change that produces the biggest experiential improvement.</div></div></div><div class="cs-step"><div class="cs-step-num">04</div><div class="cs-step-content"><div class="cs-step-title">Publish &amp; validate thinking</div><div class="cs-step-desc">Documented analysis and solution in a Medium article, inviting critique from the broader UX community via Design Bootcamp.</div></div></div></div></div>
-  <div class="cs-section reveal"><div class="cs-section-label">04 — Outcomes</div><h2>Why micro-friction<br><em>matters</em></h2><div class="cs-outcomes"><div class="cs-outcome"><div class="cs-outcome-num">1</div><div class="cs-outcome-label">Interaction that<br>started the study</div></div><div class="cs-outcome"><div class="cs-outcome-num">∞</div><div class="cs-outcome-label">Trust moments affected<br>by each small failure</div></div><div class="cs-outcome"><div class="cs-outcome-num">0</div><div class="cs-outcome-label">Acceptable interactions<br>without visual feedback</div></div></div><p>Micro-friction is the hidden tax that users pay on every interaction with your product. It's invisible in any single session, but it determines whether users stay or leave over the long run.</p><a href="https://medium.com/design-bootcamp" target="_blank" class="medium-link">Read the full article on Medium →</a></div>
+  <div class="cs-section reveal"><div class="cs-section-label">04 — Outcomes</div><h2>Why micro-friction<br><em>matters</em></h2><div class="cs-outcomes"><div class="cs-outcome"><div class="cs-outcome-num">1</div><div class="cs-outcome-label">Interaction that<br>started the study</div></div><div class="cs-outcome"><div class="cs-outcome-num">∞</div><div class="cs-outcome-label">Trust moments affected<br>by each small failure</div></div><div class="cs-outcome"><div class="cs-outcome-num">0</div><div class="cs-outcome-label">Acceptable interactions<br>without visual feedback</div></div></div><p>Micro-friction is the hidden tax that users pay on every interaction with your product. It's invisible in any single session, but it determines whether users stay or leave over the long run.</p><a href="https://medium.com/design-bootcamp/what-a-simple-download-taught-me-about-micro-friction-3de831c69a1a" target="_blank" class="medium-link">Read the full article on Medium →</a></div>
   <div class="cs-nav reveal"><a href="case-linkedin-scheduling.html" class="cs-nav-item"><div class="cs-nav-dir">← Previous</div><div class="cs-nav-title">LinkedIn — <em>Scheduled Post Flow</em></div></a><a href="index.html#casestudies" class="cs-nav-item next"><div class="cs-nav-dir">Next →</div><div class="cs-nav-title">Back to <em>All Case Studies</em></div></a></div>
 </div>
 </main>
