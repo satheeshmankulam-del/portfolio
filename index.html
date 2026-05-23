@@ -758,7 +758,15 @@ const sr=document.querySelector('.stats-row');if(sr)cObs.observe(sr);
 /* Right nav active + scroll */
 const secs=document.querySelectorAll('section[id]');
 const rnls=document.querySelectorAll('.rn-link[data-sec]');
-window.addEventListener('scroll',()=>{let cur='';secs.forEach(s=>{if(window.scrollY+220>=s.offsetTop)cur=s.id});rnls.forEach(a=>a.classList.toggle('active',a.dataset.sec===cur));},{passive:true});
+function updateActiveNav(){
+  const mid=window.scrollY+window.innerHeight*0.4;
+  let cur=secs.length?secs[0].id:'';
+  secs.forEach(s=>{if(s.offsetTop<=mid)cur=s.id;});
+  rnls.forEach(a=>a.classList.toggle('active',a.dataset.sec===cur));
+}
+window.addEventListener('scroll',updateActiveNav,{passive:true});
+window.addEventListener('resize',updateActiveNav,{passive:true});
+updateActiveNav();
 
 /* Expand right nav */
 const rnCh=document.getElementById('rnChev');
