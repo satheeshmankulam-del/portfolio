@@ -1,177 +1,303 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/png" href="favicon.png">
-<title>LinkedIn — The Post That Never Appeared | Satheesh Mankulam</title>
-
+<title>The Post That Never Appeared — Satheesh Mankulam</title>
 <style>
-:root{--blue:#0061FF;--blue-d:#0050CC;--blue-10:#EBF2FF;--blue-20:#D1E4FF;--yellow:#FFD166;--dark:#ECECF4;--text:#ECECF4;--muted:#7A7A90;--subtle:#3C3C50;--border:rgba(255,255,255,.08);--border-warm:rgba(255,255,255,.07);--bg:#0C0C10;--bg-warm:#141418;--bg-cream:#1C1C24;--bg-dark:#080810;--radius:14px;--radius-lg:22px;--shadow:0 2px 12px rgba(0,0,0,.4);--shadow-md:0 8px 32px rgba(0,0,0,.6);--font-display:'Helvetica Neue',Helvetica,-apple-system,Arial,sans-serif;--font-body:'Helvetica Neue',Helvetica,-apple-system,Arial,sans-serif}
+:root{--blue:#0061FF;--blue-d:#0050CC;--blue-10:rgba(0,97,255,.12);--blue-25:rgba(0,97,255,.28);--yellow:#FFD166;--mint:#06D6A0;--red:rgba(239,68,68,.8);--font:'Helvetica Neue',Helvetica,-apple-system,Arial,sans-serif}
+[data-theme="dark"]{--bg:#0C0C10;--bg-card:#141418;--bg-el:#1C1C24;--bg-hover:#22222C;--text:#ECECF4;--muted:#7A7A90;--subtle:#3C3C50;--border:rgba(255,255,255,.07);--blockquote-border:rgba(0,97,255,.5)}
+[data-theme="light"]{--bg:#F5F5F7;--bg-card:#FFFFFF;--bg-el:#EAEAF4;--bg-hover:#E0E0EE;--text:#1A1A2E;--muted:#5C5C74;--subtle:#ABABC4;--border:rgba(0,0,0,.08);--blockquote-border:#0061FF}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;font-size:16px;-webkit-font-smoothing:antialiased}
-body{font-family:var(--font-body);background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
-a{color:inherit;text-decoration:none}ul{list-style:none}
-.nav{position:fixed;top:0;left:0;right:0;z-index:500;height:68px;display:flex;align-items:center;background:rgba(12,12,16,.92);backdrop-filter:blur(20px);border-bottom:1px solid transparent;transition:border-color .3s,box-shadow .3s;padding:0 clamp(1.5rem,5vw,4rem)}
-.nav.scrolled{border-color:#E4E4E7;box-shadow:0 2px 12px rgba(0,0,0,.06)}
-.nav-inner{max-width:1100px;width:100%;margin:0 auto;display:flex;align-items:center;justify-content:space-between}
-.nav-logo{font-family:var(--font-display);font-size:1.1rem;font-weight:700;color:var(--dark);display:flex;align-items:center;gap:.5rem}
-.nav-logo .dot{width:8px;height:8px;border-radius:50%;background:var(--blue);display:inline-block}
-.nav-back{display:inline-flex;align-items:center;gap:.5rem;font-size:.88rem;font-weight:600;color:var(--muted);padding:.45rem .9rem;border-radius:10px;border:1.5px solid var(--border);transition:all .2s}
-.nav-back:hover{color:var(--dark);border-color:var(--dark)}
-.nav-back svg{width:14px;height:14px}
-.dark-toggle{width:36px;height:36px;border-radius:10px;border:1.5px solid var(--border);background:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--muted);transition:all .2s}
-.dark-toggle:hover{border-color:var(--dark);color:var(--dark)}
-.dark-toggle svg{width:16px;height:16px}
-.wrap{max-width:860px;margin:0 auto;padding:0 clamp(1.5rem,5vw,3rem)}
-.wrap-wide{max-width:1100px;margin:0 auto;padding:0 clamp(1.5rem,5vw,3rem)}
+html{-webkit-font-smoothing:antialiased}
+body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;transition:background .3s,color .3s}
+a{text-decoration:none;color:inherit}
+.top-nav{position:fixed;top:0;left:0;right:0;height:54px;background:rgba(12,12,16,.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 clamp(1.5rem,5vw,4rem);z-index:100;transition:background .3s}
+[data-theme="light"] .top-nav{background:rgba(245,245,247,.92)}
+.nav-logo{font-size:.95rem;font-weight:700;color:var(--text);display:flex;align-items:center;gap:.5rem}
+.nav-logo .dot{width:7px;height:7px;border-radius:50%;background:var(--blue)}
+.nav-back{font-size:.82rem;font-weight:600;color:var(--muted);padding:.38rem .75rem;border-radius:7px;transition:all .2s}
+.nav-back:hover{color:var(--blue);background:var(--blue-10)}
+.nav-right{display:flex;align-items:center;gap:.5rem}
+.theme-btn{width:32px;height:32px;border-radius:7px;background:var(--bg-el);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--muted);cursor:pointer;font-size:.85rem;transition:all .2s}
+.theme-btn:hover{color:var(--blue);border-color:var(--blue)}
+.article-wrap{max-width:720px;margin:0 auto;padding:clamp(5rem,10vw,7rem) clamp(1.5rem,5vw,2.5rem) 4rem}
+.pub-badge{display:inline-flex;align-items:center;gap:.5rem;font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);background:var(--blue-10);border:1px solid rgba(0,97,255,.2);padding:.25rem .75rem;border-radius:100px;margin-bottom:1.25rem}
+.pub-badge::before{content:'M';font-size:.7rem;font-weight:800;background:var(--blue);color:#fff;width:16px;height:16px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center}
+.article-title{font-size:clamp(1.75rem,4vw,2.75rem);font-weight:700;color:var(--text);line-height:1.15;letter-spacing:-.018em;margin-bottom:.6rem}
+.article-subtitle{font-size:1.1rem;color:var(--muted);line-height:1.6;margin-bottom:1.5rem}
+.author-bar{display:flex;align-items:center;gap:.75rem;padding:1.1rem 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-bottom:2rem}
+.author-photo{width:40px;height:40px;border-radius:50%;object-fit:cover;object-position:center 15%;flex-shrink:0}
+.author-name{font-size:.9rem;font-weight:600;color:var(--text)}
+.author-meta{font-size:.8rem;color:var(--muted)}
+.article-tags{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:1.75rem}
+.article-tag{font-size:.68rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--blue);background:var(--blue-10);padding:.2rem .55rem;border-radius:100px}
+.featured-img{width:100%;border-radius:12px;margin-bottom:2.5rem;display:block;object-fit:cover;max-height:400px}
 
-/* PAGE HEADER */
-.cs-header{padding:clamp(6rem,10vw,8rem) 0 0}
-.cs-breadcrumb{display:flex;align-items:center;gap:.4rem;font-size:.78rem;font-weight:500;color:var(--subtle);margin-bottom:1.75rem}
-.cs-breadcrumb a{color:var(--subtle);transition:color .2s}.cs-breadcrumb a:hover{color:var(--blue)}
-.cs-breadcrumb span{opacity:.4}
-.cs-type-badge{display:inline-flex;align-items:center;gap:.4rem;background:var(--blue-10);color:var(--blue);font-size:.75rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:.3rem .85rem;border-radius:100px;margin-bottom:1.25rem}
-.cs-h1{font-family:var(--font-display);font-size:clamp(2.8rem,6vw,4.5rem);font-weight:800;line-height:1.05;letter-spacing:-.015em;color:var(--dark);margin-bottom:1.25rem}
-.cs-h1 em{font-style:normal;color:var(--blue)}
-.cs-lead{font-size:1.12rem;color:var(--muted);line-height:1.8;font-weight:300;max-width:660px;margin-bottom:2.5rem}
+.article-body{font-size:1.05rem;line-height:1.85;color:var(--text)}
+.article-body p{margin-bottom:1.4rem}
+.article-body h2{font-size:1.5rem;font-weight:700;color:var(--text);margin:2.5rem 0 1rem;letter-spacing:-.012em}
+.article-body h3{font-size:1.2rem;font-weight:700;color:var(--text);margin:2rem 0 .75rem;letter-spacing:-.01em}
+.article-body strong{font-weight:700;color:var(--text)}
+.article-body em{font-style:italic}
+.article-body blockquote{border-left:3px solid var(--blockquote-border);padding:.5rem 0 .5rem 1.25rem;margin:1.5rem 0;color:var(--muted);font-style:italic;font-size:1.05rem}
+.article-body ul{margin:1rem 0 1.4rem 1.5rem}
+.article-body li{margin-bottom:.5rem;line-height:1.7}
+.article-body hr{border:none;border-top:1px solid var(--border);margin:2.5rem 0}
 
-/* META BAR */
-.cs-meta{display:grid;grid-template-columns:repeat(4,1fr);gap:0;background:var(--bg-dark);border-radius:var(--radius-lg);overflow:hidden;margin-bottom:0}
-.cs-meta-item{padding:1.25rem 1.5rem;border-right:1px solid rgba(255,255,255,.06)}
-.cs-meta-item:last-child{border-right:none}
-.cs-meta-label{font-size:.7rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:.3rem}
-.cs-meta-value{font-size:.95rem;font-weight:600;color:#fff}
+/* Screenshot */
+.screenshot{margin:2rem 0}
+.screenshot img{width:100%;border-radius:10px;border:1px solid var(--border);display:block}
+.screenshot-caption{font-size:.8rem;color:var(--muted);text-align:center;margin-top:.65rem;font-style:italic;line-height:1.5}
 
-/* COVER */
-.cs-cover{background:var(--bg-cream);border-radius:0 0 var(--radius-lg) var(--radius-lg);padding:3rem;display:flex;align-items:center;justify-content:center;min-height:300px;margin-bottom:clamp(3rem,6vw,5rem)}
+/* Before / After comparison */
+.before-after{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin:2rem 0}
+.ba-item{}
+.ba-label{font-size:.7rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.6rem;display:flex;align-items:center;gap:.4rem}
+.ba-label.before{color:#EF4444}
+.ba-label.before::before{content:'';width:8px;height:8px;border-radius:50%;background:#EF4444}
+.ba-label.after{color:var(--mint)}
+.ba-label.after::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--mint)}
+.ba-item img{width:100%;border-radius:10px;border:1px solid var(--border);display:block}
 
-/* SECTIONS */
-.cs-section{padding:clamp(2.5rem,4vw,3.5rem) 0;border-top:1px solid var(--border)}
-.cs-section-label{font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:.75rem;display:flex;align-items:center;gap:.5rem}
-.cs-section-label::before{content:'';display:block;width:16px;height:2px;background:var(--blue);border-radius:2px}
-.cs-section h2{font-family:var(--font-display);font-size:clamp(1.9rem,4vw,2.8rem);font-weight:800;color:var(--dark);line-height:1.1;letter-spacing:-.015em;margin-bottom:1.25rem}
-.cs-section h2 em{font-style:normal;color:var(--blue)}
-.cs-section p{font-size:1.02rem;color:var(--muted);line-height:1.85;margin-bottom:1.2rem;font-weight:300}
-.cs-section p strong{color:var(--text);font-weight:600}
-.cs-section p:last-child{margin-bottom:0}
-.cs-quote{border-left:4px solid var(--blue);padding:1.25rem 1.75rem;margin:2rem 0;background:var(--blue-10);border-radius:0 var(--radius) var(--radius) 0}
-.cs-quote p{font-family:var(--font-display);font-size:1.35rem;font-weight:700;color:var(--dark);line-height:1.35;margin:0;letter-spacing:-.01em}
+/* Heuristics grid */
+.heuristic-list{display:flex;flex-direction:column;gap:.75rem;margin:1.25rem 0 1.75rem}
+.heuristic-item{background:var(--bg-el);border:1px solid var(--border);border-radius:12px;padding:1.1rem 1.25rem;display:grid;grid-template-columns:auto 1fr;gap:1rem;align-items:flex-start}
+.heuristic-icon{font-size:1.1rem;flex-shrink:0;margin-top:.1rem}
+.heuristic-title{font-size:.93rem;font-weight:700;color:var(--text);margin-bottom:.3rem}
+.heuristic-desc{font-size:.84rem;color:var(--muted);line-height:1.6}
 
-/* STEPS */
-.cs-steps{border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;margin:2rem 0}
-.cs-step{display:grid;grid-template-columns:64px 1fr;gap:0;border-bottom:1px solid var(--border);transition:background .2s}
-.cs-step:last-child{border-bottom:none}
-.cs-step:hover{background:var(--bg-warm)}
-.cs-step-num{padding:1.5rem;background:var(--bg-warm);border-right:1px solid var(--border);display:flex;align-items:flex-start;justify-content:center;font-family:var(--font-display);font-size:.8rem;font-weight:700;color:var(--subtle);padding-top:1.75rem}
-.cs-step-content{padding:1.5rem 1.75rem}
-.cs-step-title{font-size:1rem;font-weight:700;color:var(--dark);margin-bottom:.35rem;font-family:var(--font-display)}
-.cs-step-desc{font-size:.92rem;color:var(--muted);line-height:1.65;font-weight:300}
+/* Psychological effects */
+.effects-grid{display:grid;grid-template-columns:1fr 1fr;gap:.85rem;margin:1.25rem 0 1.75rem}
+.effect-card{background:var(--bg-el);border:1px solid var(--border);border-radius:12px;padding:1.1rem 1.25rem;border-left:3px solid rgba(239,68,68,.4)}
+.effect-title{font-size:.9rem;font-weight:700;color:var(--text);margin-bottom:.3rem}
+.effect-desc{font-size:.8rem;color:var(--muted);line-height:1.6}
 
-/* INSIGHTS */
-.cs-insights{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--border);margin:2rem 0}
-.cs-insight{background:var(--bg);padding:1.75rem;transition:background .2s}
-.cs-insight:hover{background:var(--bg-warm)}
-.cs-insight-icon{font-size:1.6rem;margin-bottom:.85rem}
-.cs-insight-title{font-family:var(--font-display);font-size:1rem;font-weight:700;color:var(--dark);margin-bottom:.4rem}
-.cs-insight-desc{font-size:.88rem;color:var(--muted);line-height:1.6;font-weight:300}
-@media(max-width:540px){.cs-insights{grid-template-columns:1fr}}
+/* Second order effects */
+.second-order{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:1.5rem 1.75rem;margin:1.5rem 0}
+.second-order h4{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem}
+.second-order ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.65rem}
+.second-order li{font-size:.92rem;color:var(--muted);line-height:1.65;display:flex;align-items:flex-start;gap:.65rem}
+.second-order li::before{content:'→';color:var(--blue);flex-shrink:0;font-weight:700;margin-top:.05rem}
 
-/* OUTCOMES */
-.cs-outcomes{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--border);margin:2rem 0}
-.cs-outcome{background:var(--bg-warm);padding:2rem 1.5rem;text-align:center}
-.cs-outcome-num{font-family:var(--font-display);font-size:3rem;font-weight:800;color:var(--blue);line-height:1;margin-bottom:.4rem;letter-spacing:-.015em}
-.cs-outcome-label{font-size:.85rem;color:var(--muted);font-weight:300;line-height:1.4}
-@media(max-width:540px){.cs-outcomes{grid-template-columns:1fr 1fr}}
+/* Solution box */
+.solution-box{background:linear-gradient(135deg,rgba(6,214,160,.06),rgba(6,214,160,.03));border:1px solid rgba(6,214,160,.2);border-radius:14px;padding:1.75rem;margin:2rem 0}
+.solution-box h3{font-size:1rem;font-weight:700;color:var(--mint);margin-bottom:.75rem}
+.solution-box p{font-size:.95rem;color:var(--text);line-height:1.75;margin-bottom:.5rem}
+.solution-box p:last-child{margin-bottom:0}
 
-/* NAV PREV/NEXT */
-.cs-nav{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:clamp(3rem,5vw,4rem) 0}
-.cs-nav-item{background:var(--bg-warm);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.75rem;display:flex;flex-direction:column;gap:.35rem;text-decoration:none;transition:all .2s}
-.cs-nav-item:hover{border-color:var(--blue);background:var(--blue-10);transform:translateY(-2px)}
-.cs-nav-item.next{text-align:right}
-.cs-nav-dir{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue)}
-.cs-nav-title{font-family:var(--font-display);font-size:1.2rem;font-weight:700;color:var(--dark);line-height:1.2}
-.cs-nav-title em{font-style:normal;color:var(--blue)}
+/* LinkedIn links */
+.ref-links{display:flex;flex-direction:column;gap:.45rem;margin:1rem 0}
+.ref-link{font-size:.82rem;color:var(--blue);display:flex;align-items:center;gap:.4rem}
+.ref-link:hover{text-decoration:underline}
+.ref-link::before{content:'↗';font-size:.72rem}
 
-/* MEDIUM LINK */
-.medium-link{display:inline-flex;align-items:center;gap:.5rem;font-size:.95rem;font-weight:600;color:var(--blue);border-bottom:2px solid var(--blue-20);padding-bottom:1px;transition:border-color .2s;margin-top:1.25rem}
-.medium-link:hover{border-color:var(--blue)}
-
-footer{background:var(--bg-dark);padding:2.5rem clamp(1.5rem,5vw,4rem);margin-top:0}
-.footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem}
-.footer-logo{font-family:var(--font-display);font-size:1rem;font-weight:700;color:#fff;display:flex;align-items:center;gap:.5rem}
-.footer-copy{font-size:.82rem;color:rgba(255,255,255,.2)}
-
-.reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
-.reveal.in{opacity:1;transform:none}
-.d1{transition-delay:.1s}.d2{transition-delay:.2s}
-@media(max-width:720px){.cs-meta{grid-template-columns:1fr 1fr}.cs-nav{grid-template-columns:1fr}}
-@media(max-width:420px){.cs-meta{grid-template-columns:1fr}}
-
-/* ── DARK THEME OVERRIDES ── */
-body{background:#0C0C10;color:#ECECF4}
-.nav-logo,.nav-logo span{color:#ECECF4!important}
-.nav-back{color:rgba(255,255,255,.45)!important}
-.nav-back:hover{color:#fff!important;background:rgba(255,255,255,.06)!important}
-.cs-step{background:#141418!important}
-.cs-section p strong{color:#fff!important}
-.cs-meta{background:#141418!important}
-.cs-nav-item{background:#0C0C10!important}
-.cs-nav-item:hover{background:#141418!important}
-.cs-nav-title{color:#ECECF4!important}
-.cs-nav-dir{color:#3C3C50!important}
-.medium-link{background:rgba(0,97,255,.12)!important;border-color:rgba(0,97,255,.28)!important;color:#60A5FF!important}
-.medium-link:hover{background:var(--blue)!important;color:#fff!important}
-footer{background:#080810!important}
-.footer-inner a,.footer-copy{color:rgba(255,255,255,.25)!important}
-.footer-inner a:hover{color:rgba(255,255,255,.6)!important}
-.cs-cover{background:#141418!important}
-.wrap-wide .cs-meta{border-color:rgba(255,255,255,.08)!important}
+.article-nav{border-top:1px solid var(--border);padding-top:2rem;margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap}
+.anav-btn{display:inline-flex;align-items:center;gap:.4rem;font-size:.84rem;font-weight:600;color:var(--muted);background:var(--bg-el);padding:.5rem 1rem;border-radius:8px;border:1px solid var(--border);transition:all .2s}
+.anav-btn:hover{color:var(--blue);border-color:var(--blue-25);background:var(--blue-10)}
+footer{padding:1.5rem clamp(1.5rem,5vw,4rem);border-top:1px solid var(--border);display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem;font-size:.78rem;color:var(--subtle)}
+.sa{opacity:0;filter:blur(6px);transform:translateY(16px);transition:opacity .6s ease,filter .6s ease,transform .6s ease}
+.sa.in{opacity:1;filter:blur(0);transform:translateY(0)}
+.sa.d1{transition-delay:.07s}.sa.d2{transition-delay:.14s}.sa.d3{transition-delay:.21s}
+@media(max-width:600px){.before-after,.effects-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-<nav class="nav" id="navbar"><div class="nav-inner"><a href="index.html" class="nav-logo"><span class="dot"></span>Satheesh M.</a><a href="index.html#casestudies" class="nav-back"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><path d="M10 3L3 8l7 5"/></svg> Case Studies</a></div></nav>
-<main>
-<div class="wrap">
-  <div class="cs-header">
-    <div class="cs-breadcrumb reveal"><a href="index.html">Portfolio</a><span>/</span><a href="index.html#casestudies">Case Studies</a><span>/</span>LinkedIn</div>
-    <div class="cs-type-badge reveal">Social UX · Feedback Design · Publishing Flow</div>
-    <h1 class="cs-h1 reveal">The Post That<br><em>Never Appeared</em></h1>
-    <p class="cs-lead reveal">A quiet UX failure inside LinkedIn's content publishing flow — where a successful submission triggers silence instead of confirmation, and users are left wondering if anything happened at all.</p>
+
+<nav class="top-nav">
+  <a href="index.html" class="nav-logo"><span class="dot"></span>Satheesh Mankulam</a>
+  <div class="nav-right">
+    <a href="writings.html" class="nav-back">← All Writings</a>
+    <button class="theme-btn" id="tb">☀</button>
   </div>
+</nav>
+
+<div class="article-wrap">
+
+  <div class="pub-badge sa">Design Bootcamp · Medium</div>
+  <h1 class="article-title sa d1">The Post That Never Appeared</h1>
+  <p class="article-subtitle sa d1">A UX Story of Silence on LinkedIn</p>
+
+  <div class="article-tags sa d1">
+    <span class="article-tag">Feedback Design</span>
+    <span class="article-tag">LinkedIn</span>
+    <span class="article-tag">System Status</span>
+    <span class="article-tag">UX Psychology</span>
+  </div>
+
+  <div class="author-bar sa d2">
+    <img src="satheesh-photo.jpg" class="author-photo" alt="Satheesh Mankulam">
+    <div>
+      <div class="author-name">Satheesh Mankulam</div>
+      <div class="author-meta">Nov 21, 2025 <span style="margin:0 .25rem;color:var(--subtle)">·</span> 2 min read <span style="margin:0 .25rem;color:var(--subtle)">·</span> Design Bootcamp</div>
+    </div>
+    <a href="https://medium.com/design-bootcamp/the-post-that-never-appeared-a-ux-story-of-silence-on-linkedin-89e9f585cdc9" target="_blank" style="margin-left:auto;font-size:.78rem;font-weight:600;color:var(--blue)">Read on Medium ↗</a>
+  </div>
+
+  <img src="https://miro.medium.com/v2/da:true/resize:fit:1200/1*vfx7xzUVBSxEx5Ghnon-Jg.gif"
+       alt="The Post That Never Appeared" class="featured-img sa d2"
+       onerror="this.style.display='none'">
+
+  <div class="article-body">
+
+    <p class="sa">I posted an article into a <strong>LinkedIn group dedicated to mobile app design</strong>, hoping to spark discussion and share some insights with fellow designers.</p>
+    <p class="sa">I clicked <strong>"Post"</strong> and saw the message:</p>
+
+    <blockquote class="sa">Thanks for your post! It's been submitted to the group admin for approval. View post</blockquote>
+
+    <p class="sa">Simple. Clear. Encouraging.</p>
+    <p class="sa">I expected the post to either show up soon… or receive some type of update.</p>
+    <p class="sa">Then I waited.</p>
+
+    <h3 class="sa">The Silence</h3>
+    <p class="sa">Hours passed. No notification. No post in the group feed. No status indicator in my activity.</p>
+    <p class="sa">I refreshed the group. I checked my notifications again. I searched my own profile. Still nothing.</p>
+    <p class="sa"><em>Is my post still pending review?</em></p>
+    <ul class="sa">
+      <li>Was it rejected?</li>
+      <li>Did I violate a rule?</li>
+      <li>Should I repost it?</li>
+      <li>Did it glitch?</li>
+    </ul>
+    <p class="sa">This uncertainty wasn't just confusing. It was <strong>psychologically uncomfortable.</strong></p>
+
+    <h3 class="sa">Behind the Curtain</h3>
+    <p class="sa">What actually happened? A moderator reviewed the post and declined it. But LinkedIn's system does not send a rejection message for group posts.</p>
+    <p class="sa">So my post simply remained invisible.</p>
+    <p class="sa">This isn't unusual for LinkedIn — in fact, even declined connection requests work the same way. When someone declines your invite:</p>
+    <ul class="sa">
+      <li>You get no notification</li>
+      <li>The only clue is that the "Connect" button reappears on their profile</li>
+    </ul>
+    <p class="sa">The platform intentionally avoids creating awkward moments between professionals.</p>
+
+    <h3 class="sa">UX Breakdown — Heuristics &amp; Psychology Violated</h3>
+    <p class="sa">While the intention may be good, the silence breaks several UX principles:</p>
+
+    <div class="heuristic-list">
+      <div class="heuristic-item sa">
+        <div class="heuristic-icon">👁</div>
+        <div>
+          <div class="heuristic-title">Visibility of System Status</div>
+          <div class="heuristic-desc">Users should always know what is happening. Here, the system hides the outcome entirely.</div>
+        </div>
+      </div>
+      <div class="heuristic-item sa">
+        <div class="heuristic-icon">🎛</div>
+        <div>
+          <div class="heuristic-title">User Control &amp; Freedom</div>
+          <div class="heuristic-desc">Without feedback, I cannot improve, adjust, or resubmit.</div>
+        </div>
+      </div>
+      <div class="heuristic-item sa">
+        <div class="heuristic-icon">🛡</div>
+        <div>
+          <div class="heuristic-title">Error Prevention</div>
+          <div class="heuristic-desc">If I violated a rule, I have no idea which one.</div>
+        </div>
+      </div>
+      <div class="heuristic-item sa">
+        <div class="heuristic-icon">🌍</div>
+        <div>
+          <div class="heuristic-title">Match Between System &amp; Real-World Expectations</div>
+          <div class="heuristic-desc">In reality, actions usually have outcomes — here, the outcome is invisible.</div>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="sa">Psychological Effects</h3>
+    <div class="effects-grid">
+      <div class="effect-card sa">
+        <div class="effect-title">Ambiguity Anxiety</div>
+        <div class="effect-desc">Not knowing is stressful.</div>
+      </div>
+      <div class="effect-card sa">
+        <div class="effect-title">Loss of Agency</div>
+        <div class="effect-desc">No way to understand or correct the issue.</div>
+      </div>
+      <div class="effect-card sa">
+        <div class="effect-title">Learned Helplessness</div>
+        <div class="effect-desc">After multiple silent declines, users stop posting.</div>
+      </div>
+      <div class="effect-card sa">
+        <div class="effect-title">Trust Erosion</div>
+        <div class="effect-desc">Platform feels unpredictable.</div>
+      </div>
+    </div>
+
+    <h3 class="sa">Second-Order Effects — The Hidden Consequences</h3>
+    <p class="sa">The design choice seems small, but its ripple effects are big:</p>
+    <div class="second-order sa">
+      <h4>Downstream impact</h4>
+      <ul>
+        <li>Users post less because they fear being ignored.</li>
+        <li>Moderators get more repetitive or off-topic posts due to lack of feedback.</li>
+        <li>New members feel unwelcome due to lack of response.</li>
+      </ul>
+    </div>
+    <p class="sa">A positive, privacy-protective model ends up creating unintentional friction.</p>
+
+    <h3 class="sa">The Solution — A Better, More Transparent UX</h3>
+    <p class="sa">Instead of sending explicit rejection messages, a gentle, expectation-setting approach could fix the confusion while maintaining professionalism.</p>
+
+    <!-- Before / After side by side (close-up) -->
+    <div class="before-after sa">
+      <div class="ba-item">
+        <div class="ba-label before">Before</div>
+        <img src="linkedin-post-before-close.png" alt="Before — current LinkedIn notification: Thanks for your post! It's been submitted to the group admin for approval.">
+      </div>
+      <div class="ba-item">
+        <div class="ba-label after">After</div>
+        <img src="linkedin-post-after-close.png" alt="After — improved LinkedIn notification with context about rejection policy">
+      </div>
+    </div>
+
+    <!-- Full-page views -->
+    <div class="screenshot sa">
+      <img src="linkedin-post-before-full.png" alt="Before — LinkedIn full desktop view showing the original notification">
+      <p class="screenshot-caption">Current state — the "submitted to admin" message gives no signal about what happens if declined</p>
+    </div>
+    <div class="screenshot sa">
+      <img src="linkedin-post-after-full.png" alt="After — LinkedIn full desktop view showing the improved, transparent notification">
+      <p class="screenshot-caption">Proposed state — one additional line sets expectations: "LinkedIn doesn't notify members when a post is declined." No awkwardness. No confusion.</p>
+    </div>
+
+    <div class="solution-box sa">
+      <h3>Why this works</h3>
+      <p>The notification no longer leaves the user guessing. By proactively explaining the platform's decline policy within the same confirmation message, LinkedIn can protect professional relationships while eliminating ambiguity anxiety entirely.</p>
+      <p>One sentence. Zero awkwardness. Complete transparency.</p>
+    </div>
+
+    <h3 class="sa">Related LinkedIn Help Articles</h3>
+    <div class="ref-links sa">
+      <a href="https://www.linkedin.com/help/linkedin/answer/a550319" target="_blank" class="ref-link">linkedin.com/help — Group post approval process</a>
+      <a href="https://www.linkedin.com/help/linkedin/answer/a551360" target="_blank" class="ref-link">linkedin.com/help — Group moderation settings</a>
+      <a href="https://www.linkedin.com/help/linkedin/topic/a153002" target="_blank" class="ref-link">linkedin.com/help — Managing group posts &amp; notifications</a>
+    </div>
+
+  </div>
+
+  <div class="article-nav sa">
+    <a href="writings.html" class="anav-btn">← All Writings</a>
+    <a href="https://medium.com/design-bootcamp/the-post-that-never-appeared-a-ux-story-of-silence-on-linkedin-89e9f585cdc9" target="_blank" class="anav-btn">Read on Medium ↗</a>
+    <a href="index.html" class="anav-btn">Portfolio →</a>
+  </div>
+
 </div>
-<div class="wrap-wide">
-  <div class="cs-meta reveal"><div class="cs-meta-item"><div class="cs-meta-label">Product</div><div class="cs-meta-value">LinkedIn</div></div><div class="cs-meta-item"><div class="cs-meta-label">Type</div><div class="cs-meta-value">Feedback Design Audit</div></div><div class="cs-meta-item"><div class="cs-meta-label">Focus</div><div class="cs-meta-value">Post-action feedback</div></div><div class="cs-meta-item"><div class="cs-meta-label">Published</div><div class="cs-meta-value">Medium · Design Bootcamp</div></div></div>
-  <div class="cs-cover reveal"><svg viewBox="0 0 860 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:860px">
-    <rect width="860" height="220" rx="14" fill="#F9F8F6"/>
-    <text x="430" y="26" text-anchor="middle" font-family="Syne,sans-serif" font-size="8" fill="#A1A1AA" letter-spacing="2">CASE STUDY 04 — LINKEDIN · POST SUBMISSION FEEDBACK GAP</text>
-    <rect x="40" y="50" width="360" height="140" rx="12" fill="#fff" stroke="#E4E4E7" stroke-width="1"/>
-    <rect x="56" y="68" width="180" height="12" rx="3" fill="#18181B"/>
-    <rect x="56" y="88" width="300" height="8" rx="2" fill="#E4E4E7"/>
-    <rect x="56" y="102" width="260" height="8" rx="2" fill="#E4E4E7"/>
-    <rect x="56" y="120" width="120" height="32" rx="8" fill="#0061FF"/>
-    <rect x="64" y="131" width="104" height="10" rx="3" fill="rgba(255,255,255,.6)"/>
-    <rect x="190" y="120" width="80" height="32" rx="8" fill="#F3F0EC" stroke="#E4E4E7" stroke-width=".8"/>
-    <rect x="56" y="164" width="160" height="8" rx="2" fill="#EBF2FF"/>
-    <rect x="460" y="50" width="360" height="140" rx="12" fill="#0061FF" opacity=".08" stroke="#0061FF" stroke-width="1.2"/>
-    <text x="640" y="80" text-anchor="middle" font-family="Syne,sans-serif" font-size="7" fill="#0061FF" letter-spacing="1" font-weight="700">REDESIGNED</text>
-    <rect x="476" y="90" width="300" height="8" rx="2" fill="#0061FF" opacity=".3"/>
-    <rect x="476" y="106" width="240" height="8" rx="2" fill="#0061FF" opacity=".2"/>
-    <rect x="476" y="128" width="140" height="32" rx="8" fill="#0061FF"/>
-    <rect x="484" y="139" width="124" height="10" rx="3" fill="rgba(255,255,255,.6)"/>
-    <rect x="476" y="170" width="100" height="8" rx="2" fill="#0061FF" opacity=".2"/>
-    <circle cx="796" cy="104" r="5" fill="#0061FF" opacity=".4"/>
-    <circle cx="812" cy="90" r="4" fill="#0061FF" opacity=".25"/>
-    <circle cx="780" cy="88" r="3" fill="#0061FF" opacity=".3"/>
-  </svg></div>
-</div>
-<div class="wrap">
-  <div class="cs-section reveal"><div class="cs-section-label">01 — Problem</div><h2>You posted. But<br><em>did anything happen?</em></h2><div class="cs-quote"><p>The absence of feedback is itself a form of feedback — and it's always bad feedback.</p></div><p>You write a LinkedIn post. You tap the 'Post' button. The screen transitions back to your feed. Your post is not visible. There's no confirmation toast. No success message. No indication it's being processed. Just the feed — unchanged. This is a classic feedback gap. The user completed an action but the product provides no acknowledgement. The result is anxiety, repeated tapping, and broken trust.</p></div>
-  <div class="cs-section reveal"><div class="cs-section-label">02 — Research</div><h2>Why feedback gaps<br><em>are uniquely damaging</em></h2><div class="cs-insights"><div class="cs-insight"><div class="cs-insight-icon">🔍</div><div class="cs-insight-title">Uncertainty creates anxiety</div><div class="cs-insight-desc">When a high-effort action receives no confirmation, users immediately question whether it worked. Did it post? Did it fail silently? Should they try again?</div></div><div class="cs-insight"><div class="cs-insight-icon">💡</div><div class="cs-insight-title">Leads to duplicate posts</div><div class="cs-insight-desc">Without confirmation, many users tap 'Post' again — resulting in duplicate posts. LinkedIn's algorithmic processing delay amplifies this significantly.</div></div><div class="cs-insight"><div class="cs-insight-icon">📐</div><div class="cs-insight-title">Trust damage at scale</div><div class="cs-insight-desc">LinkedIn's professional context makes this worse. A user posting career updates or company news needs to know their content went through. The stakes are higher here.</div></div><div class="cs-insight"><div class="cs-insight-icon">⚡</div><div class="cs-insight-title">Easy fix, significant impact</div><div class="cs-insight-desc">A simple post-submission toast with 'Your post is live — view it here' would eliminate virtually all the anxiety this gap creates. The technical lift is minimal.</div></div></div></div>
-  <div class="cs-section reveal"><div class="cs-section-label">03 — Design Process</div><h2>Closing the<br><em>feedback gap</em></h2><div class="cs-steps"><div class="cs-step"><div class="cs-step-num">01</div><div class="cs-step-content"><div class="cs-step-title">Research &amp; audit existing patterns</div><div class="cs-step-desc">Mapped the current user flow, identified friction points, and documented where users encounter problems through direct observation and competitive analysis.</div></div></div><div class="cs-step"><div class="cs-step-num">02</div><div class="cs-step-content"><div class="cs-step-title">Define the core design problem</div><div class="cs-step-desc">Synthesised research into a clear problem statement. Identified the highest-impact intervention point where a design change would most reduce friction.</div></div></div><div class="cs-step"><div class="cs-step-num">03</div><div class="cs-step-content"><div class="cs-step-title">Design the solution</div><div class="cs-step-desc">Created wireframes and interaction models that addressed the core problem. Iterated through multiple approaches, selecting the one with the best clarity-to-complexity ratio.</div></div></div><div class="cs-step"><div class="cs-step-num">04</div><div class="cs-step-content"><div class="cs-step-title">Document &amp; publish findings</div><div class="cs-step-desc">Compiled the analysis, before/after comparisons, and design rationale into a published case study on Medium in the Design Bootcamp publication.</div></div></div></div></div>
-  <div class="cs-section reveal"><div class="cs-section-label">04 — Outcomes</div><h2>The principle behind<br><em>the fix</em></h2><div class="cs-outcomes"><div class="cs-outcome"><div class="cs-outcome-num">1</div><div class="cs-outcome-label">Toast notification<br>eliminates all doubt</div></div><div class="cs-outcome"><div class="cs-outcome-num">0</div><div class="cs-outcome-label">Screens that should<br>ever be silent post-action</div></div><div class="cs-outcome"><div class="cs-outcome-num">∞</div><div class="cs-outcome-label">Users who deserve to<br>know their action worked</div></div></div><p>Every user action deserves an acknowledgement. Whether it's posting content, saving a form, or completing a purchase — silence is never neutral. It's always read as ambiguity, and ambiguity is always a UX failure.</p><a href="https://medium.com/design-bootcamp/the-post-that-never-appeared-a-ux-story-of-silence-on-linkedin-89e9f585cdc9" target="_blank" class="medium-link">Read the full article on Medium →</a></div>
-  <div class="cs-nav reveal"><a href="case-rapido.html" class="cs-nav-item"><div class="cs-nav-dir">← Previous</div><div class="cs-nav-title">Rapido — <em>Tapping for Nothing</em></div></a><a href="case-swiggy.html" class="cs-nav-item next"><div class="cs-nav-dir">Next →</div><div class="cs-nav-title">Swiggy Instamart — <em>Designing for Trust</em></div></a></div>
-</div>
-</main>
-<footer><div class="footer-inner"><a href="index.html" class="footer-logo"><span style="width:8px;height:8px;border-radius:50%;background:#0061FF;display:inline-block"></span>Satheesh Mankulam</a><span class="footer-copy">© 2025 · UX Designer · Bangalore</span></div></footer>
-<script>const nav=document.getElementById("navbar");window.addEventListener("scroll",()=>nav.classList.toggle("scrolled",window.scrollY>20),{passive:true});const obs=new IntersectionObserver(e=>e.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");obs.unobserve(e.target)}}),{threshold:0.08});document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));</script>
-</body></html>
+
+<footer>
+  <span>Satheesh Mankulam · UX Designer · Bangalore</span>
+  <span>Published in <a href="https://medium.com/design-bootcamp" target="_blank" style="color:var(--blue)">Design Bootcamp</a> on Medium</span>
+</footer>
+
+<script>
+const saObs=new IntersectionObserver(e=>e.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');saObs.unobserve(en.target)}}),{threshold:.07});
+document.querySelectorAll('.sa').forEach(el=>saObs.observe(el));
+document.getElementById('tb').addEventListener('click',()=>{
+  const isLight=document.documentElement.getAttribute('data-theme')==='light';
+  document.documentElement.setAttribute('data-theme',isLight?'dark':'light');
+  document.getElementById('tb').textContent=isLight?'☀':'🌙';
+});
+</script>
+</body>
+</html>
