@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"><script>(function(){try{var t=localStorage.getItem("portfolio-theme")||"dark";document.documentElement.setAttribute("data-theme",t);}catch(e){}})()</script><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/png" href="favicon.png">
-<title>A Small Menu, A Big Difference: Reducing Friction in Google's Stitch — Satheesh Mankulam</title>
+<title>A Small Menu, A Big Difference — Satheesh Mankulam</title>
 <style>
 :root{--blue:#0061FF;--blue-d:#0050CC;--blue-10:rgba(0,97,255,.12);--blue-25:rgba(0,97,255,.28);--yellow:#FFD166;--mint:#06D6A0;--font:'Helvetica Neue',Helvetica,-apple-system,Arial,sans-serif}
 [data-theme="dark"]{--bg:#0C0C10;--bg-card:#141418;--bg-el:#1C1C24;--bg-hover:#22222C;--text:#ECECF4;--muted:#7A7A90;--subtle:#3C3C50;--border:rgba(255,255,255,.07);--blockquote-border:rgba(0,97,255,.5)}
@@ -12,149 +12,257 @@
 html{-webkit-font-smoothing:antialiased}
 body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;transition:background .3s,color .3s}
 a{text-decoration:none;color:inherit}
-
 .top-nav{position:fixed;top:0;left:0;right:0;height:54px;background:rgba(12,12,16,.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 clamp(1.5rem,5vw,4rem);z-index:100;transition:background .3s}
 [data-theme="light"] .top-nav{background:rgba(245,245,247,.92)}
 .nav-logo{font-size:.95rem;font-weight:700;color:var(--text);display:flex;align-items:center;gap:.5rem}
 .nav-logo .dot{width:7px;height:7px;border-radius:50%;background:var(--blue)}
-.nav-back{font-size:.82rem;font-weight:600;color:var(--muted);padding:.38rem .75rem;border-radius:7px;transition:all .2s;display:flex;align-items:center;gap:.4rem}
+.nav-back{font-size:.82rem;font-weight:600;color:var(--muted);padding:.38rem .75rem;border-radius:7px;transition:all .2s}
 .nav-back:hover{color:var(--blue);background:var(--blue-10)}
 .nav-right{display:flex;align-items:center;gap:.5rem}
 .theme-btn{width:32px;height:32px;border-radius:7px;background:var(--bg-el);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--muted);cursor:pointer;font-size:.85rem;transition:all .2s}
 .theme-btn:hover{color:var(--blue);border-color:var(--blue)}
-
 .article-wrap{max-width:720px;margin:0 auto;padding:clamp(5rem,10vw,7rem) clamp(1.5rem,5vw,2.5rem) 4rem}
-
-/* Header */
 .pub-badge{display:inline-flex;align-items:center;gap:.5rem;font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);background:var(--blue-10);border:1px solid rgba(0,97,255,.2);padding:.25rem .75rem;border-radius:100px;margin-bottom:1.25rem}
-.pub-badge::before{content:'M';font-size:.7rem;font-weight:800;background:var(--blue);color:#fff;width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.pub-badge::before{content:'M';font-size:.7rem;font-weight:800;background:var(--blue);color:#fff;width:16px;height:16px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center}
 .article-title{font-size:clamp(1.75rem,4vw,2.75rem);font-weight:700;color:var(--text);line-height:1.15;letter-spacing:-.018em;margin-bottom:.6rem}
-.article-subtitle{font-size:1.1rem;color:var(--muted);line-height:1.6;margin-bottom:1.5rem;font-weight:400}
+.article-subtitle{font-size:1.1rem;color:var(--muted);line-height:1.6;margin-bottom:1.5rem}
 .author-bar{display:flex;align-items:center;gap:.75rem;padding:1.1rem 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-bottom:2rem}
 .author-photo{width:40px;height:40px;border-radius:50%;object-fit:cover;object-position:center 15%;flex-shrink:0}
 .author-name{font-size:.9rem;font-weight:600;color:var(--text)}
 .author-meta{font-size:.8rem;color:var(--muted)}
-.author-sep{color:var(--subtle);margin:0 .1rem}
-
-/* Featured image */
-.featured-img{width:100%;border-radius:12px;margin-bottom:2.5rem;display:block;max-height:none;object-fit:contain}
-
-/* Article body */
-.article-body{font-size:1.05rem;line-height:1.85;color:var(--text);font-weight:400}
-.article-body p{margin-bottom:1.4rem}
-.article-body h2{font-size:1.5rem;font-weight:700;color:var(--text);margin:2.5rem 0 1rem;letter-spacing:-.012em}
-.article-body h3{font-size:1.2rem;font-weight:700;color:var(--text);margin:2rem 0 .75rem;letter-spacing:-.01em}
-.article-body strong{font-weight:700;color:var(--text)}
-.article-body em{font-style:italic}
-.article-body blockquote{border-left:3px solid var(--blockquote-border);padding:.5rem 0 .5rem 1.25rem;margin:1.5rem 0;color:var(--muted);font-style:italic;font-size:1.05rem}
-.article-body ul,.article-body ol{margin:1rem 0 1.4rem 1.5rem}
-.article-body li{margin-bottom:.5rem;line-height:1.7}
-.article-body hr{border:none;border-top:1px solid var(--border);margin:2rem 0}
-
-/* Medium CTA */
-.medium-cta{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:2rem;margin:2.5rem 0;text-align:center}
-.medium-cta-icon{font-size:2rem;margin-bottom:.75rem}
-.medium-cta h3{font-size:1.1rem;font-weight:700;color:var(--text);margin-bottom:.5rem}
-.medium-cta p{font-size:.9rem;color:var(--muted);margin-bottom:1.25rem;line-height:1.65}
-.medium-cta-btn{display:inline-flex;align-items:center;gap:.45rem;font-size:.9rem;font-weight:700;color:#fff;background:var(--blue);padding:.65rem 1.5rem;border-radius:10px;transition:all .2s}
-.medium-cta-btn:hover{background:var(--blue-d);transform:translateY(-2px)}
-
-/* Article nav */
-.article-nav{border-top:1px solid var(--border);padding-top:2rem;margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap}
-.anav-btn{display:inline-flex;align-items:center;gap:.4rem;font-size:.84rem;font-weight:600;color:var(--muted);background:var(--bg-el);padding:.5rem 1rem;border-radius:8px;border:1px solid var(--border);transition:all .2s}
-.anav-btn:hover{color:var(--blue);border-color:var(--blue-25);background:var(--blue-10)}
-
-/* Tags */
 .article-tags{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:1.75rem}
 .article-tag{font-size:.68rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--blue);background:var(--blue-10);padding:.2rem .55rem;border-radius:100px}
+.featured-img{width:100%;border-radius:12px;margin-bottom:2.5rem;display:block;object-fit:contain}
+.article-body{font-size:1.05rem;line-height:1.85;color:var(--text)}
+.article-body p{margin-bottom:1.35rem}
+.article-body h2{font-size:1.5rem;font-weight:700;color:var(--text);margin:2.5rem 0 .9rem;letter-spacing:-.012em}
+.article-body h3{font-size:1.15rem;font-weight:700;color:var(--text);margin:2rem 0 .7rem;letter-spacing:-.01em}
+.article-body strong{font-weight:700;color:var(--text)}
+.article-body em{font-style:italic}
+.article-body blockquote{border-left:3px solid var(--blockquote-border);padding:.5rem 0 .5rem 1.25rem;margin:1.5rem 0;color:var(--muted);font-style:italic;font-size:1rem}
+.article-body ul{margin:.75rem 0 1.25rem 1.5rem}
+.article-body li{margin-bottom:.5rem;line-height:1.7}
+.article-body hr{border:none;border-top:1px solid var(--border);margin:2.5rem 0}
 
-footer{padding:1.5rem clamp(1.5rem,5vw,4rem);border-top:1px solid var(--border);display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem;font-size:.78rem;color:var(--subtle)}
-.sa{opacity:0;filter:blur(6px);transform:translateY(16px);transition:opacity .6s ease,filter .6s ease,transform .6s ease}
-.sa.in{opacity:1;filter:blur(0);transform:translateY(0)}
-.sa.d1{transition-delay:.07s}.sa.d2{transition-delay:.14s}.sa.d3{transition-delay:.21s}
+/* GIF / screenshot display */
+.gif-wrap{margin:2rem 0}
+.gif-wrap img{width:100%;border-radius:12px;border:1px solid var(--border);display:block;cursor:zoom-in;transition:opacity .2s}
+.gif-wrap img:hover{opacity:.88}
+.gif-cap{font-size:.8rem;color:var(--muted);text-align:center;margin-top:.65rem;font-style:italic;line-height:1.5}
 
-/* ── LIGHTBOX ── */
+/* Steps flow */
+.flow-steps{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:1.5rem 1.75rem;margin:1.5rem 0}
+.flow-steps h4{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem}
+.flow-step{display:flex;align-items:flex-start;gap:.85rem;padding:.55rem 0;border-bottom:1px solid var(--border)}
+.flow-step:last-child{border-bottom:none}
+.flow-num{font-size:.72rem;font-weight:800;color:#EF4444;background:rgba(239,68,68,.1);width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:.1rem}
+.flow-text{font-size:.92rem;color:var(--text);line-height:1.55}
+
+/* Friction list */
+.friction-list{display:flex;flex-direction:column;gap:.7rem;margin:1.25rem 0 1.75rem}
+.friction-item{background:var(--bg-el);border:1px solid rgba(239,68,68,.18);border-left:3px solid rgba(239,68,68,.5);border-radius:11px;padding:.9rem 1.2rem;font-size:.9rem;color:var(--text);line-height:1.6}
+
+/* Insight card */
+.insight-card{background:var(--bg-card);border:1px solid var(--blue-25);border-left:3px solid var(--blue);border-radius:12px;padding:1.5rem 1.75rem;margin:1.75rem 0}
+.insight-card h4{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:.75rem}
+.insight-card p{font-size:.97rem;color:var(--muted);line-height:1.75;margin:0}
+.insight-card p+p{margin-top:.65rem}
+
+/* Opportunity box */
+.opp-box{background:linear-gradient(135deg,rgba(6,214,160,.07),rgba(6,214,160,.03));border:1px solid rgba(6,214,160,.2);border-radius:14px;padding:1.5rem 1.75rem;margin:1.5rem 0}
+.opp-box h4{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mint);margin-bottom:.85rem}
+.opp-box ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.55rem}
+.opp-box li{font-size:.92rem;color:var(--text);display:flex;align-items:flex-start;gap:.6rem;line-height:1.65}
+.opp-box li::before{content:'→';color:var(--mint);font-weight:700;flex-shrink:0}
+
+/* Outcome grid */
+.outcome-grid{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin:1.25rem 0 1.75rem}
+.outcome-card{background:var(--bg-el);border:1px solid var(--border);border-radius:12px;padding:1rem 1.1rem;display:flex;align-items:flex-start;gap:.6rem}
+.outcome-icon{font-size:1rem;flex-shrink:0;margin-top:.1rem}
+.outcome-text{font-size:.88rem;color:var(--muted);line-height:1.6}
+
+/* Psychology principles */
+.psych-list{display:flex;flex-direction:column;gap:.7rem;margin:1.25rem 0}
+.psych-item{background:var(--bg-el);border:1px solid var(--border);border-radius:12px;padding:1rem 1.25rem;display:grid;grid-template-columns:auto 1fr;gap:.85rem;align-items:flex-start}
+.psych-icon{font-size:1rem;flex-shrink:0;margin-top:.1rem}
+.psych-title{font-size:.9rem;font-weight:700;color:var(--text);margin-bottom:.28rem}
+.psych-desc{font-size:.83rem;color:var(--muted);line-height:1.6}
+
+/* Lightbox */
 .lb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.96);z-index:9999;align-items:center;justify-content:center;padding:1.5rem;cursor:zoom-out}
 .lb-overlay.active{display:flex}
 .lb-img-wrap{position:relative;max-width:95vw;max-height:95vh;display:flex;align-items:center;justify-content:center}
 .lb-img{max-width:95vw;max-height:95vh;object-fit:contain;border-radius:8px;box-shadow:0 0 80px rgba(0,0,0,.9);cursor:default}
-.lb-close{position:fixed;top:1.1rem;right:1.1rem;width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.25);color:#fff;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;z-index:10000;backdrop-filter:blur(10px);line-height:1}
+.lb-close{position:fixed;top:1.1rem;right:1.1rem;width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.25);color:#fff;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;z-index:10000;backdrop-filter:blur(10px)}
 .lb-close:hover{background:rgba(255,255,255,.28);transform:scale(1.08)}
-.lb-hint{position:fixed;bottom:1.25rem;left:50%;transform:translateX(-50%);font-size:.75rem;color:rgba(255,255,255,.35);pointer-events:none;letter-spacing:.04em}
-/* Make all article images zoomable */
-.article-body img,.ss img,.ss-phone img,.ss-narrow img,.featured-img,.gif-wrap img,.screenshot img,.ba-item img,.ss-2col img{cursor:zoom-in!important;transition:opacity .2s}
-.article-body img:hover,.ss img:hover,.ss-phone img:hover,.ss-narrow img:hover,.featured-img:hover,.gif-wrap img:hover,.screenshot img:hover,.ba-item img:hover,.ss-2col img:hover{opacity:.88}
+.lb-hint{position:fixed;bottom:1.25rem;left:50%;transform:translateX(-50%);font-size:.75rem;color:rgba(255,255,255,.35);pointer-events:none}
+
+.article-nav{border-top:1px solid var(--border);padding-top:2rem;margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap}
+.anav-btn{display:inline-flex;align-items:center;gap:.4rem;font-size:.84rem;font-weight:600;color:var(--muted);background:var(--bg-el);padding:.5rem 1rem;border-radius:8px;border:1px solid var(--border);transition:all .2s}
+.anav-btn:hover{color:var(--blue);border-color:var(--blue-25);background:var(--blue-10)}
+footer{padding:1.5rem clamp(1.5rem,5vw,4rem);border-top:1px solid var(--border);display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem;font-size:.78rem;color:var(--subtle)}
+.sa{opacity:0;filter:blur(6px);transform:translateY(16px);transition:opacity .6s ease,filter .6s ease,transform .6s ease}
+.sa.in{opacity:1;filter:blur(0);transform:translateY(0)}
+.sa.d1{transition-delay:.07s}.sa.d2{transition-delay:.14s}.sa.d3{transition-delay:.21s}
+@media(max-width:560px){.outcome-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
+
 <nav class="top-nav">
   <a href="index.html" class="nav-logo"><span class="dot"></span>Satheesh Mankulam</a>
   <div class="nav-right">
     <a href="writings.html" class="nav-back">← All Writings</a>
-    <button class="theme-btn" id="tb" title="Toggle theme">☀</button>
+    <button class="theme-btn" id="tb">☀</button>
   </div>
 </nav>
 
 <div class="article-wrap">
+
   <div class="pub-badge sa">Design Bootcamp · Medium</div>
   <h1 class="article-title sa d1">A Small Menu, A Big Difference: Reducing Friction in Google's Stitch</h1>
   <p class="article-subtitle sa d1">Improving Project Flow/Management Through Small UX Decisions</p>
-  <div class="article-tags sa d1"><span class="article-tag">Friction Audit</span><span class="article-tag">Google Stitch</span><span class="article-tag">Context Menus</span></div>
+
+  <div class="article-tags sa d1">
+    <span class="article-tag">Friction Audit</span>
+    <span class="article-tag">Google Stitch</span>
+    <span class="article-tag">Context Menus</span>
+    <span class="article-tag">Design Tools UX</span>
+  </div>
+
   <div class="author-bar sa d2">
     <img src="satheesh-photo.jpg" class="author-photo" alt="Satheesh Mankulam">
     <div>
       <div class="author-name">Satheesh Mankulam</div>
-      <div class="author-meta">Jan 16, 2026<span class="author-sep"> · </span>2 min read<span class="author-sep"> · </span>Design Bootcamp</div>
+      <div class="author-meta">Jan 16, 2026 <span style="margin:0 .25rem;color:var(--subtle)">·</span> 2 min read <span style="margin:0 .25rem;color:var(--subtle)">·</span> Design Bootcamp</div>
     </div>
-    <a href="https://medium.com/design-bootcamp/a-small-menu-a-big-difference-reducing-friction-in-googles-stitch-db829ab27b55" target="_blank" style="margin-left:auto;font-size:.78rem;font-weight:600;color:var(--blue);display:flex;align-items:center;gap:.3rem">Read on Medium ↗</a>
+    <a href="https://medium.com/design-bootcamp/a-small-menu-a-big-difference-reducing-friction-in-googles-stitch-db829ab27b55" target="_blank" style="margin-left:auto;font-size:.78rem;font-weight:600;color:var(--blue)">Read on Medium ↗</a>
   </div>
-  <img src="https://miro.medium.com/v2/da:true/resize:fit:1200/1*jAUtXGWiyTGw7M0HAyeSlg.gif" alt="A Small Menu, A Big Difference: Reducing Friction in Google's Stitch" class="featured-img sa d2" onerror="this.style.display='none'">
-  <div class="article-body sa d3">
-<h2>Context</h2>
-<p>While designing and iterating on a UI project in <strong>Stitch with Google</strong>, I generated multiple project files across different exploration phases. As the number of projects increased, routine maintenance actions such as renaming or deleting unused projects became frequent, revealing an unexpected friction point in the workflow.</p>
-<h3>The Experience</h3>
-<p>From the All Projects screen, each project appeared as a static card.</p>
-<p>Naturally, I hovered over a project, expecting a familiar three-dot (⋮) menu — a common interaction pattern across modern productivity tools.</p>
-<p><strong>Nothing appeared.</strong></p>
-<p>To delete a project, I had to:</p>
-<ul>
-<li>Open the project</li>
-<li>Locate the hamburger menu in the top-left corner</li>
-<li>Perform the action</li>
-<li>Confirm the action</li>
-</ul>
-<p>This felt unnecessarily heavy for a lightweight task.</p>
-<h3>The Friction</h3>
-<p>What should have been a 2-second housekeeping action turned into a multi-step workflow.</p>
-<ul>
-<li>My mental model expected project-level actions at the project list level</li>
-<li>The system required entering a full project context to perform basic management tasks</li>
-</ul>
-  </div>
-  
-<div class="medium-cta sa">
-  <div class="medium-cta-icon">📖</div>
-  <h3>Continue reading on Medium</h3>
-  <p>This article is published in <strong>Design Bootcamp</strong> on Medium. Click below to read the full article.</p>
-  <a href="https://medium.com/design-bootcamp/a-small-menu-a-big-difference-reducing-friction-in-googles-stitch-db829ab27b55" target="_blank" class="medium-cta-btn">Read Full Article on Medium ↗</a>
-</div>
-  <div class="article-nav"><a href="writings.html" class="anav-btn">All Writings</a><a href="index.html" class="anav-btn">Portfolio →</a></div>
-</div>
 
-<footer>
-  <span>Satheesh Mankulam · UX Designer · Bangalore</span>
-  <span>Published in <a href="https://medium.com/design-bootcamp" target="_blank" style="color:var(--blue)">Design Bootcamp</a> on Medium</span>
-</footer>
-<script>
-const saObs=new IntersectionObserver(e=>e.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');saObs.unobserve(en.target)}}),{threshold:.07});
-document.querySelectorAll('.sa').forEach(el=>saObs.observe(el));
-const tb=document.getElementById('tb');
-tb.addEventListener('click',()=>{
-  const isLight=document.documentElement.getAttribute('data-theme')==='light';
-  const newTheme=isLight?'dark':'light';document.documentElement.setAttribute('data-theme',newTheme);try{localStorage.setItem('portfolio-theme',newTheme);}catch(e){}
-  tb.textContent=isLight?'☀':'🌙';
-});
-</script>
+  <img src="https://miro.medium.com/v2/da:true/resize:fit:1200/1*jAUtXGWiyTGw7M0HAyeSlg.gif"
+       alt="Google Stitch — friction in project management"
+       class="featured-img sa d2"
+       onerror="this.style.display='none'">
+
+  <div class="article-body">
+
+    <h3 class="sa">Context</h3>
+    <p class="sa">While designing and iterating on a UI project in <strong>Stitch with Google</strong>, I generated multiple project files across different exploration phases. As the number of projects increased, routine maintenance actions such as renaming or deleting unused projects became frequent, revealing an unexpected friction point in the workflow.</p>
+
+    <h3 class="sa">The Experience</h3>
+    <p class="sa">From the All Projects screen, each project appeared as a static card.</p>
+    <p class="sa">Naturally, I hovered over a project, expecting a familiar <strong>three-dot (⋮) menu</strong> — a common interaction pattern across modern productivity tools.</p>
+    <p class="sa"><em>Nothing appeared.</em></p>
+    <p class="sa">To delete a project, I had to:</p>
+
+    <div class="flow-steps sa">
+      <h4>The current flow — 4 unnecessary steps</h4>
+      <div class="flow-step"><div class="flow-num">1</div><div class="flow-text">Open the project</div></div>
+      <div class="flow-step"><div class="flow-num">2</div><div class="flow-text">Locate the hamburger menu in the top-left corner</div></div>
+      <div class="flow-step"><div class="flow-num">3</div><div class="flow-text">Perform the action</div></div>
+      <div class="flow-step"><div class="flow-num">4</div><div class="flow-text">Confirm the action</div></div>
+    </div>
+
+    <div class="gif-wrap sa">
+      <img src="google-stitch-gif1-current-flow.gif"
+           alt="Current Google Stitch flow — opening project to access delete/rename"
+           onerror="this.style.background='var(--bg-el)';this.style.minHeight='200px';this.style.display='block'">
+      <p class="gif-cap">The current 4-step flow to perform a simple housekeeping action — open project → hamburger → action → confirm</p>
+    </div>
+
+    <p class="sa">This felt unnecessarily heavy for a lightweight task.</p>
+
+    <h3 class="sa">The Friction</h3>
+    <p class="sa">What should have been a 2-second housekeeping action turned into a multi-step workflow.</p>
+
+    <div class="friction-list">
+      <div class="friction-item sa">My mental model expected project-level actions <strong>at the project list level</strong></div>
+      <div class="friction-item sa">The system required <strong>context switching</strong> without clear justification</div>
+      <div class="friction-item sa">Repeating this flow across multiple projects quickly became <strong>frustrating</strong></div>
+      <div class="friction-item sa">The product was <strong>functional but not efficient</strong></div>
+    </div>
+
+    <div class="insight-card sa">
+      <h4>Insight</h4>
+      <p>The issue wasn't missing functionality. It was <strong>misplaced functionality.</strong></p>
+      <p>Project-level actions were buried inside the project, violating common UX conventions and increasing interaction cost.</p>
+    </div>
+
+    <h3 class="sa">Opportunity</h3>
+    <p class="sa">By introducing a <strong>hover-based 3-dot menu</strong> on project cards (similar to Google Gemini):</p>
+
+    <div class="opp-box sa">
+      <h4>What changes</h4>
+      <ul>
+        <li>Users could manage projects without opening them</li>
+        <li>The interface would align with industry standards</li>
+        <li>Cognitive and operational load would drop significantly</li>
+      </ul>
+    </div>
+
+    <div class="gif-wrap sa">
+      <img src="google-stitch-gif2-solution.gif"
+           alt="Proposed solution — hover-based 3-dot menu on Google Stitch project cards"
+           onerror="this.style.background='var(--bg-el)';this.style.minHeight='200px';this.style.display='block'">
+      <p class="gif-cap">The proposed fix — a hover-triggered ⋮ menu on each project card. Rename, delete, duplicate — without ever opening the project.</p>
+    </div>
+
+    <h3 class="sa">Outcome (Expected)</h3>
+    <div class="outcome-grid">
+      <div class="outcome-card sa"><div class="outcome-icon">⚡</div><div class="outcome-text"><strong>Faster project management</strong> — housekeeping done in 1 click, not 4</div></div>
+      <div class="outcome-card sa"><div class="outcome-icon">🎛</div><div class="outcome-text"><strong>Improved sense of control</strong> — actions are where users expect them</div></div>
+      <div class="outcome-card sa"><div class="outcome-icon">🔋</div><div class="outcome-text"><strong>Reduced friction for power users</strong> — managing many projects becomes effortless</div></div>
+      <div class="outcome-card sa"><div class="outcome-icon">🧘</div><div class="outcome-text"><strong>A calmer, more predictable experience</strong> — no context switching anxiety</div></div>
+    </div>
+
+    <h3 class="sa">Psychology Principles Involved</h3>
+    <div class="psych-list">
+      <div class="psych-item sa">
+        <div class="psych-icon">🧠</div>
+        <div>
+          <div class="psych-title">Cognitive Load</div>
+          <div class="psych-desc">Reduces mental effort for routine tasks by surfacing actions at the expected location.</div>
+        </div>
+      </div>
+      <div class="psych-item sa">
+        <div class="psych-icon">🗺</div>
+        <div>
+          <div class="psych-title">Mental Models</div>
+          <div class="psych-desc">Matches user expectations formed from other tools — Google Drive, Notion, Figma, VS Code all use hover-menus on cards.</div>
+        </div>
+      </div>
+      <div class="psych-item sa">
+        <div class="psych-icon">🔄</div>
+        <div>
+          <div class="psych-title">Context Switching Cost</div>
+          <div class="psych-desc">Minimizes unnecessary mode changes — no more opening a project just to delete it.</div>
+        </div>
+      </div>
+      <div class="psych-item sa">
+        <div class="psych-icon">🔁</div>
+        <div>
+          <div class="psych-title">Habit Formation</div>
+          <div class="psych-desc">Reinforces familiar interaction patterns already established across the user's tool stack.</div>
+        </div>
+      </div>
+      <div class="psych-item sa">
+        <div class="psych-icon">⚖</div>
+        <div>
+          <div class="psych-title">Decision Fatigue</div>
+          <div class="psych-desc">Fewer steps reduce friction over time — especially for power users managing dozens of projects.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="article-nav sa">
+    <a href="writings.html" class="anav-btn">← All Writings</a>
+    <a href="https://medium.com/design-bootcamp/a-small-menu-a-big-difference-reducing-friction-in-googles-stitch-db829ab27b55" target="_blank" class="anav-btn">Read on Medium ↗</a>
+    <a href="index.html" class="anav-btn">Portfolio →</a>
+  </div>
+
+</div>
 
 <!-- Lightbox -->
 <div class="lb-overlay" id="lbOverlay">
@@ -165,5 +273,40 @@ tb.addEventListener('click',()=>{
   <div class="lb-hint">Press Esc or click outside to close</div>
 </div>
 
+<footer>
+  <span>Satheesh Mankulam · UX Designer · Bangalore</span>
+  <span>Published in <a href="https://medium.com/design-bootcamp" target="_blank" style="color:var(--blue)">Design Bootcamp</a> on Medium</span>
+</footer>
+
+<script>
+const saObs=new IntersectionObserver(e=>e.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');saObs.unobserve(en.target)}}),{threshold:.07});
+document.querySelectorAll('.sa').forEach(el=>saObs.observe(el));
+(function(){
+  var btn=document.getElementById('tb');
+  if(btn)btn.textContent=document.documentElement.getAttribute('data-theme')==='light'?'🌙':'☀';
+})();
+document.getElementById('tb').addEventListener('click',()=>{
+  const isLight=document.documentElement.getAttribute('data-theme')==='light';
+  const newTheme=isLight?'dark':'light';
+  document.documentElement.setAttribute('data-theme',newTheme);
+  try{localStorage.setItem('portfolio-theme',newTheme);}catch(e){}
+  document.getElementById('tb').textContent=isLight?'☀':'🌙';
+});
+// Lightbox
+(function(){
+  const overlay=document.getElementById('lbOverlay');
+  const lbImg=document.getElementById('lbImg');
+  const lbClose=document.getElementById('lbClose');
+  function open(src,alt){lbImg.src=src;lbImg.alt=alt||'';overlay.classList.add('active');document.body.style.overflow='hidden';}
+  function close(){overlay.classList.remove('active');document.body.style.overflow='';}
+  document.querySelectorAll('.gif-wrap img,.featured-img').forEach(img=>{
+    img.addEventListener('click',()=>{if(img.src&&!img.src.endsWith('.html'))open(img.src,img.alt);});
+  });
+  overlay.addEventListener('click',e=>{if(e.target===overlay)close();});
+  lbClose.addEventListener('click',close);
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')close();});
+  lbImg.addEventListener('click',e=>e.stopPropagation());
+})();
+</script>
 </body>
 </html>
