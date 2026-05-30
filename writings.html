@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8"><script>(function(){try{var t=localStorage.getItem("portfolio-theme")||"dark";document.documentElement.setAttribute("data-theme",t);}catch(e){}})()</script><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/png" href="favicon.png">
 <title>Writings — Satheesh Mankulam</title>
 <style>
@@ -191,9 +191,12 @@ document.querySelectorAll('.filter-btn').forEach(btn=>{
   });
 });
 const themeBtn=document.getElementById('themeBtn');
+(function(){if(themeBtn)themeBtn.textContent=document.documentElement.getAttribute('data-theme')==='light'?'🌙':'☀';})();
 themeBtn.addEventListener('click',()=>{
   const isLight=document.documentElement.getAttribute('data-theme')==='light';
-  document.documentElement.setAttribute('data-theme',isLight?'dark':'light');
+  const newTheme=isLight?'dark':'light';
+  document.documentElement.setAttribute('data-theme',newTheme);
+  try{localStorage.setItem('portfolio-theme',newTheme);}catch(e){}
   themeBtn.textContent=isLight?'☀':'🌙';
 });
 </script>

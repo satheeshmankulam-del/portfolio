@@ -1,372 +1,155 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8"><script>(function(){try{var t=localStorage.getItem("portfolio-theme")||"dark";document.documentElement.setAttribute("data-theme",t);}catch(e){}})()</script><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/png" href="favicon.png">
-<title>FamilyDose — Designers Can Ship Now. I Did. | Satheesh Mankulam</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
+<title>Designers Can Ship Now. I Did. — Satheesh Mankulam</title>
 <style>
-:root{--blue:#0061FF;--blue-d:#0050CC;--blue-10:#EBF2FF;--yellow:#FFD166;--mint:#06D6A0;--dark:#ECECF4;--text:#ECECF4;--muted:#7A7A90;--subtle:#3C3C50;--border:rgba(255,255,255,.08);--bg:#0C0C10;--bg-warm:#141418;--bg-cream:#1C1C24;--bg-dark:#080810;--radius:14px;--radius-lg:22px;--radius-xl:32px;--shadow:0 2px 12px rgba(0,0,0,.4);--shadow-md:0 8px 32px rgba(0,0,0,.6);--shadow-lg:0 24px 64px rgba(0,0,0,.8);--font-display:'Helvetica Neue',Helvetica,-apple-system,Arial,sans-serif;--font-body:'Helvetica Neue',Helvetica,-apple-system,Arial,sans-serif}
+:root{--blue:#0061FF;--blue-d:#0050CC;--blue-10:rgba(0,97,255,.12);--blue-25:rgba(0,97,255,.28);--yellow:#FFD166;--mint:#06D6A0;--font:'Helvetica Neue',Helvetica,-apple-system,Arial,sans-serif}
+[data-theme="dark"]{--bg:#0C0C10;--bg-card:#141418;--bg-el:#1C1C24;--bg-hover:#22222C;--text:#ECECF4;--muted:#7A7A90;--subtle:#3C3C50;--border:rgba(255,255,255,.07);--blockquote-border:rgba(0,97,255,.5)}
+[data-theme="light"]{--bg:#F5F5F7;--bg-card:#FFFFFF;--bg-el:#EAEAF4;--bg-hover:#E0E0EE;--text:#1A1A2E;--muted:#5C5C74;--subtle:#ABABC4;--border:rgba(0,0,0,.08);--blockquote-border:#0061FF}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
-body{font-family:var(--font-body);background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
-a{color:inherit;text-decoration:none}
-.nav{position:fixed;top:0;left:0;right:0;z-index:500;height:68px;display:flex;align-items:center;background:rgba(12,12,16,.92);backdrop-filter:blur(20px);border-bottom:1px solid transparent;transition:border-color .3s,box-shadow .3s;padding:0 clamp(1.5rem,5vw,4rem)}
-.nav.scrolled{border-color:var(--border);box-shadow:var(--shadow)}
-.nav-inner{max-width:1200px;width:100%;margin:0 auto;display:flex;align-items:center;justify-content:space-between}
-.nav-logo{font-family:var(--font-display);font-size:1.15rem;font-weight:700;color:var(--dark);display:flex;align-items:center;gap:.5rem}
-.nav-logo .dot{width:8px;height:8px;border-radius:50%;background:var(--blue);display:inline-block}
-.nav-back{display:inline-flex;align-items:center;gap:.4rem;font-size:.88rem;font-weight:600;color:var(--muted);padding:.4rem .85rem;border-radius:8px;transition:all .2s}
+html{-webkit-font-smoothing:antialiased}
+body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;transition:background .3s,color .3s}
+a{text-decoration:none;color:inherit}
+
+.top-nav{position:fixed;top:0;left:0;right:0;height:54px;background:rgba(12,12,16,.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 clamp(1.5rem,5vw,4rem);z-index:100;transition:background .3s}
+[data-theme="light"] .top-nav{background:rgba(245,245,247,.92)}
+.nav-logo{font-size:.95rem;font-weight:700;color:var(--text);display:flex;align-items:center;gap:.5rem}
+.nav-logo .dot{width:7px;height:7px;border-radius:50%;background:var(--blue)}
+.nav-back{font-size:.82rem;font-weight:600;color:var(--muted);padding:.38rem .75rem;border-radius:7px;transition:all .2s;display:flex;align-items:center;gap:.4rem}
 .nav-back:hover{color:var(--blue);background:var(--blue-10)}
-.wrap{max-width:1200px;margin:0 auto;padding:0 clamp(1.5rem,5vw,4rem)}
-.wrap-wide{max-width:1300px;margin:0 auto;padding:0 clamp(1rem,3vw,2rem)}
+.nav-right{display:flex;align-items:center;gap:.5rem}
+.theme-btn{width:32px;height:32px;border-radius:7px;background:var(--bg-el);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--muted);cursor:pointer;font-size:.85rem;transition:all .2s}
+.theme-btn:hover{color:var(--blue);border-color:var(--blue)}
 
-/* CS HEADER */
-.cs-header{padding:clamp(6rem,12vw,9rem) 0 2rem}
-.cs-breadcrumb{font-size:.78rem;color:var(--subtle);margin-bottom:1.25rem;display:flex;align-items:center;gap:.4rem}
-.cs-breadcrumb a{color:var(--muted);transition:color .15s}
-.cs-breadcrumb a:hover{color:var(--blue)}
-.cs-breadcrumb span{color:var(--border)}
-.cs-type-badge{display:inline-flex;align-items:center;gap:.4rem;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);background:var(--blue-10);padding:.3rem .8rem;border-radius:100px;margin-bottom:1.1rem}
-.cs-h1{font-family:var(--font-display);font-size:clamp(2.8rem,6vw,4.5rem);font-weight:800;line-height:1.05;letter-spacing:-.015em;color:var(--dark);margin-bottom:1.25rem}
-.cs-h1 em{font-style:normal;color:var(--blue)}
-.cs-lead{font-size:1.12rem;color:var(--muted);line-height:1.8;font-weight:300;max-width:680px}
+.article-wrap{max-width:720px;margin:0 auto;padding:clamp(5rem,10vw,7rem) clamp(1.5rem,5vw,2.5rem) 4rem}
 
-/* META BAR */
-.cs-meta{display:grid;grid-template-columns:repeat(4,1fr);background:var(--bg-warm);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;margin:2.5rem 0}
-.cs-meta-item{padding:1.5rem 2rem;border-right:1px solid var(--border)}
-.cs-meta-item:last-child{border-right:none}
-.cs-meta-label{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--subtle);margin-bottom:.4rem}
-.cs-meta-value{font-size:.97rem;font-weight:600;color:var(--dark);line-height:1.3}
+/* Header */
+.pub-badge{display:inline-flex;align-items:center;gap:.5rem;font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);background:var(--blue-10);border:1px solid rgba(0,97,255,.2);padding:.25rem .75rem;border-radius:100px;margin-bottom:1.25rem}
+.pub-badge::before{content:'M';font-size:.7rem;font-weight:800;background:var(--blue);color:#fff;width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.article-title{font-size:clamp(1.75rem,4vw,2.75rem);font-weight:700;color:var(--text);line-height:1.15;letter-spacing:-.018em;margin-bottom:.6rem}
+.article-subtitle{font-size:1.1rem;color:var(--muted);line-height:1.6;margin-bottom:1.5rem;font-weight:400}
+.author-bar{display:flex;align-items:center;gap:.75rem;padding:1.1rem 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-bottom:2rem}
+.author-photo{width:40px;height:40px;border-radius:50%;object-fit:cover;object-position:center 15%;flex-shrink:0}
+.author-name{font-size:.9rem;font-weight:600;color:var(--text)}
+.author-meta{font-size:.8rem;color:var(--muted)}
+.author-sep{color:var(--subtle);margin:0 .1rem}
 
-/* COVER */
-.cs-cover{background:var(--bg-cream);border-radius:var(--radius-lg);overflow:hidden;margin-bottom:clamp(3rem,6vw,5rem)}
+/* Featured image */
+.featured-img{width:100%;border-radius:12px;margin-bottom:2.5rem;display:block;max-height:none;object-fit:contain}
 
-/* SECTIONS */
-.cs-section{padding:clamp(2.5rem,5vw,4rem) 0;border-bottom:1px solid var(--border)}
-.cs-section:last-of-type{border-bottom:none}
-.cs-section-label{font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin-bottom:.85rem;opacity:.8}
-.cs-section h2{font-family:var(--font-display);font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:800;color:var(--dark);line-height:1.1;letter-spacing:-.012em;margin-bottom:1.5rem}
-.cs-section h2 em{font-style:normal;color:var(--blue)}
-.cs-section p{font-size:1rem;color:var(--text);line-height:1.85;font-weight:300;margin-bottom:1.15rem;max-width:740px}
-.cs-section p:last-child{margin-bottom:0}
-.cs-section p strong{color:var(--dark);font-weight:600}
+/* Article body */
+.article-body{font-size:1.05rem;line-height:1.85;color:var(--text);font-weight:400}
+.article-body p{margin-bottom:1.4rem}
+.article-body h2{font-size:1.5rem;font-weight:700;color:var(--text);margin:2.5rem 0 1rem;letter-spacing:-.012em}
+.article-body h3{font-size:1.2rem;font-weight:700;color:var(--text);margin:2rem 0 .75rem;letter-spacing:-.01em}
+.article-body strong{font-weight:700;color:var(--text)}
+.article-body em{font-style:italic}
+.article-body blockquote{border-left:3px solid var(--blockquote-border);padding:.5rem 0 .5rem 1.25rem;margin:1.5rem 0;color:var(--muted);font-style:italic;font-size:1.05rem}
+.article-body ul,.article-body ol{margin:1rem 0 1.4rem 1.5rem}
+.article-body li{margin-bottom:.5rem;line-height:1.7}
+.article-body hr{border:none;border-top:1px solid var(--border);margin:2rem 0}
 
-/* QUOTE */
-.cs-quote{background:var(--bg-dark);border-radius:var(--radius-lg);padding:2.25rem 2.5rem;margin:2rem 0;position:relative}
-.cs-quote::before{content:'"';font-family:var(--font-display);font-size:5rem;font-weight:800;color:rgba(255,255,255,.06);position:absolute;top:-.5rem;left:1.5rem;line-height:1}
-.cs-quote p{font-family:var(--font-display);font-size:1.35rem;font-weight:700;color:#fff;line-height:1.5;letter-spacing:-.01em;font-style:normal;margin:0;position:relative}
-.cs-quote p em{color:var(--yellow);font-style:normal}
+/* Medium CTA */
+.medium-cta{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:2rem;margin:2.5rem 0;text-align:center}
+.medium-cta-icon{font-size:2rem;margin-bottom:.75rem}
+.medium-cta h3{font-size:1.1rem;font-weight:700;color:var(--text);margin-bottom:.5rem}
+.medium-cta p{font-size:.9rem;color:var(--muted);margin-bottom:1.25rem;line-height:1.65}
+.medium-cta-btn{display:inline-flex;align-items:center;gap:.45rem;font-size:.9rem;font-weight:700;color:#fff;background:var(--blue);padding:.65rem 1.5rem;border-radius:10px;transition:all .2s}
+.medium-cta-btn:hover{background:var(--blue-d);transform:translateY(-2px)}
 
-/* INSIGHTS GRID */
-.cs-insights{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-top:2rem}
-.cs-insight{background:var(--bg-warm);border-radius:var(--radius);padding:1.5rem;border:1px solid var(--border)}
-.cs-insight-icon{font-size:1.5rem;margin-bottom:.75rem}
-.cs-insight-title{font-family:var(--font-display);font-size:1rem;font-weight:700;color:var(--dark);margin-bottom:.45rem;line-height:1.2}
-.cs-insight-desc{font-size:.88rem;color:var(--muted);line-height:1.65;font-weight:300}
+/* Article nav */
+.article-nav{border-top:1px solid var(--border);padding-top:2rem;margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap}
+.anav-btn{display:inline-flex;align-items:center;gap:.4rem;font-size:.84rem;font-weight:600;color:var(--muted);background:var(--bg-el);padding:.5rem 1rem;border-radius:8px;border:1px solid var(--border);transition:all .2s}
+.anav-btn:hover{color:var(--blue);border-color:var(--blue-25);background:var(--blue-10)}
 
-/* STEPS */
-.cs-steps{display:flex;flex-direction:column;gap:0;margin-top:2rem;border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden}
-.cs-step{display:grid;grid-template-columns:80px 1fr;gap:1.5rem;padding:1.75rem 2rem;border-bottom:1px solid var(--border);background:var(--bg)}
-.cs-step:last-child{border-bottom:none}
-.cs-step-num{font-family:var(--font-display);font-size:2rem;font-weight:800;color:var(--blue-10);line-height:1;padding-top:.15rem}
-.cs-step-title{font-family:var(--font-display);font-size:1.05rem;font-weight:700;color:var(--dark);margin-bottom:.4rem}
-.cs-step-desc{font-size:.9rem;color:var(--muted);line-height:1.7;font-weight:300}
+/* Tags */
+.article-tags{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:1.75rem}
+.article-tag{font-size:.68rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--blue);background:var(--blue-10);padding:.2rem .55rem;border-radius:100px}
 
-/* OUTCOMES */
-.cs-outcomes{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin:2rem 0}
-.cs-outcome{background:var(--blue);border-radius:var(--radius-lg);padding:2rem;text-align:center}
-.cs-outcome-num{font-family:var(--font-display);font-size:2.8rem;font-weight:800;color:#fff;line-height:1;margin-bottom:.4rem}
-.cs-outcome-label{font-size:.82rem;color:rgba(255,255,255,.6);line-height:1.4;font-weight:300}
+footer{padding:1.5rem clamp(1.5rem,5vw,4rem);border-top:1px solid var(--border);display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem;font-size:.78rem;color:var(--subtle)}
+.sa{opacity:0;filter:blur(6px);transform:translateY(16px);transition:opacity .6s ease,filter .6s ease,transform .6s ease}
+.sa.in{opacity:1;filter:blur(0);transform:translateY(0)}
+.sa.d1{transition-delay:.07s}.sa.d2{transition-delay:.14s}.sa.d3{transition-delay:.21s}
 
-/* MEDIUM LINK */
-.medium-link{display:inline-flex;align-items:center;gap:.5rem;font-size:.92rem;font-weight:700;color:var(--blue);border:1.5px solid var(--blue-20);background:var(--blue-10);padding:.65rem 1.25rem;border-radius:10px;margin-top:2rem;transition:all .2s}
-.medium-link:hover{background:var(--blue);color:#fff}
-
-/* NAV */
-.cs-nav{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;margin:clamp(3rem,5vw,4.5rem) 0}
-.cs-nav-item{background:var(--bg);padding:1.75rem 2rem;display:flex;flex-direction:column;gap:.4rem;text-decoration:none;transition:background .2s}
-.cs-nav-item:hover{background:var(--bg-warm)}
-.cs-nav-item.next{text-align:right}
-.cs-nav-dir{font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--subtle)}
-.cs-nav-title{font-family:var(--font-display);font-size:1.2rem;font-weight:700;color:var(--dark);line-height:1.2}
-.cs-nav-title em{font-style:normal;color:var(--blue)}
-
-footer{background:var(--bg-dark);padding:2.5rem clamp(1.5rem,5vw,4rem)}
-.footer-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem}
-.footer-logo{font-family:var(--font-display);font-size:1rem;font-weight:700;color:#fff;display:flex;align-items:center;gap:.5rem}
-.footer-copy{font-size:.8rem;color:rgba(255,255,255,.2)}
-.reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
-.reveal.in{opacity:1;transform:none}
-.d1{transition-delay:.1s}.d2{transition-delay:.18s}
-@media(max-width:860px){.cs-meta{grid-template-columns:1fr 1fr}.cs-insights{grid-template-columns:1fr}.cs-outcomes{grid-template-columns:1fr}}
-@media(max-width:580px){.cs-step{grid-template-columns:48px 1fr}.cs-nav{grid-template-columns:1fr}}
-
-/* ── DARK THEME OVERRIDES ── */
-body{background:#0C0C10;color:#ECECF4}
-.nav-logo,.nav-logo span{color:#ECECF4!important}
-.nav-back{color:rgba(255,255,255,.45)!important}
-.nav-back:hover{color:#fff!important;background:rgba(255,255,255,.06)!important}
-.cs-step{background:#141418!important}
-.cs-section p strong{color:#fff!important}
-.cs-meta{background:#141418!important}
-.cs-nav-item{background:#0C0C10!important}
-.cs-nav-item:hover{background:#141418!important}
-.cs-nav-title{color:#ECECF4!important}
-.cs-nav-dir{color:#3C3C50!important}
-.medium-link{background:rgba(0,97,255,.12)!important;border-color:rgba(0,97,255,.28)!important;color:#60A5FF!important}
-.medium-link:hover{background:var(--blue)!important;color:#fff!important}
-footer{background:#080810!important}
-.footer-inner a,.footer-copy{color:rgba(255,255,255,.25)!important}
-.footer-inner a:hover{color:rgba(255,255,255,.6)!important}
-.cs-cover{background:#141418!important}
-.wrap-wide .cs-meta{border-color:rgba(255,255,255,.08)!important}
+/* ── LIGHTBOX ── */
+.lb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.96);z-index:9999;align-items:center;justify-content:center;padding:1.5rem;cursor:zoom-out}
+.lb-overlay.active{display:flex}
+.lb-img-wrap{position:relative;max-width:95vw;max-height:95vh;display:flex;align-items:center;justify-content:center}
+.lb-img{max-width:95vw;max-height:95vh;object-fit:contain;border-radius:8px;box-shadow:0 0 80px rgba(0,0,0,.9);cursor:default}
+.lb-close{position:fixed;top:1.1rem;right:1.1rem;width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.25);color:#fff;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;z-index:10000;backdrop-filter:blur(10px);line-height:1}
+.lb-close:hover{background:rgba(255,255,255,.28);transform:scale(1.08)}
+.lb-hint{position:fixed;bottom:1.25rem;left:50%;transform:translateX(-50%);font-size:.75rem;color:rgba(255,255,255,.35);pointer-events:none;letter-spacing:.04em}
+/* Make all article images zoomable */
+.article-body img,.ss img,.ss-phone img,.ss-narrow img,.featured-img,.gif-wrap img,.screenshot img,.ba-item img,.ss-2col img{cursor:zoom-in!important;transition:opacity .2s}
+.article-body img:hover,.ss img:hover,.ss-phone img:hover,.ss-narrow img:hover,.featured-img:hover,.gif-wrap img:hover,.screenshot img:hover,.ba-item img:hover,.ss-2col img:hover{opacity:.88}
 </style>
 </head>
 <body>
-
-<nav class="nav" id="navbar">
-  <div class="nav-inner">
-    <a href="index.html" class="nav-logo"><span class="dot"></span>Satheesh <span style="color:var(--blue)">Mankulam</span></a>
-    <a href="index.html#casestudies" class="nav-back">
-      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><path d="M10 3L3 8l7 5"/></svg>
-      Case Studies
-    </a>
+<nav class="top-nav">
+  <a href="index.html" class="nav-logo"><span class="dot"></span>Satheesh Mankulam</a>
+  <div class="nav-right">
+    <a href="writings.html" class="nav-back">← All Writings</a>
+    <button class="theme-btn" id="tb" title="Toggle theme">☀</button>
   </div>
 </nav>
 
-<main>
-<div class="wrap">
-  <div class="cs-header">
-    <div class="cs-breadcrumb reveal">
-      <a href="index.html">Portfolio</a><span>/</span>
-      <a href="index.html#casestudies">Case Studies</a><span>/</span>
-      FamilyDose
+<div class="article-wrap">
+  <div class="pub-badge sa">Design Bootcamp · Medium</div>
+  <h1 class="article-title sa d1">Designers Can Ship Now. I Did.</h1>
+  <p class="article-subtitle sa d1">The story behind FamilyDose — built by a UX designer, powered by stubbornness</p>
+  <div class="article-tags sa d1"><span class="article-tag">Personal Essay</span><span class="article-tag">Product Design</span><span class="article-tag">Android App</span><span class="article-tag">FamilyDose</span></div>
+  <div class="author-bar sa d2">
+    <img src="satheesh-photo.jpg" class="author-photo" alt="Satheesh Mankulam">
+    <div>
+      <div class="author-name">Satheesh Mankulam</div>
+      <div class="author-meta">Mar 28, 2026<span class="author-sep"> · </span>4 min read<span class="author-sep"> · </span>Design Bootcamp</div>
     </div>
-    <div class="cs-type-badge reveal">Product Design · Android App · AI-assisted Dev</div>
-    <h1 class="cs-h1 reveal">FamilyDose —<br><em>Designers Can Ship Now.</em><br>I Did.</h1>
-    <p class="cs-lead reveal">The story behind FamilyDose — a medication tracker built by a UX designer, powered by stubbornness. How a sick child, a sleepless night, and an AI coding partner became a real app on the Play Store.</p>
+    <a href="https://medium.com/design-bootcamp/designers-can-ship-now-i-did-571eccf9be78" target="_blank" style="margin-left:auto;font-size:.78rem;font-weight:600;color:var(--blue);display:flex;align-items:center;gap:.3rem">Read on Medium ↗</a>
   </div>
+  <img src="https://miro.medium.com/v2/resize:fit:1200/1*TpvpZyeR3J_3zsTLDlqwHw.jpeg" alt="Designers Can Ship Now. I Did." class="featured-img sa d2" onerror="this.style.display='none'">
+  <div class="article-body sa d3">
+<p>I design interfaces and interaction flows. I know Figma inside out, I can sketch a user flow in my sleep, and I've spent years obsessing over button states and spacing grids. But ask me to write a line of code? I'd have stared at you blankly until about a month ago.</p>
+<p><strong>It started with a fever.</strong></p>
+<p>My kid was sick, and my wife and I were taking turns through the night. Medicines every six hours, but which one did we give last? Was it the tablet or the syrup? Did we already give the second dose? We were exhausted, second-guessing ourselves, scribbling on paper that kept going missing. That night I thought, <em>this is a UX problem.</em></p>
+<p>So I decided to build it myself. A simple medicine log. Free. No subscriptions, no accounts, no nonsense. Just something a tired parent or a caretaker could open and say — yes, this dose was given, at this time.</p>
+<p>I used Claude as my coding partner and Android Studio as my build environment. I fed it my sketches, Figma designs, and the design system I had created. I described user flows and interactions in plain English — the way I'd write a design brief. Claude generated the code.</p>
+<p>It wasn't smooth from the start. I struggled, broke things, broke them again, and gradually got a feel for it. One of the earliest walls I hit was token limits — they ran out faster than I expected. I spent sleepless nights thinking, experimenting, trying again. I even took the Pro subscription, and even then, prompting effectively took me nearly a week to figure out.</p>
+<p>Through all of it, my wife sat beside me almost every evening — tapping through screens, flagging what felt confusing, questioning flows I'd already convinced myself were obvious. She was my sharpest tester. No filter, no politeness — just <em>'this doesn't make sense, redo it.'</em> Exactly what I needed.</p>
+<p>After we launched on the Play Store, a close friend picked it up and used it for real. He came back with small but important bugs. We fixed them together. Nothing about this was solo.</p>
+<p>There were nights I wanted to quit. Play Store rejections, cryptic build errors, screens that looked broken on certain phones. But there was also the moment the app passed review and went live — and I sat there staring at a Play Store listing with my name on it, for something that genuinely came from a real problem, built with nothing but design instinct, stubbornness, and an AI.</p>
+<p>If you're a designer sitting on an idea, waiting until you "learn to code properly", stop waiting. The gap between <em>designers who can't build</em> and <em>engineers who can't design</em> has never been thinner.</p>
+<p>Whether AI will replace engineers or replace designers is still a loud, ongoing argument. But what I know from living it is this: that gap — the one that used to keep ideas locked inside Figma forever — <strong>is closing fast.</strong></p>
+<p>You already understand the user. You already know what good feels like. <strong>Go build the thing.</strong></p>
+  </div>
+  
+  <div class="article-nav"><a href="writings.html" class="anav-btn">All Writings</a><a href="index.html" class="anav-btn">Portfolio →</a></div>
 </div>
-
-<div class="wrap-wide">
-  <div class="cs-meta reveal">
-    <div class="cs-meta-item"><div class="cs-meta-label">Role</div><div class="cs-meta-value">Designer + Product Owner</div></div>
-    <div class="cs-meta-item"><div class="cs-meta-label">Platform</div><div class="cs-meta-value">Android · Google Play</div></div>
-    <div class="cs-meta-item"><div class="cs-meta-label">Stack</div><div class="cs-meta-value">Figma · Claude AI · React</div></div>
-    <div class="cs-meta-item"><div class="cs-meta-label">Status</div><div class="cs-meta-value">Live · v7.1</div></div>
-  </div>
-
-  <!-- Cover SVG: phone + fever visual -->
-  <div class="cs-cover reveal">
-    <svg viewBox="0 0 860 280" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:860px">
-      <rect width="860" height="280" fill="#F3F0EC"/>
-      <text x="430" y="22" text-anchor="middle" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-size="7.5" fill="#A1A1AA" letter-spacing="2">CASE STUDY 02 — FAMILYDOSE · FROM FIGMA TO PLAY STORE</text>
-
-      <!-- Left: problem moment -->
-      <rect x="30" y="38" width="230" height="220" rx="14" fill="#fff" stroke="#E4E4E7" stroke-width="1"/>
-      <text x="145" y="64" text-anchor="middle" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-size="8.5" fill="#71717A" letter-spacing="1">THE PROBLEM MOMENT</text>
-      <rect x="50" y="76" width="190" height="70" rx="10" fill="#FFF5F5" stroke="#FFCFCF" stroke-width=".8"/>
-      <text x="145" y="102" text-anchor="middle" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-size="10" fill="#E8452A">🌡️</text>
-      <rect x="64" y="108" width="162" height="7" rx="2" fill="#F0C0C0"/>
-      <rect x="80" y="120" width="130" height="7" rx="2" fill="#F0C0C0" opacity=".6"/>
-      <text x="145" y="167" text-anchor="middle" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-size="8" fill="#71717A">Which tablet? Last dose?</text>
-      <rect x="50" y="176" width="80" height="60" rx="10" fill="#F9F8F6" stroke="#E4E4E7" stroke-width=".8"/>
-      <text x="90" y="200" text-anchor="middle" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-size="7" fill="#A1A1AA">Paper log</text>
-      <rect x="60" y="208" width="60" height="5" rx="2" fill="#E4E4E7"/>
-      <rect x="60" y="217" width="40" height="5" rx="2" fill="#E4E4E7" opacity=".7"/>
-      <rect x="60" y="226" width="50" height="5" rx="2" fill="#E4E4E7" opacity=".5"/>
-      <rect x="140" y="176" width="80" height="60" rx="10" fill="#FFF5F5" stroke="#FFCFCF" stroke-width=".8"/>
-      <text x="180" y="205" text-anchor="middle" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-size="18">😰</text>
-      <text x="180" y="226" text-anchor="middle" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-size="7" fill="#E8452A">Missing!</text>
-
-      <!-- Arrow -->
-      <line x1="276" y1="148" x2="316" y2="148" stroke="#0061FF" stroke-width="2"/>
-      <polygon points="314,143 322,148 314,153" fill="#0061FF"/>
-      <text x="296" y="168" text-anchor="middle" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-size="7" fill="#0061FF" font-weight="700">BUILD</text>
-
-      <!-- Center: App screen -->
-      <g transform="translate(322,38)">
-        <rect width="216" height="220" rx="14" fill="#18181B"/>
-        <rect x="70" y="7" width="76" height="7" rx="3" fill="rgba(255,255,255,.1)"/>
-        <rect x="8" y="20" width="200" height="192" rx="12" fill="#fff"/>
-        <rect x="8" y="20" width="200" height="44" rx="12" fill="#0061FF"/>
-        <rect x="8" y="44" width="200" height="20" fill="#0061FF"/>
-        <rect x="20" y="32" width="80" height="8" rx="2" fill="rgba(255,255,255,.7)"/>
-        <rect x="20" y="46" width="54" height="5" rx="2" fill="rgba(255,255,255,.38)"/>
-        <rect x="16" y="74" width="184" height="32" rx="8" fill="#F3F0EC"/>
-        <circle cx="30" cy="90" r="8" fill="#0061FF" opacity=".18"/>
-        <circle cx="30" cy="90" r="4" fill="#0061FF" opacity=".5"/>
-        <rect x="44" y="85" width="60" height="6" rx="2" fill="#18181B"/>
-        <rect x="44" y="94" width="44" height="4" rx="2" fill="#A1A1AA"/>
-        <rect x="16" y="114" width="184" height="36" rx="8" fill="#fff" stroke="#E4E4E7" stroke-width=".8"/>
-        <rect x="26" y="124" width="7" height="7" rx="2" fill="#0061FF"/>
-        <rect x="38" y="125" width="70" height="6" rx="2" fill="#18181B"/>
-        <rect x="38" y="134" width="50" height="4" rx="2" fill="#A1A1AA"/>
-        <rect x="170" y="122" width="24" height="18" rx="6" fill="#06D6A0"/>
-        <rect x="16" y="158" width="184" height="36" rx="8" fill="#fff" stroke="#E4E4E7" stroke-width=".8"/>
-        <rect x="26" y="168" width="7" height="7" rx="2" fill="#FFD166"/>
-        <rect x="38" y="169" width="64" height="6" rx="2" fill="#18181B"/>
-        <rect x="38" y="178" width="42" height="4" rx="2" fill="#A1A1AA"/>
-        <rect x="170" y="166" width="24" height="18" rx="6" fill="#E4E4E7"/>
-        <rect x="8" y="196" width="200" height="16" fill="#F9F8F6"/>
-        <rect x="8" y="196" width="200" height="1.5" fill="#E4E4E7"/>
-        <rect x="24" y="201" width="20" height="7" rx="2" fill="#0061FF" opacity=".15"/>
-        <rect x="28" y="202" width="12" height="5" rx="2" fill="#0061FF" opacity=".6"/>
-      </g>
-
-      <!-- Right: outcome stats -->
-      <rect x="554" y="38" width="276" height="220" rx="14" fill="#0061FF"/>
-      <text x="692" y="70" text-anchor="middle" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-size="9" fill="rgba(255,255,255,.5)" letter-spacing="1">THE OUTCOME</text>
-      <text x="692" y="108" text-anchor="middle" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-size="40" font-weight="800" fill="#fff">v7.1</text>
-      <text x="692" y="124" text-anchor="middle" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-size="8" fill="rgba(255,255,255,.55)">Live on Play Store</text>
-      <line x1="574" y1="140" x2="810" y2="140" stroke="rgba(255,255,255,.12)" stroke-width="1"/>
-      <text x="622" y="168" text-anchor="middle" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-size="24" font-weight="800" fill="#fff">13+</text>
-      <text x="622" y="182" text-anchor="middle" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-size="7.5" fill="rgba(255,255,255,.5)">Features shipped</text>
-      <text x="760" y="168" text-anchor="middle" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-size="24" font-weight="800" fill="#fff">0</text>
-      <text x="760" y="182" text-anchor="middle" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-size="7.5" fill="rgba(255,255,255,.5)">Cloud accounts needed</text>
-      <line x1="692" y1="140" x2="692" y2="200" stroke="rgba(255,255,255,.12)" stroke-width="1"/>
-      <line x1="574" y1="196" x2="810" y2="196" stroke="rgba(255,255,255,.12)" stroke-width="1"/>
-      <text x="692" y="224" text-anchor="middle" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-size="8" fill="rgba(255,255,255,.4)">🎨 Figma  →  🤖 Claude AI  →  📱 Play Store</text>
-    </svg>
-  </div>
-</div>
-
-<div class="wrap">
-
-  <!-- 01 Problem -->
-  <div class="cs-section reveal">
-    <div class="cs-section-label">01 — The Story</div>
-    <h2>It started with<br><em>a fever.</em></h2>
-    <p>My kid was sick, and my wife and I were taking turns through the night. Medicines every six hours, but which one did we give last? Was it the tablet or the syrup? Did we already give the second dose? We were exhausted, second-guessing ourselves, scribbling on paper that kept going missing.</p>
-    <p>That night I thought: <strong>this is a UX problem.</strong></p>
-    <div class="cs-quote">
-      <p>"I design interfaces and interaction flows. I know Figma inside out, I can sketch a user flow in my sleep. But ask me to write a line of code? I'd have stared at you blankly — until I built FamilyDose."</p>
-    </div>
-    <p>So I decided to build it myself. A simple medicine log. Free. No subscriptions, no accounts, no nonsense. Just something a tired parent or a caretaker could open and say — yes, this dose was given, at this time.</p>
-    <p>The brief was clear: <strong>build a medication tracker that works offline, requires no account, and is designed for family-level management</strong> — not just individual use.</p>
-  </div>
-
-  <!-- 02 Process -->
-  <div class="cs-section reveal">
-    <div class="cs-section-label">02 — The Build</div>
-    <h2>Claude as coding partner,<br>wife as<em> tester.</em></h2>
-    <div class="cs-insights">
-      <div class="cs-insight">
-        <div class="cs-insight-icon">🤖</div>
-        <div class="cs-insight-title">Claude as coding partner</div>
-        <div class="cs-insight-desc">I used Claude and Android Studio as my build environment. I fed it my Figma sketches and described user flows in plain English — the way I'd write a design brief. Claude generated the code.</div>
-      </div>
-      <div class="cs-insight">
-        <div class="cs-insight-icon">👩‍💻</div>
-        <div class="cs-insight-title">Wife as sharpest tester</div>
-        <div class="cs-insight-desc">My wife sat beside me almost every evening — tapping through screens, flagging what felt confusing, questioning flows I'd convinced myself were obvious. No filter, no politeness. Exactly what I needed.</div>
-      </div>
-      <div class="cs-insight">
-        <div class="cs-insight-icon">🌙</div>
-        <div class="cs-insight-title">Sleepless nights on token limits</div>
-        <div class="cs-insight-desc">One of the earliest walls I hit was token limits — they ran out faster than I expected. I spent sleepless nights experimenting. Prompting effectively took me nearly a week to figure out even after going Pro.</div>
-      </div>
-      <div class="cs-insight">
-        <div class="cs-insight-icon">🐛</div>
-        <div class="cs-insight-title">Real bugs from real users</div>
-        <div class="cs-insight-desc">After launch, a close friend picked it up and used it for real. He came back with small but important bugs. We fixed them together. Nothing about this was solo — the product shaped itself around real use.</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 03 Challenges -->
-  <div class="cs-section reveal">
-    <div class="cs-section-label">03 — The Hard Parts</div>
-    <h2>Play Store rejections,<br>cryptic errors, and<em> wanting to quit.</em></h2>
-    <div class="cs-steps">
-      <div class="cs-step">
-        <div class="cs-step-num">01</div>
-        <div class="cs-step-content">
-          <div class="cs-step-title">Designing 40+ screens before writing code</div>
-          <div class="cs-step-desc">Mapped the core flows in Figma first: add medication → set schedule → view today's doses → mark as taken → history. Designed all edge cases, empty states, and error states before touching Android Studio.</div>
-        </div>
-      </div>
-      <div class="cs-step">
-        <div class="cs-step-num">02</div>
-        <div class="cs-step-content">
-          <div class="cs-step-title">Figma designs → plain English → Claude → working code</div>
-          <div class="cs-step-desc">Each screen and interaction described in plain language — the way I'd write a design spec. Claude generated the React JSX. I iterated on the generated code until every screen matched the Figma designs.</div>
-        </div>
-      </div>
-      <div class="cs-step">
-        <div class="cs-step-num">03</div>
-        <div class="cs-step-content">
-          <div class="cs-step-title">Real device testing — the screens that looked broken</div>
-          <div class="cs-step-desc">Tested specifically on Samsung, OnePlus, and Xiaomi — notorious for killing background processes. Fixed alarm persistence by implementing foreground service notifications and battery exemption prompts.</div>
-        </div>
-      </div>
-      <div class="cs-step">
-        <div class="cs-step-num">04</div>
-        <div class="cs-step-content">
-          <div class="cs-step-title">Play Store submission — passed review on first attempt</div>
-          <div class="cs-step-desc">There were nights I wanted to quit. Play Store rejections, cryptic build errors. But the moment the app passed review and went live — I sat there staring at a Play Store listing with my name on it.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 04 Outcomes -->
-  <div class="cs-section reveal">
-    <div class="cs-section-label">04 — Outcomes</div>
-    <h2>Shipped, live, and<br><em>used by real families.</em></h2>
-    <div class="cs-outcomes">
-      <div class="cs-outcome">
-        <div class="cs-outcome-num">v7.1</div>
-        <div class="cs-outcome-label">Current version<br>on Play Store</div>
-      </div>
-      <div class="cs-outcome">
-        <div class="cs-outcome-num">13+</div>
-        <div class="cs-outcome-label">Features shipped<br>across versions</div>
-      </div>
-      <div class="cs-outcome">
-        <div class="cs-outcome-num">0</div>
-        <div class="cs-outcome-label">Cloud accounts<br>required</div>
-      </div>
-    </div>
-    <div class="cs-quote" style="background:var(--bg-cream);margin-top:1.5rem">
-      <p style="color:var(--dark)">Whether AI will replace engineers or replace designers is still a loud argument. But what I know from living it is this: <em>that gap — the one that used to keep ideas locked inside Figma forever — is closing fast.</em></p>
-    </div>
-    <p>FamilyDose is <strong>free, offline, and available on Google Play</strong>. Trilingual — English, Malayalam, and Hindi. With PIN lock, JSON export, image lightbox, and 100-entry cap with compression.</p>
-    <p>If you're a designer sitting on an idea, waiting until you "learn to code properly" — stop waiting. <strong>You already understand the user. You already know what good feels like. Go build the thing.</strong></p>
-    <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.75rem">
-      <a href="https://play.google.com/store/apps/details?id=com.familydose.app" target="_blank" class="medium-link">↗ View on Google Play</a>
-    </div>
-    <a href="https://medium.com/design-bootcamp/designers-can-ship-now-i-did-571eccf9be78" target="_blank" class="medium-link" style="margin-left:1rem">Read the full article on Medium →</a>
-  </div>
-
-  <div class="cs-nav reveal">
-    <a href="case-google-maps.html" class="cs-nav-item">
-      <div class="cs-nav-dir">← Previous</div>
-      <div class="cs-nav-title">Google Maps × <em>Android Auto</em></div>
-    </a>
-    <a href="case-rapido.html" class="cs-nav-item next">
-      <div class="cs-nav-dir">Next →</div>
-      <div class="cs-nav-title">Rapido — <em>Tapping for Nothing</em></div>
-    </a>
-  </div>
-</div>
-</main>
 
 <footer>
-  <div class="footer-inner">
-    <a href="index.html" class="footer-logo"><span style="width:8px;height:8px;border-radius:50%;background:#0061FF;display:inline-block"></span>Satheesh Mankulam</a>
-    <span class="footer-copy">© 2025 · UX Designer · Bangalore</span>
-  </div>
+  <span>Satheesh Mankulam · UX Designer · Bangalore</span>
+  <span>Published in <a href="https://medium.com/design-bootcamp" target="_blank" style="color:var(--blue)">Design Bootcamp</a> on Medium</span>
 </footer>
-
 <script>
-const nav=document.getElementById('navbar');
-window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>20),{passive:true});
-const obs=new IntersectionObserver(e=>e.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target)}}),{threshold:0.08});
-document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+const saObs=new IntersectionObserver(e=>e.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');saObs.unobserve(en.target)}}),{threshold:.07});
+document.querySelectorAll('.sa').forEach(el=>saObs.observe(el));
+const tb=document.getElementById('tb');
+tb.addEventListener('click',()=>{
+  const isLight=document.documentElement.getAttribute('data-theme')==='light';
+  const newTheme=isLight?'dark':'light';document.documentElement.setAttribute('data-theme',newTheme);try{localStorage.setItem('portfolio-theme',newTheme);}catch(e){}
+  tb.textContent=isLight?'☀':'🌙';
+});
 </script>
+
+<!-- Lightbox -->
+<div class="lb-overlay" id="lbOverlay">
+  <div class="lb-img-wrap" id="lbWrap">
+    <img class="lb-img" id="lbImg" src="" alt="">
+  </div>
+  <button class="lb-close" id="lbClose" title="Close (Esc)">✕</button>
+  <div class="lb-hint">Press Esc or click outside to close</div>
+</div>
+
 </body>
 </html>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8"><script>(function(){try{var t=localStorage.getItem("portfolio-theme")||"dark";document.documentElement.setAttribute("data-theme",t);}catch(e){}})()</script><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/png" href="favicon.png">
 <title>Smarter Navigation with Vehicle Profiles — Satheesh Mankulam</title>
 <style>
@@ -32,7 +32,7 @@ a{text-decoration:none;color:inherit}
 .author-meta{font-size:.8rem;color:var(--muted)}
 .article-tags{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:1.75rem}
 .article-tag{font-size:.68rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--blue);background:var(--blue-10);padding:.2rem .55rem;border-radius:100px}
-.featured-img{width:100%;border-radius:12px;margin-bottom:2.5rem;display:block;max-height:420px;object-fit:cover}
+.featured-img{width:100%;border-radius:12px;margin-bottom:2.5rem;display:block;max-height:none;object-fit:contain}
 
 .article-body{font-size:1.05rem;line-height:1.85;color:var(--text)}
 .article-body p{margin-bottom:1.4rem}
@@ -93,6 +93,18 @@ footer{padding:1.5rem clamp(1.5rem,5vw,4rem);border-top:1px solid var(--border);
 .sa.in{opacity:1;filter:blur(0);transform:translateY(0)}
 .sa.d1{transition-delay:.07s}.sa.d2{transition-delay:.14s}.sa.d3{transition-delay:.21s}
 @media(max-width:600px){.feature-list,.screenshot-2col,.screenshot-3col{grid-template-columns:1fr}}
+
+/* ── LIGHTBOX ── */
+.lb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.96);z-index:9999;align-items:center;justify-content:center;padding:1.5rem;cursor:zoom-out}
+.lb-overlay.active{display:flex}
+.lb-img-wrap{position:relative;max-width:95vw;max-height:95vh;display:flex;align-items:center;justify-content:center}
+.lb-img{max-width:95vw;max-height:95vh;object-fit:contain;border-radius:8px;box-shadow:0 0 80px rgba(0,0,0,.9);cursor:default}
+.lb-close{position:fixed;top:1.1rem;right:1.1rem;width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.25);color:#fff;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;z-index:10000;backdrop-filter:blur(10px);line-height:1}
+.lb-close:hover{background:rgba(255,255,255,.28);transform:scale(1.08)}
+.lb-hint{position:fixed;bottom:1.25rem;left:50%;transform:translateX(-50%);font-size:.75rem;color:rgba(255,255,255,.35);pointer-events:none;letter-spacing:.04em}
+/* Make all article images zoomable */
+.article-body img,.ss img,.ss-phone img,.ss-narrow img,.featured-img,.gif-wrap img,.screenshot img,.ba-item img,.ss-2col img{cursor:zoom-in!important;transition:opacity .2s}
+.article-body img:hover,.ss img:hover,.ss-phone img:hover,.ss-narrow img:hover,.featured-img:hover,.gif-wrap img:hover,.screenshot img:hover,.ba-item img:hover,.ss-2col img:hover{opacity:.88}
 </style>
 </head>
 <body>
@@ -293,11 +305,27 @@ footer{padding:1.5rem clamp(1.5rem,5vw,4rem);border-top:1px solid var(--border);
 <script>
 const saObs=new IntersectionObserver(e=>e.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');saObs.unobserve(en.target)}}),{threshold:.07});
 document.querySelectorAll('.sa').forEach(el=>saObs.observe(el));
+(function(){
+  var btn=document.getElementById('tb');
+  if(btn)btn.textContent=document.documentElement.getAttribute('data-theme')==='light'?'🌙':'☀';
+})();
 document.getElementById('tb').addEventListener('click',()=>{
   const isLight=document.documentElement.getAttribute('data-theme')==='light';
-  document.documentElement.setAttribute('data-theme',isLight?'dark':'light');
+  const newTheme=isLight?'dark':'light';
+  document.documentElement.setAttribute('data-theme',newTheme);
+  try{localStorage.setItem('portfolio-theme',newTheme);}catch(e){}
   document.getElementById('tb').textContent=isLight?'☀':'🌙';
 });
 </script>
+
+<!-- Lightbox -->
+<div class="lb-overlay" id="lbOverlay">
+  <div class="lb-img-wrap" id="lbWrap">
+    <img class="lb-img" id="lbImg" src="" alt="">
+  </div>
+  <button class="lb-close" id="lbClose" title="Close (Esc)">✕</button>
+  <div class="lb-hint">Press Esc or click outside to close</div>
+</div>
+
 </body>
 </html>
