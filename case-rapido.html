@@ -1,192 +1,245 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/png" href="favicon.png">
-<title>Rapido — Tapping for Nothing | Satheesh Mankulam</title>
-
+<title>Tapping for Nothing: Fixing Dead-End Screens in Rapido — Satheesh Mankulam</title>
 <style>
-:root{--blue:#0061FF;--blue-d:#0050CC;--blue-10:#EBF2FF;--blue-20:#D1E4FF;--yellow:#FFD166;--dark:#ECECF4;--text:#ECECF4;--muted:#7A7A90;--subtle:#3C3C50;--border:rgba(255,255,255,.08);--border-warm:rgba(255,255,255,.07);--bg:#0C0C10;--bg-warm:#141418;--bg-cream:#1C1C24;--bg-dark:#080810;--radius:14px;--radius-lg:22px;--shadow:0 2px 12px rgba(0,0,0,.4);--shadow-md:0 8px 32px rgba(0,0,0,.6);--font-display:'Helvetica Neue',Helvetica,-apple-system,Arial,sans-serif;--font-body:'Helvetica Neue',Helvetica,-apple-system,Arial,sans-serif}
+:root{--blue:#0061FF;--blue-d:#0050CC;--blue-10:rgba(0,97,255,.12);--blue-25:rgba(0,97,255,.28);--yellow:#FFD166;--mint:#06D6A0;--rapido:#FFD700;--font:'Helvetica Neue',Helvetica,-apple-system,Arial,sans-serif}
+[data-theme="dark"]{--bg:#0C0C10;--bg-card:#141418;--bg-el:#1C1C24;--bg-hover:#22222C;--text:#ECECF4;--muted:#7A7A90;--subtle:#3C3C50;--border:rgba(255,255,255,.07);--blockquote-border:rgba(0,97,255,.5)}
+[data-theme="light"]{--bg:#F5F5F7;--bg-card:#FFFFFF;--bg-el:#EAEAF4;--bg-hover:#E0E0EE;--text:#1A1A2E;--muted:#5C5C74;--subtle:#ABABC4;--border:rgba(0,0,0,.08);--blockquote-border:#0061FF}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;font-size:16px;-webkit-font-smoothing:antialiased}
-body{font-family:var(--font-body);background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
-a{color:inherit;text-decoration:none}ul{list-style:none}
-.nav{position:fixed;top:0;left:0;right:0;z-index:500;height:68px;display:flex;align-items:center;background:rgba(12,12,16,.92);backdrop-filter:blur(20px);border-bottom:1px solid transparent;transition:border-color .3s,box-shadow .3s;padding:0 clamp(1.5rem,5vw,4rem)}
-.nav.scrolled{border-color:#E4E4E7;box-shadow:0 2px 12px rgba(0,0,0,.06)}
-.nav-inner{max-width:1100px;width:100%;margin:0 auto;display:flex;align-items:center;justify-content:space-between}
-.nav-logo{font-family:var(--font-display);font-size:1.1rem;font-weight:700;color:var(--dark);display:flex;align-items:center;gap:.5rem}
-.nav-logo .dot{width:8px;height:8px;border-radius:50%;background:var(--blue);display:inline-block}
-.nav-back{display:inline-flex;align-items:center;gap:.5rem;font-size:.88rem;font-weight:600;color:var(--muted);padding:.45rem .9rem;border-radius:10px;border:1.5px solid var(--border);transition:all .2s}
-.nav-back:hover{color:var(--dark);border-color:var(--dark)}
-.nav-back svg{width:14px;height:14px}
-.dark-toggle{width:36px;height:36px;border-radius:10px;border:1.5px solid var(--border);background:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--muted);transition:all .2s}
-.dark-toggle:hover{border-color:var(--dark);color:var(--dark)}
-.dark-toggle svg{width:16px;height:16px}
-.wrap{max-width:860px;margin:0 auto;padding:0 clamp(1.5rem,5vw,3rem)}
-.wrap-wide{max-width:1100px;margin:0 auto;padding:0 clamp(1.5rem,5vw,3rem)}
+html{-webkit-font-smoothing:antialiased}
+body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;transition:background .3s,color .3s}
+a{text-decoration:none;color:inherit}
+.top-nav{position:fixed;top:0;left:0;right:0;height:54px;background:rgba(12,12,16,.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 clamp(1.5rem,5vw,4rem);z-index:100;transition:background .3s}
+[data-theme="light"] .top-nav{background:rgba(245,245,247,.92)}
+.nav-logo{font-size:.95rem;font-weight:700;color:var(--text);display:flex;align-items:center;gap:.5rem}
+.nav-logo .dot{width:7px;height:7px;border-radius:50%;background:var(--blue)}
+.nav-back{font-size:.82rem;font-weight:600;color:var(--muted);padding:.38rem .75rem;border-radius:7px;transition:all .2s}
+.nav-back:hover{color:var(--blue);background:var(--blue-10)}
+.nav-right{display:flex;align-items:center;gap:.5rem}
+.theme-btn{width:32px;height:32px;border-radius:7px;background:var(--bg-el);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--muted);cursor:pointer;font-size:.85rem;transition:all .2s}
+.theme-btn:hover{color:var(--blue);border-color:var(--blue)}
+.article-wrap{max-width:720px;margin:0 auto;padding:clamp(5rem,10vw,7rem) clamp(1.5rem,5vw,2.5rem) 4rem}
+.pub-badge{display:inline-flex;align-items:center;gap:.5rem;font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);background:var(--blue-10);border:1px solid rgba(0,97,255,.2);padding:.25rem .75rem;border-radius:100px;margin-bottom:1.25rem}
+.pub-badge::before{content:'M';font-size:.7rem;font-weight:800;background:var(--blue);color:#fff;width:16px;height:16px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center}
+.article-title{font-size:clamp(1.75rem,4vw,2.75rem);font-weight:700;color:var(--text);line-height:1.15;letter-spacing:-.018em;margin-bottom:.6rem}
+.article-subtitle{font-size:1.1rem;color:var(--muted);line-height:1.6;margin-bottom:1.5rem}
+.author-bar{display:flex;align-items:center;gap:.75rem;padding:1.1rem 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-bottom:2rem}
+.author-photo{width:40px;height:40px;border-radius:50%;object-fit:cover;object-position:center 15%;flex-shrink:0}
+.author-name{font-size:.9rem;font-weight:600;color:var(--text)}
+.author-meta{font-size:.8rem;color:var(--muted)}
+.article-tags{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:1.75rem}
+.article-tag{font-size:.68rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--blue);background:var(--blue-10);padding:.2rem .55rem;border-radius:100px}
+.featured-img{width:100%;border-radius:12px;margin-bottom:2.5rem;display:block;max-height:380px;object-fit:cover}
+.article-body{font-size:1.05rem;line-height:1.85;color:var(--text)}
+.article-body p{margin-bottom:1.35rem}
+.article-body h2{font-size:1.5rem;font-weight:700;color:var(--text);margin:2.5rem 0 .9rem;letter-spacing:-.012em}
+.article-body h3{font-size:1.15rem;font-weight:700;color:var(--text);margin:2rem 0 .7rem;letter-spacing:-.01em}
+.article-body strong{font-weight:700;color:var(--text)}
+.article-body em{font-style:italic}
+.article-body blockquote{border-left:3px solid var(--blockquote-border);padding:.5rem 0 .5rem 1.25rem;margin:1.5rem 0;color:var(--muted);font-style:italic;font-size:1rem}
+.article-body ul{margin:.75rem 0 1.25rem 1.5rem}
+.article-body li{margin-bottom:.5rem;line-height:1.7}
+.article-body hr{border:none;border-top:1px solid var(--border);margin:2.5rem 0}
 
-/* PAGE HEADER */
-.cs-header{padding:clamp(6rem,10vw,8rem) 0 0}
-.cs-breadcrumb{display:flex;align-items:center;gap:.4rem;font-size:.78rem;font-weight:500;color:var(--subtle);margin-bottom:1.75rem}
-.cs-breadcrumb a{color:var(--subtle);transition:color .2s}.cs-breadcrumb a:hover{color:var(--blue)}
-.cs-breadcrumb span{opacity:.4}
-.cs-type-badge{display:inline-flex;align-items:center;gap:.4rem;background:var(--blue-10);color:var(--blue);font-size:.75rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:.3rem .85rem;border-radius:100px;margin-bottom:1.25rem}
-.cs-h1{font-family:var(--font-display);font-size:clamp(2.8rem,6vw,4.5rem);font-weight:800;line-height:1.05;letter-spacing:-.015em;color:var(--dark);margin-bottom:1.25rem}
-.cs-h1 em{font-style:normal;color:var(--blue)}
-.cs-lead{font-size:1.12rem;color:var(--muted);line-height:1.8;font-weight:300;max-width:660px;margin-bottom:2.5rem}
+/* Screenshots */
+.ss{margin:2rem 0}
+.ss img{width:100%;border-radius:10px;border:1px solid var(--border);display:block}
+.ss-cap{font-size:.8rem;color:var(--muted);text-align:center;margin-top:.65rem;font-style:italic;line-height:1.5}
+.ss-narrow{margin:2rem auto;max-width:400px}
+.ss-narrow img{width:100%;border-radius:10px;border:1px solid var(--border);display:block}
 
-/* META BAR */
-.cs-meta{display:grid;grid-template-columns:repeat(4,1fr);gap:0;background:var(--bg-dark);border-radius:var(--radius-lg);overflow:hidden;margin-bottom:0}
-.cs-meta-item{padding:1.25rem 1.5rem;border-right:1px solid rgba(255,255,255,.06)}
-.cs-meta-item:last-child{border-right:none}
-.cs-meta-label{font-size:.7rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:.3rem}
-.cs-meta-value{font-size:.95rem;font-weight:600;color:#fff}
+/* User questions callout */
+.questions-box{background:var(--bg-el);border:1px solid var(--border);border-radius:12px;padding:1.25rem 1.5rem;margin:1.5rem 0}
+.questions-box p{font-size:.88rem;color:var(--muted);margin-bottom:.5rem;font-style:italic}
+.questions-box p:last-child{margin-bottom:0}
+.questions-box p::before{content:'— ';color:var(--subtle)}
 
-/* COVER */
-.cs-cover{background:var(--bg-cream);border-radius:0 0 var(--radius-lg) var(--radius-lg);padding:3rem;display:flex;align-items:center;justify-content:center;min-height:300px;margin-bottom:clamp(3rem,6vw,5rem)}
+/* UX Problems */
+.problems-list{display:flex;flex-direction:column;gap:.75rem;margin:1.25rem 0 1.75rem}
+.problem-item{background:var(--bg-el);border:1px solid rgba(239,68,68,.2);border-left:3px solid rgba(239,68,68,.6);border-radius:12px;padding:1rem 1.25rem}
+.problem-title{font-size:.9rem;font-weight:700;color:var(--text);margin-bottom:.3rem}
+.problem-desc{font-size:.83rem;color:var(--muted);line-height:1.6}
 
-/* SECTIONS */
-.cs-section{padding:clamp(2.5rem,4vw,3.5rem) 0;border-top:1px solid var(--border)}
-.cs-section-label{font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:.75rem;display:flex;align-items:center;gap:.5rem}
-.cs-section-label::before{content:'';display:block;width:16px;height:2px;background:var(--blue);border-radius:2px}
-.cs-section h2{font-family:var(--font-display);font-size:clamp(1.9rem,4vw,2.8rem);font-weight:800;color:var(--dark);line-height:1.1;letter-spacing:-.015em;margin-bottom:1.25rem}
-.cs-section h2 em{font-style:normal;color:var(--blue)}
-.cs-section p{font-size:1.02rem;color:var(--muted);line-height:1.85;margin-bottom:1.2rem;font-weight:300}
-.cs-section p strong{color:var(--text);font-weight:600}
-.cs-section p:last-child{margin-bottom:0}
-.cs-quote{border-left:4px solid var(--blue);padding:1.25rem 1.75rem;margin:2rem 0;background:var(--blue-10);border-radius:0 var(--radius) var(--radius) 0}
-.cs-quote p{font-family:var(--font-display);font-size:1.35rem;font-weight:700;color:var(--dark);line-height:1.35;margin:0;letter-spacing:-.01em}
+/* Heuristics */
+.heuristics-grid{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin:1.25rem 0 1.75rem}
+.heuristic-chip{background:var(--bg-el);border:1px solid var(--border);border-radius:10px;padding:.85rem 1rem;font-size:.84rem;color:var(--muted);line-height:1.5;display:flex;align-items:flex-start;gap:.55rem}
+.heuristic-chip::before{content:'📐';font-size:.85rem;flex-shrink:0;margin-top:.05rem}
 
-/* STEPS */
-.cs-steps{border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;margin:2rem 0}
-.cs-step{display:grid;grid-template-columns:64px 1fr;gap:0;border-bottom:1px solid var(--border);transition:background .2s}
-.cs-step:last-child{border-bottom:none}
-.cs-step:hover{background:var(--bg-warm)}
-.cs-step-num{padding:1.5rem;background:var(--bg-warm);border-right:1px solid var(--border);display:flex;align-items:flex-start;justify-content:center;font-family:var(--font-display);font-size:.8rem;font-weight:700;color:var(--subtle);padding-top:1.75rem}
-.cs-step-content{padding:1.5rem 1.75rem}
-.cs-step-title{font-size:1rem;font-weight:700;color:var(--dark);margin-bottom:.35rem;font-family:var(--font-display)}
-.cs-step-desc{font-size:.92rem;color:var(--muted);line-height:1.65;font-weight:300}
+/* Design recommendation */
+.rec-box{background:linear-gradient(135deg,rgba(6,214,160,.07),rgba(6,214,160,.03));border:1px solid rgba(6,214,160,.2);border-radius:14px;padding:1.5rem 1.75rem;margin:1.5rem 0}
+.rec-box h4{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mint);margin-bottom:1rem}
+.rec-box ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.6rem}
+.rec-box li{font-size:.92rem;color:var(--text);display:flex;align-items:flex-start;gap:.6rem;line-height:1.65}
+.rec-box li::before{content:'→';color:var(--mint);font-weight:700;flex-shrink:0;margin-top:.05rem}
 
-/* INSIGHTS */
-.cs-insights{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--border);margin:2rem 0}
-.cs-insight{background:var(--bg);padding:1.75rem;transition:background .2s}
-.cs-insight:hover{background:var(--bg-warm)}
-.cs-insight-icon{font-size:1.6rem;margin-bottom:.85rem}
-.cs-insight-title{font-family:var(--font-display);font-size:1rem;font-weight:700;color:var(--dark);margin-bottom:.4rem}
-.cs-insight-desc{font-size:.88rem;color:var(--muted);line-height:1.6;font-weight:300}
-@media(max-width:540px){.cs-insights{grid-template-columns:1fr}}
+/* Tooltip preview */
+.tooltip-preview{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:1.1rem 1.25rem;margin:1rem 0;font-size:.9rem;color:var(--muted);font-style:italic;display:flex;align-items:flex-start;gap:.65rem}
+.tooltip-preview::before{content:'💡';font-style:normal;flex-shrink:0}
 
-/* OUTCOMES */
-.cs-outcomes{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--border);margin:2rem 0}
-.cs-outcome{background:var(--bg-warm);padding:2rem 1.5rem;text-align:center}
-.cs-outcome-num{font-family:var(--font-display);font-size:3rem;font-weight:800;color:var(--blue);line-height:1;margin-bottom:.4rem;letter-spacing:-.015em}
-.cs-outcome-label{font-size:.85rem;color:var(--muted);font-weight:300;line-height:1.4}
-@media(max-width:540px){.cs-outcomes{grid-template-columns:1fr 1fr}}
+/* Improved screens label */
+.improved-label{display:inline-flex;align-items:center;gap:.4rem;font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mint);background:rgba(6,214,160,.08);border:1px solid rgba(6,214,160,.2);padding:.25rem .75rem;border-radius:100px;margin:.75rem 0 .5rem}
 
-/* NAV PREV/NEXT */
-.cs-nav{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:clamp(3rem,5vw,4rem) 0}
-.cs-nav-item{background:var(--bg-warm);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.75rem;display:flex;flex-direction:column;gap:.35rem;text-decoration:none;transition:all .2s}
-.cs-nav-item:hover{border-color:var(--blue);background:var(--blue-10);transform:translateY(-2px)}
-.cs-nav-item.next{text-align:right}
-.cs-nav-dir{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue)}
-.cs-nav-title{font-family:var(--font-display);font-size:1.2rem;font-weight:700;color:var(--dark);line-height:1.2}
-.cs-nav-title em{font-style:normal;color:var(--blue)}
-
-/* MEDIUM LINK */
-.medium-link{display:inline-flex;align-items:center;gap:.5rem;font-size:.95rem;font-weight:600;color:var(--blue);border-bottom:2px solid var(--blue-20);padding-bottom:1px;transition:border-color .2s;margin-top:1.25rem}
-.medium-link:hover{border-color:var(--blue)}
-
-footer{background:var(--bg-dark);padding:2.5rem clamp(1.5rem,5vw,4rem);margin-top:0}
-.footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem}
-.footer-logo{font-family:var(--font-display);font-size:1rem;font-weight:700;color:#fff;display:flex;align-items:center;gap:.5rem}
-.footer-copy{font-size:.82rem;color:rgba(255,255,255,.2)}
-
-.reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
-.reveal.in{opacity:1;transform:none}
-.d1{transition-delay:.1s}.d2{transition-delay:.2s}
-@media(max-width:720px){.cs-meta{grid-template-columns:1fr 1fr}.cs-nav{grid-template-columns:1fr}}
-@media(max-width:420px){.cs-meta{grid-template-columns:1fr}}
-
-/* ── DARK THEME OVERRIDES ── */
-body{background:#0C0C10;color:#ECECF4}
-.nav-logo,.nav-logo span{color:#ECECF4!important}
-.nav-back{color:rgba(255,255,255,.45)!important}
-.nav-back:hover{color:#fff!important;background:rgba(255,255,255,.06)!important}
-.cs-step{background:#141418!important}
-.cs-section p strong{color:#fff!important}
-.cs-meta{background:#141418!important}
-.cs-nav-item{background:#0C0C10!important}
-.cs-nav-item:hover{background:#141418!important}
-.cs-nav-title{color:#ECECF4!important}
-.cs-nav-dir{color:#3C3C50!important}
-.medium-link{background:rgba(0,97,255,.12)!important;border-color:rgba(0,97,255,.28)!important;color:#60A5FF!important}
-.medium-link:hover{background:var(--blue)!important;color:#fff!important}
-footer{background:#080810!important}
-.footer-inner a,.footer-copy{color:rgba(255,255,255,.25)!important}
-.footer-inner a:hover{color:rgba(255,255,255,.6)!important}
-.cs-cover{background:#141418!important}
-.wrap-wide .cs-meta{border-color:rgba(255,255,255,.08)!important}
+.article-nav{border-top:1px solid var(--border);padding-top:2rem;margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap}
+.anav-btn{display:inline-flex;align-items:center;gap:.4rem;font-size:.84rem;font-weight:600;color:var(--muted);background:var(--bg-el);padding:.5rem 1rem;border-radius:8px;border:1px solid var(--border);transition:all .2s}
+.anav-btn:hover{color:var(--blue);border-color:var(--blue-25);background:var(--blue-10)}
+footer{padding:1.5rem clamp(1.5rem,5vw,4rem);border-top:1px solid var(--border);display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem;font-size:.78rem;color:var(--subtle)}
+.sa{opacity:0;filter:blur(6px);transform:translateY(16px);transition:opacity .6s ease,filter .6s ease,transform .6s ease}
+.sa.in{opacity:1;filter:blur(0);transform:translateY(0)}
+.sa.d1{transition-delay:.07s}.sa.d2{transition-delay:.14s}.sa.d3{transition-delay:.21s}
+@media(max-width:560px){.heuristics-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-<nav class="nav" id="navbar"><div class="nav-inner"><a href="index.html" class="nav-logo"><span class="dot"></span>Satheesh M.</a><div style="display:flex;gap:.75rem;align-items:center"><a href="index.html#casestudies" class="nav-back"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 3L3 8l7 5"/></svg> All Case Studies</a></div></div></nav>
-<main>
-<div class="wrap">
-  <div class="cs-header">
-    <div class="cs-breadcrumb reveal"><a href="index.html">Portfolio</a><span>/</span><a href="index.html#casestudies">Case Studies</a><span>/</span>Rapido</div>
-    <div class="cs-type-badge reveal">Mobile UX · Friction Audit · Error States</div>
-    <h1 class="cs-h1 reveal">Tapping for<br><em>Nothing</em></h1>
-    <p class="cs-lead reveal">A UX teardown of dead-end screens in Rapido — screens that strand users with no path forward, and a redesign that gives users their agency back.</p>
+
+<nav class="top-nav">
+  <a href="index.html" class="nav-logo"><span class="dot"></span>Satheesh Mankulam</a>
+  <div class="nav-right">
+    <a href="writings.html" class="nav-back">← All Writings</a>
+    <button class="theme-btn" id="tb">☀</button>
   </div>
-</div>
-<div class="wrap-wide">
-  <div class="cs-meta reveal">
-    <div class="cs-meta-item"><div class="cs-meta-label">Product</div><div class="cs-meta-value">Rapido App</div></div>
-    <div class="cs-meta-item"><div class="cs-meta-label">Type</div><div class="cs-meta-value">UX Audit · Redesign</div></div>
-    <div class="cs-meta-item"><div class="cs-meta-label">Focus</div><div class="cs-meta-value">Error States · Recovery</div></div>
-    <div class="cs-meta-item"><div class="cs-meta-label">Published</div><div class="cs-meta-value">Medium · Design Bootcamp</div></div>
+</nav>
+
+<div class="article-wrap">
+
+  <div class="pub-badge sa">Design Bootcamp · Medium</div>
+  <h1 class="article-title sa d1">Tapping for Nothing: Fixing Dead-End Screens in Rapido App</h1>
+
+  <div class="article-tags sa d1">
+    <span class="article-tag">Error States</span>
+    <span class="article-tag">Friction Audit</span>
+    <span class="article-tag">Rapido</span>
+    <span class="article-tag">Mobile UX</span>
   </div>
-  <div class="cs-cover reveal"><svg viewBox="0 0 860 260" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:860px">
-<text x="430" y="14" text-anchor="middle" font-family="Syne,sans-serif" font-size="8" fill="#71717A" letter-spacing="2">CASE STUDY 03 — RAPIDO · DEAD-END FLOW</text>
-<rect x="20" y="28" width="390" height="218" rx="14" fill="#F9F8F6" stroke="#E4E4E7" stroke-width="1"/><text x="215" y="48" text-anchor="middle" font-family="Syne,sans-serif" font-size="7" fill="#71717A" letter-spacing="1">CURRENT — HIGH FRICTION</text>
-<rect x="36" y="58" width="358" height="172" rx="10" fill="#fff" stroke="#E4E4E7" stroke-width=".8"/>
-<rect x="52" y="74" width="200" height="14" rx="4" fill="#18181B"/>
-<rect x="52" y="96" width="326" height="36" rx="8" fill="#F3F0EC" stroke="#E4E4E7" stroke-width=".8"/><rect x="64" y="109" width="140" height="10" rx="3" fill="#E4E4E7"/>
-<rect x="52" y="142" width="326" height="36" rx="8" fill="#F3F0EC" stroke="#E4E4E7" stroke-width=".8"/><rect x="64" y="155" width="100" height="10" rx="3" fill="#E4E4E7"/>
-<rect x="52" y="186" width="326" height="32" rx="8" fill="#F3F0EC" stroke="#E8452A" stroke-width="1" stroke-dasharray="4 2"/>
-<rect x="64" y="197" width="200" height="10" rx="3" fill="#E4E4E7"/>
-<text x="340" y="207" font-family="Syne,sans-serif" font-size="11" fill="#E8452A">✕</text>
-<line x1="430" y1="137" x2="470" y2="137" stroke="#E4E4E7" stroke-width="1.5"/>
-<polygon points="468,132 476,137 468,142" fill="#E4E4E7"/>
-<rect x="476" y="28" width="364" height="218" rx="14" fill="#EBF2FF" stroke="#0061FF" stroke-width="1.2"/>
-<text x="658" y="48" text-anchor="middle" font-family="Syne,sans-serif" font-size="7" fill="#0061FF" letter-spacing="1">REDESIGNED — ESCAPE ROUTES</text>
-<rect x="492" y="58" width="332" height="172" rx="10" fill="#fff" stroke="#E4E4E7" stroke-width=".8"/>
-<rect x="508" y="74" width="200" height="14" rx="4" fill="#18181B"/>
-<rect x="508" y="96" width="300" height="9" rx="2" fill="#E4E4E7"/>
-<rect x="508" y="120" width="120" height="34" rx="8" fill="#0061FF"/><rect x="516" y="132" width="104" height="10" rx="3" fill="rgba(255,255,255,.6)"/>
-<rect x="636" y="120" width="80" height="34" rx="8" fill="#F3F0EC" stroke="#E4E4E7" stroke-width=".8"/><rect x="644" y="132" width="64" height="10" rx="3" fill="#A1A1AA"/>
-<rect x="508" y="166" width="300" height="8" rx="2" fill="#EBF2FF"/>
-<rect x="508" y="180" width="220" height="8" rx="2" fill="#EBF2FF"/>
-<rect x="508" y="194" width="180" height="8" rx="2" fill="#EBF2FF"/>
-</svg></div>
-</div>
-<div class="wrap">
-  <div class="cs-section reveal"><div class="cs-section-label">01 — Problem</div><h2>Tapping a button that<br><em>goes nowhere</em></h2><div class="cs-quote"><p>A dead-end screen doesn't just frustrate users — it breaks the implicit contract between the product and the person using it.</p></div><p>You open Rapido. You enter your destination. You tap 'Book Ride.' And then — nothing. A screen appears saying no drivers are available, with no suggestion of what to do next. No retry prompt. No ETA. No alternative modes. Just a dead end.</p><p>This is high-stakes friction. The user has a real-world need: they need to get somewhere. When the product fails to provide a path forward, it doesn't just lose that session — it damages trust permanently.</p></div>
-  <div class="cs-section reveal"><div class="cs-section-label">02 — Research</div><h2>Where Rapido<br><em>leaves users stranded</em></h2><div class="cs-insights"><div class="cs-insight"><div class="cs-insight-icon">🔍</div><div class="cs-insight-title">No drivers available</div><div class="cs-insight-desc">The screen confirms the problem but offers no solution — no retry timer, no suggestion to try a nearby pickup point, no alternative vehicle type.</div></div><div class="cs-insight"><div class="cs-insight-icon">💡</div><div class="cs-insight-title">Payment failure without recovery</div><div class="cs-insight-desc">When a payment fails, users are returned to the start of the booking flow with no indication their booking attempt was saved.</div></div><div class="cs-insight"><div class="cs-insight-icon">📐</div><div class="cs-insight-title">Location not serviceable</div><div class="cs-insight-desc">Entering a pickup outside the service area shows an error — but doesn't suggest the nearest serviceable point or explain coverage.</div></div><div class="cs-insight"><div class="cs-insight-icon">⚡</div><div class="cs-insight-title">Cancelled ride empty state</div><div class="cs-insight-desc">When a driver cancels, the screen returns to a near-blank state. The emotional context (stranded mid-journey) is completely unaddressed.</div></div></div></div>
-  <div class="cs-section reveal"><div class="cs-section-label">03 — Design Process</div><h2>Every dead-end needs<br><em>an escape route</em></h2><div class="cs-steps"><div class="cs-step"><div class="cs-step-num">01</div><div class="cs-step-content"><div class="cs-step-title">Audit all error states in the booking flow</div><div class="cs-step-desc">Mapped every state where the product could fail — no drivers, location issues, payment failures, driver cancellations. Documented what the current UI shows and what the user needs at that moment.</div></div></div><div class="cs-step"><div class="cs-step-num">02</div><div class="cs-step-content"><div class="cs-step-title">Define escape routes for each dead-end</div><div class="cs-step-desc">For every error state, designed at least two recovery actions: a primary action (retry, suggest alternative, find nearby) and a secondary action. No screen without a way forward.</div></div></div><div class="cs-step"><div class="cs-step-num">03</div><div class="cs-step-content"><div class="cs-step-title">Redesign the "no drivers" screen</div><div class="cs-step-desc">Replaced the blank error with real-time availability context, estimated wait time, an option to expand search radius, and an alternative vehicle type selector.</div></div></div><div class="cs-step"><div class="cs-step-num">04</div><div class="cs-step-content"><div class="cs-step-title">Add contextual awareness to error copy</div><div class="cs-step-desc">UX writing matters as much as the UI structure. "Try a nearby pickup point or check back in 5 minutes — demand is high in your area" is a helpful response. Same information, completely different experience.</div></div></div></div></div>
-  <div class="cs-section reveal"><div class="cs-section-label">04 — Outcomes</div><h2>Design as a<br><em>recovery mechanism</em></h2><div class="cs-outcomes"><div class="cs-outcome"><div class="cs-outcome-num">4</div><div class="cs-outcome-label">Dead-end states<br>identified &amp; redesigned</div></div><div class="cs-outcome"><div class="cs-outcome-num">2+</div><div class="cs-outcome-label">Escape routes<br>per error screen</div></div><div class="cs-outcome"><div class="cs-outcome-num">0</div><div class="cs-outcome-label">Screens that should<br>ever have no exit</div></div></div><p>This is a conceptual redesign published in Design Bootcamp. The core principle applies everywhere: every error state is a design opportunity, and every dead-end is a moment to either recover trust or lose it.</p><a href="https://medium.com/design-bootcamp/tapping-for-nothing-fixing-dead-end-screens-in-rapido-app-21a9a5249ccb" target="_blank" class="medium-link">Read the full article on Medium →</a></div>
-  <div class="cs-nav reveal">
-    <a href="case-familydose.html" class="cs-nav-item"><div class="cs-nav-dir">← Previous</div><div class="cs-nav-title"><em>FamilyDose</em> App</div></a>
-    <a href="case-linkedin-post.html" class="cs-nav-item next"><div class="cs-nav-dir">Next →</div><div class="cs-nav-title">LinkedIn — <em>The Post That Never Appeared</em></div></a>
+
+  <div class="author-bar sa d2">
+    <img src="satheesh-photo.jpg" class="author-photo" alt="Satheesh Mankulam">
+    <div>
+      <div class="author-name">Satheesh Mankulam</div>
+      <div class="author-meta">Nov 14, 2025 <span style="margin:0 .25rem;color:var(--subtle)">·</span> 2 min read <span style="margin:0 .25rem;color:var(--subtle)">·</span> Design Bootcamp</div>
+    </div>
+    <a href="https://medium.com/design-bootcamp/tapping-for-nothing-fixing-dead-end-screens-in-rapido-app-21a9a5249ccb" target="_blank" style="margin-left:auto;font-size:.78rem;font-weight:600;color:var(--blue)">Read on Medium ↗</a>
   </div>
+
+  <img src="https://miro.medium.com/v2/resize:fit:1200/1*sTGpPQbTzfq4sGHvzLNtKQ.png"
+       alt="Rapido dead-end screen" class="featured-img sa d2"
+       onerror="this.style.display='none'">
+
+  <div class="article-body">
+
+    <p class="sa">I opened Rapido to quickly book an auto. Everything was smooth — location set, vehicle selection along with fare. Then I saw the payment mode selection.</p>
+
+    <div class="ss sa">
+      <img src="rapido-01-vehicle-selection.png" alt="Rapido app showing vehicle selection with Auto (₹484) and Cash payment mode at the bottom">
+      <p class="ss-cap">The booking flow felt seamless — until I reached the payment selection at the bottom.</p>
+    </div>
+
+    <p class="sa">'Cash' payment was the default selection. I tapped 'Cash' — a page with various payment modes <strong>disabled</strong> was opened up.</p>
+
+    <div class="ss sa">
+      <img src="rapido-02-payments-disabled.png" alt="Rapido Payments screen showing Pay directly through cash or UPI, with Cash selected but all wallet options (Rapido Wallet, AmazonPay) and UPI apps (GPay, CRED, Khibile, Pay at drop, Simpl) greyed out and disabled">
+      <p class="ss-cap">The Payments screen: Cash is selected, but every other option — wallets, UPI apps, Pay at drop — is greyed out and disabled. No explanation why.</p>
+    </div>
+
+    <p class="sa">But it felt like a waste of a step. It led me to more questions:</p>
+
+    <div class="questions-box sa">
+      <p>Will I get more options later?</p>
+      <p>Am I supposed to set up something else?</p>
+      <p>Why are other payment methods disabled?</p>
+    </div>
+
+    <p class="sa">That moment broke the flow. I was expecting a quick, seamless booking — not an unnecessary decision point for something I had no control over.</p>
+
+    <div class="ss-narrow sa">
+      <img src="rapido-03-dead-end-cash.png" alt="Dead-end screen showing just 'Cash >' — a single option with no information">
+      <p class="ss-cap">The dead end: a single option, no context, no explanation. Tapping leads nowhere useful.</p>
+    </div>
+
+    <h3 class="sa">UX Problems</h3>
+    <div class="problems-list">
+      <div class="problem-item sa">
+        <div class="problem-title">Redundant Step</div>
+        <div class="problem-desc">The payment selection screen serves no purpose when only one mode is offered.</div>
+      </div>
+      <div class="problem-item sa">
+        <div class="problem-title">False Choice</div>
+        <div class="problem-desc">Creates a decision point where no decision exists.</div>
+      </div>
+      <div class="problem-item sa">
+        <div class="problem-title">Break in Flow</div>
+        <div class="problem-desc">Interrupts what should be a fast, frictionless booking process.</div>
+      </div>
+      <div class="problem-item sa">
+        <div class="problem-title">User Confusion</div>
+        <div class="problem-desc">Can make users question app stability or payment reliability.</div>
+      </div>
+    </div>
+
+    <h3 class="sa">UX Heuristics Violated</h3>
+    <div class="heuristics-grid">
+      <div class="heuristic-chip sa">Minimize user effort (Nielsen)</div>
+      <div class="heuristic-chip sa">Match between system and real-world logic</div>
+      <div class="heuristic-chip sa">Don't force unnecessary actions</div>
+      <div class="heuristic-chip sa">Recognition over recall — don't make users "reconfirm" the obvious</div>
+    </div>
+
+    <h3 class="sa">Design Recommendations</h3>
+
+    <div class="rec-box sa">
+      <h4>If only one payment mode is available</h4>
+      <ul>
+        <li>Use <strong>"Pay Directly"</strong> instead of "Cash" in the label</li>
+        <li>Auto-select silently in the backend — don't surface a selection screen</li>
+        <li>Skip the selection screen entirely</li>
+        <li>On ride summary, show: <em>Payment Mode: Cash or UPI (Pay driver directly)</em></li>
+      </ul>
+    </div>
+
+    <div class="tooltip-preview sa">
+      Optional tooltip: <em>"Rapido Auto payments are made directly to drivers."</em> — with a <strong>Read More</strong> link that opens a brief explanation of Rapido's SaaS and Commission-based models.
+    </div>
+
+    <h3 class="sa">Improved Screens</h3>
+    <div class="improved-label sa">✓ Redesigned</div>
+
+    <div class="ss sa">
+      <img src="rapido-04-improved-screens.png" alt="Improved Rapido screens — Auto booking with Pay Directly (cash or UPI) shown cleanly, simplified payment flow with Total fare ₹104">
+      <p class="ss-cap">The improved flow: "Pay Directly (Cash or UPI)" shown inline on the booking screen — no extra tap, no disabled options, no confusion.</p>
+    </div>
+
+    <div class="ss sa">
+      <img src="rapido-05-improved-final.png" alt="Final improved Rapido screens — vehicle list with Pay Directly label at bottom, and clean payment confirmation UI">
+      <p class="ss-cap">The final state: clean, direct, and honest. The payment mode is visible at the point it matters — the booking confirmation — not buried behind an extra tap.</p>
+    </div>
+
+    <blockquote class="sa">Dead-end screens don't just frustrate users — they break the implicit contract between the app and the user's trust.</blockquote>
+
+  </div>
+
+  <div class="article-nav sa">
+    <a href="writings.html" class="anav-btn">← All Writings</a>
+    <a href="https://medium.com/design-bootcamp/tapping-for-nothing-fixing-dead-end-screens-in-rapido-app-21a9a5249ccb" target="_blank" class="anav-btn">Read on Medium ↗</a>
+    <a href="index.html" class="anav-btn">Portfolio →</a>
+  </div>
+
 </div>
-</main>
-<footer><div class="footer-inner"><a href="index.html" class="footer-logo"><span style="width:8px;height:8px;border-radius:50%;background:#0061FF;display:inline-block"></span>Satheesh Mankulam</a><span class="footer-copy">© 2025 · UX Designer · Bangalore</span></div></footer>
+
+<footer>
+  <span>Satheesh Mankulam · UX Designer · Bangalore</span>
+  <span>Published in <a href="https://medium.com/design-bootcamp" target="_blank" style="color:var(--blue)">Design Bootcamp</a> on Medium</span>
+</footer>
+
 <script>
-const nav=document.getElementById("navbar");
-window.addEventListener("scroll",()=>nav.classList.toggle("scrolled",window.scrollY>20),{passive:true});
-const obs=new IntersectionObserver(e=>e.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");obs.unobserve(e.target)}}),{threshold:0.08});
-document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
+const saObs=new IntersectionObserver(e=>e.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');saObs.unobserve(en.target)}}),{threshold:.07});
+document.querySelectorAll('.sa').forEach(el=>saObs.observe(el));
+document.getElementById('tb').addEventListener('click',()=>{
+  const isLight=document.documentElement.getAttribute('data-theme')==='light';
+  document.documentElement.setAttribute('data-theme',isLight?'dark':'light');
+  document.getElementById('tb').textContent=isLight?'☀':'🌙';
+});
 </script>
 </body>
 </html>
