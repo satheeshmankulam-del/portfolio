@@ -1,154 +1,256 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/png" href="favicon.png">
-<title>LinkedIn — Reducing Friction in Scheduled Posts | Satheesh Mankulam</title>
-
-<style>:root{--blue:#0061FF;--blue-d:#0050CC;--blue-10:#EBF2FF;--blue-20:#D1E4FF;--yellow:#FFD166;--dark:#ECECF4;--text:#ECECF4;--muted:#7A7A90;--subtle:#3C3C50;--border:rgba(255,255,255,.08);--border-warm:rgba(255,255,255,.07);--bg:#0C0C10;--bg-warm:#141418;--bg-cream:#1C1C24;--bg-dark:#080810;--radius:14px;--radius-lg:22px;--shadow:0 2px 12px rgba(0,0,0,.4);--shadow-md:0 8px 32px rgba(0,0,0,.6);--font-display:'Helvetica Neue',Helvetica,-apple-system,Arial,sans-serif;--font-body:'Helvetica Neue',Helvetica,-apple-system,Arial,sans-serif}
+<title>Reducing Friction in LinkedIn's Scheduled Post Flow — Satheesh Mankulam</title>
+<style>
+:root{--blue:#0061FF;--blue-d:#0050CC;--blue-10:rgba(0,97,255,.12);--blue-25:rgba(0,97,255,.28);--yellow:#FFD166;--mint:#06D6A0;--linkedin:#0A66C2;--font:'Helvetica Neue',Helvetica,-apple-system,Arial,sans-serif}
+[data-theme="dark"]{--bg:#0C0C10;--bg-card:#141418;--bg-el:#1C1C24;--bg-hover:#22222C;--text:#ECECF4;--muted:#7A7A90;--subtle:#3C3C50;--border:rgba(255,255,255,.07);--blockquote-border:rgba(0,97,255,.5)}
+[data-theme="light"]{--bg:#F5F5F7;--bg-card:#FFFFFF;--bg-el:#EAEAF4;--bg-hover:#E0E0EE;--text:#1A1A2E;--muted:#5C5C74;--subtle:#ABABC4;--border:rgba(0,0,0,.08);--blockquote-border:#0061FF}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;font-size:16px;-webkit-font-smoothing:antialiased}
-body{font-family:var(--font-body);background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
-a{color:inherit;text-decoration:none}ul{list-style:none}
-.nav{position:fixed;top:0;left:0;right:0;z-index:500;height:68px;display:flex;align-items:center;background:rgba(12,12,16,.92);backdrop-filter:blur(20px);border-bottom:1px solid transparent;transition:border-color .3s,box-shadow .3s;padding:0 clamp(1.5rem,5vw,4rem)}
-.nav.scrolled{border-color:#E4E4E7;box-shadow:0 2px 12px rgba(0,0,0,.06)}
-.nav-inner{max-width:1100px;width:100%;margin:0 auto;display:flex;align-items:center;justify-content:space-between}
-.nav-logo{font-family:var(--font-display);font-size:1.1rem;font-weight:700;color:var(--dark);display:flex;align-items:center;gap:.5rem}
-.nav-logo .dot{width:8px;height:8px;border-radius:50%;background:var(--blue);display:inline-block}
-.nav-back{display:inline-flex;align-items:center;gap:.5rem;font-size:.88rem;font-weight:600;color:var(--muted);padding:.45rem .9rem;border-radius:10px;border:1.5px solid var(--border);transition:all .2s}
-.nav-back:hover{color:var(--dark);border-color:var(--dark)}
-.nav-back svg{width:14px;height:14px}
-.dark-toggle{width:36px;height:36px;border-radius:10px;border:1.5px solid var(--border);background:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--muted);transition:all .2s}
-.dark-toggle:hover{border-color:var(--dark);color:var(--dark)}
-.dark-toggle svg{width:16px;height:16px}
-.wrap{max-width:860px;margin:0 auto;padding:0 clamp(1.5rem,5vw,3rem)}
-.wrap-wide{max-width:1100px;margin:0 auto;padding:0 clamp(1.5rem,5vw,3rem)}
+html{-webkit-font-smoothing:antialiased}
+body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;transition:background .3s,color .3s}
+a{text-decoration:none;color:inherit}
+.top-nav{position:fixed;top:0;left:0;right:0;height:54px;background:rgba(12,12,16,.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 clamp(1.5rem,5vw,4rem);z-index:100;transition:background .3s}
+[data-theme="light"] .top-nav{background:rgba(245,245,247,.92)}
+.nav-logo{font-size:.95rem;font-weight:700;color:var(--text);display:flex;align-items:center;gap:.5rem}
+.nav-logo .dot{width:7px;height:7px;border-radius:50%;background:var(--blue)}
+.nav-back{font-size:.82rem;font-weight:600;color:var(--muted);padding:.38rem .75rem;border-radius:7px;transition:all .2s}
+.nav-back:hover{color:var(--blue);background:var(--blue-10)}
+.nav-right{display:flex;align-items:center;gap:.5rem}
+.theme-btn{width:32px;height:32px;border-radius:7px;background:var(--bg-el);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--muted);cursor:pointer;font-size:.85rem;transition:all .2s}
+.theme-btn:hover{color:var(--blue);border-color:var(--blue)}
+.article-wrap{max-width:720px;margin:0 auto;padding:clamp(5rem,10vw,7rem) clamp(1.5rem,5vw,2.5rem) 4rem}
+.pub-badge{display:inline-flex;align-items:center;gap:.5rem;font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);background:var(--blue-10);border:1px solid rgba(0,97,255,.2);padding:.25rem .75rem;border-radius:100px;margin-bottom:1.25rem}
+.pub-badge::before{content:'M';font-size:.7rem;font-weight:800;background:var(--blue);color:#fff;width:16px;height:16px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center}
+.article-title{font-size:clamp(1.75rem,4vw,2.75rem);font-weight:700;color:var(--text);line-height:1.15;letter-spacing:-.018em;margin-bottom:.6rem}
+.article-subtitle{font-size:1.1rem;color:var(--muted);line-height:1.6;margin-bottom:1.5rem}
+.author-bar{display:flex;align-items:center;gap:.75rem;padding:1.1rem 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-bottom:2rem}
+.author-photo{width:40px;height:40px;border-radius:50%;object-fit:cover;object-position:center 15%;flex-shrink:0}
+.author-name{font-size:.9rem;font-weight:600;color:var(--text)}
+.author-meta{font-size:.8rem;color:var(--muted)}
+.article-tags{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:1.75rem}
+.article-tag{font-size:.68rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--blue);background:var(--blue-10);padding:.2rem .55rem;border-radius:100px}
+.featured-img{width:100%;border-radius:12px;margin-bottom:2.5rem;display:block;max-height:380px;object-fit:cover}
 
-/* PAGE HEADER */
-.cs-header{padding:clamp(6rem,10vw,8rem) 0 0}
-.cs-breadcrumb{display:flex;align-items:center;gap:.4rem;font-size:.78rem;font-weight:500;color:var(--subtle);margin-bottom:1.75rem}
-.cs-breadcrumb a{color:var(--subtle);transition:color .2s}.cs-breadcrumb a:hover{color:var(--blue)}
-.cs-breadcrumb span{opacity:.4}
-.cs-type-badge{display:inline-flex;align-items:center;gap:.4rem;background:var(--blue-10);color:var(--blue);font-size:.75rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:.3rem .85rem;border-radius:100px;margin-bottom:1.25rem}
-.cs-h1{font-family:var(--font-display);font-size:clamp(2.8rem,6vw,4.5rem);font-weight:800;line-height:1.05;letter-spacing:-.015em;color:var(--dark);margin-bottom:1.25rem}
-.cs-h1 em{font-style:normal;color:var(--blue)}
-.cs-lead{font-size:1.12rem;color:var(--muted);line-height:1.8;font-weight:300;max-width:660px;margin-bottom:2.5rem}
+.article-body{font-size:1.05rem;line-height:1.85;color:var(--text)}
+.article-body p{margin-bottom:1.35rem}
+.article-body h2{font-size:1.5rem;font-weight:700;color:var(--text);margin:2.5rem 0 .9rem;letter-spacing:-.012em}
+.article-body h3{font-size:1.15rem;font-weight:700;color:var(--text);margin:2rem 0 .7rem;letter-spacing:-.01em}
+.article-body strong{font-weight:700;color:var(--text)}
+.article-body em{font-style:italic}
+.article-body blockquote{border-left:3px solid var(--blockquote-border);padding:.5rem 0 .5rem 1.25rem;margin:1.5rem 0;color:var(--muted);font-style:italic;font-size:1rem}
+.article-body ul{margin:.75rem 0 1.25rem 1.5rem}
+.article-body li{margin-bottom:.45rem;line-height:1.7}
+.article-body hr{border:none;border-top:1px solid var(--border);margin:2.5rem 0}
 
-/* META BAR */
-.cs-meta{display:grid;grid-template-columns:repeat(4,1fr);gap:0;background:var(--bg-dark);border-radius:var(--radius-lg);overflow:hidden;margin-bottom:0}
-.cs-meta-item{padding:1.25rem 1.5rem;border-right:1px solid rgba(255,255,255,.06)}
-.cs-meta-item:last-child{border-right:none}
-.cs-meta-label{font-size:.7rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:.3rem}
-.cs-meta-value{font-size:.95rem;font-weight:600;color:#fff}
+/* GIF display */
+.gif-wrap{margin:2rem 0}
+.gif-wrap img{width:100%;border-radius:12px;border:1px solid var(--border);display:block}
+.gif-cap{font-size:.8rem;color:var(--muted);text-align:center;margin-top:.65rem;font-style:italic;line-height:1.5}
 
-/* COVER */
-.cs-cover{background:var(--bg-cream);border-radius:0 0 var(--radius-lg) var(--radius-lg);padding:3rem;display:flex;align-items:center;justify-content:center;min-height:300px;margin-bottom:clamp(3rem,6vw,5rem)}
+/* Current flow steps */
+.flow-steps{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:1.5rem 1.75rem;margin:1.5rem 0}
+.flow-steps h4{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem}
+.flow-step{display:flex;align-items:flex-start;gap:.85rem;padding:.6rem 0;border-bottom:1px solid var(--border)}
+.flow-step:last-child{border-bottom:none}
+.step-num{font-size:.72rem;font-weight:800;color:var(--blue);background:var(--blue-10);width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:.12rem}
+.step-text{font-size:.92rem;color:var(--text);line-height:1.55}
 
-/* SECTIONS */
-.cs-section{padding:clamp(2.5rem,4vw,3.5rem) 0;border-top:1px solid var(--border)}
-.cs-section-label{font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:.75rem;display:flex;align-items:center;gap:.5rem}
-.cs-section-label::before{content:'';display:block;width:16px;height:2px;background:var(--blue);border-radius:2px}
-.cs-section h2{font-family:var(--font-display);font-size:clamp(1.9rem,4vw,2.8rem);font-weight:800;color:var(--dark);line-height:1.1;letter-spacing:-.015em;margin-bottom:1.25rem}
-.cs-section h2 em{font-style:normal;color:var(--blue)}
-.cs-section p{font-size:1.02rem;color:var(--muted);line-height:1.85;margin-bottom:1.2rem;font-weight:300}
-.cs-section p strong{color:var(--text);font-weight:600}
-.cs-section p:last-child{margin-bottom:0}
-.cs-quote{border-left:4px solid var(--blue);padding:1.25rem 1.75rem;margin:2rem 0;background:var(--blue-10);border-radius:0 var(--radius) var(--radius) 0}
-.cs-quote p{font-family:var(--font-display);font-size:1.35rem;font-weight:700;color:var(--dark);line-height:1.35;margin:0;letter-spacing:-.01em}
+/* Stats row */
+.stats-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.5rem 0}
+.stat-box{background:var(--bg-el);border:1px solid var(--border);border-radius:12px;padding:1.1rem 1.25rem;text-align:center}
+.stat-n{font-size:1.8rem;font-weight:700;color:var(--text);line-height:1;margin-bottom:.25rem}
+.stat-n.bad{color:#EF4444}
+.stat-l{font-size:.74rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
 
-/* STEPS */
-.cs-steps{border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;margin:2rem 0}
-.cs-step{display:grid;grid-template-columns:64px 1fr;gap:0;border-bottom:1px solid var(--border);transition:background .2s}
-.cs-step:last-child{border-bottom:none}
-.cs-step:hover{background:var(--bg-warm)}
-.cs-step-num{padding:1.5rem;background:var(--bg-warm);border-right:1px solid var(--border);display:flex;align-items:flex-start;justify-content:center;font-family:var(--font-display);font-size:.8rem;font-weight:700;color:var(--subtle);padding-top:1.75rem}
-.cs-step-content{padding:1.5rem 1.75rem}
-.cs-step-title{font-size:1rem;font-weight:700;color:var(--dark);margin-bottom:.35rem;font-family:var(--font-display)}
-.cs-step-desc{font-size:.92rem;color:var(--muted);line-height:1.65;font-weight:300}
+/* UX Issues */
+.issues-list{display:flex;flex-direction:column;gap:.75rem;margin:1.25rem 0 1.75rem}
+.issue-item{background:var(--bg-el);border:1px solid var(--border);border-radius:12px;padding:1.1rem 1.25rem;display:grid;grid-template-columns:auto 1fr;gap:.85rem;align-items:flex-start}
+.issue-icon{font-size:1rem;flex-shrink:0;margin-top:.1rem}
+.issue-title{font-size:.9rem;font-weight:700;color:var(--text);margin-bottom:.28rem}
+.issue-desc{font-size:.82rem;color:var(--muted);line-height:1.6}
 
-/* INSIGHTS */
-.cs-insights{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--border);margin:2rem 0}
-.cs-insight{background:var(--bg);padding:1.75rem;transition:background .2s}
-.cs-insight:hover{background:var(--bg-warm)}
-.cs-insight-icon{font-size:1.6rem;margin-bottom:.85rem}
-.cs-insight-title{font-family:var(--font-display);font-size:1rem;font-weight:700;color:var(--dark);margin-bottom:.4rem}
-.cs-insight-desc{font-size:.88rem;color:var(--muted);line-height:1.6;font-weight:300}
-@media(max-width:540px){.cs-insights{grid-template-columns:1fr}}
+/* Solution UI elements */
+.solution-elements{background:linear-gradient(135deg,rgba(10,102,194,.08),rgba(10,102,194,.04));border:1px solid rgba(10,102,194,.25);border-radius:14px;padding:1.5rem 1.75rem;margin:1.5rem 0}
+.solution-elements h4{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#60A5FA;margin-bottom:1rem}
+.solution-elements ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.55rem}
+.solution-elements li{font-size:.92rem;color:var(--text);display:flex;align-items:flex-start;gap:.65rem;line-height:1.6}
+.solution-elements li::before{content:'→';color:#60A5FA;font-weight:700;flex-shrink:0}
 
-/* OUTCOMES */
-.cs-outcomes{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--border);margin:2rem 0}
-.cs-outcome{background:var(--bg-warm);padding:2rem 1.5rem;text-align:center}
-.cs-outcome-num{font-family:var(--font-display);font-size:3rem;font-weight:800;color:var(--blue);line-height:1;margin-bottom:.4rem;letter-spacing:-.015em}
-.cs-outcome-label{font-size:.85rem;color:var(--muted);font-weight:300;line-height:1.4}
-@media(max-width:540px){.cs-outcomes{grid-template-columns:1fr 1fr}}
+/* Closing box */
+.closing-box{background:var(--bg-el);border:1px solid var(--border);border-radius:14px;padding:1.5rem 1.75rem;margin:2rem 0}
+.closing-box p{font-size:.97rem;color:var(--muted);line-height:1.75;margin:0}
+.closing-box p + p{margin-top:.75rem}
 
-/* NAV PREV/NEXT */
-.cs-nav{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:clamp(3rem,5vw,4rem) 0}
-.cs-nav-item{background:var(--bg-warm);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.75rem;display:flex;flex-direction:column;gap:.35rem;text-decoration:none;transition:all .2s}
-.cs-nav-item:hover{border-color:var(--blue);background:var(--blue-10);transform:translateY(-2px)}
-.cs-nav-item.next{text-align:right}
-.cs-nav-dir{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue)}
-.cs-nav-title{font-family:var(--font-display);font-size:1.2rem;font-weight:700;color:var(--dark);line-height:1.2}
-.cs-nav-title em{font-style:normal;color:var(--blue)}
-
-/* MEDIUM LINK */
-.medium-link{display:inline-flex;align-items:center;gap:.5rem;font-size:.95rem;font-weight:600;color:var(--blue);border-bottom:2px solid var(--blue-20);padding-bottom:1px;transition:border-color .2s;margin-top:1.25rem}
-.medium-link:hover{border-color:var(--blue)}
-
-footer{background:var(--bg-dark);padding:2.5rem clamp(1.5rem,5vw,4rem);margin-top:0}
-.footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem}
-.footer-logo{font-family:var(--font-display);font-size:1rem;font-weight:700;color:#fff;display:flex;align-items:center;gap:.5rem}
-.footer-copy{font-size:.82rem;color:rgba(255,255,255,.2)}
-
-.reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
-.reveal.in{opacity:1;transform:none}
-.d1{transition-delay:.1s}.d2{transition-delay:.2s}
-@media(max-width:720px){.cs-meta{grid-template-columns:1fr 1fr}.cs-nav{grid-template-columns:1fr}}
-@media(max-width:420px){.cs-meta{grid-template-columns:1fr}}
-/* ── DARK THEME OVERRIDES ── */
-body{background:#0C0C10;color:#ECECF4}
-.nav-logo,.nav-logo span{color:#ECECF4!important}
-.nav-back{color:rgba(255,255,255,.45)!important}
-.nav-back:hover{color:#fff!important;background:rgba(255,255,255,.06)!important}
-.cs-step{background:#141418!important}
-.cs-section p strong{color:#fff!important}
-.cs-meta{background:#141418!important}
-.cs-nav-item{background:#0C0C10!important}
-.cs-nav-item:hover{background:#141418!important}
-.cs-nav-title{color:#ECECF4!important}
-.cs-nav-dir{color:#3C3C50!important}
-.medium-link{background:rgba(0,97,255,.12)!important;border-color:rgba(0,97,255,.28)!important;color:#60A5FF!important}
-.medium-link:hover{background:var(--blue)!important;color:#fff!important}
-footer{background:#080810!important}
-.footer-inner a,.footer-copy{color:rgba(255,255,255,.25)!important}
-.footer-inner a:hover{color:rgba(255,255,255,.6)!important}
-.cs-cover{background:#141418!important}
-.wrap-wide .cs-meta{border-color:rgba(255,255,255,.08)!important}
+.article-nav{border-top:1px solid var(--border);padding-top:2rem;margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap}
+.anav-btn{display:inline-flex;align-items:center;gap:.4rem;font-size:.84rem;font-weight:600;color:var(--muted);background:var(--bg-el);padding:.5rem 1rem;border-radius:8px;border:1px solid var(--border);transition:all .2s}
+.anav-btn:hover{color:var(--blue);border-color:var(--blue-25);background:var(--blue-10)}
+footer{padding:1.5rem clamp(1.5rem,5vw,4rem);border-top:1px solid var(--border);display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem;font-size:.78rem;color:var(--subtle)}
+.sa{opacity:0;filter:blur(6px);transform:translateY(16px);transition:opacity .6s ease,filter .6s ease,transform .6s ease}
+.sa.in{opacity:1;filter:blur(0);transform:translateY(0)}
+.sa.d1{transition-delay:.07s}.sa.d2{transition-delay:.14s}.sa.d3{transition-delay:.21s}
+@media(max-width:560px){.stats-row{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-<nav class="nav" id="navbar"><div class="nav-inner"><a href="index.html" class="nav-logo"><span class="dot"></span>Satheesh M.</a><a href="index.html#casestudies" class="nav-back"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><path d="M10 3L3 8l7 5"/></svg> Case Studies</a></div></nav>
-<main>
-<div class="wrap">
-  <div class="cs-header">
-    <div class="cs-breadcrumb reveal"><a href="index.html">Portfolio</a><span>/</span><a href="index.html#casestudies">Case Studies</a><span>/</span>LinkedIn Scheduling</div>
-    <div class="cs-type-badge reveal">Task Flow · Scheduling UX · LinkedIn</div>
-    <h1 class="cs-h1 reveal">LinkedIn — Reducing<br><em>Scheduling Friction</em></h1>
-    <p class="cs-lead reveal">A step-by-step teardown of LinkedIn's content scheduling experience — how unnecessary steps, confusing state management, and poor confirmation design turn a simple task into a frustrating one.</p>
+
+<nav class="top-nav">
+  <a href="index.html" class="nav-logo"><span class="dot"></span>Satheesh Mankulam</a>
+  <div class="nav-right">
+    <a href="writings.html" class="nav-back">← All Writings</a>
+    <button class="theme-btn" id="tb">☀</button>
   </div>
+</nav>
+
+<div class="article-wrap">
+
+  <div class="pub-badge sa">Design Bootcamp · Medium</div>
+  <h1 class="article-title sa d1">Reducing Friction in LinkedIn's Scheduled Post Flow</h1>
+  <p class="article-subtitle sa d1">UX Case Study</p>
+
+  <div class="article-tags sa d1">
+    <span class="article-tag">Task Flow</span>
+    <span class="article-tag">LinkedIn</span>
+    <span class="article-tag">Scheduling UX</span>
+    <span class="article-tag">Discoverability</span>
+  </div>
+
+  <div class="author-bar sa d2">
+    <img src="satheesh-photo.jpg" class="author-photo" alt="Satheesh Mankulam">
+    <div>
+      <div class="author-name">Satheesh Mankulam</div>
+      <div class="author-meta">Nov 11, 2025 <span style="margin:0 .25rem;color:var(--subtle)">·</span> 2 min read <span style="margin:0 .25rem;color:var(--subtle)">·</span> Design Bootcamp</div>
+    </div>
+    <a href="https://medium.com/design-bootcamp/reducing-friction-in-linkedins-scheduled-post-flow-5887710e351e" target="_blank" style="margin-left:auto;font-size:.78rem;font-weight:600;color:var(--blue)">Read on Medium ↗</a>
+  </div>
+
+  <!-- Featured GIF — the main article image from Medium -->
+  <img src="linkedin-schedule-gif1-current-flow.gif"
+       alt="LinkedIn scheduled post flow interaction"
+       class="featured-img sa d2"
+       onerror="this.style.display='none'">
+
+  <div class="article-body">
+
+    <h3 class="sa">Problem</h3>
+    <p class="sa">LinkedIn currently requires users to enter the post creation flow to view scheduled posts. This causes confusion and added friction, especially for users whose primary intent is to <strong>manage or review</strong> scheduled content rather than create new posts.</p>
+
+    <h3 class="sa">Goal</h3>
+    <p class="sa">To optimize the discoverability and access of the <em>"View Scheduled Posts"</em> feature, reducing cognitive and interaction load for users managing scheduled content.</p>
+
+    <h3 class="sa">Current User Flow</h3>
+
+    <div class="flow-steps sa">
+      <h4>The 3-step problem</h4>
+      <div class="flow-step"><div class="step-num">1</div><div class="step-text">Click <strong>"Post"</strong></div></div>
+      <div class="flow-step"><div class="step-num">2</div><div class="step-text">In the post creation popup, click the <strong>Schedule (clock icon)</strong></div></div>
+      <div class="flow-step"><div class="step-num">3</div><div class="step-text">A popup appears (Schedule Post UI) → at the bottom, click <strong>"View Scheduled Posts"</strong></div></div>
+    </div>
+
+    <div class="stats-row sa">
+      <div class="stat-box">
+        <div class="stat-n bad">3</div>
+        <div class="stat-l">Steps to reach scheduled posts</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-n bad">0</div>
+        <div class="stat-l">Direct entry points to manage posts</div>
+      </div>
+    </div>
+
+    <p class="sa"><strong>Primary Issue:</strong> Discoverability and misaligned intent flow</p>
+
+    <h3 class="sa">UX Findings</h3>
+    <ul class="sa">
+      <li>Users expect a separate entry point to scheduled content, independent of the post-creation process</li>
+      <li><em>"Buried features"</em> reduce feature usage and increase confusion</li>
+    </ul>
+
+    <h3 class="sa">UX Issues</h3>
+    <div class="issues-list">
+      <div class="issue-item sa">
+        <div class="issue-icon">👁</div>
+        <div>
+          <div class="issue-title">Hidden Placement</div>
+          <div class="issue-desc">"View Scheduled Posts" is a small text link inside a nested popup.</div>
+        </div>
+      </div>
+      <div class="issue-item sa">
+        <div class="issue-icon">🔄</div>
+        <div>
+          <div class="issue-title">Unintuitive Flow</div>
+          <div class="issue-desc">Users must simulate a post action to access their scheduled posts.</div>
+        </div>
+      </div>
+      <div class="issue-item sa">
+        <div class="issue-icon">🔍</div>
+        <div>
+          <div class="issue-title">Low Discoverability</div>
+          <div class="issue-desc">Icon-based features are expected; text links are easily missed.</div>
+        </div>
+      </div>
+      <div class="issue-item sa">
+        <div class="issue-icon">🧠</div>
+        <div>
+          <div class="issue-title">Cognitive Mismatch</div>
+          <div class="issue-desc">Merging "create" and "manage" tasks confuses purpose-driven actions — a violation of the user's mental model.</div>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="sa">Solution</h3>
+
+    <div class="solution-elements sa">
+      <h4>UI elements</h4>
+      <ul>
+        <li>Clock icon (outlined style) — visible directly in the post bar</li>
+        <li>Tooltip — <em>"View Scheduled Posts Here"</em></li>
+        <li>"Post" and "Schedule Post" merge together, with a caret for the option</li>
+      </ul>
+    </div>
+
+    <div class="gif-wrap sa">
+      <img src="linkedin-schedule-gif2-solution.gif" alt="LinkedIn solution — merged Post + Schedule button with caret and clock icon showing View Scheduled Posts tooltip">
+      <p class="gif-cap">The solution: a clock icon with tooltip, visible directly in the post bar — no popup required. The caret merges "Post" and "Schedule Post" into one accessible control.</p>
+    </div>
+
+    <p class="sa">The small fix helps to reduce friction and respects user intent. This small tweak aligns better with user expectations, reduces click fatigue, and makes LinkedIn's scheduling tools more <strong>efficient and discoverable.</strong></p>
+
+    <div class="gif-wrap sa">
+      <img src="linkedin-schedule-gif3-result.gif" alt="Final result — LinkedIn post bar with improved scheduling flow animation created in After Effects">
+      <p class="gif-cap">The full interaction — designed and animated in Adobe After Effects. One direct entry point, one clear intent.</p>
+    </div>
+
+    <div class="closing-box sa">
+      <p>A scheduling feature that creates more friction than the task itself isn't a feature — it's friction in disguise.</p>
+      <p>The best UX fix is often the smallest: surface the right thing, at the right moment, for the right intent.</p>
+    </div>
+
+  </div>
+
+  <div class="article-nav sa">
+    <a href="writings.html" class="anav-btn">← All Writings</a>
+    <a href="https://medium.com/design-bootcamp/reducing-friction-in-linkedins-scheduled-post-flow-5887710e351e" target="_blank" class="anav-btn">Read on Medium ↗</a>
+    <a href="index.html" class="anav-btn">Portfolio →</a>
+  </div>
+
 </div>
-<div class="wrap-wide">
-  <div class="cs-meta reveal"><div class="cs-meta-item"><div class="cs-meta-label">Product</div><div class="cs-meta-value">LinkedIn</div></div><div class="cs-meta-item"><div class="cs-meta-label">Type</div><div class="cs-meta-value">Task Flow Audit</div></div><div class="cs-meta-item"><div class="cs-meta-label">Focus</div><div class="cs-meta-value">Post scheduling UX</div></div><div class="cs-meta-item"><div class="cs-meta-label">Published</div><div class="cs-meta-value">Medium · Design Bootcamp</div></div></div>
-  <div class="cs-cover reveal"><svg viewBox="0 0 860 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:860px"><rect width="860" height="200" rx="14" fill="#F9F8F6"/><text x="430" y="22" text-anchor="middle" font-family="Syne,sans-serif" font-size="7.5" fill="#A1A1AA" letter-spacing="2">CASE STUDY 12 — LINKEDIN · SCHEDULING FLOW COMPARISON</text><rect x="40" y="36" width="370" height="144" rx="12" fill="#fff" stroke="#E4E4E7" stroke-width="1"/><rect x="56" y="56" width="200" height="12" rx="3" fill="#18181B"/><rect x="56" y="76" width="320" height="8" rx="2" fill="#E4E4E7"/><rect x="56" y="90" width="280" height="8" rx="2" fill="#E4E4E7"/><rect x="56" y="110" width="110" height="26" rx="8" fill="#0061FF"/><rect x="450" y="36" width="370" height="144" rx="12" fill="#0061FF" opacity=".07" stroke="#0061FF" stroke-width="1.2"/><rect x="466" y="80" width="320" height="8" rx="2" fill="#0061FF" opacity=".3"/><rect x="466" y="96" width="250" height="8" rx="2" fill="#0061FF" opacity=".2"/><rect x="466" y="116" width="120" height="26" rx="8" fill="#0061FF"/><circle cx="796" cy="88" r="5" fill="#0061FF" opacity=".3"/></svg></div>
-</div>
-<div class="wrap">
-  <div class="cs-section reveal"><div class="cs-section-label">01 — Problem</div><h2>Scheduling a post<br><em>shouldn't feel like work</em></h2><div class="cs-quote"><p>If a feature that should take 3 taps takes 7, users won't stop using the feature — they'll stop using the app.</p></div><p>LinkedIn's scheduled post feature exists — but finding it, using it, and confirming it worked requires navigating through multiple screens, unclear menu hierarchies, and a confirmation pattern that leaves users uncertain. Content creators use LinkedIn specifically to build their professional presence. Every friction point in the content creation flow is a direct obstacle to the product's core value proposition.</p></div>
-  <div class="cs-section reveal"><div class="cs-section-label">02 — Research</div><h2>The four friction points<br><em>in LinkedIn scheduling</em></h2><div class="cs-insights"><div class="cs-insight"><div class="cs-insight-icon">🔍</div><div class="cs-insight-title">Discovery friction</div><div class="cs-insight-desc">The schedule option is buried inside a post creation flow — not visible as a primary action. Users who don't know it exists won't find it. Users who do take 3+ taps just to reach the interface.</div></div><div class="cs-insight"><div class="cs-insight-icon">💡</div><div class="cs-insight-title">Date-time picker complexity</div><div class="cs-insight-desc">LinkedIn's scheduling picker uses a multi-step modal that separates date and time selection. Power users scheduling content weeks out are forced to interact with a UI designed for casual one-click use.</div></div><div class="cs-insight"><div class="cs-insight-icon">📐</div><div class="cs-insight-title">Ambiguous confirmation</div><div class="cs-insight-desc">After scheduling, there's no persistent indicator on the post that it's scheduled. Users return to their post list uncertain whether the schedule was saved.</div></div><div class="cs-insight"><div class="cs-insight-icon">⚡</div><div class="cs-insight-title">Edit and reschedule flow</div><div class="cs-insight-desc">Editing a scheduled post requires a different flow than creating one. There's no 'edit schedule' shortcut — users navigate back through the same multi-step process.</div></div></div></div>
-  <div class="cs-section reveal"><div class="cs-section-label">03 — Design Process</div><h2>Making scheduling<br><em>feel native</em></h2><div class="cs-steps"><div class="cs-step"><div class="cs-step-num">01</div><div class="cs-step-content"><div class="cs-step-title">Identify the core friction point</div><div class="cs-step-desc">Mapped the user journey to find exactly where and why the experience breaks down, focusing on the highest-impact intervention point.</div></div></div><div class="cs-step"><div class="cs-step-num">02</div><div class="cs-step-content"><div class="cs-step-title">Research existing patterns</div><div class="cs-step-desc">Studied how comparable products handle the same scenario and identified design patterns that reduce friction without adding cognitive complexity.</div></div></div><div class="cs-step"><div class="cs-step-num">03</div><div class="cs-step-content"><div class="cs-step-title">Design the intervention</div><div class="cs-step-desc">Created wireframes targeting the core problem. Prioritised the simplest change that produces the biggest experiential improvement.</div></div></div><div class="cs-step"><div class="cs-step-num">04</div><div class="cs-step-content"><div class="cs-step-title">Publish &amp; validate thinking</div><div class="cs-step-desc">Documented analysis and solution in a Medium article, inviting critique from the broader UX community via Design Bootcamp.</div></div></div></div></div>
-  <div class="cs-section reveal"><div class="cs-section-label">04 — Outcomes</div><h2>Reduce steps,<br><em>increase confidence</em></h2><div class="cs-outcomes"><div class="cs-outcome"><div class="cs-outcome-num">6→3</div><div class="cs-outcome-label">Steps to schedule<br>a post, redesigned</div></div><div class="cs-outcome"><div class="cs-outcome-num">1</div><div class="cs-outcome-label">Persistent indicator<br>confirming schedule</div></div><div class="cs-outcome"><div class="cs-outcome-num">1</div><div class="cs-outcome-label">Tap to reschedule<br>without re-editing</div></div></div><p>Power features used regularly should be optimised for power users. Scheduling is not an occasional action for LinkedIn content creators — it's a workflow. Design it like one.</p><a href="https://medium.com/design-bootcamp/reducing-friction-in-linkedins-scheduled-post-flow-5887710e351e" target="_blank" class="medium-link">Read the full article on Medium →</a></div>
-  <div class="cs-nav reveal"><a href="case-email-ux.html" class="cs-nav-item"><div class="cs-nav-dir">← Previous</div><div class="cs-nav-title">Lost in the Inbox — <em>Email UX</em></div></a><a href="case-micro-friction.html" class="cs-nav-item next"><div class="cs-nav-dir">Next →</div><div class="cs-nav-title">What a Download Taught Me About <em>Micro-Friction</em></div></a></div>
-</div>
-</main>
-<footer><div class="footer-inner"><a href="index.html" class="footer-logo"><span style="width:8px;height:8px;border-radius:50%;background:#0061FF;display:inline-block"></span>Satheesh Mankulam</a><span class="footer-copy">© 2025 · UX Designer · Bangalore</span></div></footer>
-<script>const nav=document.getElementById("navbar");window.addEventListener("scroll",()=>nav.classList.toggle("scrolled",window.scrollY>20),{passive:true});const obs=new IntersectionObserver(e=>e.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");obs.unobserve(e.target)}}),{threshold:0.08});document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));</script>
-</body></html>
+
+<footer>
+  <span>Satheesh Mankulam · UX Designer · Bangalore</span>
+  <span>Published in <a href="https://medium.com/design-bootcamp" target="_blank" style="color:var(--blue)">Design Bootcamp</a> on Medium</span>
+</footer>
+
+<script>
+const saObs=new IntersectionObserver(e=>e.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');saObs.unobserve(en.target)}}),{threshold:.07});
+document.querySelectorAll('.sa').forEach(el=>saObs.observe(el));
+document.getElementById('tb').addEventListener('click',()=>{
+  const isLight=document.documentElement.getAttribute('data-theme')==='light';
+  document.documentElement.setAttribute('data-theme',isLight?'dark':'light');
+  document.getElementById('tb').textContent=isLight?'☀':'🌙';
+});
+</script>
+</body>
+</html>
