@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"><script>(function(){try{var t=localStorage.getItem("portfolio-theme")||"dark";document.documentElement.setAttribute("data-theme",t);}catch(e){}})()</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="favicon.png">
+<title>The Cost of Ambiguity: A UX Review of Norton's Renewal Email — Satheesh Mankulam</title>
+<style>
+:root{--blue:#0061FF;--blue-d:#0050CC;--blue-10:rgba(0,97,255,.12);--blue-25:rgba(0,97,255,.28);--yellow:#FFD166;--mint:#06D6A0;--red:#EF4444;--font:'Helvetica Neue',Helvetica,-apple-system,Arial,sans-serif}
+[data-theme="dark"]{--bg:#0C0C10;--bg-card:#141418;--bg-el:#1C1C24;--bg-hover:#22222C;--text:#ECECF4;--muted:#7A7A90;--subtle:#3C3C50;--border:rgba(255,255,255,.07);--blockquote-border:rgba(0,97,255,.5)}
+[data-theme="light"]{--bg:#F5F5F7;--bg-card:#FFFFFF;--bg-el:#EAEAF4;--bg-hover:#E0E0EE;--text:#1A1A2E;--muted:#5C5C74;--subtle:#ABABC4;--border:rgba(0,0,0,.08);--blockquote-border:#0061FF}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-font-smoothing:antialiased}
+body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;transition:background .3s,color .3s}
+a{text-decoration:none;color:inherit}
+.top-nav{position:fixed;top:0;left:0;right:0;height:54px;background:rgba(12,12,16,.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 clamp(1.5rem,5vw,4rem);z-index:100;transition:background .3s}
+[data-theme="light"] .top-nav{background:rgba(245,245,247,.92)}
+.nav-logo{font-size:.95rem;font-weight:700;color:var(--text);display:flex;align-items:center;gap:.5rem}
+.nav-logo .dot{width:7px;height:7px;border-radius:50%;background:var(--blue)}
+.nav-back{font-size:.82rem;font-weight:600;color:var(--muted);padding:.38rem .75rem;border-radius:7px;transition:all .2s}
+.nav-back:hover{color:var(--blue);background:var(--blue-10)}
+.nav-right{display:flex;align-items:center;gap:.5rem}
+.theme-btn{width:32px;height:32px;border-radius:7px;background:var(--bg-el);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--muted);cursor:pointer;font-size:.85rem;transition:all .2s}
+.theme-btn:hover{color:var(--blue);border-color:var(--blue)}
+.article-wrap{max-width:720px;margin:0 auto;padding:clamp(5rem,10vw,7rem) clamp(1.5rem,5vw,2.5rem) 4rem}
+.pub-badge{display:inline-flex;align-items:center;gap:.5rem;font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);background:var(--blue-10);border:1px solid rgba(0,97,255,.2);padding:.25rem .75rem;border-radius:100px;margin-bottom:1.25rem}
+.pub-badge::before{content:'M';font-size:.7rem;font-weight:800;background:var(--blue);color:#fff;width:16px;height:16px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center}
+.article-title{font-size:clamp(1.75rem,4vw,2.75rem);font-weight:700;color:var(--text);line-height:1.15;letter-spacing:-.018em;margin-bottom:.6rem}
+.article-subtitle{font-size:1.1rem;color:var(--muted);line-height:1.6;margin-bottom:1.5rem}
+.author-bar{display:flex;align-items:center;gap:.75rem;padding:1.1rem 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-bottom:2rem}
+.author-photo{width:40px;height:40px;border-radius:50%;object-fit:cover;object-position:center 15%;flex-shrink:0}
+.author-name{font-size:.9rem;font-weight:600;color:var(--text)}
+.author-meta{font-size:.8rem;color:var(--muted)}
+.article-tags{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:1.75rem}
+.article-tag{font-size:.68rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--blue);background:var(--blue-10);padding:.2rem .55rem;border-radius:100px}
+.article-body{font-size:1.05rem;line-height:1.85;color:var(--text)}
+.article-body p{margin-bottom:1.35rem}
+.article-body h2{font-size:1.5rem;font-weight:700;color:var(--text);margin:2.5rem 0 .9rem;letter-spacing:-.012em}
+.article-body h3{font-size:1.15rem;font-weight:700;color:var(--text);margin:2rem 0 .7rem;letter-spacing:-.01em}
+.article-body strong{font-weight:700;color:var(--text)}
+.article-body em{font-style:italic}
+.article-body blockquote{border-left:3px solid var(--blockquote-border);padding:.5rem 0 .5rem 1.25rem;margin:1.5rem 0;color:var(--muted);font-style:italic;font-size:1rem}
+.article-body hr{border:none;border-top:1px solid var(--border);margin:2.5rem 0}
+
+/* Screenshots */
+.ss{margin:2rem 0}
+.ss img{width:100%;border-radius:12px;border:1px solid var(--border);display:block;cursor:zoom-in;transition:opacity .2s}
+.ss img:hover{opacity:.88}
+.ss-cap{font-size:.8rem;color:var(--muted);text-align:center;margin-top:.65rem;font-style:italic;line-height:1.5}
+.ss-phone{margin:2rem auto;max-width:380px}
+.ss-phone img{width:100%;border-radius:16px;border:1px solid var(--border);display:block;box-shadow:0 12px 48px rgba(0,0,0,.5);cursor:zoom-in;transition:opacity .2s}
+.ss-phone img:hover{opacity:.88}
+.ss-3col{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:2rem 0;align-items:end}
+.ss-3col .ss{margin:0}
+
+/* Price comparison visual */
+.price-compare{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin:2rem 0}
+.price-card{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:1.25rem 1.5rem;text-align:center}
+.price-card.wrong{border-color:rgba(239,68,68,.3);background:rgba(239,68,68,.04)}
+.price-card.right{border-color:rgba(6,214,160,.3);background:rgba(6,214,160,.04)}
+.price-card-label{font-size:.66rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.75rem}
+.price-card.wrong .price-card-label{color:var(--red)}
+.price-card.right .price-card-label{color:var(--mint)}
+.price-strike{font-size:1.2rem;color:var(--subtle);text-decoration:line-through}
+.price-main{font-size:1.6rem;font-weight:700;color:var(--text);margin:.2rem 0}
+.price-note{font-size:.75rem;color:var(--muted)}
+
+/* UX psychology cards */
+.ux-analysis-list{display:flex;flex-direction:column;gap:1rem;margin:1.25rem 0 1.75rem}
+.ux-item{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:1.35rem 1.5rem}
+.ux-num{font-size:.62rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:.4rem}
+.ux-title{font-size:1rem;font-weight:700;color:var(--text);margin-bottom:.65rem}
+.ux-body{font-size:.9rem;color:var(--muted);line-height:1.75}
+.ux-body strong{color:var(--text)}
+.ux-example{background:var(--bg-el);border:1px solid var(--border);border-radius:9px;padding:.75rem 1rem;margin:.75rem 0;font-size:.88rem;color:var(--muted);font-family:var(--font)}
+.ux-example .ex-row{display:flex;align-items:center;gap:.5rem;margin-bottom:.3rem}
+.ux-example .ex-row:last-child{margin-bottom:0}
+.ex-label{font-size:.66rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;min-width:70px}
+.ex-label.ok{color:var(--mint)}
+.ex-label.bad{color:var(--red)}
+.ex-val{font-size:.9rem;color:var(--text)}
+.ex-val s{color:var(--subtle)}
+
+/* Heuristics */
+.heuristic-list{display:flex;flex-direction:column;gap:.75rem;margin:1.25rem 0 1.75rem}
+.heuristic-item{background:var(--bg-el);border:1px solid var(--border);border-left:3px solid rgba(239,68,68,.5);border-radius:12px;padding:1.1rem 1.25rem}
+.heuristic-title{font-size:.9rem;font-weight:700;color:var(--text);margin-bottom:.35rem}
+.heuristic-desc{font-size:.84rem;color:var(--muted);line-height:1.65}
+
+/* Recommendations */
+.rec-grid{display:flex;flex-direction:column;gap:.85rem;margin:1.25rem 0}
+.rec-card{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:1.25rem 1.5rem;display:grid;grid-template-columns:auto 1fr;gap:1rem;align-items:flex-start}
+.rec-scenario{font-size:.68rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--blue);background:var(--blue-10);padding:.2rem .6rem;border-radius:100px;white-space:nowrap;margin-top:.1rem}
+.rec-action{font-size:.92rem;color:var(--text);font-weight:600;margin-bottom:.28rem}
+.rec-desc{font-size:.83rem;color:var(--muted);line-height:1.6}
+
+/* Closing insight */
+.closing-box{background:linear-gradient(135deg,rgba(0,97,255,.08),rgba(0,97,255,.04));border:1px solid rgba(0,97,255,.2);border-radius:14px;padding:1.75rem 2rem;margin:2rem 0;text-align:center}
+.closing-box p{font-size:1rem;color:var(--text);line-height:1.8;margin:0}
+.closing-box p+p{margin-top:.7rem;font-size:.93rem;color:var(--muted)}
+
+/* Lightbox */
+.lb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.96);z-index:9999;align-items:center;justify-content:center;padding:1.5rem;cursor:zoom-out}
+.lb-overlay.active{display:flex}
+.lb-img{max-width:95vw;max-height:95vh;object-fit:contain;border-radius:8px;cursor:default}
+.lb-close{position:fixed;top:1.1rem;right:1.1rem;width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.25);color:#fff;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;z-index:10000;backdrop-filter:blur(10px)}
+.lb-close:hover{background:rgba(255,255,255,.28);transform:scale(1.08)}
+.lb-hint{position:fixed;bottom:1.25rem;left:50%;transform:translateX(-50%);font-size:.75rem;color:rgba(255,255,255,.35);pointer-events:none}
+
+.article-nav{border-top:1px solid var(--border);padding-top:2rem;margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap}
+.anav-btn{display:inline-flex;align-items:center;gap:.4rem;font-size:.84rem;font-weight:600;color:var(--muted);background:var(--bg-el);padding:.5rem 1rem;border-radius:8px;border:1px solid var(--border);transition:all .2s}
+.anav-btn:hover{color:var(--blue);border-color:var(--blue-25);background:var(--blue-10)}
+footer{padding:1.5rem clamp(1.5rem,5vw,4rem);border-top:1px solid var(--border);display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem;font-size:.78rem;color:var(--subtle)}
+.sa{opacity:0;filter:blur(6px);transform:translateY(16px);transition:opacity .6s ease,filter .6s ease,transform .6s ease}
+.sa.in{opacity:1;filter:blur(0);transform:translateY(0)}
+.sa.d1{transition-delay:.07s}.sa.d2{transition-delay:.14s}.sa.d3{transition-delay:.21s}
+@media(max-width:580px){.price-compare,.ss-3col{grid-template-columns:1fr}.rec-card{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav class="top-nav">
+  <a href="index.html" class="nav-logo"><span class="dot"></span>Satheesh Mankulam</a>
+  <div class="nav-right">
+    <a href="writings.html" class="nav-back">← All Writings</a>
+    <button class="theme-btn" id="tb">☀</button>
+  </div>
+</nav>
+
+<div class="article-wrap">
+
+  <div class="pub-badge sa">Design Bootcamp · Medium</div>
+  <h1 class="article-title sa d1">The Cost of Ambiguity: A UX Review of Norton's Renewal Email</h1>
+  <p class="article-subtitle sa d1">When familiar visual patterns are used without delivering the meaning users expect</p>
+
+  <div class="article-tags sa d1">
+    <span class="article-tag">Email Design</span>
+    <span class="article-tag">UX Psychology</span>
+    <span class="article-tag">Pricing UX</span>
+    <span class="article-tag">Visual Hierarchy</span>
+  </div>
+
+  <div class="author-bar sa d2">
+    <img src="satheesh-photo.jpg" class="author-photo" alt="Satheesh Mankulam">
+    <div>
+      <div class="author-name">Satheesh Mankulam</div>
+      <div class="author-meta">May 31, 2026 <span style="margin:0 .25rem;color:var(--subtle)">·</span> 3 min read <span style="margin:0 .25rem;color:var(--subtle)">·</span> Design Bootcamp</div>
+    </div>
+  </div>
+
+  <!-- Hero — mobile shot -->
+  <div class="ss-phone sa d2">
+    <img src="norton-email-mobile.png" alt="Norton 360 Deluxe renewal email on iPhone — Your Norton 360 Deluxe protection expires in 20 days, with ₹1,199 crossed out and ₹1,199 again below it">
+  </div>
+
+  <div class="article-body">
+
+    <p class="sa">A few days ago, I received a renewal reminder from Norton informing me that my Norton 360 Deluxe subscription would expire in 20 days. Like most people, I wasn't planning to read the email from top to bottom. I simply wanted to know one thing: <strong>how much would it cost to renew?</strong></p>
+    <p class="sa">As my eyes moved down the email, I landed on the pricing section. That's where something immediately felt strange.</p>
+    <p class="sa">The price <strong>₹1,199</strong> was displayed with a strike-through, and directly below it, in a larger and more prominent font, the <strong>same price ₹1,199</strong> appeared again. I stopped scrolling and looked at it a second time because I assumed I had read it incorrectly. But after checking again, I realized both numbers were identical.</p>
+
+    <!-- Desktop email screenshot -->
+    <div class="ss sa">
+      <img src="norton-email-desktop.png" alt="Norton renewal email in Gmail desktop — showing ₹1,199 crossed out and ₹1,199 again below in the pricing card">
+      <p class="ss-cap">The Norton 360 Deluxe renewal email — ₹1,199 with a strike-through, then ₹1,199 again in a larger font directly below it.</p>
+    </div>
+
+    <p class="sa">At that moment, I wasn't thinking about cybersecurity or subscription renewals anymore. I was <strong>trying to understand the interface itself.</strong></p>
+    <p class="sa">Years of online shopping have taught me a simple visual rule: when a price is crossed out, the number beneath it represents a new, lower price. It is one of the most recognizable patterns in digital commerce. Whether it's Amazon, Flipkart, Myntra, or Swiggy, the strike-through pattern almost always communicates a discount.</p>
+    <p class="sa">Norton used that same visual language — but <strong>without delivering the meaning users expect from it.</strong></p>
+
+    <!-- Price comparison: correct vs Norton's version -->
+    <div class="price-compare sa">
+      <div class="price-card right">
+        <div class="price-card-label">✓ Everywhere else</div>
+        <div class="price-strike">₹1,199</div>
+        <div class="price-main" style="color:var(--mint)">₹799</div>
+        <div class="price-note">Lower price — as expected</div>
+      </div>
+      <div class="price-card wrong">
+        <div class="price-card-label">✗ This email</div>
+        <div class="price-strike">₹1,199</div>
+        <div class="price-main" style="color:var(--red)">₹1,199</div>
+        <div class="price-note">Same price — confusing</div>
+      </div>
+    </div>
+
+    <p class="sa">Instead of communicating a clear price reduction, the design presented the same value twice. The interface triggered a familiar mental model and then failed to fulfill it. Rather than helping me understand the offer, it <strong>created a moment of uncertainty.</strong></p>
+    <p class="sa">I eventually noticed the small line beneath the price that read, <em>"1st year price. See subscription details below."</em> While the information was technically available, it carried far less visual weight than the pricing itself. My attention had already been captured by the larger numbers and the prominent renewal button. The explanatory text felt secondary, even though it was arguably more important for understanding the offer.</p>
+
+    <!-- Small price detail screenshots -->
+    <div class="ss-3col sa">
+      <div class="ss">
+        <img src="norton-renewal-price.png" alt="Renewal price ₹1,199/year — shown in small text below the main pricing card">
+        <p class="ss-cap">Renewal price detail — easily missed</p>
+      </div>
+      <div class="ss">
+        <img src="norton-correct-discount.png" alt="Example of correct discount display: ₹2,499 crossed out, ₹1,199, You save ₹1,300">
+        <p class="ss-cap">What a real discount looks like</p>
+      </div>
+      <div class="ss">
+        <img src="norton-first-year-pricing.png" alt="₹1,199 for Year 1, Renews at ₹2,499/year — the actual pricing structure">
+        <p class="ss-cap">The actual first-year pricing structure</p>
+      </div>
+    </div>
+
+    <h2 class="sa">UX Psychology Analysis</h2>
+
+    <div class="ux-analysis-list">
+
+      <div class="ux-item sa">
+        <div class="ux-num">01 — Jakob's Law</div>
+        <div class="ux-title">Users expect similar patterns to behave similarly</div>
+        <div class="ux-body">
+          <p>Users spend most of their time using other digital products. Therefore, they expect similar patterns to behave similarly.</p>
+          <div class="ux-example">
+            <div class="ex-row"><span class="ex-label ok">Elsewhere</span><span class="ex-val"><s>₹1,199</s> → ₹799</span></div>
+            <div class="ex-row"><span class="ex-label bad">This email</span><span class="ex-val"><s>₹1,199</s> → ₹1,199</span></div>
+          </div>
+          <p>The pattern breaks established expectations. As a result, users must spend additional effort interpreting the message.</p>
+        </div>
+      </div>
+
+      <div class="ux-item sa">
+        <div class="ux-num">02 — Cognitive Load</div>
+        <div class="ux-title">Good design minimizes mental effort</div>
+        <div class="ux-body">This pricing section does the opposite. Instead of communicating pricing clearly, it creates a question: <strong>"Why is the same number crossed out?"</strong> The moment users need to ask that question, cognitive load increases unnecessarily.</div>
+      </div>
+
+      <div class="ux-item sa">
+        <div class="ux-num">03 — Visual Hierarchy</div>
+        <div class="ux-title">Attention is drawn toward action before understanding</div>
+        <div class="ux-body">
+          <p>The largest visual elements in the card are the expiration warning, the ₹1,199 price, and the Renew button. The explanatory text — <em>"1st year price. See subscription details below"</em> — is significantly smaller. As a result, attention is drawn toward action before understanding.</p>
+        </div>
+      </div>
+
+      <div class="ux-item sa">
+        <div class="ux-num">04 — Information Scent</div>
+        <div class="ux-title">Visual cues must accurately signal meaning</div>
+        <div class="ux-body">
+          <p>A crossed-out price communicates: <strong>"There is a deal here."</strong></p>
+          <p>When the price remains unchanged, the visual cue becomes misleading. The scent promises information that doesn't exist.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <h2 class="sa">Nielsen Heuristic Evaluation</h2>
+
+    <div class="heuristic-list">
+      <div class="heuristic-item sa">
+        <div class="heuristic-title">Match Between System and Real World</div>
+        <div class="heuristic-desc">Real-world pricing conventions suggest a crossed-out price represents a previous or higher amount. Using the same value in both positions conflicts with common understanding.</div>
+      </div>
+      <div class="heuristic-item sa">
+        <div class="heuristic-title">Recognition Rather Than Recall</div>
+        <div class="heuristic-desc">Users must read additional text to understand what is happening. The interface does not communicate meaning through recognition alone.</div>
+      </div>
+      <div class="heuristic-item sa">
+        <div class="heuristic-title">Consistency and Standards</div>
+        <div class="heuristic-desc">The design breaks a standard pricing convention used throughout digital commerce — Amazon, Flipkart, Myntra, Swiggy all use the same pattern to mean something different.</div>
+      </div>
+      <div class="heuristic-item sa">
+        <div class="heuristic-title">Error Prevention</div>
+        <div class="heuristic-desc">A user can easily assume there is a discount or special offer because the design strongly resembles discount pricing. The interface does not prevent this misunderstanding.</div>
+      </div>
+    </div>
+
+    <h2 class="sa">What I Would Recommend</h2>
+
+    <div class="rec-grid">
+      <div class="rec-card sa">
+        <div><span class="rec-scenario">No discount exists</span></div>
+        <div>
+          <div class="rec-action">No strike-through at all</div>
+          <div class="rec-desc">If the price is the same, show it plainly. Don't borrow visual language that implies something it can't deliver.</div>
+        </div>
+      </div>
+      <div class="rec-card sa">
+        <div><span class="rec-scenario">Promotional pricing</span></div>
+        <div>
+          <div class="rec-action">Show the actual saving</div>
+          <div class="rec-desc">Cross out the original price and show the discounted price with a clear "You save ₹X" badge — the way every major e-commerce platform does it.</div>
+        </div>
+      </div>
+      <div class="rec-card sa">
+        <div><span class="rec-scenario">First-year pricing</span></div>
+        <div>
+          <div class="rec-action">Complete transparency</div>
+          <div class="rec-desc">Show both values clearly — "₹1,199 for Year 1, renews at ₹2,499/year" — in a single, readable line with equal visual weight. No crossed-out numbers needed.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="closing-box sa">
+      <p><strong>Ambiguity in pricing isn't neutral — it erodes trust.</strong></p>
+      <p>Users who have to work to understand what something costs are users who are already questioning whether they should proceed. The interface's job is to remove doubt, not create it.</p>
+    </div>
+
+  </div>
+
+  <div class="article-nav sa">
+    <a href="writings.html" class="anav-btn">← All Writings</a>
+    <a href="index.html" class="anav-btn">Portfolio →</a>
+  </div>
+
+</div>
+
+<!-- Lightbox -->
+<div class="lb-overlay" id="lbOverlay">
+  <img class="lb-img" id="lbImg" src="" alt="">
+  <button class="lb-close" id="lbClose" title="Close (Esc)">✕</button>
+  <div class="lb-hint">Press Esc or click outside to close</div>
+</div>
+
+<footer>
+  <span>Satheesh Mankulam · UX Designer · Bangalore</span>
+  <span>Published in <a href="https://medium.com/design-bootcamp" target="_blank" style="color:var(--blue)">Design Bootcamp</a> on Medium</span>
+</footer>
+
+<script>
+const saObs=new IntersectionObserver(e=>e.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');saObs.unobserve(en.target)}}),{threshold:.07});
+document.querySelectorAll('.sa').forEach(el=>saObs.observe(el));
+(function(){var btn=document.getElementById('tb');if(btn)btn.textContent=document.documentElement.getAttribute('data-theme')==='light'?'🌙':'☀';})();
+document.getElementById('tb').addEventListener('click',()=>{
+  const isLight=document.documentElement.getAttribute('data-theme')==='light';
+  const newTheme=isLight?'dark':'light';
+  document.documentElement.setAttribute('data-theme',newTheme);
+  try{localStorage.setItem('portfolio-theme',newTheme);}catch(e){}
+  document.getElementById('tb').textContent=isLight?'☀':'🌙';
+});
+(function(){
+  const overlay=document.getElementById('lbOverlay');
+  const lbImg=document.getElementById('lbImg');
+  const lbClose=document.getElementById('lbClose');
+  function open(src,alt){lbImg.src=src;lbImg.alt=alt||'';overlay.classList.add('active');document.body.style.overflow='hidden';}
+  function close(){overlay.classList.remove('active');document.body.style.overflow='';}
+  document.querySelectorAll('.ss img,.ss-phone img,.ss-3col img').forEach(img=>{img.addEventListener('click',()=>open(img.src,img.alt));});
+  overlay.addEventListener('click',e=>{if(e.target===overlay||e.target===lbImg.parentNode)close();});
+  lbImg.addEventListener('click',e=>e.stopPropagation());
+  lbClose.addEventListener('click',close);
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')close();});
+})();
+</script>
+</body>
+</html>
