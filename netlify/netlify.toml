@@ -1,5 +1,0 @@
-[build]
-  functions = "netlify/functions"
-
-[[plugins]]
-# Remove Next.js plugin — this is a plain static HTML site
