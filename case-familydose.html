@@ -1,155 +1,340 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
-<meta charset="UTF-8"><script>(function(){try{var t=localStorage.getItem("portfolio-theme")||"dark";document.documentElement.setAttribute("data-theme",t);}catch(e){}})()</script><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<script>(function(){try{var t=localStorage.getItem("portfolio-theme")||"dark";document.documentElement.setAttribute("data-theme",t);}catch(e){}})()</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/png" href="favicon.png">
 <title>Designers Can Ship Now. I Did. — Satheesh Mankulam</title>
+<meta name="description" content="The story behind FamilyDose — built by a UX designer, powered by stubbornness. How I shipped a medication reminder app to the Play Store with no coding background.">
+<meta property="og:title" content="Designers Can Ship Now. I Did.">
+<meta property="og:description" content="The story behind FamilyDose — built by a UX designer, powered by stubbornness.">
+<meta property="og:url" content="https://satheeshmankulam.com/article-familydose">
+<meta name="author" content="Satheesh Mankulam">
 <style>
-:root{--blue:#0061FF;--blue-d:#0050CC;--blue-10:rgba(0,97,255,.12);--blue-25:rgba(0,97,255,.28);--yellow:#FFD166;--mint:#06D6A0;--font:'Helvetica Neue',Helvetica,-apple-system,Arial,sans-serif}
-[data-theme="dark"]{--bg:#0C0C10;--bg-card:#141418;--bg-el:#1C1C24;--bg-hover:#22222C;--text:#ECECF4;--muted:#7A7A90;--subtle:#3C3C50;--border:rgba(255,255,255,.07);--blockquote-border:rgba(0,97,255,.5)}
-[data-theme="light"]{--bg:#F5F5F7;--bg-card:#FFFFFF;--bg-el:#EAEAF4;--bg-hover:#E0E0EE;--text:#1A1A2E;--muted:#5C5C74;--subtle:#ABABC4;--border:rgba(0,0,0,.08);--blockquote-border:#0061FF}
+:root{
+  --blue:#0061FF;--blue-d:#0050CC;--blue-10:rgba(0,97,255,.12);--blue-25:rgba(0,97,255,.28);
+  --yellow:#FFD166;--mint:#06D6A0;--coral:#FF6B6B;
+  --font:'Helvetica Neue',Helvetica,-apple-system,BlinkMacSystemFont,Arial,sans-serif;
+}
+[data-theme="dark"]{
+  --bg:#0C0C10;--bg-card:#141418;--bg-el:#1C1C24;--bg-hover:#22222C;
+  --text:#ECECF4;--muted:#7A7A90;--subtle:#3C3C50;--border:rgba(255,255,255,.07);
+  --shadow:0 8px 32px rgba(0,0,0,.5);--card-border:rgba(255,255,255,.07);
+}
+[data-theme="light"]{
+  --bg:#F2F3F7;--bg-card:#FFFFFF;--bg-el:#EAEAF4;--bg-hover:#E0E0EE;
+  --text:#1A1A2E;--muted:#5C5C74;--subtle:#ABABC4;--border:rgba(0,0,0,.08);
+  --shadow:0 8px 32px rgba(0,0,0,.1);--card-border:rgba(0,0,0,.07);
+}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{-webkit-font-smoothing:antialiased}
+html{font-size:16px;-webkit-font-smoothing:antialiased;scroll-behavior:smooth}
 body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;transition:background .3s,color .3s}
 a{text-decoration:none;color:inherit}
 
-.top-nav{position:fixed;top:0;left:0;right:0;height:54px;background:rgba(12,12,16,.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 clamp(1.5rem,5vw,4rem);z-index:100;transition:background .3s}
-[data-theme="light"] .top-nav{background:rgba(245,245,247,.92)}
-.nav-logo{font-size:.95rem;font-weight:700;color:var(--text);display:flex;align-items:center;gap:.5rem}
-.nav-logo .dot{width:7px;height:7px;border-radius:50%;background:var(--blue)}
-.nav-back{font-size:.82rem;font-weight:600;color:var(--muted);padding:.38rem .75rem;border-radius:7px;transition:all .2s;display:flex;align-items:center;gap:.4rem}
-.nav-back:hover{color:var(--blue);background:var(--blue-10)}
-.nav-right{display:flex;align-items:center;gap:.5rem}
-.theme-btn{width:32px;height:32px;border-radius:7px;background:var(--bg-el);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--muted);cursor:pointer;font-size:.85rem;transition:all .2s}
-.theme-btn:hover{color:var(--blue);border-color:var(--blue)}
+/* ── TOP BAR ── */
+.topbar{
+  position:sticky;top:0;z-index:100;
+  background:var(--bg-card);border-bottom:1px solid var(--border);
+  padding:.75rem clamp(1.25rem,5vw,4rem);
+  display:flex;align-items:center;justify-content:space-between;gap:1rem;
+  transition:background .3s,border-color .3s;
+}
+.topbar-left{display:flex;align-items:center;gap:.75rem}
+.topbar-home{font-size:.78rem;font-weight:700;color:var(--muted);transition:color .2s;display:flex;align-items:center;gap:.35rem}
+.topbar-home:hover{color:var(--blue)}
+.topbar-sep{color:var(--subtle);font-size:.75rem}
+.topbar-label{font-size:.75rem;font-weight:500;color:var(--muted)}
+.topbar-actions{display:flex;align-items:center;gap:.5rem}
+.topbar-btn{display:flex;align-items:center;gap:.35rem;font-size:.72rem;font-weight:700;padding:.38rem .8rem;border-radius:7px;transition:all .2s;cursor:pointer;border:none;font-family:var(--font)}
+.topbar-theme{background:var(--bg-el);color:var(--muted);border:1px solid var(--border)}
+.topbar-theme:hover{color:var(--text);background:var(--bg-hover)}
+.topbar-play{background:var(--blue);color:#fff}
+.topbar-play:hover{background:var(--blue-d)}
 
-.article-wrap{max-width:720px;margin:0 auto;padding:clamp(5rem,10vw,7rem) clamp(1.5rem,5vw,2.5rem) 4rem}
+/* ── ARTICLE LAYOUT ── */
+.article-wrap{max-width:680px;margin:0 auto;padding:clamp(2.5rem,6vw,4.5rem) clamp(1.25rem,5vw,2rem) clamp(3rem,6vw,5rem)}
 
-/* Header */
-.pub-badge{display:inline-flex;align-items:center;gap:.5rem;font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);background:var(--blue-10);border:1px solid rgba(0,97,255,.2);padding:.25rem .75rem;border-radius:100px;margin-bottom:1.25rem}
-.pub-badge::before{content:'M';font-size:.7rem;font-weight:800;background:var(--blue);color:#fff;width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center}
-.article-title{font-size:clamp(1.75rem,4vw,2.75rem);font-weight:700;color:var(--text);line-height:1.15;letter-spacing:-.018em;margin-bottom:.6rem}
-.article-subtitle{font-size:1.1rem;color:var(--muted);line-height:1.6;margin-bottom:1.5rem;font-weight:400}
-.author-bar{display:flex;align-items:center;gap:.75rem;padding:1.1rem 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-bottom:2rem}
-.author-photo{width:40px;height:40px;border-radius:50%;object-fit:cover;object-position:center 15%;flex-shrink:0}
-.author-name{font-size:.9rem;font-weight:600;color:var(--text)}
-.author-meta{font-size:.8rem;color:var(--muted)}
-.author-sep{color:var(--subtle);margin:0 .1rem}
+/* ── HEADER ── */
+.art-eyebrow{display:flex;align-items:center;gap:.5rem;font-size:.64rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:1.25rem}
+.art-eye-dot{width:6px;height:6px;border-radius:50%;background:var(--blue);flex-shrink:0}
+.art-tag{font-size:.58rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--blue);background:var(--blue-10);padding:.1rem .5rem;border-radius:100px}
+.art-title{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:700;line-height:1.1;letter-spacing:-.022em;color:var(--text);margin-bottom:.75rem}
+.art-title em{font-style:normal;color:var(--blue)}
+.art-subtitle{font-size:1rem;color:var(--muted);line-height:1.65;margin-bottom:1.75rem;font-weight:400}
+.art-meta{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;padding:1rem 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-bottom:2.5rem}
+.art-author{display:flex;align-items:center;gap:.6rem}
+.art-avatar{width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,#0061FF,#0050CC);display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;color:#fff;flex-shrink:0}
+.art-author-name{font-size:.82rem;font-weight:700;color:var(--text)}
+.art-author-role{font-size:.7rem;color:var(--muted)}
+.art-meta-right{display:flex;align-items:center;gap:.75rem;margin-left:auto}
+.art-meta-item{font-size:.72rem;color:var(--muted);display:flex;align-items:center;gap:.3rem}
 
-/* Featured image */
-.featured-img{width:100%;border-radius:12px;margin-bottom:2.5rem;display:block;max-height:none;object-fit:contain}
+/* ── BODY PROSE ── */
+.art-body{font-size:.97rem;line-height:1.88;color:var(--muted)}
+.art-body p{margin-bottom:1.4rem}
+.art-body p:last-child{margin-bottom:0}
+.art-body strong{color:var(--text);font-weight:700}
+.art-body em{font-style:italic}
 
-/* Article body */
-.article-body{font-size:1.05rem;line-height:1.85;color:var(--text);font-weight:400}
-.article-body p{margin-bottom:1.4rem}
-.article-body h2{font-size:1.5rem;font-weight:700;color:var(--text);margin:2.5rem 0 1rem;letter-spacing:-.012em}
-.article-body h3{font-size:1.2rem;font-weight:700;color:var(--text);margin:2rem 0 .75rem;letter-spacing:-.01em}
-.article-body strong{font-weight:700;color:var(--text)}
-.article-body em{font-style:italic}
-.article-body blockquote{border-left:3px solid var(--blockquote-border);padding:.5rem 0 .5rem 1.25rem;margin:1.5rem 0;color:var(--muted);font-style:italic;font-size:1.05rem}
-.article-body ul,.article-body ol{margin:1rem 0 1.4rem 1.5rem}
-.article-body li{margin-bottom:.5rem;line-height:1.7}
-.article-body hr{border:none;border-top:1px solid var(--border);margin:2rem 0}
+.art-lead{font-size:1.08rem;color:var(--text);line-height:1.8;font-weight:400;margin-bottom:1.5rem}
 
-/* Medium CTA */
-.medium-cta{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:2rem;margin:2.5rem 0;text-align:center}
-.medium-cta-icon{font-size:2rem;margin-bottom:.75rem}
-.medium-cta h3{font-size:1.1rem;font-weight:700;color:var(--text);margin-bottom:.5rem}
-.medium-cta p{font-size:.9rem;color:var(--muted);margin-bottom:1.25rem;line-height:1.65}
-.medium-cta-btn{display:inline-flex;align-items:center;gap:.45rem;font-size:.9rem;font-weight:700;color:#fff;background:var(--blue);padding:.65rem 1.5rem;border-radius:10px;transition:all .2s}
-.medium-cta-btn:hover{background:var(--blue-d);transform:translateY(-2px)}
+/* Section breaks */
+.art-h2{font-size:1.2rem;font-weight:700;color:var(--text);letter-spacing:-.01em;margin:2.5rem 0 .9rem;padding-top:.5rem}
+.art-hr{border:none;border-top:1px solid var(--border);margin:2.5rem 0}
 
-/* Article nav */
-.article-nav{border-top:1px solid var(--border);padding-top:2rem;margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap}
-.anav-btn{display:inline-flex;align-items:center;gap:.4rem;font-size:.84rem;font-weight:600;color:var(--muted);background:var(--bg-el);padding:.5rem 1rem;border-radius:8px;border:1px solid var(--border);transition:all .2s}
-.anav-btn:hover{color:var(--blue);border-color:var(--blue-25);background:var(--blue-10)}
+/* Blockquote */
+.art-quote{border-left:2px solid var(--blue);padding:.75rem 1.25rem;margin:1.75rem 0;background:var(--blue-10);border-radius:0 10px 10px 0}
+.art-quote p{font-size:.97rem;font-style:italic;color:var(--text);line-height:1.75;margin:0}
 
-/* Tags */
-.article-tags{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:1.75rem}
-.article-tag{font-size:.68rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--blue);background:var(--blue-10);padding:.2rem .55rem;border-radius:100px}
+/* Image placeholder */
+.art-img{background:var(--bg-el);border:1px solid var(--border);border-radius:14px;aspect-ratio:16/9;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem;margin:1.75rem 0;overflow:hidden;position:relative}
+.art-img img{width:100%;height:100%;object-fit:cover;border-radius:14px}
+.art-img-label{font-size:.7rem;color:var(--subtle);font-style:italic;text-align:center;margin-top:.5rem}
+.art-img-placeholder{text-align:center}
+.art-img-placeholder .icon{font-size:1.5rem;opacity:.3;margin-bottom:.35rem}
+.art-img-placeholder .hint{font-size:.72rem;color:var(--subtle)}
 
-footer{padding:1.5rem clamp(1.5rem,5vw,4rem);border-top:1px solid var(--border);display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem;font-size:.78rem;color:var(--subtle)}
-.sa{opacity:0;filter:blur(6px);transform:translateY(16px);transition:opacity .6s ease,filter .6s ease,transform .6s ease}
-.sa.in{opacity:1;filter:blur(0);transform:translateY(0)}
-.sa.d1{transition-delay:.07s}.sa.d2{transition-delay:.14s}.sa.d3{transition-delay:.21s}
+/* Callout box */
+.art-callout{background:rgba(0,97,255,.06);border:1px solid rgba(0,97,255,.15);border-radius:14px;padding:1.4rem 1.6rem;margin:2rem 0}
+.art-callout-eye{font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:.55rem}
+.art-callout p{font-size:.88rem;color:var(--muted);line-height:1.8;margin-bottom:.75rem}
+.art-callout p:last-child{margin-bottom:0}
+.art-callout strong{color:var(--text)}
 
-/* ── LIGHTBOX ── */
-.lb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.96);z-index:9999;align-items:center;justify-content:center;padding:1.5rem;cursor:zoom-out}
-.lb-overlay.active{display:flex}
-.lb-img-wrap{position:relative;max-width:95vw;max-height:95vh;display:flex;align-items:center;justify-content:center}
-.lb-img{max-width:95vw;max-height:95vh;object-fit:contain;border-radius:8px;box-shadow:0 0 80px rgba(0,0,0,.9);cursor:default}
-.lb-close{position:fixed;top:1.1rem;right:1.1rem;width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.25);color:#fff;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;z-index:10000;backdrop-filter:blur(10px);line-height:1}
-.lb-close:hover{background:rgba(255,255,255,.28);transform:scale(1.08)}
-.lb-hint{position:fixed;bottom:1.25rem;left:50%;transform:translateX(-50%);font-size:.75rem;color:rgba(255,255,255,.35);pointer-events:none;letter-spacing:.04em}
-/* Make all article images zoomable */
-.article-body img,.ss img,.ss-phone img,.ss-narrow img,.featured-img,.gif-wrap img,.screenshot img,.ba-item img,.ss-2col img{cursor:zoom-in!important;transition:opacity .2s}
-.article-body img:hover,.ss img:hover,.ss-phone img:hover,.ss-narrow img:hover,.featured-img:hover,.gif-wrap img:hover,.screenshot img:hover,.ba-item img:hover,.ss-2col img:hover{opacity:.88}
+/* CTA block */
+.art-cta{background:var(--bg-el);border:1px solid var(--card-border);border-radius:18px;padding:1.75rem 2rem;margin-top:3rem;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap}
+.art-cta-text .label{font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.3rem}
+.art-cta-text .title{font-size:1.05rem;font-weight:700;color:var(--text);margin-bottom:.2rem}
+.art-cta-text .sub{font-size:.8rem;color:var(--muted)}
+.art-cta-btns{display:flex;gap:.5rem;flex-wrap:wrap;flex-shrink:0}
+.cta-btn{display:inline-flex;align-items:center;gap:.35rem;font-size:.76rem;font-weight:700;padding:.5rem 1rem;border-radius:8px;transition:all .2s;font-family:var(--font);border:none;cursor:pointer}
+.cta-btn-primary{background:var(--blue);color:#fff}.cta-btn-primary:hover{background:var(--blue-d)}
+.cta-btn-ghost{background:var(--bg-hover);color:var(--muted);border:1px solid var(--border)}.cta-btn-ghost:hover{color:var(--text)}
+
+/* Related links */
+.art-related{margin-top:2.5rem;padding-top:2rem;border-top:1px solid var(--border)}
+.art-related-label{font-size:.64rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem;display:flex;align-items:center;gap:.5rem}
+.art-related-label::before{content:'';width:20px;height:1px;background:var(--subtle)}
+.related-links{display:flex;gap:.6rem;flex-wrap:wrap}
+.related-link{display:inline-flex;align-items:center;gap:.4rem;font-size:.78rem;font-weight:600;color:var(--muted);background:var(--bg-el);border:1px solid var(--border);padding:.4rem .85rem;border-radius:8px;transition:all .2s}
+.related-link:hover{color:var(--blue);border-color:var(--blue-25);background:var(--blue-10)}
+
+/* ── MOBILE ── */
+@media(max-width:600px){
+  .art-title{font-size:1.65rem}
+  .art-cta{flex-direction:column;align-items:flex-start}
+  .topbar-label{display:none}
+  .art-meta-right{margin-left:0;width:100%}
+}
 </style>
 </head>
 <body>
-<nav class="top-nav">
-  <a href="index.html" class="nav-logo"><span class="dot"></span>Satheesh Mankulam</a>
-  <div class="nav-right">
-    <a href="writings.html" class="nav-back">← All Writings</a>
-    <button class="theme-btn" id="tb" title="Toggle theme">☀</button>
-  </div>
-</nav>
 
-<div class="article-wrap">
-  <div class="pub-badge sa">Design Bootcamp · Medium</div>
-  <h1 class="article-title sa d1">Designers Can Ship Now. I Did.</h1>
-  <p class="article-subtitle sa d1">The story behind FamilyDose — built by a UX designer, powered by stubbornness</p>
-  <div class="article-tags sa d1"><span class="article-tag">Personal Essay</span><span class="article-tag">Product Design</span><span class="article-tag">Android App</span><span class="article-tag">FamilyDose</span></div>
-  <div class="author-bar sa d2">
-    <img src="satheesh-photo.jpg" class="author-photo" alt="Satheesh Mankulam">
-    <div>
-      <div class="author-name">Satheesh Mankulam</div>
-      <div class="author-meta">Mar 28, 2026<span class="author-sep"> · </span>4 min read<span class="author-sep"> · </span>Design Bootcamp</div>
+<!-- TOP BAR -->
+<header class="topbar">
+  <div class="topbar-left">
+    <a href="index.html" class="topbar-home">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" style="width:12px;height:12px"><path d="M2 6L8 1l6 5v8a1 1 0 01-1 1H3a1 1 0 01-1-1V6z"/></svg>
+      Satheesh Mankulam
+    </a>
+    <span class="topbar-sep">/</span>
+    <span class="topbar-label">FamilyDose — Article</span>
+  </div>
+  <div class="topbar-actions">
+    <button class="topbar-btn topbar-theme" id="themeBtn">
+      <svg id="themeIc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="width:13px;height:13px"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      <span id="themeLbl">Light</span>
+    </button>
+    <a href="https://play.google.com/store/apps/details?id=com.familydose.app" target="_blank" class="topbar-btn topbar-play">
+      ↗ Google Play
+    </a>
+  </div>
+</header>
+
+<!-- ARTICLE -->
+<article class="article-wrap">
+
+  <!-- Eyebrow -->
+  <div class="art-eyebrow">
+    <div class="art-eye-dot"></div>
+    Medium Article
+    <span class="art-tag">App Story</span>
+    <span class="art-tag">UX + Dev</span>
+  </div>
+
+  <!-- Title -->
+  <h1 class="art-title">Designers Can Ship Now.<br><em>I Did.</em></h1>
+  <p class="art-subtitle">The story behind FamilyDose — built by a UX designer, powered by stubbornness.</p>
+
+  <!-- Meta -->
+  <div class="art-meta">
+    <div class="art-author">
+      <div class="art-avatar">SM</div>
+      <div>
+        <div class="art-author-name">Satheesh Mankulam</div>
+        <div class="art-author-role">UX Designer · IDrive India</div>
+      </div>
     </div>
-    <a href="https://medium.com/design-bootcamp/designers-can-ship-now-i-did-571eccf9be78" target="_blank" style="margin-left:auto;font-size:.78rem;font-weight:600;color:var(--blue);display:flex;align-items:center;gap:.3rem">Read on Medium ↗</a>
+    <div class="art-meta-right">
+      <span class="art-meta-item">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" style="width:12px;height:12px"><circle cx="8" cy="8" r="6"/><path d="M8 4v4l2.5 2.5"/></svg>
+        4 min read
+      </span>
+      <span class="art-meta-item">Mar 28, 2026</span>
+      <a href="https://medium.com/design-bootcamp/designers-can-ship-now-i-did-571eccf9be78" target="_blank" class="art-meta-item" style="color:var(--blue);font-weight:700">
+        Read on Medium ↗
+      </a>
+    </div>
   </div>
-  <img src="https://miro.medium.com/v2/resize:fit:1200/1*TpvpZyeR3J_3zsTLDlqwHw.jpeg" alt="Designers Can Ship Now. I Did." class="featured-img sa d2" onerror="this.style.display='none'">
-  <div class="article-body sa d3">
-<p>I design interfaces and interaction flows. I know Figma inside out, I can sketch a user flow in my sleep, and I've spent years obsessing over button states and spacing grids. But ask me to write a line of code? I'd have stared at you blankly until about a month ago.</p>
-<p><strong>It started with a fever.</strong></p>
-<p>My kid was sick, and my wife and I were taking turns through the night. Medicines every six hours, but which one did we give last? Was it the tablet or the syrup? Did we already give the second dose? We were exhausted, second-guessing ourselves, scribbling on paper that kept going missing. That night I thought, <em>this is a UX problem.</em></p>
-<p>So I decided to build it myself. A simple medicine log. Free. No subscriptions, no accounts, no nonsense. Just something a tired parent or a caretaker could open and say — yes, this dose was given, at this time.</p>
-<p>I used Claude as my coding partner and Android Studio as my build environment. I fed it my sketches, Figma designs, and the design system I had created. I described user flows and interactions in plain English — the way I'd write a design brief. Claude generated the code.</p>
-<p>It wasn't smooth from the start. I struggled, broke things, broke them again, and gradually got a feel for it. One of the earliest walls I hit was token limits — they ran out faster than I expected. I spent sleepless nights thinking, experimenting, trying again. I even took the Pro subscription, and even then, prompting effectively took me nearly a week to figure out.</p>
-<p>Through all of it, my wife sat beside me almost every evening — tapping through screens, flagging what felt confusing, questioning flows I'd already convinced myself were obvious. She was my sharpest tester. No filter, no politeness — just <em>'this doesn't make sense, redo it.'</em> Exactly what I needed.</p>
-<p>After we launched on the Play Store, a close friend picked it up and used it for real. He came back with small but important bugs. We fixed them together. Nothing about this was solo.</p>
-<p>There were nights I wanted to quit. Play Store rejections, cryptic build errors, screens that looked broken on certain phones. But there was also the moment the app passed review and went live — and I sat there staring at a Play Store listing with my name on it, for something that genuinely came from a real problem, built with nothing but design instinct, stubbornness, and an AI.</p>
-<p>If you're a designer sitting on an idea, waiting until you "learn to code properly", stop waiting. The gap between <em>designers who can't build</em> and <em>engineers who can't design</em> has never been thinner.</p>
-<p>Whether AI will replace engineers or replace designers is still a loud, ongoing argument. But what I know from living it is this: that gap — the one that used to keep ideas locked inside Figma forever — <strong>is closing fast.</strong></p>
-<p>You already understand the user. You already know what good feels like. <strong>Go build the thing.</strong></p>
-  </div>
-  
-  <div class="article-nav"><a href="writings.html" class="anav-btn">All Writings</a><a href="index.html" class="anav-btn">Portfolio →</a></div>
-</div>
 
-<footer>
-  <span>Satheesh Mankulam · UX Designer · Bangalore</span>
-  <span>Published in <a href="https://medium.com/design-bootcamp" target="_blank" style="color:var(--blue)">Design Bootcamp</a> on Medium</span>
-</footer>
+  <!-- Body -->
+  <div class="art-body">
+
+    <p class="art-lead">I design interfaces and interaction flows. I know Figma inside out, I can sketch a user flow in my sleep, and I've spent years obsessing over button states and spacing grids. But ask me to write a line of code? I'd have stared at you blankly until about a month ago.</p>
+
+    <p><strong>It started with a fever.</strong></p>
+
+    <p>My kid was sick, and my wife and I were taking turns through the night. Medicines every six hours, but which one did we give last? Was it the tablet or the syrup? Did we already give the second dose? We were exhausted, second-guessing ourselves, scribbling on paper that kept going missing. That night I thought — <em>this is a UX problem.</em></p>
+
+    <p>So I decided to build it myself. A simple medicine log. Free. No subscriptions, no accounts, no nonsense. Just something a tired parent or a caretaker could open and say — yes, this dose was given, at this time.</p>
+
+    <div class="art-img">
+      <div class="art-img-placeholder">
+        <div class="icon">🖊️</div>
+        <div class="hint">Add your sketches and version ideas image here</div>
+      </div>
+    </div>
+    <p class="art-img-label">Some sketches and version ideas</p>
+
+    <p>I used Claude as my coding partner and Android Studio as my build environment. I fed it my sketches, Figma designs, and the design system I had created. I described user flows and interactions in plain English — the way I'd write a design brief. Claude generated the code.</p>
+
+    <div class="art-img">
+      <div class="art-img-placeholder">
+        <div class="icon">💻</div>
+        <div class="hint">Add your Figma / Claude workflow image here</div>
+      </div>
+    </div>
+
+    <p>It wasn't smooth from the start. I struggled, broke things, broke them again, and gradually got a feel for it. One of the earliest walls I hit was token limits — they ran out faster than I expected. I spent sleepless nights thinking, experimenting, trying again. I even took the Pro subscription, and even then, prompting effectively took me nearly a week to figure out.</p>
+
+    <div class="art-img">
+      <div class="art-img-placeholder">
+        <div class="icon">📱</div>
+        <div class="hint">Add your app screenshots image here</div>
+      </div>
+    </div>
+
+    <p>Through all of it, my wife sat beside me almost every evening — tapping through screens, flagging what felt confusing, questioning flows I'd already convinced myself were obvious. She was my sharpest tester. No filter, no politeness — just <em>'this doesn't make sense, redo it.'</em> Exactly what I needed.</p>
+
+    <p>After we launched on the Play Store, a close friend picked it up and used it for real. He came back with small but important bugs. We fixed them together. Nothing about this was solo.</p>
+
+    <p>There were nights I wanted to quit. Play Store rejections, cryptic build errors, screens that looked broken on certain phones. But there was also the moment the app passed review and went live — and I sat there staring at a Play Store listing with my name on it, for something that genuinely came from a real problem, built with nothing but design instinct, stubbornness, and an AI.</p>
+
+    <div class="art-img">
+      <div class="art-img-placeholder">
+        <div class="icon">📧</div>
+        <div class="hint">Add your Play Store rejection mail image here</div>
+      </div>
+    </div>
+    <p class="art-img-label">Rejection mail</p>
+
+    <p>If you're a designer sitting on an idea, waiting until you "learn to code properly", stop waiting. The gap between <em>designers who can't build</em> and <em>engineers who can't design</em> has never been thinner.</p>
+
+    <div class="art-img">
+      <div class="art-img-placeholder">
+        <div class="icon">✅</div>
+        <div class="hint">Add your Play Store production approval image here</div>
+      </div>
+    </div>
+    <p class="art-img-label">Production approval</p>
+
+    <p>Whether AI will replace engineers or replace designers is still a loud, ongoing argument. I'm not here to settle it. But what I know from living it is this: <strong>that gap — the one that used to keep ideas locked inside Figma forever — is closing fast.</strong></p>
+
+    <div class="art-quote">
+      <p>You already understand the user. You already know what good feels like.</p>
+    </div>
+
+    <p><strong>Go build the thing.</strong></p>
+
+    <hr class="art-hr">
+
+    <!-- Pricing/accessibility callout -->
+    <p class="art-h2">One more thing — and it matters.</p>
+
+    <p>While building FamilyDose, I looked at what else existed in this space. Most medication reminder apps have a free tier. And most free tiers quietly cap the thing you actually need — reminders per day, number of family members you can add, history older than a month, language options.</p>
+
+    <p>I understand the business logic. But I kept thinking about who actually uses a medication reminder app.</p>
+
+    <p>It's not a power user optimising their workflow. It's a tired parent at 2am. A caregiver managing an elderly parent's schedule. Someone in a smaller city, on a mid-range phone, whose family speaks Malayalam or Hindi and not English.</p>
+
+    <p>For these users, hitting a paywall isn't a nudge to upgrade. It's the app failing them at the exact moment it was supposed to help.</p>
+
+    <div class="art-callout">
+      <div class="art-callout-eye">A design decision, not a growth strategy</div>
+      <p>As a UX designer, I think about access as part of the design. A health tool that works differently depending on what you can afford isn't a neutral product — it's making a choice about who deserves the full experience.</p>
+      <p>FamilyDose is completely free. All family members, all reminders, full history, trilingual support — English, Malayalam, and Hindi. No feature tiers. No subscription. <strong>That's not a marketing position. It's a design position.</strong></p>
+    </div>
+
+  </div>
+
+  <!-- CTA -->
+  <div class="art-cta">
+    <div class="art-cta-text">
+      <div class="label">Free on Google Play</div>
+      <div class="title">FamilyDose</div>
+      <div class="sub">Medication reminder for families. Offline. No account. No ads.</div>
+    </div>
+    <div class="art-cta-btns">
+      <a href="https://play.google.com/store/apps/details?id=com.familydose.app" target="_blank" class="cta-btn cta-btn-primary">↗ Download App</a>
+      <a href="case-familydose.html" class="cta-btn cta-btn-ghost">Read Case Study →</a>
+    </div>
+  </div>
+
+  <!-- Related -->
+  <div class="art-related">
+    <div class="art-related-label">More from Satheesh</div>
+    <div class="related-links">
+      <a href="https://medium.com/design-bootcamp/designers-can-ship-now-i-did-571eccf9be78" target="_blank" class="related-link">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" style="width:11px;height:11px"><path d="M12 2H4a1 1 0 00-1 1v10a1 1 0 001 1h8a1 1 0 001-1V3a1 1 0 00-1-1z"/></svg>
+        View on Medium
+      </a>
+      <a href="case-familydose.html" class="related-link">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" style="width:11px;height:11px"><rect x="2" y="2" width="12" height="12" rx="2"/></svg>
+        Full Case Study
+      </a>
+      <a href="https://play.google.com/store/apps/details?id=com.satheesh.linkvault" target="_blank" class="related-link">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" style="width:11px;height:11px"><path d="M7 9a3.5 3.5 0 005 0l2-2a3.5 3.5 0 00-5-5L8 3"/><path d="M9 7a3.5 3.5 0 00-5 0L2 9a3.5 3.5 0 005 5l1-1"/></svg>
+        linked App
+      </a>
+      <a href="index.html#app" class="related-link">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" style="width:11px;height:11px"><rect x="4" y="1" width="8" height="14" rx="2"/><line x1="8" y1="12" x2="8.01" y2="12"/></svg>
+        All Apps
+      </a>
+    </div>
+  </div>
+
+</article>
+
 <script>
-const saObs=new IntersectionObserver(e=>e.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');saObs.unobserve(en.target)}}),{threshold:.07});
-document.querySelectorAll('.sa').forEach(el=>saObs.observe(el));
-const tb=document.getElementById('tb');
-tb.addEventListener('click',()=>{
+/* Theme toggle — mirrors index.html logic */
+const sun=`<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>`;
+const moon=`<path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>`;
+const themeIc=document.getElementById('themeIc');
+const themeLbl=document.getElementById('themeLbl');
+document.getElementById('themeBtn').addEventListener('click',()=>{
   const isLight=document.documentElement.getAttribute('data-theme')==='light';
-  const newTheme=isLight?'dark':'light';document.documentElement.setAttribute('data-theme',newTheme);try{localStorage.setItem('portfolio-theme',newTheme);}catch(e){}
-  tb.textContent=isLight?'☀':'🌙';
+  const next=isLight?'dark':'light';
+  document.documentElement.setAttribute('data-theme',next);
+  try{localStorage.setItem('portfolio-theme',next);}catch(e){}
+  themeIc.innerHTML=isLight?sun:moon;
+  themeLbl.textContent=isLight?'Light':'Dark';
 });
+/* Set correct icon on load */
+(function(){
+  const t=document.documentElement.getAttribute('data-theme');
+  if(t==='light'){themeIc.innerHTML=moon;themeLbl.textContent='Dark';}
+})();
 </script>
-
-<!-- Lightbox -->
-<div class="lb-overlay" id="lbOverlay">
-  <div class="lb-img-wrap" id="lbWrap">
-    <img class="lb-img" id="lbImg" src="" alt="">
-  </div>
-  <button class="lb-close" id="lbClose" title="Close (Esc)">✕</button>
-  <div class="lb-hint">Press Esc or click outside to close</div>
-</div>
-
 </body>
 </html>
