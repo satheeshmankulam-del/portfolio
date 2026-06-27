@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"><script>(function(){try{var t=localStorage.getItem("portfolio-theme")||"dark";document.documentElement.setAttribute("data-theme",t);}catch(e){}})()</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="favicon.png">
+<title>Design Systems & Prototypes — Satheesh Mankulam</title>
+<style>
+:root{--blue:#0061FF;--blue-d:#0050CC;--blue-10:rgba(0,97,255,.12);--blue-25:rgba(0,97,255,.28);--yellow:#FFD166;--mint:#06D6A0;--purple:#A78BFA;--font:'Helvetica Neue',Helvetica,-apple-system,BlinkMacSystemFont,Arial,sans-serif}
+[data-theme="dark"]{--bg:#0C0C10;--bg-card:#141418;--bg-el:#1C1C24;--bg-hover:#22222C;--text:#ECECF4;--muted:#7A7A90;--subtle:#3C3C50;--border:rgba(255,255,255,.07);--shadow:0 8px 32px rgba(0,0,0,.5)}
+[data-theme="light"]{--bg:#F2F3F7;--bg-card:#FFFFFF;--bg-el:#EAEAF4;--bg-hover:#E0E0EE;--text:#1A1A2E;--muted:#5C5C74;--subtle:#ABABC4;--border:rgba(0,0,0,.08);--shadow:0 8px 32px rgba(0,0,0,.1)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-font-smoothing:antialiased;scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;transition:background .3s,color .3s}
+a{text-decoration:none;color:inherit}
+.top-nav{position:fixed;top:0;left:0;right:0;height:54px;background:rgba(12,12,16,.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 clamp(1.5rem,5vw,4rem);z-index:100}
+[data-theme="light"] .top-nav{background:rgba(242,243,247,.92)}
+.top-nav-logo{font-size:.95rem;font-weight:700;color:var(--text);display:flex;align-items:center;gap:.5rem}
+.top-nav-logo .dot{width:7px;height:7px;border-radius:50%;background:var(--blue)}
+.top-nav-right{display:flex;align-items:center;gap:.5rem}
+.top-nav-link{font-size:.82rem;font-weight:600;color:var(--muted);padding:.38rem .75rem;border-radius:7px;transition:all .2s}
+.top-nav-link:hover{color:var(--text);background:rgba(255,255,255,.06)}
+[data-theme="light"] .top-nav-link:hover{background:rgba(0,0,0,.06)}
+.top-nav-link.active{color:var(--blue)}
+.theme-btn{width:32px;height:32px;border-radius:7px;background:var(--bg-el);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--muted);cursor:pointer;transition:all .2s;font-size:.85rem}
+.theme-btn:hover{color:var(--blue);border-color:var(--blue)}
+
+.wrap{max-width:1080px;margin:0 auto;padding:clamp(5.5rem,10vw,7.5rem) clamp(1.25rem,5vw,2.5rem) 4rem}
+.page-head{margin-bottom:2.5rem}
+.page-eyebrow{display:inline-flex;align-items:center;gap:.5rem;font-size:.66rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--purple);background:rgba(167,139,250,.08);border:1px solid rgba(167,139,250,.2);padding:.3rem .8rem;border-radius:100px;margin-bottom:1.25rem}
+.page-title{font-size:clamp(2rem,5vw,3rem);font-weight:700;line-height:1.08;letter-spacing:-.02em;margin-bottom:.85rem}
+.page-sub{font-size:1.05rem;color:var(--muted);line-height:1.65;max-width:600px}
+
+.proto-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:1rem}
+.proto-card{background:var(--bg-card);border:1px solid var(--border);border-radius:18px;overflow:hidden;transition:all .25s;display:flex;flex-direction:column}
+.proto-card:hover{border-color:var(--blue-25);transform:translateY(-3px);box-shadow:var(--shadow)}
+.proto-thumb{position:relative;aspect-ratio:16/10;overflow:hidden;background:linear-gradient(135deg,#1a1a2e,#0f0f1a);display:flex;align-items:center;justify-content:center}
+.proto-thumb::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 30%,rgba(0,97,255,.15),transparent 60%),radial-gradient(circle at 70% 70%,rgba(167,139,250,.15),transparent 60%)}
+.proto-thumb-inner{position:relative;z-index:2;width:80%;height:78%;background:var(--bg-card);border:1px solid var(--border);border-radius:12px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,.4);display:flex;flex-direction:column}
+.thumb-bar{height:26px;background:var(--bg-el);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:5px;padding:0 10px;flex-shrink:0}
+.thumb-dot{width:7px;height:7px;border-radius:50%}
+.thumb-body{flex:1;padding:14px;display:flex;flex-direction:column;gap:8px;overflow:hidden}
+.thumb-line{height:7px;border-radius:4px;background:var(--bg-hover)}
+.thumb-hero{height:32px;border-radius:7px;background:linear-gradient(90deg,var(--blue),var(--purple));opacity:.85;margin-bottom:4px}
+.thumb-chip-row{display:flex;gap:6px;margin-top:auto}
+.thumb-chip{height:18px;border-radius:5px;background:var(--bg-hover);flex:1}
+.thumb-chip.accent{background:rgba(0,97,255,.4)}
+
+.proto-play{position:absolute;z-index:3;top:50%;left:50%;transform:translate(-50%,-50%);width:54px;height:54px;border-radius:50%;background:rgba(0,97,255,.95);display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(0,97,255,.4);opacity:0;transition:all .25s}
+.proto-card:hover .proto-play{opacity:1;transform:translate(-50%,-50%) scale(1.05)}
+.proto-play svg{width:20px;height:20px;margin-left:3px}
+
+.proto-info{padding:1.4rem 1.6rem 1.6rem}
+.proto-tags{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:.85rem}
+.proto-tag{font-size:.6rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--purple);background:rgba(167,139,250,.1);padding:.18rem .55rem;border-radius:100px}
+.proto-tag.blue{color:var(--blue);background:var(--blue-10)}
+.proto-name{font-size:1.2rem;font-weight:700;letter-spacing:-.01em;margin-bottom:.5rem}
+.proto-desc{font-size:.88rem;color:var(--muted);line-height:1.65;margin-bottom:1.25rem}
+.proto-actions{display:flex;gap:.6rem;flex-wrap:wrap}
+.proto-btn{display:inline-flex;align-items:center;gap:.4rem;font-size:.8rem;font-weight:700;padding:.5rem 1.1rem;border-radius:9px;transition:all .2s}
+.proto-btn-primary{background:var(--blue);color:#fff}.proto-btn-primary:hover{background:var(--blue-d)}
+.proto-btn-ghost{background:var(--bg-el);color:var(--muted);border:1px solid var(--border)}.proto-btn-ghost:hover{color:var(--text);border-color:var(--blue-25)}
+
+.section-divider{margin:3.5rem 0 2rem;display:flex;align-items:center;gap:1rem}
+.section-divider .line{flex:1;height:1px;background:var(--border)}
+.section-divider .label{font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+
+.empty-hint{background:var(--bg-card);border:1px dashed var(--border);border-radius:14px;padding:1.75rem;text-align:center;color:var(--muted);font-size:.88rem;line-height:1.7}
+
+footer{padding:2rem clamp(1.5rem,5vw,4rem);border-top:1px solid var(--border);display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem;font-size:.78rem;color:var(--subtle)}
+.sa{opacity:0;filter:blur(6px);transform:translateY(16px);transition:opacity .6s ease,filter .6s ease,transform .6s ease}
+.sa.in{opacity:1;filter:blur(0);transform:translateY(0)}
+.sa.d1{transition-delay:.07s}.sa.d2{transition-delay:.14s}.sa.d3{transition-delay:.21s}
+@media(max-width:720px){.proto-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav class="top-nav">
+  <a href="index.html" class="top-nav-logo"><span class="dot"></span>Satheesh Mankulam</a>
+  <div class="top-nav-right">
+    <a href="index.html" class="top-nav-link">Home</a>
+    <a href="writings.html" class="top-nav-link">Writings</a>
+    <a href="design-work.html" class="top-nav-link">Design Work</a>
+    <a href="figma-prototypes.html" class="top-nav-link active">Design &amp; Prototypes</a>
+    <button class="theme-btn" id="themeBtn">☀</button>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <div class="page-head">
+    <div class="page-eyebrow sa">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px"><path d="M5 5.5A3.5 3.5 0 018.5 2H12v7H8.5A3.5 3.5 0 015 5.5z"/><path d="M12 2h3.5a3.5 3.5 0 110 7H12V2z"/><path d="M5 12.5A3.5 3.5 0 018.5 9H12v7H8.5A3.5 3.5 0 015 12.5z"/><circle cx="15.5" cy="12.5" r="3.5"/><path d="M5 19.5A3.5 3.5 0 018.5 16H12v3.5a3.5 3.5 0 11-7 0z"/></svg>
+      Figma · Design Systems & Prototypes
+    </div>
+    <h1 class="page-title sa d1">Design Systems &amp; Prototypes</h1>
+    <p class="page-sub sa d1">Design systems and interactive prototypes built in Figma — from full token architectures and component libraries to clickable, explorable product flows.</p>
+  </div>
+
+  <!-- Design System section -->
+  <div class="section-divider sa" style="margin-top:0">
+    <span class="label">Design System</span>
+    <span class="line"></span>
+  </div>
+
+  <div class="proto-grid">
+
+    <!-- Design System file -->
+    <div class="proto-card sa d1">
+      <a href="https://www.figma.com/design/78ccVC1PHb7eBOma3sXxQp/UI-Head-Website-Design-Challenge---Satheesh-M?node-id=0-1" target="_blank" style="display:block">
+        <div class="proto-thumb" style="background:linear-gradient(135deg,#1e1a2e,#0f0f1a)">
+          <div class="proto-thumb-inner">
+            <div class="thumb-bar"><span class="thumb-dot" style="background:#FF5F57"></span><span class="thumb-dot" style="background:#FEBC2E"></span><span class="thumb-dot" style="background:#28C840"></span></div>
+            <div class="thumb-body">
+              <div class="thumb-chip-row" style="margin-top:0;margin-bottom:6px"><div class="thumb-chip" style="background:#0061FF;flex:0 0 22px"></div><div class="thumb-chip" style="background:#06D6A0;flex:0 0 22px"></div><div class="thumb-chip" style="background:#A78BFA;flex:0 0 22px"></div><div class="thumb-chip" style="background:#FFD166;flex:0 0 22px"></div></div>
+              <div class="thumb-line" style="width:85%"></div>
+              <div class="thumb-line" style="width:60%"></div>
+              <div class="thumb-chip-row"><div class="thumb-chip accent"></div><div class="thumb-chip"></div><div class="thumb-chip"></div></div>
+            </div>
+          </div>
+        </div>
+      </a>
+      <div class="proto-info">
+        <div class="proto-tags"><span class="proto-tag">Design System</span><span class="proto-tag">Tokens</span><span class="proto-tag">Components</span></div>
+        <div class="proto-name">UI Head — Design System File</div>
+        <p class="proto-desc">The full Figma design file behind the challenge: a two-tier token architecture (violet/teal), WCAG AA contrast audit, and a complete component library — buttons, inputs, nav, and gradient-border pricing cards.</p>
+        <div class="proto-actions">
+          <a href="https://www.figma.com/design/78ccVC1PHb7eBOma3sXxQp/UI-Head-Website-Design-Challenge---Satheesh-M?node-id=0-1" target="_blank" class="proto-btn proto-btn-primary">🎨 Open Design File</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Prototypes section -->
+  <div class="section-divider sa">
+    <span class="label">Interactive Prototypes</span>
+    <span class="line"></span>
+  </div>
+
+  <div class="proto-grid">
+
+    <!-- Interactive prototype -->
+    <div class="proto-card sa d1">
+      <a href="https://www.figma.com/proto/78ccVC1PHb7eBOma3sXxQp/UI-Head-Website-Design-Challenge---Satheesh-M?page-id=1%3A4&node-id=2-2&p=f&viewport=546%2C45%2C0.19&t=djdVuy1bBSx7qt3g-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=2%3A2" target="_blank" style="display:block">
+        <div class="proto-thumb">
+          <div class="proto-thumb-inner">
+            <div class="thumb-bar"><span class="thumb-dot" style="background:#FF5F57"></span><span class="thumb-dot" style="background:#FEBC2E"></span><span class="thumb-dot" style="background:#28C840"></span></div>
+            <div class="thumb-body">
+              <div class="thumb-hero"></div>
+              <div class="thumb-line" style="width:70%"></div>
+              <div class="thumb-line" style="width:90%"></div>
+              <div class="thumb-line" style="width:55%"></div>
+              <div class="thumb-chip-row"><div class="thumb-chip accent"></div><div class="thumb-chip"></div><div class="thumb-chip"></div></div>
+            </div>
+          </div>
+          <div class="proto-play"><svg viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></div>
+        </div>
+      </a>
+      <div class="proto-info">
+        <div class="proto-tags"><span class="proto-tag blue">Prototype</span><span class="proto-tag">Desktop + Mobile</span><span class="proto-tag">WCAG AA</span></div>
+        <div class="proto-name">UI Head Website Challenge</div>
+        <p class="proto-desc">The clickable, interactive prototype of the website challenge — landing &amp; about pages with both desktop and responsive mobile flows, driven by the design system component library.</p>
+        <div class="proto-actions">
+          <a href="https://www.figma.com/proto/78ccVC1PHb7eBOma3sXxQp/UI-Head-Website-Design-Challenge---Satheesh-M?page-id=1%3A4&node-id=2-2&p=f&viewport=546%2C45%2C0.19&t=djdVuy1bBSx7qt3g-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=2%3A2" target="_blank" class="proto-btn proto-btn-primary">▶ Open Prototype</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Coming Soon -->
+    <div class="proto-card sa d2" style="border-style:dashed">
+      <div class="proto-thumb" style="background:linear-gradient(135deg,#16161e,#0d0d14)">
+        <div style="position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:.75rem;color:var(--subtle)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:38px;height:38px;opacity:.6"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          <span style="font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase">Coming Soon</span>
+        </div>
+      </div>
+      <div class="proto-info">
+        <div class="proto-tags"><span class="proto-tag">Next</span></div>
+        <div class="proto-name" style="color:var(--muted)">More On The Way</div>
+        <p class="proto-desc">New design systems and interactive prototypes — micro-interactions, motion studies, and full product flows — are in progress and will land here soon.</p>
+        <div class="proto-actions">
+          <span class="proto-btn proto-btn-ghost" style="cursor:default;opacity:.6">In Progress</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<footer>
+  <span>Satheesh Mankulam · UX Designer · Bangalore</span>
+  <span><a href="index.html" style="color:var(--blue)">← Back to Portfolio</a></span>
+</footer>
+
+<script>
+const saObs=new IntersectionObserver(e=>e.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');saObs.unobserve(en.target)}}),{threshold:.07});
+document.querySelectorAll('.sa').forEach(el=>saObs.observe(el));
+(function(){var btn=document.getElementById('themeBtn');if(btn)btn.textContent=document.documentElement.getAttribute('data-theme')==='light'?'🌙':'☀';})();
+document.getElementById('themeBtn').addEventListener('click',()=>{
+  const isLight=document.documentElement.getAttribute('data-theme')==='light';
+  const newTheme=isLight?'dark':'light';
+  document.documentElement.setAttribute('data-theme',newTheme);
+  try{localStorage.setItem('portfolio-theme',newTheme);}catch(e){}
+  document.getElementById('themeBtn').textContent=isLight?'☀':'🌙';
+});
+</script>
+</body>
+</html>
