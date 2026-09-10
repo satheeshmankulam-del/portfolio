@@ -1,0 +1,369 @@
+<head>
+<meta charset="UTF-8"><script>document.documentElement.setAttribute("data-theme","light");</script><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="favicon.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<title>Every Loop Is a Feature. Every Denial Is a Metric. — Satheesh Mankulam</title>
+<style>
+:root{--blue:#0061FF;--blue-d:#0050CC;--blue-10:rgba(0,97,255,.12);--blue-25:rgba(0,97,255,.28);--yellow:#FFD166;--mint:#06D6A0;--font:'Helvetica Neue',Helvetica,-apple-system,Arial,sans-serif}
+[data-theme="dark"]{--bg:#0C0C10;--bg-card:#141418;--bg-el:#1C1C24;--bg-hover:#22222C;--text:#ECECF4;--muted:#7A7A90;--subtle:#3C3C50;--border:rgba(255,255,255,.07);--blockquote-border:rgba(0,97,255,.5)}
+[data-theme="light"]{--bg:#F5F5F7;--bg-card:#FFFFFF;--bg-el:#EAEAF4;--bg-hover:#E0E0EE;--text:#1A1A2E;--muted:#5C5C74;--subtle:#ABABC4;--border:rgba(0,0,0,.08);--blockquote-border:#0061FF}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-font-smoothing:antialiased}
+body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;transition:background .3s,color .3s}
+a{text-decoration:none;color:inherit}
+.top-nav{position:fixed;top:0;left:0;right:0;height:54px;background:rgba(12,12,16,.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 clamp(1.5rem,5vw,4rem);z-index:100;transition:background .3s}
+[data-theme="light"] .top-nav{background:rgba(245,245,247,.92)}
+.nav-logo{font-size:.95rem;font-weight:700;color:var(--text);display:flex;align-items:center;gap:.5rem}
+.nav-logo .dot{width:7px;height:7px;border-radius:50%;background:var(--blue)}
+.nav-back{font-size:.82rem;font-weight:600;color:var(--muted);padding:.38rem .75rem;border-radius:7px;transition:all .2s}
+.nav-back:hover{color:var(--blue);background:var(--blue-10)}
+.nav-right{display:flex;align-items:center;gap:.5rem}
+.theme-btn{width:32px;height:32px;border-radius:7px;background:var(--bg-el);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--muted);cursor:pointer;font-size:.85rem;transition:all .2s}
+.theme-btn:hover{color:var(--blue);border-color:var(--blue)}
+.article-wrap{max-width:720px;margin:0 auto;padding:clamp(5rem,10vw,7rem) clamp(1.5rem,5vw,2.5rem) 4rem}
+.pub-badge{display:inline-flex;align-items:center;gap:.5rem;font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);background:var(--blue-10);border:1px solid rgba(0,97,255,.2);padding:.25rem .75rem;border-radius:100px;margin-bottom:1.25rem}
+.pub-badge::before{content:'M';font-size:.7rem;font-weight:800;background:var(--blue);color:#fff;width:16px;height:16px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center}
+.article-title{font-size:clamp(1.75rem,4vw,2.75rem);font-weight:700;color:var(--text);line-height:1.15;letter-spacing:-.018em;margin-bottom:.6rem}
+.article-subtitle{font-size:1.1rem;color:var(--muted);line-height:1.6;margin-bottom:1.5rem}
+.author-bar{display:flex;align-items:center;gap:.75rem;padding:1.1rem 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-bottom:2rem}
+.author-photo{width:40px;height:40px;border-radius:50%;object-fit:cover;object-position:center 15%;flex-shrink:0}
+.author-name{font-size:.9rem;font-weight:600;color:var(--text)}
+.author-meta{font-size:.8rem;color:var(--muted)}
+.article-tags{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:1.75rem}
+.article-tag{font-size:.68rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--blue);background:var(--blue-10);padding:.2rem .55rem;border-radius:100px}
+.featured-img{width:100%;border-radius:12px;margin-bottom:2.5rem;display:block;max-height:none;object-fit:contain}
+
+.article-body{font-size:1.05rem;line-height:1.85;color:var(--text)}
+.article-body p{margin-bottom:1.4rem}
+.article-body h2{font-size:1.5rem;font-weight:700;color:var(--text);margin:2.5rem 0 1rem;letter-spacing:-.012em}
+.article-body h3{font-size:1.2rem;font-weight:700;color:var(--text);margin:2rem 0 .75rem;letter-spacing:-.01em}
+.article-body strong{font-weight:700;color:var(--text)}
+.article-body em{font-style:italic}
+.article-body blockquote{border-left:3px solid var(--blockquote-border);padding:.5rem 0 .5rem 1.25rem;margin:1.5rem 0;color:var(--muted);font-style:italic;font-size:1.05rem}
+.article-body ul{margin:1rem 0 1.4rem 1.5rem}
+.article-body li{margin-bottom:.5rem;line-height:1.7}
+.article-body hr{border:none;border-top:1px solid var(--border);margin:2.5rem 0}
+
+/* Screenshots */
+.screenshot{margin:2rem 0}
+.screenshot img{width:100%;border-radius:10px;border:1px solid var(--border);display:block}
+.screenshot-caption{font-size:.8rem;color:var(--muted);text-align:center;margin-top:.65rem;font-style:italic;line-height:1.5}
+.screenshot-3col{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:2rem 0}
+.screenshot-2col{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:2rem 0}
+
+/* Competitive analysis table */
+.comp-table{width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:.9rem}
+.comp-table th{text-align:left;padding:.65rem 1rem;background:var(--bg-el);color:var(--muted);font-weight:700;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;border-bottom:1px solid var(--border)}
+.comp-table td{padding:.65rem 1rem;border-bottom:1px solid var(--border);color:var(--text);vertical-align:top}
+.comp-table tr:last-child td{border-bottom:none}
+.comp-table tr:hover td{background:var(--bg-el)}
+.badge-yes{font-size:.68rem;font-weight:700;color:var(--mint);background:rgba(6,214,160,.1);padding:.15rem .5rem;border-radius:100px}
+.badge-no{font-size:.68rem;font-weight:700;color:var(--muted);background:var(--bg-hover);padding:.15rem .5rem;border-radius:100px}
+.badge-partial{font-size:.68rem;font-weight:700;color:var(--yellow);background:rgba(255,209,102,.1);padding:.15rem .5rem;border-radius:100px}
+
+/* Android Auto features */
+.feature-list{display:grid;grid-template-columns:1fr 1fr;gap:.85rem;margin:1.25rem 0 1.75rem}
+.feature-card{background:var(--bg-el);border:1px solid var(--border);border-radius:12px;padding:1.1rem 1.25rem}
+.feature-icon{font-size:1.1rem;margin-bottom:.5rem}
+.feature-title{font-size:.9rem;font-weight:700;color:var(--text);margin-bottom:.3rem}
+.feature-desc{font-size:.82rem;color:var(--muted);line-height:1.6}
+
+/* Video embed */
+.video-wrap{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid var(--border);margin:2rem 0}
+.video-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none}
+.video-fallback{display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--bg-el);border-radius:12px;border:1px solid var(--border);padding:2.5rem;text-align:center;margin:2rem 0}
+.video-fallback-icon{font-size:2.5rem;margin-bottom:.85rem}
+.video-fallback h3{font-size:1rem;font-weight:700;color:var(--text);margin-bottom:.4rem}
+.video-fallback p{font-size:.88rem;color:var(--muted);margin-bottom:1rem}
+.video-fallback a{display:inline-flex;align-items:center;gap:.4rem;font-size:.88rem;font-weight:700;color:#fff;background:var(--blue);padding:.55rem 1.25rem;border-radius:9px}
+
+/* Feasibility box */
+.feasibility-box{background:linear-gradient(135deg,rgba(0,97,255,.08),rgba(0,97,255,.04));border:1px solid rgba(0,97,255,.2);border-radius:14px;padding:1.75rem;margin:2rem 0}
+.feasibility-box h3{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:.85rem}
+.feasibility-box ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.6rem}
+.feasibility-box li{font-size:.92rem;color:var(--text);display:flex;align-items:flex-start;gap:.6rem;line-height:1.6}
+.feasibility-box li::before{content:'✓';color:var(--mint);font-weight:700;flex-shrink:0}
+
+.article-nav{border-top:1px solid var(--border);padding-top:2rem;margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap}
+.anav-btn{display:inline-flex;align-items:center;gap:.4rem;font-size:.84rem;font-weight:600;color:var(--muted);background:var(--bg-el);padding:.5rem 1rem;border-radius:8px;border:1px solid var(--border);transition:all .2s}
+.anav-btn:hover{color:var(--blue);border-color:var(--blue-25);background:var(--blue-10)}
+footer{padding:1.5rem clamp(1.5rem,5vw,4rem);border-top:1px solid var(--border);display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem;font-size:.78rem;color:var(--subtle)}
+.sa{opacity:0;filter:blur(6px);transform:translateY(16px);transition:opacity .6s ease,filter .6s ease,transform .6s ease}
+.sa.in{opacity:1;filter:blur(0);transform:translateY(0)}
+.sa.d1{transition-delay:.07s}.sa.d2{transition-delay:.14s}.sa.d3{transition-delay:.21s}
+@media(max-width:600px){.feature-list,.screenshot-2col,.screenshot-3col{grid-template-columns:1fr}}
+
+/* ── LIGHTBOX ── */
+.lb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.96);z-index:9999;align-items:center;justify-content:center;padding:1.5rem;cursor:zoom-out}
+.lb-overlay.active{display:flex}
+.lb-img-wrap{position:relative;max-width:95vw;max-height:95vh;display:flex;align-items:center;justify-content:center}
+.lb-img{max-width:95vw;max-height:95vh;object-fit:contain;border-radius:8px;box-shadow:0 0 80px rgba(0,0,0,.9);cursor:default}
+.lb-close{position:fixed;top:1.1rem;right:1.1rem;width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.25);color:#fff;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;z-index:10000;backdrop-filter:blur(10px);line-height:1}
+.lb-close:hover{background:rgba(255,255,255,.28);transform:scale(1.08)}
+.lb-hint{position:fixed;bottom:1.25rem;left:50%;transform:translateX(-50%);font-size:.75rem;color:rgba(255,255,255,.35);pointer-events:none;letter-spacing:.04em}
+/* Make all article images zoomable */
+.article-body img,.ss img,.ss-phone img,.ss-narrow img,.featured-img,.gif-wrap img,.screenshot img,.ba-item img,.ss-2col img{cursor:zoom-in!important;transition:opacity .2s}
+.article-body img:hover,.ss img:hover,.ss-phone img:hover,.ss-narrow img:hover,.featured-img:hover,.gif-wrap img:hover,.screenshot img:hover,.ba-item img:hover,.ss-2col img:hover{opacity:.88}
+
+/* ===== NAVY REFRESH — nav, footer, prev/next ===== */
+:root{--pj-font:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif}
+.pj-nav{padding:1.25rem clamp(1.25rem,5vw,3.5rem);background:#fff;border-bottom:1px solid rgba(26,31,68,.08);position:sticky;top:0;z-index:200;font-family:var(--pj-font)}
+.pj-nav-inner{max-width:820px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.pj-nav-logo{display:flex;align-items:center;gap:.6rem}
+.pj-nav-mark{width:32px;height:32px;border-radius:8px;background:#1A1F44;color:#fff;display:flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:800}
+.pj-nav-name{font-size:.94rem;font-weight:700;color:#1A1F44}
+.pj-nav-back{font-size:.82rem;font-weight:700;color:#1A1F44;display:flex;align-items:center;gap:.4rem}
+
+.pj-nextprev{max-width:820px;margin:3rem auto 0;padding:0 clamp(1.25rem,5vw,2.5rem);font-family:var(--pj-font)}
+.pj-np-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;border-top:1px solid rgba(26,31,68,.1);padding-top:2rem}
+.pj-np-card{background:#F7F7FA;border-radius:14px;padding:1.3rem 1.4rem;transition:all .18s;text-decoration:none;display:block}
+.pj-np-card:hover{background:#EFEFF4}
+.pj-np-card.next{text-align:right}
+.pj-np-label{font-size:.68rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#8A8FB0;margin-bottom:.5rem;display:block}
+.pj-np-title{font-size:.95rem;font-weight:700;color:#1A1F44;line-height:1.4}
+@media(max-width:600px){.pj-np-row{grid-template-columns:1fr}}
+
+.pj-footer{max-width:820px;margin:3.5rem auto 0;padding:2.5rem clamp(1.25rem,5vw,2.5rem) 3rem;font-family:var(--pj-font);border-top:1px solid rgba(26,31,68,.08)}
+.pj-footer-row{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.pj-footer-say{font-size:.95rem;color:#1A1F44}
+.pj-footer-say a{color:#1A1F44;font-weight:700;text-decoration:underline}
+.pj-footer-phone{font-size:.85rem;color:#8A8FB0;margin-top:.35rem}
+.pj-footer-phone a{color:#8A8FB0}
+.pj-footer-socials{display:flex;gap:.55rem}
+.pj-fs-link{width:34px;height:34px;border-radius:9px;background:#F7F7FA;display:flex;align-items:center;justify-content:center;color:#1A1F44;transition:all .15s}
+.pj-fs-link:hover{background:#1A1F44;color:#fff}
+.pj-footer-meta{font-size:.75rem;color:#A8A8B3;margin-top:1.75rem;text-align:center}
+
+
+/* ===== NAVY DESIGN SYSTEM OVERRIDE — matches index.html ===== */
+:root{--font:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;--blue:#1A1F44;--blue-d:#2A3266;--blue-10:rgba(26,31,68,.08);--blue-25:rgba(26,31,68,.22);--mint:#5FA98A;--yellow:#D9A54A;--purple:#7C5CFC}
+[data-theme="light"]{--bg:#FFFFFF;--bg-card:#FFFFFF;--bg-el:#F7F7FA;--bg-hover:#EFEFF4;--text:#1A1F44;--muted:#565C82;--subtle:#8A8FB0;--border:rgba(26,31,68,.1);--blockquote-border:#1A1F44;--card-border:rgba(26,31,68,.1);--shadow:0 8px 32px rgba(26,31,68,.08)}
+
+</style>
+</head>
+<body>
+
+<nav class="pj-nav">
+  <div class="pj-nav-inner">
+    <a href="index.html" class="pj-nav-logo"><div class="pj-nav-mark">SM</div><span class="pj-nav-name">Satheesh Mankulam</span></a>
+    <a href="writings.html" class="pj-nav-back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>All Case Studies</a>
+  </div>
+</nav>
+
+<div class="article-wrap">
+
+  <div class="pub-badge sa">UX Research · Medium</div>
+  <h1 class="article-title sa d1">Every Loop Is a Feature. Every Denial Is a Metric.</h1>
+  <p class="article-subtitle sa d1">UX case study on Swiggy's delay loop and Zomato's vanishing order</p>
+
+  <div class="article-tags sa d1">
+    <span class="article-tag">Dark Patterns</span>
+    <span class="article-tag">Customer Support UX</span>
+    <span class="article-tag">Trust Design</span>
+    <span class="article-tag">Food Delivery</span>
+  </div>
+
+  <div class="author-bar sa d2">
+    <img src="satheesh-photo.jpg" class="author-photo" alt="Satheesh Mankulam">
+    <div>
+      <div class="author-name">Satheesh Mankulam</div>
+      <div class="author-meta">Aug 8, 2026 <span style="margin:0 .25rem;color:var(--subtle)">·</span> 8 min read</div>
+    </div>
+  </div>
+
+  <div class="article-body">
+
+    <p class="sa">I've spent the last few weeks going back and forth with two chatbots that never really talked to me. One kept pushing a delivery time further and further away every time I asked. The other one let my order get marked "delivered" when it wasn't, then handed me off between agents who couldn't see what the last agent had already promised — until Zomato's own email team told me the order was fine and I was wrong.</p>
+
+    <p class="sa">As a UX designer, I know the difference between a bug and a decision. What I ran into wasn't a bug.</p>
+
+    <h3 class="sa">What I Was Actually Talking To</h3>
+    <p class="sa">Before I get into what happened, it's worth being clear about what's on the other end of that chat window, because it isn't a simple FAQ bot anymore.</p>
+    <p class="sa">Swiggy and Zomato are not companies that lack the technology to solve my problem in real time. They've built a fairly sophisticated AI layer and pointed most of its intelligence at ordering and logistics — and pointed a much shallower, scripted layer at me, the person with a complaint.</p>
+    <p class="sa">And I'm not the only one who's noticed the gap. Independent reporting (Moneycontrol, via Storyboard18) documents the same complaint across both platforms: the chatbot handles standard, scripted situations fine, and stalls — often with no visible way to reach a human — the moment the issue doesn't fit a preset category. That's not an isolated bad day. That's a boundary someone drew on purpose.</p>
+
+    <h3 class="sa">Case 1: Swiggy — The Delay That Never Actually Resolves</h3>
+    <p class="sa">Here's what happened, in order:</p>
+
+    <div class="flow-steps sa">
+      <h4>The loop</h4>
+      <div class="flow-step"><div class="flow-num">1</div><div class="flow-text">My order is late, or the tracker shows the rider in the wrong place.</div></div>
+      <div class="flow-step"><div class="flow-num">2</div><div class="flow-text">I open chat, ask what's going on.</div></div>
+      <div class="flow-step"><div class="flow-num">3</div><div class="flow-text">The bot gives me a new ETA.</div></div>
+      <div class="flow-step"><div class="flow-num">4</div><div class="flow-text">The ETA passes. I go back.</div></div>
+      <div class="flow-step"><div class="flow-num">5</div><div class="flow-text">The bot apologizes, pushes the ETA out again, and says something close to what it said the first time.</div></div>
+      <div class="flow-step"><div class="flow-num">6</div><div class="flow-text">I ask directly to speak to a human.</div></div>
+      <div class="flow-step"><div class="flow-num">7</div><div class="flow-text">It says no — and loops back to step 5.</div></div>
+    </div>
+
+    <p class="sa">I know this pattern has a name, because I went looking. UX researchers now catalogue this as "defensive AI" support design, and the mechanisms match what I experienced almost exactly:</p>
+
+    <div class="issues-list">
+      <div class="issue-item sa">
+        <div class="issue-icon">🔁</div>
+        <div><div class="issue-title">Endless Loops</div><div class="issue-desc">My ETA kept moving instead of anyone offering an actual fix.</div></div>
+      </div>
+      <div class="issue-item sa">
+        <div class="issue-icon">🚪</div>
+        <div><div class="issue-title">Hidden Human Access</div><div class="issue-desc">I asked directly for an agent. Refused.</div></div>
+      </div>
+      <div class="issue-item sa">
+        <div class="issue-icon">🎭</div>
+        <div><div class="issue-title">Strategic Deflection</div><div class="issue-desc">Same message, rephrased, every time.</div></div>
+      </div>
+      <div class="issue-item sa">
+        <div class="issue-icon">⏱</div>
+        <div><div class="issue-title">Response-Speed Manipulation</div><div class="issue-desc">Every loop cost me time until I gave up.</div></div>
+      </div>
+    </div>
+
+    <p class="sa">Here's why, from a business-metrics standpoint, this is a completely rational thing for Swiggy to build, even though it's terrible for me: every conversation the bot contains — resolves or exhausts, doesn't matter which — is one conversation that never reaches a human agent's queue, never gets logged as a failure, and never costs a refund. Support teams call this <strong>containment rate</strong>, and it's a real KPI. An ETA-push loop that never escalates is a very efficient way to keep that number high.</p>
+
+    <p class="sa">As a designer, here's where it breaks, heuristic by heuristic:</p>
+
+    <div class="heuristic-list">
+      <div class="heuristic-item sa">
+        <div class="heuristic-title">Visibility of System Status</div>
+        <div class="heuristic-desc">The ETA isn't a status. It's a placeholder. The system almost certainly knows the rider is idle or in the wrong geofence; it just doesn't tell me that.</div>
+      </div>
+      <div class="heuristic-item sa">
+        <div class="heuristic-title">User Control and Freedom</div>
+        <div class="heuristic-desc">I asked to leave the automated flow. There was no exit.</div>
+      </div>
+      <div class="heuristic-item sa">
+        <div class="heuristic-title">Error Recovery</div>
+        <div class="heuristic-desc">The bot has no memory that its last answer already failed me. Every turn resets like it's the first time I've asked.</div>
+      </div>
+      <div class="heuristic-item sa">
+        <div class="heuristic-title">Honesty</div>
+        <div class="heuristic-desc">A "new ETA" implies a forecast based on real information. If it's actually just a stall tactic, that's a false affordance — the interface is pretending to have a capability it isn't using.</div>
+      </div>
+    </div>
+
+    <h3 class="sa">Case 2: Zomato — The Order That Was "Delivered" to No One</h3>
+    <p class="sa">This one I lived through in more detail, so let me walk it the way it actually unfolded.</p>
+    <p class="sa">The delivery partner marks my order "Delivered." It was not delivered. I contact chat support. An agent calls the rider, who admits on that call that he marked it wrong, and promises delivery in 10 minutes.</p>
+    <p class="sa">Ten minutes pass. Nothing. I try calling the rider directly, but the number Zomato shows is a masked, centralized number, starting with the same prefix Zomato's own support agents call from, so I genuinely can't tell if I'm talking to the rider or someone else. When I do get through, he tells me he's now on a Rapido trip and will take longer.</p>
+    <p class="sa">I go back to Zomato chat. A different agent picks up the thread with zero visibility into what the first agent already confirmed — that the rider admitted the mistake. I'm re-explaining the entire thing from scratch. This agent makes the same 10-minute promise, as if it's the first time it's been made.</p>
+    <p class="sa">The order never comes. The chat times out from inactivity and closes on its own. When I try to reopen it, I don't get an agent — I get a system message along the lines of <em>"query is still not resolved. Please describe your issue in detail,"</em> with a text CTA "Add comment," with absolutely no indication anyone is going to read that comment or follow up on it (I tried multiple times by adding comments in detail).</p>
+    <p class="sa">More than 24 hours after I wrote in to their support email, I finally got a reply. It said Zomato found no discrepancy — the order was delivered — flatly contradicting what two live agents had already acknowledged to my face.</p>
+
+    <h3 class="sa">The Breakdown, Mapped to What's Actually Broken</h3>
+
+    <div class="ux-analysis-list">
+      <div class="ux-item sa">
+        <div class="ux-num">01</div>
+        <div class="ux-title">No Memory Across Contacts</div>
+        <div class="ux-body">Every new chat starts cold. The second agent had no access to the first agent's acknowledgment. This is a data problem wearing a UX costume — the support tooling isn't surfacing full order-history context to whoever picks up next, human or bot, so every contact resets instead of building on the last one. It violates <strong>recognition over recall</strong>: the system should carry the context forward, not make me re-litigate it and definitely not contradict its own earlier admission.</div>
+      </div>
+      <div class="ux-item sa">
+        <div class="ux-num">02</div>
+        <div class="ux-title">"Delivered" Is Treated as Unfalsifiable</div>
+        <div class="ux-body">Once a rider marks an order delivered, that status seems to become ground truth for everything downstream — refunds, escalation, the email team's review — even after a live agent already contradicted it. There's no visible way for me to attach evidence (a doorstep photo, a timestamp) before the case drops into a generic email queue that starts from zero trust. That's a failure of <strong>error prevention</strong> and <strong>match between system and real world</strong> — the product models "delivered" as fact when the entire complaint category exists because that fact is sometimes false.</div>
+      </div>
+      <div class="ux-item sa">
+        <div class="ux-num">03</div>
+        <div class="ux-title">"Add Comments" Is a Dead End</div>
+        <div class="ux-body">Asking me to act, with no stated consequence, no SLA, no confirmation anyone reads it — that's a textbook false affordance. It looks like an input mechanism. It functions as a way to make me feel like I did something while nothing happens on their side. In dark-pattern terms, that's <strong>Hiding Information</strong> and <strong>Bait and Switch</strong> applied to support instead of checkout. Same manipulative mechanism, different screen.</div>
+      </div>
+      <div class="ux-item sa">
+        <div class="ux-num">04</div>
+        <div class="ux-title">The Support Script Doesn't Account for How Riders Actually Work</div>
+        <div class="ux-body">Riders working Zomato, Swiggy, and Rapido at the same time isn't rare — it's normal, documented gig-economy behavior. Studies put multi-app riders at 40–50%+ of the workforce, and platforms are reported to tolerate it partly because it helps them argue riders aren't exclusively engaged by any one platform. What it exposes is that Zomato's support script assumes the rider is fully "on" my order. "Give him 10 more minutes" is offered as a real fix when the rider may already be mid-delivery for a completely different app. That's <strong>match between system and real world</strong> breaking down at the operational level, not just in the copy.</div>
+      </div>
+    </div>
+
+    <h3 class="sa">The Pattern Underneath Both Stories</h3>
+    <p class="sa">Strip the surface differences away — a delay dispute versus a phantom delivery — and I was dealing with the same architecture both times:</p>
+
+    <blockquote class="sa">The chat layer is built to end the conversation. Not to close the loop on what actually went wrong.</blockquote>
+
+    <p class="sa">Swiggy ends the conversation by pushing time forward until I stop asking. Zomato ends it by resetting context (new agent, no memory) or letting it expire (auto-close, dead-end comment box) until I stop asking.</p>
+    <p class="sa">Both are <strong>containment-first, resolution-second</strong> systems. At the scale these platforms operate, that's a defensible cost strategy on paper. In practice, it costs three things UX is supposed to protect:</p>
+
+    <div class="opp-box sa">
+      <h4>What gets lost</h4>
+      <ul>
+        <li><strong>Trust</strong> — an interface that implies action without follow-through teaches me the interface lies to me.</li>
+        <li><strong>Accountability</strong> — when an email team can flatly deny what a live chat agent already confirmed, I'm not dealing with one company. I'm dealing with several disconnected departments sharing a logo.</li>
+        <li><strong>Escalation as a right, not a favor</strong> — refusing a direct, explicit request to speak to a human is the single most hostile move a conversational interface can make. Both platforms, independently, made it.</li>
+      </ul>
+    </div>
+
+    <h3 class="sa">What I'd Fix</h3>
+
+    <div class="solution-list">
+      <div class="solution-item sa">
+        <div class="sol-icon">1️⃣</div>
+        <div><div class="sol-title">Force-escalate on repeat contact</div><div class="sol-desc">Bot detects repeat contact on the same order and force-escalates after 2 unresolved turns — escalation shouldn't depend on how long I'm willing to keep asking.</div></div>
+      </div>
+      <div class="solution-item sa">
+        <div class="sol-icon">2️⃣</div>
+        <div><div class="sol-title">Human access as a hard rule</div><div class="sol-desc">A direct request for a human should be a hard rule outside the model's discretion, not something the AI gets to decide against.</div></div>
+      </div>
+      <div class="solution-item sa">
+        <div class="sol-icon">3️⃣</div>
+        <div><div class="sol-title">One shared ticket per order</div><div class="sol-desc">Every contact on an order (chat, call, email) writes to one shared ticket, visible to whoever picks it up next.</div></div>
+      </div>
+      <div class="solution-item sa">
+        <div class="sol-icon">4️⃣</div>
+        <div><div class="sol-title">A disputed-delivery state</div><div class="sol-desc">A state between "Delivered" and "Refunded" that unlocks evidence upload and pauses auto-closure.</div></div>
+      </div>
+      <div class="solution-item sa">
+        <div class="sol-icon">5️⃣</div>
+        <div><div class="sol-title">Every action needs a visible SLA</div><div class="sol-desc">Any action I'm asked to take needs a visible SLA — "a specialist responds within X hours" — or it shouldn't be presented as an action at all.</div></div>
+      </div>
+      <div class="solution-item sa">
+        <div class="sol-icon">6️⃣</div>
+        <div><div class="sol-title">Query live rider status</div><div class="sol-desc">Support should query live rider status instead of promising a callback window it can't actually guarantee.</div></div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<div class="pj-nextprev">
+  <div class="pj-np-row">
+    <a href="case-micro-friction.html" class="pj-np-card">
+      <span class="pj-np-label">← Previous Story</span>
+      <span class="pj-np-title">What a Download Taught Me About Micro-Friction</span>
+    </a>
+    <a href="case-esanjeevani.html" class="pj-np-card next">
+      <span class="pj-np-label">Next Story →</span>
+      <span class="pj-np-title">The App Asked Everything. The Doctor Asked Nothing.</span>
+    </a>
+  </div>
+</div>
+
+<div class="pj-footer">
+  <div class="pj-footer-row">
+    <div>
+      <div class="pj-footer-say">Say hi — <a href="mailto:satheesh.mankulam@gmail.com">satheesh.mankulam@gmail.com</a></div>
+      <div class="pj-footer-phone"><a href="tel:+919731108717">+91 9731108717</a></div>
+    </div>
+    <div class="pj-footer-socials">
+      <a href="https://www.linkedin.com/in/satheeshmankulam" target="_blank" class="pj-fs-link"><svg viewBox="0 0 24 24" fill="currentColor" width="15" height="15"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 11.02-4.12 2.06 2.06 0 01-.02 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></a>
+      <a href="https://www.behance.net/satheesmankul" target="_blank" class="pj-fs-link"><svg viewBox="0 0 24 24" fill="currentColor" width="15" height="15"><path d="M22 7.1h-6.3V5.6H22v1.5zM8.1 12.1c.9-.5 1.4-1.2 1.4-2.4 0-2.3-1.6-3.1-3.9-3.1H0v13h5.9c2.4 0 4.6-1.1 4.6-3.8 0-1.6-.8-2.9-2.4-3.7zM2.7 8.7h2.7c1 0 1.9.3 1.9 1.5 0 1.1-.8 1.6-1.9 1.6H2.7V8.7zm3 8.2H2.7v-3.6h3.1c1.3 0 2.1.6 2.1 1.8 0 1.3-1 1.8-2.2 1.8zM17.3 8.4c-3.2 0-5.3 2.3-5.3 5.6 0 3.4 2 5.5 5.4 5.5 2.5 0 4.3-1.1 5-3.4h-2.4c-.3.9-1.2 1.4-2.5 1.4-1.8 0-2.8-1.1-2.9-2.9h8v-.7c0-3.4-1.9-5.5-5.3-5.5zm-2.6 4.5c.1-1.5 1.1-2.5 2.6-2.5 1.6 0 2.5 1 2.6 2.5h-5.2z"/></svg></a>
+      <a href="https://figma.com/@satheeshm" target="_blank" class="pj-fs-link"><svg viewBox="0 0 24 24" fill="currentColor" width="15" height="15"><path d="M8 24c2.2 0 4-1.8 4-4v-4H8c-2.2 0-4 1.8-4 4s1.8 4 4 4zM4 12c0-2.2 1.8-4 4-4h4v8H8c-2.2 0-4-1.8-4-4zM4 4c0-2.2 1.8-4 4-4h4v8H8C5.8 8 4 6.2 4 4zM12 0h4c2.2 0 4 1.8 4 4s-1.8 4-4 4h-4V0zM20 12c0 2.2-1.8 4-4 4s-4-1.8-4-4 1.8-4 4-4 4 1.8 4 4z"/></svg></a>
+      <a href="https://medium.com/@satheesh.mankulam" target="_blank" class="pj-fs-link"><svg viewBox="0 0 24 24" fill="currentColor" width="15" height="15"><path d="M13.5 12c0 3.6-2.9 6.5-6.5 6.5S.5 15.6.5 12 3.4 5.5 7 5.5s6.5 2.9 6.5 6.5zM20.7 12c0 3.4-1.5 6.1-3.2 6.1S14.2 15.4 14.2 12s1.5-6.1 3.2-6.1 3.3 2.8 3.3 6.1zM23.5 12c0 3-.5 5.4-1.2 5.4-.7 0-1.2-2.4-1.2-5.4s.5-5.4 1.2-5.4c.7 0 1.2 2.4 1.2 5.4z"/></svg></a>
+    </div>
+  </div>
+  <div class="pj-footer-meta">© 2026 Satheesh Mankulam · UX Designer · Bangalore</div>
+</div>
+
+<script>
+const saObs=new IntersectionObserver(e=>e.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');saObs.unobserve(en.target)}}),{threshold:.07});
+document.querySelectorAll('.sa').forEach(el=>saObs.observe(el));
+</script>
+
+<!-- Lightbox -->
+<div class="lb-overlay" id="lbOverlay">
+  <div class="lb-img-wrap" id="lbWrap">
+    <img class="lb-img" id="lbImg" src="" alt="">
+  </div>
+  <button class="lb-close" id="lbClose" title="Close (Esc)">✕</button>
+  <div class="lb-hint">Press Esc or click outside to close</div>
+</div>
+
+</body>
+</html>

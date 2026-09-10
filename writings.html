@@ -40,7 +40,8 @@ a{text-decoration:none;color:inherit}
 .filter-count{opacity:.65;font-size:.76rem;margin-left:.2rem}
 
 .writing-list{display:flex;flex-direction:column;padding-bottom:4rem}
-.writing-item{display:grid;grid-template-columns:96px 1fr auto;gap:1.5rem;align-items:center;padding:1.5rem 0;border-top:1px solid var(--border)}
+.writing-item{display:grid;grid-template-columns:96px 1fr auto;gap:1.5rem;align-items:center;padding:1.5rem 1rem;border-top:1px solid var(--border);border-radius:14px;transition:box-shadow .22s ease,transform .22s ease}
+.writing-item:hover{box-shadow:0 10px 26px rgba(26,31,68,.1);transform:translateY(-3px);border-top-color:transparent}
 .writing-item:first-child{border-top:none}
 .writing-thumb{width:96px;height:96px;border-radius:14px;flex-shrink:0;overflow:hidden;background-size:cover;background-position:center}
 .writing-thumb img{width:100%;height:100%;object-fit:cover;display:block}
@@ -73,15 +74,28 @@ footer{padding:2.5rem clamp(1.25rem,5vw,3.5rem);border-top:1px solid var(--borde
   </div>
 
   <div class="filters sa">
-    <button class="filter-btn active" data-filter="all">All <span class="filter-count">15</span></button>
+    <button class="filter-btn active" data-filter="all">All <span class="filter-count">17</span></button>
     <button class="filter-btn" data-filter="navigation">Navigation</button>
     <button class="filter-btn" data-filter="friction">Friction Audit</button>
     <button class="filter-btn" data-filter="ai">AI Design</button>
     <button class="filter-btn" data-filter="email">Email UX</button>
     <button class="filter-btn" data-filter="product">Product Design</button>
+    <button class="filter-btn" data-filter="trust">Dark Patterns</button>
   </div>
 
   <div class="writing-list">
+
+    <a href="case-swiggy-zomato-chatbot.html" class="writing-item sa" data-cat="trust">
+      <div class="writing-thumb" style="background:linear-gradient(135deg,var(--g3a),var(--g3b))"></div>
+      <div><div class="writing-title">Every Loop Is a Feature. Every Denial Is a Metric.</div><div class="writing-excerpt">UX case study on Swiggy's delay loop and Zomato's vanishing order.</div><div class="writing-cat">Dark Patterns · Customer Support UX</div></div>
+      <svg class="writing-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+
+    <a href="case-esanjeevani.html" class="writing-item sa" data-cat="trust">
+      <div class="writing-thumb" style="background:linear-gradient(135deg,var(--g5a),var(--g5b))"></div>
+      <div><div class="writing-title">The App Asked Everything. The Doctor Asked Nothing.</div><div class="writing-excerpt">A UX story of being sick and stuck in eSanjeevani, India's free telemedicine app.</div><div class="writing-cat">Healthcare UX · Form Design</div></div>
+      <svg class="writing-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
 
     <a href="case-google-maps.html" class="writing-item sa" data-cat="navigation">
       <div class="writing-thumb"><img src="gmaps-auto-screen.png" alt=""></div>

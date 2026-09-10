@@ -39,8 +39,8 @@ a{text-decoration:none;color:inherit}
 .plat-link{font-size:.82rem;font-weight:700;color:var(--navy);display:flex;align-items:center;gap:.3rem}
 
 .dw-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem}
-.dw-card{background:var(--card-bg);border-radius:16px;overflow:hidden;transition:all .18s}
-.dw-card:hover{transform:translateY(-3px)}
+.dw-card{background:var(--card-bg);border:1px solid var(--border);border-radius:16px;overflow:hidden;box-shadow:0 1px 3px rgba(26,31,68,.04);transition:box-shadow .22s ease,transform .22s ease}
+.dw-card:hover{box-shadow:0 12px 30px rgba(26,31,68,.11);transform:translateY(-4px)}
 .dw-thumb{aspect-ratio:16/10}
 .dw-info{padding:1.2rem 1.3rem}
 .dw-badge{font-size:.68rem;font-weight:700;color:var(--muted);margin-bottom:.5rem}
