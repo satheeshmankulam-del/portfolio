@@ -63,11 +63,12 @@ img,svg{display:block}
 .sec-name{font-size:1.15rem;font-weight:700;color:var(--navy)}
 
 /* ===== WORK — big gradient card format ===== */
-.work-stack{display:flex;flex-direction:column;gap:2.5rem}
+.work-stack{display:grid;grid-template-columns:1fr 1fr;gap:1.75rem}
 .work-card{display:block}
-.work-thumb{position:relative;aspect-ratio:16/8;border-radius:20px;overflow:hidden;padding:clamp(1.5rem,4vw,3rem);display:flex;align-items:center;transition:transform .25s}
+@media(max-width:760px){.work-stack{grid-template-columns:1fr}}
+.work-thumb{position:relative;aspect-ratio:4/3.1;border-radius:18px;overflow:hidden;padding:clamp(1.25rem,3vw,2rem);display:flex;align-items:center;transition:transform .25s}
 .work-card:hover .work-thumb{transform:translateY(-3px)}
-.work-mock{position:relative;width:min(340px,55%);z-index:2}
+.work-mock{position:relative;width:min(240px,72%);z-index:2}
 .mock-card{background:#fff;border-radius:12px;padding:1rem 1.1rem;box-shadow:0 16px 40px rgba(26,31,68,.15);margin-bottom:.7rem}
 .mock-card:last-child{margin-bottom:0}
 .mock-line{height:7px;border-radius:4px;background:#E4E4EC;margin-bottom:6px}
@@ -89,7 +90,8 @@ img,svg{display:block}
 .writing-list{display:flex;flex-direction:column}
 .writing-item{display:grid;grid-template-columns:96px 1fr;gap:1.5rem;align-items:center;padding:1.5rem 0;border-top:1px solid var(--border)}
 .writing-item:first-child{border-top:none}
-.writing-thumb{width:96px;height:96px;border-radius:14px;flex-shrink:0}
+.writing-thumb{width:96px;height:96px;border-radius:14px;flex-shrink:0;overflow:hidden}
+.writing-thumb img{width:100%;height:100%;object-fit:cover;display:block}
 .writing-title{font-size:1.05rem;font-weight:700;color:var(--navy);margin-bottom:.4rem;letter-spacing:-.005em}
 .writing-excerpt{font-size:.85rem;color:var(--navy-soft);line-height:1.65;margin-bottom:.5rem}
 .writing-cat{font-size:.72rem;font-weight:700;color:var(--muted)}
@@ -282,7 +284,7 @@ img,svg{display:block}
     <div class="writing-list">
 
       <a href="case-temporal-awareness.html" class="writing-item sa">
-        <div class="writing-thumb" style="background:linear-gradient(135deg,var(--g1a),var(--g1b))"></div>
+        <div class="writing-thumb"><img src="temporal-feature.gif" alt=""></div>
         <div>
           <div class="writing-title">Designing Temporal Awareness in AI Conversations</div>
           <div class="writing-excerpt">AI products remember everything — but give almost no sense of when things happened.</div>
@@ -291,7 +293,7 @@ img,svg{display:block}
       </a>
 
       <a href="case-norton-email.html" class="writing-item sa">
-        <div class="writing-thumb" style="background:linear-gradient(135deg,var(--g2a),var(--g2b))"></div>
+        <div class="writing-thumb"><img src="norton-email-mobile.png" alt=""></div>
         <div>
           <div class="writing-title">The Cost of Ambiguity — A UX Review of Norton's Renewal Email</div>
           <div class="writing-excerpt">When the same price appears twice — once crossed out — and what that does to user trust.</div>
@@ -309,7 +311,7 @@ img,svg{display:block}
       </a>
 
       <a href="case-wanderlog.html" class="writing-item sa">
-        <div class="writing-thumb" style="background:linear-gradient(135deg,var(--g4a),var(--g4b))"></div>
+        <div class="writing-thumb"><img src="wanderlog-01-ad-intro.png" alt=""></div>
         <div>
           <div class="writing-title">Wanderlog — Onboarding Friction</div>
           <div class="writing-excerpt">Where new users drop off before they find value.</div>
