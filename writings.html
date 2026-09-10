@@ -1,205 +1,194 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
-<meta charset="UTF-8"><script>(function(){try{var t=localStorage.getItem("portfolio-theme")||"dark";document.documentElement.setAttribute("data-theme",t);}catch(e){}})()</script><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/png" href="favicon.png">
-<title>Writings — Satheesh Mankulam</title>
+<title>All Case Studies — Satheesh Mankulam</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--blue:#0061FF;--blue-d:#0050CC;--blue-10:rgba(0,97,255,.12);--blue-25:rgba(0,97,255,.28);--yellow:#FFD166;--mint:#06D6A0;--font:'Helvetica Neue',Helvetica,-apple-system,Arial,sans-serif}
-[data-theme="dark"]{--bg:#0C0C10;--bg-card:#141418;--bg-el:#1C1C24;--bg-hover:#22222C;--text:#ECECF4;--muted:#7A7A90;--subtle:#3C3C50;--border:rgba(255,255,255,.07);--shadow:0 8px 32px rgba(0,0,0,.5)}
-[data-theme="light"]{--bg:#F2F3F7;--bg-card:#FFFFFF;--bg-el:#EAEAF4;--bg-hover:#E0E0EE;--text:#1A1A2E;--muted:#5C5C74;--subtle:#ABABC4;--border:rgba(0,0,0,.08);--shadow:0 8px 32px rgba(0,0,0,.1)}
+:root{
+  --bg:#FFFFFF;--navy:#1A1F44;--navy-soft:#565C82;--muted:#8A8FB0;--border:rgba(26,31,68,.1);--card-bg:#F7F7FA;
+  --font:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;
+  --g1a:#D4D98A;--g1b:#A9B360;--g2a:#9FE0CB;--g2b:#5FBFA0;--g3a:#F7C1A8;--g3b:#E89A85;
+  --g4a:#C9C4F0;--g4b:#9B90DE;--g5a:#A9D6EC;--g5b:#6CAFD8;
+}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{-webkit-font-smoothing:antialiased}
-body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;transition:background .3s,color .3s}
+html{-webkit-font-smoothing:antialiased;scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--bg);color:var(--navy);min-height:100vh;line-height:1.5}
 a{text-decoration:none;color:inherit}
 
-.top-nav{position:fixed;top:0;left:0;right:0;height:54px;background:rgba(12,12,16,.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 clamp(1.5rem,5vw,4rem);z-index:100}
-[data-theme="light"] .top-nav{background:rgba(242,243,247,.92)}
-.top-nav-logo{font-size:.95rem;font-weight:700;color:var(--text);display:flex;align-items:center;gap:.5rem}
-.top-nav-logo .dot{width:7px;height:7px;border-radius:50%;background:var(--blue)}
-.top-nav-right{display:flex;align-items:center;gap:.5rem}
-.top-nav-link{font-size:.82rem;font-weight:600;color:var(--muted);padding:.38rem .75rem;border-radius:7px;transition:all .2s}
-.top-nav-link:hover{color:var(--text);background:rgba(255,255,255,.06)}
-[data-theme="light"] .top-nav-link:hover{background:rgba(0,0,0,.06)}
-.top-nav-link.active{color:var(--blue)}
-.theme-btn{width:32px;height:32px;border-radius:7px;background:var(--bg-el);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--muted);cursor:pointer;transition:all .2s;font-size:.85rem}
-.theme-btn:hover{color:var(--blue);border-color:var(--blue)}
+.nav{padding:1.5rem clamp(1.25rem,5vw,3.5rem)}
+.nav-inner{max-width:1120px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.nav-logo{display:flex;align-items:center;gap:.6rem}
+.nav-mark{width:34px;height:34px;border-radius:9px;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:800}
+.nav-name{font-size:1rem;font-weight:700;color:var(--navy)}
+.nav-back{font-size:.85rem;font-weight:700;color:var(--navy);display:flex;align-items:center;gap:.4rem}
 
-.wrap{max-width:900px;margin:0 auto;padding:0 clamp(1.5rem,5vw,3rem)}
+.wrap{max-width:1120px;margin:0 auto;padding:0 clamp(1.25rem,5vw,3.5rem)}
+.page-head{padding:clamp(2.5rem,6vw,4rem) 0 2.5rem}
+.page-eye{font-size:.82rem;font-weight:700;color:var(--muted);margin-bottom:.9rem}
+.page-title{font-size:clamp(2rem,4.5vw,3rem);font-weight:800;letter-spacing:-.02em;color:var(--navy);margin-bottom:.9rem}
+.page-sub{font-size:1rem;color:var(--navy-soft);max-width:560px;line-height:1.75}
 
-.page-hero{padding:clamp(5.5rem,10vw,8rem) 0 clamp(2rem,4vw,3rem)}
-.page-eye{font-size:.66rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin-bottom:.7rem;display:flex;align-items:center;gap:.5rem}
-.page-eye::before{content:'';width:20px;height:1.5px;background:var(--blue)}
-.page-h1{font-size:clamp(2rem,5vw,3.5rem);font-weight:700;line-height:1.08;letter-spacing:-.02em;color:var(--text);margin-bottom:.9rem}
-.page-h1 em{font-style:normal;color:var(--blue)}
-.page-sub{font-size:.97rem;color:var(--muted);line-height:1.8;max-width:560px;margin-bottom:1.75rem}
-.page-meta{display:flex;gap:1.5rem;flex-wrap:wrap;padding-top:1.25rem;border-top:1px solid var(--border)}
-.page-meta-item{font-size:.78rem;color:var(--muted)}.page-meta-item strong{color:var(--text);font-weight:600}
+.filters{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:2.5rem}
+.filter-btn{font-size:.82rem;font-weight:700;color:var(--navy-soft);background:var(--card-bg);border:none;padding:.5rem 1.1rem;border-radius:100px;cursor:pointer;transition:all .15s}
+.filter-btn:hover{background:#EFEFF4}
+.filter-btn.active{background:var(--navy);color:#fff}
+.filter-count{opacity:.65;font-size:.76rem;margin-left:.2rem}
 
-/* FEATURED */
-.featured{display:grid;grid-template-columns:1fr auto;gap:0;background:var(--bg-card);border:1px solid var(--border);border-radius:18px;overflow:hidden;margin-bottom:2rem;transition:border-color .2s}
-.featured:hover{border-color:var(--blue-25)}
-.featured-content{padding:2rem 2.25rem}
-.feat-badge{font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--yellow);background:rgba(255,209,102,.08);border:1px solid rgba(255,209,102,.2);padding:.18rem .55rem;border-radius:100px;display:inline-block;margin-bottom:.75rem}
-.feat-title{font-size:1.35rem;font-weight:700;color:var(--text);line-height:1.2;margin-bottom:.6rem;letter-spacing:-.01em}
-.feat-desc{font-size:.9rem;color:var(--muted);line-height:1.75;margin-bottom:1rem}
-.feat-meta{display:flex;align-items:center;gap:.85rem;flex-wrap:wrap}
-.feat-tag{font-size:.62rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--blue);background:var(--blue-10);padding:.12rem .45rem;border-radius:100px}
-.feat-date{font-size:.75rem;color:var(--subtle)}
-.feat-read{display:inline-flex;align-items:center;gap:.35rem;font-size:.8rem;font-weight:700;color:var(--blue);margin-left:auto}
-.feat-visual{width:200px;background:var(--bg-el);display:flex;align-items:center;justify-content:center;border-left:1px solid var(--border);flex-shrink:0;font-size:3rem}
+.writing-list{display:flex;flex-direction:column;padding-bottom:4rem}
+.writing-item{display:grid;grid-template-columns:96px 1fr auto;gap:1.5rem;align-items:center;padding:1.5rem 0;border-top:1px solid var(--border)}
+.writing-item:first-child{border-top:none}
+.writing-thumb{width:96px;height:96px;border-radius:14px;flex-shrink:0}
+.writing-title{font-size:1.05rem;font-weight:700;color:var(--navy);margin-bottom:.4rem;letter-spacing:-.005em}
+.writing-excerpt{font-size:.85rem;color:var(--navy-soft);line-height:1.65;margin-bottom:.5rem}
+.writing-cat{font-size:.72rem;font-weight:700;color:var(--muted)}
+.writing-arrow{color:var(--muted);flex-shrink:0}
+.writing-item.hidden{display:none}
+@media(max-width:620px){.writing-item{grid-template-columns:64px 1fr}.writing-thumb{width:64px;height:64px}.writing-arrow{display:none}}
 
-/* FILTER */
-.filter-bar{display:flex;gap:.4rem;flex-wrap:wrap;padding:1.25rem 0;border-bottom:1px solid var(--border);margin-bottom:2rem}
-.filter-btn{font-size:.76rem;font-weight:600;padding:.32rem .8rem;border-radius:100px;border:1.5px solid var(--border);color:var(--muted);background:none;cursor:pointer;transition:all .2s;font-family:var(--font)}
-.filter-btn:hover,.filter-btn.active{background:var(--blue-10);border-color:var(--blue);color:var(--blue)}
-.filter-count{font-size:.64rem;background:var(--bg-el);color:var(--subtle);padding:.08rem .38rem;border-radius:100px;margin-left:.25rem}
-
-/* ARTICLE GRID */
-.articles-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:2.5rem}
-.article-card{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;display:flex;flex-direction:column;transition:all .2s}
-.article-card:hover{border-color:var(--blue-25);transform:translateY(-4px);box-shadow:var(--shadow)}
-.article-card.hidden{display:none}
-.ac-body{padding:1.35rem;flex:1;display:flex;flex-direction:column}
-.ac-tag{font-size:.6rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--blue);background:var(--blue-10);padding:.18rem .5rem;border-radius:100px;display:inline-block;margin-bottom:.75rem;align-self:flex-start}
-.ac-title{font-size:.97rem;font-weight:700;color:var(--text);line-height:1.25;margin-bottom:.5rem;letter-spacing:-.005em}
-.ac-desc{font-size:.83rem;color:var(--muted);line-height:1.65;flex:1}
-.ac-footer{display:flex;align-items:center;justify-content:space-between;padding:.75rem 1.35rem;border-top:1px solid var(--border);margin-top:auto}
-.ac-date{font-size:.7rem;color:var(--subtle)}
-.ac-read{font-size:.75rem;font-weight:700;color:var(--blue);display:flex;align-items:center;gap:.28rem;transition:gap .2s}
-.article-card:hover .ac-read{gap:.5rem}
-
-/* CTA */
-.writings-cta{background:var(--bg-card);border:1px solid var(--border);border-radius:18px;padding:2.25rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;margin-bottom:3rem}
-.wc-text h3{font-size:1.25rem;font-weight:700;color:var(--text);margin-bottom:.35rem;letter-spacing:-.01em}
-.wc-text p{font-size:.9rem;color:var(--muted);line-height:1.7}
-.cta-btns{display:flex;gap:.65rem;flex-wrap:wrap}
-.btn{display:inline-flex;align-items:center;gap:.4rem;font-family:var(--font);font-size:.84rem;font-weight:700;padding:.6rem 1.35rem;border-radius:10px;transition:all .2s;cursor:pointer;border:none}
-.btn-primary{background:var(--blue);color:#fff}.btn-primary:hover{background:var(--blue-d);transform:translateY(-2px)}
-.btn-ghost{background:var(--bg-el);color:var(--muted);border:1px solid var(--border)}.btn-ghost:hover{color:var(--text)}
-
-footer{background:var(--bg-card);border-top:1px solid var(--border);padding:1.75rem clamp(1.5rem,5vw,4rem);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
-.ft-name{font-size:.82rem;font-weight:600;color:var(--muted)}
-.ft-copy{font-size:.74rem;color:var(--subtle)}
-
-.sa{opacity:0;filter:blur(8px);transform:translateY(20px);transition:opacity .6s ease,filter .6s ease,transform .6s ease}
-.sa.in{opacity:1;filter:blur(0);transform:translateY(0)}
-.sa.d1{transition-delay:.08s}.sa.d2{transition-delay:.16s}.sa.d3{transition-delay:.24s}
-@media(max-width:860px){.articles-grid{grid-template-columns:1fr 1fr}.featured{grid-template-columns:1fr}.feat-visual{display:none}}
-@media(max-width:560px){.articles-grid{grid-template-columns:1fr}}
+footer{padding:2.5rem clamp(1.25rem,5vw,3.5rem);border-top:1px solid var(--border);text-align:center;font-size:.78rem;color:var(--muted)}
+.sa{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
+.sa.in{opacity:1;transform:translateY(0)}
 </style>
 </head>
 <body>
 
-<nav class="top-nav">
-  <a href="index.html" class="top-nav-logo"><span class="dot"></span>Satheesh Mankulam</a>
-  <div class="top-nav-right">
-    <a href="index.html#casestudies" class="top-nav-link">Case Studies</a>
-    <a href="writings.html" class="top-nav-link active">Writings</a>
-    <a href="design-work.html" class="top-nav-link">Design Work</a>
-    <button class="theme-btn" id="themeBtn" title="Toggle theme">☀</button>
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><div class="nav-mark">SM</div><span class="nav-name">Satheesh Mankulam</span></a>
+    <a href="index.html" class="nav-back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to Home</a>
   </div>
 </nav>
 
 <div class="wrap">
-  <div class="page-hero">
-    <div class="page-eye sa">Writings &amp; Articles</div>
-    <h1 class="page-h1 sa d1">UX Thinking —<br><em>Published on Medium</em></h1>
-    <p class="page-sub sa d2">13 articles exploring friction, flow, AI design, mobile UX, and the psychology behind product decisions. All published in Design Bootcamp on Medium.</p>
-    <div class="page-meta sa d3">
-      <div class="page-meta-item"><strong>13+</strong> Published Articles</div>
-      <div class="page-meta-item"><strong>Design Bootcamp</strong> Publication</div>
-      <div class="page-meta-item"><strong>Medium</strong> Platform</div>
-    </div>
+  <div class="page-head">
+    <div class="page-eye sa">01 · Work / Case Study</div>
+    <h1 class="page-title sa">UX Thinking, Documented</h1>
+    <p class="page-sub sa">15 case studies — published on Medium's Design Bootcamp — covering friction audits, feature design, onboarding, and the small UX details most people scroll past.</p>
   </div>
 
-  <!-- FEATURED -->
-  <div class="featured sa" style="cursor:default">
-    <div class="featured-content">
-      <div class="feat-badge">★ Pinned · Mar 2026</div>
-      <div class="feat-title">Designers Can Ship Now. I Did.</div>
-      <div class="feat-desc">It started with a fever. A sick child, exhausted parents, second-guessing medicine doses. That night I thought — this is a UX problem. So I built the solution. The story of FamilyDose — built by a designer, powered by stubbornness.</div>
-      <div class="feat-meta">
-        <span class="feat-tag">Personal Essay</span>
-        <span class="feat-tag">Product</span>
-        <span class="feat-date">Mar 2026 · 4 min read</span>
-      </div>
-      <div style="display:flex;gap:.65rem;margin-top:.85rem;flex-wrap:wrap">
-        <a href="case-familydose.html" style="display:inline-flex;align-items:center;gap:.38rem;font-size:.8rem;font-weight:700;color:#fff;background:var(--blue);padding:.45rem 1rem;border-radius:8px;text-decoration:none;transition:all .2s" onmouseover="this.style.background='#0050CC'" onmouseout="this.style.background='var(--blue)'">Read Case Study <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" style="width:11px;height:11px"><path d="M1 7h12M7 1l6 6-6 6"/></svg></a>
-        <a href="https://medium.com/design-bootcamp/designers-can-ship-now-i-did-571eccf9be78" target="_blank" style="display:inline-flex;align-items:center;gap:.38rem;font-size:.8rem;font-weight:600;color:var(--muted);background:var(--bg-el);padding:.45rem 1rem;border-radius:8px;text-decoration:none;border:1px solid var(--border);transition:all .2s" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted)'">Read on Medium ↗</a>
-      </div>
-    </div>
-    <div class="feat-visual">📱</div>
+  <div class="filters sa">
+    <button class="filter-btn active" data-filter="all">All <span class="filter-count">15</span></button>
+    <button class="filter-btn" data-filter="navigation">Navigation</button>
+    <button class="filter-btn" data-filter="friction">Friction Audit</button>
+    <button class="filter-btn" data-filter="ai">AI Design</button>
+    <button class="filter-btn" data-filter="email">Email UX</button>
+    <button class="filter-btn" data-filter="product">Product Design</button>
   </div>
 
-  <!-- FILTER -->
-  <div class="filter-bar sa">
-    <span style="font-size:.76rem;font-weight:600;color:var(--subtle);margin-right:.25rem">Filter</span>
-    <button class="filter-btn active" data-filter="all">All <span class="filter-count">14</span></button>
-    <button class="filter-btn" data-filter="ux-audit">Friction Audit <span class="filter-count">6</span></button>
-    <button class="filter-btn" data-filter="ai">AI Design <span class="filter-count">2</span></button>
-    <button class="filter-btn" data-filter="navigation">Navigation <span class="filter-count">1</span></button>
-    <button class="filter-btn" data-filter="psychology">Psychology <span class="filter-count">1</span></button>
-    <button class="filter-btn" data-filter="onboarding">Onboarding <span class="filter-count">1</span></button>
-    <button class="filter-btn" data-filter="email">Email UX <span class="filter-count">2</span></button>
-    <button class="filter-btn" data-filter="scheduling">Task Flow <span class="filter-count">1</span></button>
-  </div>
+  <div class="writing-list">
 
-  <!-- ARTICLES -->
-  <div class="articles-grid" id="grid">
-    <a href="case-google-maps.html" class="article-card sa" data-cat="navigation"><div class="ac-body"><span class="ac-tag">Navigation · Feature UX</span><div class="ac-title">Smarter Navigation with Vehicle Profiles — Google Maps &amp; Android Auto</div><div class="ac-desc">Exploring how vehicle-aware navigation could reduce cognitive load. A deep dive into a missing feature inside a billion-user product.</div></div><div class="ac-footer"><span class="ac-date">Design Bootcamp</span><span class="ac-read">Read case study <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" style="width:11px;height:11px"><path d="M1 7h12M7 1l6 6-6 6"/></svg></span></div></a>
-    <a href="case-dont-care.html" class="article-card sa d1" data-cat="psychology"><div class="ac-body"><span class="ac-tag">Behavioural UX</span><div class="ac-title">Designing for "I Don't Care" Users</div><div class="ac-desc">What happens when users simply don't have the motivation to engage? How design creates just enough pull without manipulation.</div></div><div class="ac-footer"><span class="ac-date">Design Bootcamp</span><span class="ac-read">Read case study <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" style="width:11px;height:11px"><path d="M1 7h12M7 1l6 6-6 6"/></svg></span></div></a>
-    <a href="case-google-stitch.html" class="article-card sa d2" data-cat="ux-audit"><div class="ac-body"><span class="ac-tag">Friction Audit</span><div class="ac-title">A Small Menu, A Big Difference — Reducing Friction in Google's Stitch</div><div class="ac-desc">How a single overlooked menu cascades into a frustrating experience — and how one small change fixes it.</div></div><div class="ac-footer"><span class="ac-date">Design Bootcamp</span><span class="ac-read">Read case study <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" style="width:11px;height:11px"><path d="M1 7h12M7 1l6 6-6 6"/></svg></span></div></a>
-    <a href="case-ai-privacy.html" class="article-card sa" data-cat="ai"><div class="ac-body"><span class="ac-tag">AI Design · Privacy</span><div class="ac-title">When AI Knows Me Too Well</div><div class="ac-desc">The fine line between personalisation and privacy — and how over-smart AI design can quietly creep users out instead of winning trust.</div></div><div class="ac-footer"><span class="ac-date">Design Bootcamp</span><span class="ac-read">Read case study <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" style="width:11px;height:11px"><path d="M1 7h12M7 1l6 6-6 6"/></svg></span></div></a>
-    <a href="case-micro-friction.html" class="article-card sa d1" data-cat="ux-audit"><div class="ac-body"><span class="ac-tag">Micro-interactions</span><div class="ac-title">What a Simple Download Taught Me About Micro-Friction</div><div class="ac-desc">Sometimes the smallest interaction reveals the biggest design gaps. A single button that silently breaks user trust.</div></div><div class="ac-footer"><span class="ac-date">Design Bootcamp</span><span class="ac-read">Read case study <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" style="width:11px;height:11px"><path d="M1 7h12M7 1l6 6-6 6"/></svg></span></div></a>
-    <a href="case-linkedin-post.html" class="article-card sa d2" data-cat="ux-audit"><div class="ac-body"><span class="ac-tag">Feedback Design</span><div class="ac-title">The Post That Never Appeared — A UX Story of Silence on LinkedIn</div><div class="ac-desc">When silence is the only feedback a user gets, what does that do to trust? A quiet publishing failure inside LinkedIn.</div></div><div class="ac-footer"><span class="ac-date">Design Bootcamp</span><span class="ac-read">Read case study <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" style="width:11px;height:11px"><path d="M1 7h12M7 1l6 6-6 6"/></svg></span></div></a>
-    <a href="case-wanderlog.html" class="article-card sa" data-cat="onboarding"><div class="ac-body"><span class="ac-tag">Onboarding UX</span><div class="ac-title">Wanderlog — Trip Planner Onboarding Friction</div><div class="ac-desc">Mapping the exact moments where new users drop off — and how a few changes could recover them before they leave.</div></div><div class="ac-footer"><span class="ac-date">Design Bootcamp</span><span class="ac-read">Read case study <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" style="width:11px;height:11px"><path d="M1 7h12M7 1l6 6-6 6"/></svg></span></div></a>
-    <a href="case-whatsapp.html" class="article-card sa d1" data-cat="ux-audit"><div class="ac-body"><span class="ac-tag">Notification Design</span><div class="ac-title">The Channels I Didn't Ask For — WhatsApp's Missed Opportunity</div><div class="ac-desc">Unsolicited channels inside one of the world's most personal communication apps. How feature launches should treat existing users.</div></div><div class="ac-footer"><span class="ac-date">Design Bootcamp</span><span class="ac-read">Read case study <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" style="width:11px;height:11px"><path d="M1 7h12M7 1l6 6-6 6"/></svg></span></div></a>
-    <a href="case-rapido.html" class="article-card sa d2" data-cat="ux-audit"><div class="ac-body"><span class="ac-tag">Error States</span><div class="ac-title">Tapping for Nothing — Fixing Dead-End Screens in Rapido</div><div class="ac-desc">Dead-end states that leave users stranded with no path forward. A teardown of high-stakes friction in India's fastest-growing cab app.</div></div><div class="ac-footer"><span class="ac-date">Design Bootcamp</span><span class="ac-read">Read case study <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" style="width:11px;height:11px"><path d="M1 7h12M7 1l6 6-6 6"/></svg></span></div></a>
-    <a href="case-email-ux.html" class="article-card sa" data-cat="email"><div class="ac-body"><span class="ac-tag">Email Design</span><div class="ac-title">Lost in the Inbox — Why Backup Reminder Emails Are Failing</div><div class="ac-desc">Transactional emails that feel like spam. A case for intentional hierarchy and communication that actually reaches users.</div></div><div class="ac-footer"><span class="ac-date">Design Bootcamp</span><span class="ac-read">Read case study <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" style="width:11px;height:11px"><path d="M1 7h12M7 1l6 6-6 6"/></svg></span></div></a>
-    <a href="case-swiggy.html" class="article-card sa d1" data-cat="ux-audit"><div class="ac-body"><span class="ac-tag">Trust Design</span><div class="ac-title">Designing for Trust — Last-Mile Gaps in Swiggy Instamart</div><div class="ac-desc">The delivery experience is the product. How last-mile UX failures quietly erode hard-won trust in quick-commerce.</div></div><div class="ac-footer"><span class="ac-date">Design Bootcamp</span><span class="ac-read">Read case study <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" style="width:11px;height:11px"><path d="M1 7h12M7 1l6 6-6 6"/></svg></span></div></a>
-    <a href="case-linkedin-scheduling.html" class="article-card sa d2" data-cat="scheduling"><div class="ac-body"><span class="ac-tag">Task Flow Design</span><div class="ac-title">Reducing Friction in LinkedIn's Scheduled Post Flow</div><div class="ac-desc">A step-by-step teardown of LinkedIn's scheduling flow — cutting 6 steps to 3 and making a power feature feel powerful.</div></div><div class="ac-footer"><span class="ac-date">Design Bootcamp</span><span class="ac-read">Read case study <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" style="width:11px;height:11px"><path d="M1 7h12M7 1l6 6-6 6"/></svg></span></div></a>
-      <a href="case-norton-email.html" class="article-card sa" data-cat="email"><div class="ac-body"><span class="ac-tag">Email Design · Pricing UX</span><div class="ac-title">The Cost of Ambiguity: A UX Review of Norton's Renewal Email</div><div class="ac-desc">When the same price appears twice — once crossed out — and why that single design choice creates confusion, breaks trust, and violates four UX heuristics.</div></div><div class="ac-footer"><span class="ac-date">May 31, 2026</span><span class="ac-read">Read case study <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" style="width:11px;height:11px"><path d="M1 7h12M7 1l6 6-6 6"/></svg></span></div></a>
-      <a href="case-temporal-awareness.html" class="article-card sa d1" data-cat="ai"><div class="ac-body"><span class="ac-tag">AI Design · UX Essay</span><div class="ac-title">Designing Temporal Awareness in AI Conversations</div><div class="ac-desc">How a missing timestamp in an AI chat revealed a deeper design gap: AI products remember everything, but give users almost no sense of when things happened.</div></div><div class="ac-footer"><span class="ac-date">Jun 2026</span><span class="ac-read">Read case study <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" style="width:11px;height:11px"><path d="M1 7h12M7 1l6 6-6 6"/></svg></span></div></a>
-  </div>
+    <a href="case-google-maps.html" class="writing-item sa" data-cat="navigation">
+      <div class="writing-thumb" style="background:linear-gradient(135deg,var(--g1a),var(--g1b))"></div>
+      <div><div class="writing-title">Google Maps × Android Auto</div><div class="writing-excerpt">Exploring how vehicle-aware navigation could reduce cognitive load for millions of drivers.</div><div class="writing-cat">Navigation · Feature Design</div></div>
+      <svg class="writing-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
 
-  <!-- CTA -->
-  <div class="writings-cta sa">
-    <div class="wc-text">
-      <h3>All published in <em style="font-style:normal;color:var(--blue)">Design Bootcamp</em> on Medium.</h3>
-      <p>I write about UX, psychology, and design decisions. Follow for new articles as they drop.</p>
-    </div>
-    <div class="cta-btns">
-      <a href="https://medium.com/@satheesh.mankulam" target="_blank" class="btn btn-primary">Follow on Medium ↗</a>
-      <a href="index.html" class="btn btn-ghost">← Portfolio</a>
-    </div>
+    <a href="case-familydose.html" class="writing-item sa" data-cat="product">
+      <div class="writing-thumb" style="background:linear-gradient(135deg,var(--g2a),var(--g2b))"></div>
+      <div><div class="writing-title">FamilyDose — Designers Can Ship. I Did.</div><div class="writing-excerpt">Designed and shipped an Android app solo — built after a sleepless night with a sick child.</div><div class="writing-cat">Product Design · Android App</div></div>
+      <svg class="writing-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+
+    <a href="case-rapido.html" class="writing-item sa" data-cat="friction">
+      <div class="writing-thumb" style="background:linear-gradient(135deg,var(--g3a),var(--g3b))"></div>
+      <div><div class="writing-title">Rapido — Tapping for Nothing</div><div class="writing-excerpt">Dead-end screens that strand users with no way forward.</div><div class="writing-cat">Error States · Friction Audit</div></div>
+      <svg class="writing-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+
+    <a href="case-linkedin-post.html" class="writing-item sa" data-cat="friction">
+      <div class="writing-thumb" style="background:linear-gradient(135deg,var(--g4a),var(--g4b))"></div>
+      <div><div class="writing-title">LinkedIn — The Post That Never Appeared</div><div class="writing-excerpt">When silence is the only feedback a user gets.</div><div class="writing-cat">Feedback Design</div></div>
+      <svg class="writing-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+
+    <a href="case-swiggy.html" class="writing-item sa" data-cat="product">
+      <div class="writing-thumb" style="background:linear-gradient(135deg,var(--g5a),var(--g5b))"></div>
+      <div><div class="writing-title">Swiggy Instamart — Designing for Trust</div><div class="writing-excerpt">How last-mile UX failures quietly erode hard-won trust.</div><div class="writing-cat">Trust Design</div></div>
+      <svg class="writing-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+
+    <a href="case-dont-care.html" class="writing-item sa" data-cat="ai">
+      <div class="writing-thumb" style="background:linear-gradient(135deg,var(--g1a),var(--g1b))"></div>
+      <div><div class="writing-title">Designing for "I Don't Care" Users</div><div class="writing-excerpt">What happens when users don't have the motivation to engage — and how design creates pull without manipulation.</div><div class="writing-cat">Behavioural UX</div></div>
+      <svg class="writing-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+
+    <a href="case-google-stitch.html" class="writing-item sa" data-cat="friction">
+      <div class="writing-thumb" style="background:linear-gradient(135deg,var(--g2a),var(--g2b))"></div>
+      <div><div class="writing-title">Google Stitch — A Small Menu, A Big Difference</div><div class="writing-excerpt">How one overlooked menu creates cascading friction.</div><div class="writing-cat">Friction Audit</div></div>
+      <svg class="writing-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+
+    <a href="case-ai-privacy.html" class="writing-item sa" data-cat="ai">
+      <div class="writing-thumb" style="background:linear-gradient(135deg,var(--g3a),var(--g3b))"></div>
+      <div><div class="writing-title">When AI Knows Me Too Well</div><div class="writing-excerpt">The fine line between helpful personalisation and creepy familiarity.</div><div class="writing-cat">AI Design</div></div>
+      <svg class="writing-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+
+    <a href="case-temporal-awareness.html" class="writing-item sa" data-cat="ai">
+      <div class="writing-thumb" style="background:linear-gradient(135deg,var(--g4a),var(--g4b))"></div>
+      <div><div class="writing-title">Designing Temporal Awareness in AI Conversations</div><div class="writing-excerpt">AI products remember everything — but give almost no sense of when things happened.</div><div class="writing-cat">AI Design · UX Essay</div></div>
+      <svg class="writing-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+
+    <a href="case-wanderlog.html" class="writing-item sa" data-cat="friction">
+      <div class="writing-thumb" style="background:linear-gradient(135deg,var(--g5a),var(--g5b))"></div>
+      <div><div class="writing-title">Wanderlog — Onboarding Friction</div><div class="writing-excerpt">Where new users drop off before they find value.</div><div class="writing-cat">Onboarding UX</div></div>
+      <svg class="writing-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+
+    <a href="case-whatsapp.html" class="writing-item sa" data-cat="product">
+      <div class="writing-thumb" style="background:linear-gradient(135deg,var(--g1a),var(--g1b))"></div>
+      <div><div class="writing-title">WhatsApp — Channels I Didn't Ask For</div><div class="writing-excerpt">Forced discovery inside a personal communication app.</div><div class="writing-cat">Feature Launch</div></div>
+      <svg class="writing-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+
+    <a href="case-email-ux.html" class="writing-item sa" data-cat="email">
+      <div class="writing-thumb" style="background:linear-gradient(135deg,var(--g2a),var(--g2b))"></div>
+      <div><div class="writing-title">Lost in the Inbox — Why Backup Reminder Emails Are Failing</div><div class="writing-excerpt">Intentional hierarchy turns ignored touchpoints into trusted ones.</div><div class="writing-cat">Email Design</div></div>
+      <svg class="writing-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+
+    <a href="case-norton-email.html" class="writing-item sa" data-cat="email">
+      <div class="writing-thumb" style="background:linear-gradient(135deg,var(--g3a),var(--g3b))"></div>
+      <div><div class="writing-title">The Cost of Ambiguity — A UX Review of Norton's Renewal Email</div><div class="writing-excerpt">When the same price appears twice — once crossed out — and what that does to user trust.</div><div class="writing-cat">Email Design · Pricing UX</div></div>
+      <svg class="writing-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+
+    <a href="case-linkedin-scheduling.html" class="writing-item sa" data-cat="friction">
+      <div class="writing-thumb" style="background:linear-gradient(135deg,var(--g4a),var(--g4b))"></div>
+      <div><div class="writing-title">LinkedIn — Reducing Friction in Scheduled Posts</div><div class="writing-excerpt">Cutting 6 steps to 3 and making a power feature feel powerful.</div><div class="writing-cat">Task Flow</div></div>
+      <svg class="writing-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+
+    <a href="case-micro-friction.html" class="writing-item sa" data-cat="friction">
+      <div class="writing-thumb" style="background:linear-gradient(135deg,var(--g5a),var(--g5b))"></div>
+      <div><div class="writing-title">What a Download Taught Me About Micro-Friction</div><div class="writing-excerpt">How the smallest interaction breaks trust built over months.</div><div class="writing-cat">Micro-interactions</div></div>
+      <svg class="writing-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+
   </div>
 </div>
 
-<footer>
-  <span class="ft-name">Satheesh Mankulam · UX Designer</span>
-  <span class="ft-copy">© 2025 · Bangalore, India</span>
-</footer>
+<footer>Satheesh Mankulam · UX Designer · Bangalore</footer>
 
 <script>
-const saObs=new IntersectionObserver(e=>e.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');saObs.unobserve(en.target)}}),{threshold:.07});
+const saObs=new IntersectionObserver(e=>e.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');saObs.unobserve(en.target)}}),{threshold:.08});
 document.querySelectorAll('.sa').forEach(el=>saObs.observe(el));
 document.querySelectorAll('.filter-btn').forEach(btn=>{
   btn.addEventListener('click',()=>{
     document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
     btn.classList.add('active');
     const f=btn.dataset.filter;
-    document.querySelectorAll('.article-card').forEach(c=>c.classList.toggle('hidden',f!=='all'&&c.dataset.cat!==f));
+    document.querySelectorAll('.writing-item').forEach(item=>{
+      item.classList.toggle('hidden', f!=='all' && item.dataset.cat!==f);
+    });
   });
-});
-const themeBtn=document.getElementById('themeBtn');
-(function(){if(themeBtn)themeBtn.textContent=document.documentElement.getAttribute('data-theme')==='light'?'🌙':'☀';})();
-themeBtn.addEventListener('click',()=>{
-  const isLight=document.documentElement.getAttribute('data-theme')==='light';
-  const newTheme=isLight?'dark':'light';
-  document.documentElement.setAttribute('data-theme',newTheme);
-  try{localStorage.setItem('portfolio-theme',newTheme);}catch(e){}
-  themeBtn.textContent=isLight?'☀':'🌙';
 });
 </script>
 </body>

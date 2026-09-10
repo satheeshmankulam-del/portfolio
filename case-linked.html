@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="UTF-8">
-<script>(function(){try{var t=localStorage.getItem("portfolio-theme")||"dark";document.documentElement.setAttribute("data-theme",t);}catch(e){}})()</script>
+<script>document.documentElement.setAttribute("data-theme","light");</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/png" href="favicon.png">
 <title>47 Open Tabs. Zero System. So I Built One. — Satheesh Mankulam</title>
@@ -88,10 +88,7 @@ a{text-decoration:none;color:inherit}
     <span class="topbar-label">linked — Article</span>
   </div>
   <div class="topbar-actions">
-    <button class="topbar-btn topbar-theme" id="themeBtn">
-      <svg id="themeIc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="width:13px;height:13px"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-      <span id="themeLbl">Light</span>
-    </button>
+    
     <a href="https://play.google.com/store/apps/details?id=com.satheesh.linkvault" target="_blank" class="topbar-btn topbar-play">
       ↗ Google Play
     </a>
@@ -245,17 +242,7 @@ a{text-decoration:none;color:inherit}
 <script>
 const sun=`<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>`;
 const moon=`<path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>`;
-const themeIc=document.getElementById('themeIc');
-const themeLbl=document.getElementById('themeLbl');
-document.getElementById('themeBtn').addEventListener('click',()=>{
-  const isLight=document.documentElement.getAttribute('data-theme')==='light';
-  const next=isLight?'dark':'light';
-  document.documentElement.setAttribute('data-theme',next);
-  try{localStorage.setItem('portfolio-theme',next);}catch(e){}
-  themeIc.innerHTML=isLight?sun:moon;
-  themeLbl.textContent=isLight?'Light':'Dark';
-});
-(function(){const t=document.documentElement.getAttribute('data-theme');if(t==='light'){themeIc.innerHTML=moon;themeLbl.textContent='Dark';}})();
+
 </script>
 </body>
 </html>

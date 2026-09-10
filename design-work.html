@@ -1,183 +1,139 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
-<meta charset="UTF-8"><script>(function(){try{var t=localStorage.getItem("portfolio-theme")||"dark";document.documentElement.setAttribute("data-theme",t);}catch(e){}})()</script><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/png" href="favicon.png">
 <title>Design Work — Satheesh Mankulam</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--blue:#0061FF;--blue-d:#0050CC;--blue-10:rgba(0,97,255,.12);--blue-25:rgba(0,97,255,.28);--yellow:#FFD166;--mint:#06D6A0;--font:'Helvetica Neue',Helvetica,-apple-system,Arial,sans-serif}
-[data-theme="dark"]{--bg:#0C0C10;--bg-card:#141418;--bg-el:#1C1C24;--bg-hover:#22222C;--text:#ECECF4;--muted:#7A7A90;--subtle:#3C3C50;--border:rgba(255,255,255,.07);--shadow:0 8px 32px rgba(0,0,0,.5)}
-[data-theme="light"]{--bg:#F2F3F7;--bg-card:#FFFFFF;--bg-el:#EAEAF4;--bg-hover:#E0E0EE;--text:#1A1A2E;--muted:#5C5C74;--subtle:#ABABC4;--border:rgba(0,0,0,.08);--shadow:0 8px 32px rgba(0,0,0,.1)}
+:root{
+  --bg:#FFFFFF;--navy:#1A1F44;--navy-soft:#565C82;--muted:#8A8FB0;--border:rgba(26,31,68,.1);--card-bg:#F7F7FA;
+  --font:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;
+  --g1a:#D4D98A;--g1b:#A9B360;--g2a:#9FE0CB;--g2b:#5FBFA0;--g3a:#F7C1A8;--g3b:#E89A85;
+  --g4a:#C9C4F0;--g4b:#9B90DE;--g5a:#A9D6EC;--g5b:#6CAFD8;
+}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{-webkit-font-smoothing:antialiased}
-body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;transition:background .3s,color .3s}
+html{-webkit-font-smoothing:antialiased;scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--bg);color:var(--navy);min-height:100vh;line-height:1.5}
 a{text-decoration:none;color:inherit}
-.top-nav{position:fixed;top:0;left:0;right:0;height:54px;background:rgba(12,12,16,.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 clamp(1.5rem,5vw,4rem);z-index:100}
-[data-theme="light"] .top-nav{background:rgba(242,243,247,.92)}
-.top-nav-logo{font-size:.95rem;font-weight:700;color:var(--text);display:flex;align-items:center;gap:.5rem}
-.top-nav-logo .dot{width:7px;height:7px;border-radius:50%;background:var(--blue)}
-.top-nav-right{display:flex;align-items:center;gap:.5rem}
-.top-nav-link{font-size:.82rem;font-weight:600;color:var(--muted);padding:.38rem .75rem;border-radius:7px;transition:all .2s}
-.top-nav-link:hover{color:var(--text);background:rgba(255,255,255,.06)}
-[data-theme="light"] .top-nav-link:hover{background:rgba(0,0,0,.06)}
-.top-nav-link.active{color:var(--blue)}
-.theme-btn{width:32px;height:32px;border-radius:7px;background:var(--bg-el);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--muted);cursor:pointer;transition:all .2s;font-size:.85rem}
-.theme-btn:hover{color:var(--blue);border-color:var(--blue)}
 
-.wrap{max-width:900px;margin:0 auto;padding:0 clamp(1.5rem,5vw,3rem)}
-.page-hero{padding:clamp(5.5rem,10vw,8rem) 0 clamp(2rem,4vw,3rem)}
-.page-eye{font-size:.66rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin-bottom:.7rem;display:flex;align-items:center;gap:.5rem}
-.page-eye::before{content:'';width:20px;height:1.5px;background:var(--blue)}
-.page-h1{font-size:clamp(2rem,5vw,3.5rem);font-weight:700;line-height:1.08;letter-spacing:-.02em;color:var(--text);margin-bottom:.9rem}
-.page-h1 em{font-style:normal;color:var(--blue)}
-.page-sub{font-size:.97rem;color:var(--muted);line-height:1.8;max-width:560px}
+.nav{padding:1.5rem clamp(1.25rem,5vw,3.5rem)}
+.nav-inner{max-width:1120px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.nav-logo{display:flex;align-items:center;gap:.6rem}
+.nav-mark{width:34px;height:34px;border-radius:9px;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:800}
+.nav-name{font-size:1rem;font-weight:700;color:var(--navy)}
+.nav-back{font-size:.85rem;font-weight:700;color:var(--navy);display:flex;align-items:center;gap:.4rem}
 
-.platform-section{margin-bottom:3rem}
-.plat-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem;padding-bottom:.75rem;border-bottom:1px solid var(--border)}
-.plat-label{font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:.5rem}
-.plat-label::before{content:'';width:20px;height:1.5px;background:var(--subtle)}
-.plat-link{display:inline-flex;align-items:center;gap:.4rem;font-size:.78rem;font-weight:700;color:var(--blue);padding:.35rem .8rem;border-radius:8px;border:1px solid var(--blue-25);background:var(--blue-10);transition:all .2s}
-.plat-link:hover{background:var(--blue);color:#fff}
+.wrap{max-width:1120px;margin:0 auto;padding:0 clamp(1.25rem,5vw,3.5rem)}
+.page-head{padding:clamp(2.5rem,6vw,4rem) 0 2.5rem}
+.page-eye{font-size:.82rem;font-weight:700;color:var(--muted);margin-bottom:.9rem}
+.page-title{font-size:clamp(2rem,4.5vw,3rem);font-weight:800;letter-spacing:-.02em;color:var(--navy);margin-bottom:.9rem}
+.page-sub{font-size:1rem;color:var(--navy-soft);max-width:560px;line-height:1.75}
 
-.work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
-.work-card{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:all .2s}
-.work-card:hover{border-color:var(--blue-25);transform:translateY(-5px);box-shadow:var(--shadow)}
-.work-thumb{aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;font-size:2.25rem;border-bottom:1px solid var(--border);background:var(--bg-el)}
-.work-info{padding:.9rem 1rem}
-.work-badge{font-size:.6rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--blue);margin-bottom:.3rem}
-.work-title{font-size:.9rem;font-weight:700;color:var(--text);margin-bottom:.15rem;line-height:1.25}
-.work-meta{font-size:.74rem;color:var(--muted)}
-.work-ext{font-size:.68rem;color:var(--subtle);margin-top:.1rem;display:flex;align-items:center;gap:.3rem}
+.plat-section{margin-bottom:3.5rem}
+.plat-head{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;margin-bottom:1.5rem;flex-wrap:wrap}
+.plat-label{font-size:1.2rem;font-weight:800;color:var(--navy)}
+.plat-link{font-size:.82rem;font-weight:700;color:var(--navy);display:flex;align-items:center;gap:.3rem}
 
-.figma-tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
-.figma-card{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:1.5rem;transition:all .2s;position:relative;overflow:hidden}
-.figma-card:hover{border-color:rgba(139,92,246,.4);transform:translateY(-4px);box-shadow:0 8px 32px rgba(139,92,246,.15)}
-.figma-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#7C3AED,#A78BFA)}
-.figma-icon{font-size:1.85rem;margin-bottom:.85rem}
-.figma-badge{font-size:.6rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#A78BFA;background:rgba(139,92,246,.1);padding:.18rem .5rem;border-radius:100px;display:inline-block;margin-bottom:.6rem}
-.figma-title{font-size:.93rem;font-weight:700;color:var(--text);margin-bottom:.35rem;line-height:1.2}
-.figma-desc{font-size:.78rem;color:var(--muted);line-height:1.6}
+.dw-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem}
+.dw-card{background:var(--card-bg);border-radius:16px;overflow:hidden;transition:all .18s}
+.dw-card:hover{transform:translateY(-3px)}
+.dw-thumb{aspect-ratio:16/10}
+.dw-info{padding:1.2rem 1.3rem}
+.dw-badge{font-size:.68rem;font-weight:700;color:var(--muted);margin-bottom:.5rem}
+.dw-name{font-size:.98rem;font-weight:700;color:var(--navy);margin-bottom:.3rem}
+.dw-meta{font-size:.78rem;color:var(--navy-soft);margin-bottom:.3rem}
+.dw-ext{font-size:.75rem;color:var(--muted)}
+.dw-desc{font-size:.8rem;color:var(--navy-soft);line-height:1.6;margin-top:.5rem}
 
-.cta-strip{background:var(--bg-card);border:1px solid var(--border);border-radius:18px;padding:2rem 2.25rem;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap;margin-bottom:3rem}
-.cta-text h3{font-size:1.1rem;font-weight:700;color:var(--text);margin-bottom:.3rem}
-.cta-text p{font-size:.88rem;color:var(--muted)}
-.cta-btns{display:flex;gap:.6rem;flex-wrap:wrap}
-.btn{display:inline-flex;align-items:center;gap:.4rem;font-family:var(--font);font-size:.82rem;font-weight:700;padding:.55rem 1.2rem;border-radius:9px;transition:all .2s;cursor:pointer;border:none}
-.btn-primary{background:var(--blue);color:#fff}.btn-primary:hover{background:var(--blue-d);transform:translateY(-1px)}
-.btn-purple{background:rgba(139,92,246,.15);color:#A78BFA;border:1px solid rgba(139,92,246,.3)}.btn-purple:hover{background:rgba(139,92,246,.25)}
-.btn-ghost{background:var(--bg-el);color:var(--muted);border:1px solid var(--border)}.btn-ghost:hover{color:var(--text)}
-
-footer{background:var(--bg-card);border-top:1px solid var(--border);padding:1.75rem clamp(1.5rem,5vw,4rem);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
-.ft-name{font-size:.82rem;font-weight:600;color:var(--muted)}.ft-copy{font-size:.74rem;color:var(--subtle)}
-
-.sa{opacity:0;filter:blur(8px);transform:translateY(20px);transition:opacity .6s ease,filter .6s ease,transform .6s ease}
-.sa.in{opacity:1;filter:blur(0);transform:translateY(0)}
-.sa.d1{transition-delay:.08s}.sa.d2{transition-delay:.16s}.sa.d3{transition-delay:.24s}
-@media(max-width:700px){.work-grid,.figma-tiles{grid-template-columns:1fr 1fr}}
-@media(max-width:480px){.work-grid,.figma-tiles{grid-template-columns:1fr}}
+footer{padding:2.5rem clamp(1.25rem,5vw,3.5rem);border-top:1px solid var(--border);text-align:center;font-size:.78rem;color:var(--muted)}
+.sa{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
+.sa.in{opacity:1;transform:translateY(0)}
+@media(max-width:760px){.dw-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.dw-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-<nav class="top-nav">
-  <a href="index.html" class="top-nav-logo"><span class="dot"></span>Satheesh Mankulam</a>
-  <div class="top-nav-right">
-    <a href="index.html#casestudies" class="top-nav-link">Case Studies</a>
-    <a href="writings.html" class="top-nav-link">Writings</a>
-    <a href="design-work.html" class="top-nav-link active">Design Work</a>
-    <button class="theme-btn" id="themeBtn" title="Toggle theme">☀</button>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><div class="nav-mark">SM</div><span class="nav-name">Satheesh Mankulam</span></a>
+    <a href="index.html" class="nav-back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to Home</a>
   </div>
 </nav>
 
 <div class="wrap">
-  <div class="page-hero">
-    <div class="page-eye sa">UI Explorations</div>
-    <h1 class="page-h1 sa d1">Design Work &amp; <em>Explorations</em></h1>
-    <p class="page-sub sa d2">Visual design explorations, UI components, and design system experiments — published on Behance and Figma Community.</p>
+  <div class="page-head">
+    <div class="page-eye sa">02 · Design Work</div>
+    <h1 class="page-title sa">Explorations &amp; Design Systems</h1>
+    <p class="page-sub sa">Visual design explorations, UI components, and design system experiments — published on Behance and Figma Community.</p>
   </div>
 
-  <!-- BEHANCE -->
-  <div class="platform-section sa">
-    <div class="plat-header">
+  <div class="plat-section">
+    <div class="plat-head sa">
       <span class="plat-label">Behance</span>
-      <a href="https://www.behance.net/satheesmankul" target="_blank" class="plat-link">View All on Behance ↗</a>
+      <a href="https://www.behance.net/satheesmankul" target="_blank" class="plat-link">View All ↗</a>
     </div>
-    <div class="work-grid">
-      <a href="https://www.behance.net/gallery/231215857/Hero-section-designs" target="_blank" class="work-card">
-        <div class="work-thumb">🎨</div>
-        <div class="work-info"><div class="work-badge">Behance · 2.1k views</div><div class="work-title">Hero Section Designs</div><div class="work-meta">UI Exploration</div><div class="work-ext">10+ variants · Multiple tones</div></div>
+    <div class="dw-grid">
+      <a href="https://www.behance.net/gallery/231215857/Hero-section-designs" target="_blank" class="dw-card sa">
+        <div class="dw-thumb" style="background:linear-gradient(135deg,var(--g1a),var(--g1b))"></div>
+        <div class="dw-info"><div class="dw-badge">Behance · 2.1k views</div><div class="dw-name">Hero Section Designs</div><div class="dw-meta">UI Exploration</div><div class="dw-ext">10+ variants · Multiple tones</div></div>
       </a>
-      <a href="https://www.behance.net/gallery/228867433/Micro-Interactions" target="_blank" class="work-card">
-        <div class="work-thumb">⚡</div>
-        <div class="work-info"><div class="work-badge">Behance</div><div class="work-title">Micro-Interactions</div><div class="work-meta">Interaction Design</div><div class="work-ext">Toggles, buttons, hover states</div></div>
+      <a href="https://www.behance.net/gallery/228867433/Micro-Interactions" target="_blank" class="dw-card sa">
+        <div class="dw-thumb" style="background:linear-gradient(135deg,var(--g2a),var(--g2b))"></div>
+        <div class="dw-info"><div class="dw-badge">Behance</div><div class="dw-name">Micro-Interactions</div><div class="dw-meta">Interaction Design</div><div class="dw-ext">Toggles, buttons, hover states</div></div>
       </a>
-      <a href="https://www.behance.net/gallery/227968249/Pricing-designs" target="_blank" class="work-card">
-        <div class="work-thumb">💰</div>
-        <div class="work-info"><div class="work-badge">Behance</div><div class="work-title">Pricing Designs</div><div class="work-meta">UI Exploration</div><div class="work-ext">8 layouts · SaaS, freemium, usage</div></div>
+      <a href="https://www.behance.net/gallery/227968249/Pricing-designs" target="_blank" class="dw-card sa">
+        <div class="dw-thumb" style="background:linear-gradient(135deg,var(--g3a),var(--g3b))"></div>
+        <div class="dw-info"><div class="dw-badge">Behance</div><div class="dw-name">Pricing Designs</div><div class="dw-meta">UI Exploration</div><div class="dw-ext">8 layouts · SaaS, freemium, usage</div></div>
       </a>
     </div>
   </div>
 
-  <!-- FIGMA COMMUNITY -->
-  <div class="platform-section sa d1">
-    <div class="plat-header">
+  <div class="plat-section">
+    <div class="plat-head sa">
       <span class="plat-label">Figma Community</span>
-      <a href="https://figma.com/@satheeshm" target="_blank" class="plat-link" style="color:#A78BFA;background:rgba(139,92,246,.1);border-color:rgba(139,92,246,.3)">View All on Figma ↗</a>
+      <a href="https://figma.com/@satheeshm" target="_blank" class="plat-link">View All ↗</a>
     </div>
-    <div class="figma-tiles">
-      <a href="https://www.figma.com/community/file/1489914673071398655" target="_blank" class="figma-card">
-        <div class="figma-icon">✦</div>
-        <div class="figma-badge">Figma Community</div>
-        <div class="figma-title">Hero Section UI Kit</div>
-        <div class="figma-desc">10+ hero section layouts — dark, light, and gradient. Fully editable components, auto-layout ready.</div>
+    <div class="dw-grid">
+      <a href="https://www.figma.com/community/file/1489914673071398655" target="_blank" class="dw-card sa">
+        <div class="dw-thumb" style="background:linear-gradient(135deg,var(--g4a),var(--g4b))"></div>
+        <div class="dw-info"><div class="dw-badge">Figma Community</div><div class="dw-name">Hero Section UI Kit</div><div class="dw-desc">10+ hero layouts — dark, light, and gradient. Fully editable, auto-layout ready.</div></div>
       </a>
-      <a href="https://www.figma.com/community/file/1476584218748282617" target="_blank" class="figma-card">
-        <div class="figma-icon">🧩</div>
-        <div class="figma-badge">Figma Community</div>
-        <div class="figma-title">Micro-Interaction Patterns</div>
-        <div class="figma-desc">Toggle states, button feedback, loading patterns and hover effects — ready to copy into any project.</div>
+      <a href="https://www.figma.com/community/file/1476584218748282617" target="_blank" class="dw-card sa">
+        <div class="dw-thumb" style="background:linear-gradient(135deg,var(--g5a),var(--g5b))"></div>
+        <div class="dw-info"><div class="dw-badge">Figma Community</div><div class="dw-name">Micro-Interaction Patterns</div><div class="dw-desc">Toggle states, button feedback, and hover effects — ready to copy into any project.</div></div>
       </a>
-      <a href="https://www.figma.com/community/file/1474088349610613195" target="_blank" class="figma-card">
-        <div class="figma-icon">💰</div>
-        <div class="figma-badge">Figma Community</div>
-        <div class="figma-title">Pricing Page Layouts</div>
-        <div class="figma-desc">8 pricing table designs — SaaS, freemium, usage-based, and enterprise. Dark and light variants.</div>
+      <a href="https://www.figma.com/community/file/1474088349610613195" target="_blank" class="dw-card sa">
+        <div class="dw-thumb" style="background:linear-gradient(135deg,var(--g1a),var(--g1b))"></div>
+        <div class="dw-info"><div class="dw-badge">Figma Community</div><div class="dw-name">Pricing Page Layouts</div><div class="dw-desc">8 pricing table designs — SaaS, freemium, usage-based, and enterprise.</div></div>
       </a>
     </div>
   </div>
 
-  <!-- CTA -->
-  <div class="cta-strip sa">
-    <div class="cta-text">
-      <h3>More work on Behance &amp; Figma Community</h3>
-      <p>Updated with new explorations, components, and motion concepts.</p>
+  <div class="plat-section">
+    <div class="plat-head sa">
+      <span class="plat-label">Design Systems &amp; Prototypes</span>
+      <a href="figma-prototypes.html" class="plat-link">View All ↗</a>
     </div>
-    <div class="cta-btns">
-      <a href="https://www.behance.net/satheesmankul" target="_blank" class="btn btn-primary">🎨 Behance Profile</a>
-      <a href="https://figma.com/@satheeshm" target="_blank" class="btn btn-purple">✦ Figma Community</a>
-      <a href="index.html" class="btn btn-ghost">← Portfolio</a>
+    <div class="dw-grid">
+      <a href="figma-prototypes.html" class="dw-card sa">
+        <div class="dw-thumb" style="background:linear-gradient(135deg,var(--g2a),var(--g2b))"></div>
+        <div class="dw-info"><div class="dw-badge">Design System · Prototype</div><div class="dw-name">NEXA AI Website</div><div class="dw-desc">Full token architecture, component library, and an interactive clickable prototype.</div></div>
+      </a>
     </div>
   </div>
+
 </div>
 
-<footer>
-  <span class="ft-name">Satheesh Mankulam · UX Designer</span>
-  <span class="ft-copy">© 2025 · Bangalore, India</span>
-</footer>
+<footer>Satheesh Mankulam · UX Designer · Bangalore</footer>
 
 <script>
-const saObs=new IntersectionObserver(e=>e.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');saObs.unobserve(en.target)}}),{threshold:.07});
+const saObs=new IntersectionObserver(e=>e.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');saObs.unobserve(en.target)}}),{threshold:.08});
 document.querySelectorAll('.sa').forEach(el=>saObs.observe(el));
-(function(){
-  var btn=document.getElementById('themeBtn');
-  if(btn)btn.textContent=document.documentElement.getAttribute('data-theme')==='light'?'🌙':'☀';
-})();
-document.getElementById('themeBtn').addEventListener('click',()=>{
-  const isLight=document.documentElement.getAttribute('data-theme')==='light';
-  const newTheme=isLight?'dark':'light';
-  document.documentElement.setAttribute('data-theme',newTheme);
-  try{localStorage.setItem('portfolio-theme',newTheme);}catch(e){}
-  document.getElementById('themeBtn').textContent=isLight?'☀':'🌙';
-});
 </script>
 </body>
 </html>
