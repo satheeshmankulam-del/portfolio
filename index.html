@@ -132,6 +132,31 @@ img,svg{display:block}
 
 .sa{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
 .sa.in{opacity:1;transform:translateY(0)}
+
+/* View all — primary */
+.view-all-row{margin-top:1.75rem}
+.view-all-btn.view-all-primary{background:var(--navy);color:#fff;border-color:var(--navy);font-size:.95rem;padding:1rem 2.1rem;box-shadow:0 8px 22px rgba(26,31,68,.22)}
+.view-all-btn.view-all-primary svg{transition:transform .18s}
+.view-all-btn.view-all-primary:hover{background:#2A3266;border-color:#2A3266;box-shadow:0 12px 28px rgba(26,31,68,.3);transform:translateY(-2px)}
+.view-all-btn.view-all-primary:hover svg{transform:translateX(4px)}
+/* Book link */
+.book-link{display:inline-flex;align-items:center;gap:.4rem;font-size:.88rem;font-weight:700;color:var(--navy);border-bottom:1.5px solid var(--navy);padding-bottom:2px;transition:gap .18s}
+.book-link:hover{gap:.65rem}
+/* Design Work grid */
+.design-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem}
+.design-card{display:flex;flex-direction:column;background:var(--card-bg);border:1px solid var(--border);border-radius:20px;padding:2rem 1.75rem;box-shadow:0 1px 3px rgba(26,31,68,.04);transition:box-shadow .22s ease,transform .22s ease}
+.design-card:hover{box-shadow:0 12px 30px rgba(26,31,68,.11);transform:translateY(-4px)}
+.design-icon{width:48px;height:48px;border-radius:13px;display:flex;align-items:center;justify-content:center;color:var(--navy);margin-bottom:1.3rem}
+.design-eyebrow{font-size:.72rem;font-weight:700;color:var(--muted);margin-bottom:.45rem}
+.design-title{font-size:1.15rem;font-weight:800;color:var(--navy);margin-bottom:.5rem;letter-spacing:-.01em}
+.design-desc{font-size:.86rem;color:var(--navy-soft);line-height:1.65;margin-bottom:1.2rem;flex:1}
+.design-link{font-size:.85rem;font-weight:700;color:var(--navy);display:inline-flex;align-items:center;gap:.35rem}
+.design-card-more{background:#fff;border:1.5px dashed rgba(26,31,68,.22);box-shadow:none}
+.design-card-more:hover{border-style:solid;border-color:var(--navy)}
+.design-card-more .design-icon{background:rgba(26,31,68,.07);color:var(--navy)}
+.design-card-more .design-link svg{transition:transform .18s}
+.design-card-more:hover .design-link svg{transform:translateX(4px)}
+@media(max-width:820px){.design-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -143,9 +168,10 @@ img,svg{display:block}
       <span class="nav-name">Satheesh Mankulam</span>
     </a>
     <div class="nav-links">
-      <a href="#work" class="nav-link">Work</a>
+      <a href="#work" class="nav-link">Writing</a>
+      <a href="#design" class="nav-link">Design</a>
       <a href="#apps" class="nav-link">Apps</a>
-      <a href="SatheeshM_UXD_Resume.pdf" target="_blank" class="nav-link">Résumé</a>
+      <a href="SatheeshM_UXD_Resume.pdf" target="_blank" class="nav-link">Resume</a>
       <a href="#contact" class="nav-cta">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><path d="M12 2l1.5 4.5L18 8l-4.5 1.5L12 14l-1.5-4.5L6 8l4.5-1.5z"/></svg>
         Get in touch
@@ -162,9 +188,10 @@ img,svg{display:block}
     <span class="nav-name">Menu</span>
     <div class="mob-close" id="mobClose"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
   </div>
-  <a href="#work" class="mob-link" onclick="closeMob()">Work</a>
+  <a href="#work" class="mob-link" onclick="closeMob()">Writing</a>
+  <a href="#design" class="mob-link" onclick="closeMob()">Design</a>
   <a href="#apps" class="mob-link" onclick="closeMob()">Apps</a>
-  <a href="SatheeshM_UXD_Resume.pdf" target="_blank" class="mob-link" onclick="closeMob()">Résumé</a>
+  <a href="SatheeshM_UXD_Resume.pdf" target="_blank" class="mob-link" onclick="closeMob()">Resume</a>
   <a href="#contact" class="mob-link" onclick="closeMob()">Get in touch →</a>
 </div>
 
@@ -187,7 +214,7 @@ img,svg{display:block}
 <!-- 01 WORK -->
 <div class="wrap" id="work">
   <section class="section">
-    <div class="sec-label sa"><span class="sec-num">01</span><span class="sec-name">Work / Case Study</span></div>
+    <div class="sec-label sa"><span class="sec-num">01</span><span class="sec-name">Writing / Case Studies</span></div>
 
     <div class="work-stack">
 
@@ -219,7 +246,7 @@ img,svg{display:block}
       </a>
 
       <a href="case-micro-friction.html" class="work-card sa">
-        <div class="work-thumb" style="background:linear-gradient(135deg,var(--g3a),var(--g3b))"></div>
+        <div class="work-thumb"><img src="chrome.gif" alt="Chrome download button interaction" loading="lazy"></div>
         <div class="work-card-body"><div class="work-info">
           <div class="work-eyebrow">Micro-interactions · UX Trust</div>
           <div class="work-title">What a Download Taught Me About Micro-Friction</div>
@@ -228,7 +255,7 @@ img,svg{display:block}
       </a>
 
       <a href="case-rapido.html" class="work-card sa">
-        <div class="work-thumb" style="background:linear-gradient(135deg,var(--g2a),var(--g2b))"></div>
+        <div class="work-thumb"><img src="rapido.gif" alt="Rapido booking flow dead-end screen" loading="lazy"></div>
         <div class="work-card-body"><div class="work-info">
           <div class="work-eyebrow">Error States · Friction Audit</div>
           <div class="work-title">Rapido — Tapping for Nothing</div>
@@ -239,7 +266,38 @@ img,svg{display:block}
     </div>
 
     <div class="view-all-row">
-      <a href="writings.html" class="view-all-btn sa">View all 17 case studies <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      <a href="writings.html" class="view-all-btn view-all-primary sa">View all 17 case studies <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    </div>
+  </section>
+</div>
+
+<!-- 02 DESIGN WORK -->
+<div class="wrap" id="design">
+  <section class="section">
+    <div class="sec-label sa"><span class="sec-num">02</span><span class="sec-name">Design Work</span></div>
+
+    <div class="design-grid">
+      <a href="https://figma.com/@satheeshm" target="_blank" rel="noopener" class="design-card sa">
+        <div class="design-icon" style="background:linear-gradient(135deg,var(--g4a),var(--g4b))"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg></div>
+        <div class="design-eyebrow">Figma Community</div>
+        <div class="design-title">Free UI Kits &amp; Templates</div>
+        <div class="design-desc">Hero sections, micro-interaction patterns, and pricing page layouts — ready to duplicate and use.</div>
+        <span class="design-link">Browse on Figma <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
+      </a>
+      <a href="https://www.behance.net/satheesmankul" target="_blank" rel="noopener" class="design-card sa">
+        <div class="design-icon" style="background:linear-gradient(135deg,var(--g5a),var(--g5b))"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>
+        <div class="design-eyebrow">Behance</div>
+        <div class="design-title">Visual UI Explorations</div>
+        <div class="design-desc">Hero section designs, pricing pages, and interaction studies in multiple styles and tones.</div>
+        <span class="design-link">View on Behance <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
+      </a>
+      <a href="design-work.html" class="design-card design-card-more sa">
+        <div class="design-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></div>
+        <div class="design-eyebrow">All Projects</div>
+        <div class="design-title">Explore All Design Work</div>
+        <div class="design-desc">Design systems, clickable prototypes, and every exploration — all in one place.</div>
+        <span class="design-link">See everything <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+      </a>
     </div>
   </section>
 </div>
@@ -247,7 +305,7 @@ img,svg{display:block}
 <!-- 03 APPS -->
 <div class="wrap" id="apps">
   <section class="section">
-    <div class="sec-label sa"><span class="sec-num">02</span><span class="sec-name">Shipped Apps</span></div>
+    <div class="sec-label sa"><span class="sec-num">03</span><span class="sec-name">Shipped Apps</span></div>
 
     <div class="apps-grid">
       <div class="app-card sa">
@@ -282,16 +340,16 @@ img,svg{display:block}
   </section>
 </div>
 
-<!-- BOOK -->
+<!-- 04 BOOK -->
 <div class="wrap" id="book">
   <section class="section">
-    <div class="sec-label sa"><span class="sec-num">03</span><span class="sec-name">Published Work</span></div>
+    <div class="sec-label sa"><span class="sec-num">04</span><span class="sec-name">Published Work</span></div>
     <div class="book-row sa">
       <img class="book-cover" src="book.jpg" alt="The Psychology of Product Moments — book cover" loading="lazy">
       <div>
         <div class="book-title">The Psychology of Product Moments</div>
         <div class="book-desc">A book exploring the psychological principles behind the small moments that shape how people feel about a product — 10 case studies, published and available now.</div>
-        <span class="read-more">Learn More <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+        <a href="https://amzn.in/d/09C9YBEf" target="_blank" rel="noopener" class="book-link">Get it on Amazon Kindle <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
       </div>
     </div>
   </section>
