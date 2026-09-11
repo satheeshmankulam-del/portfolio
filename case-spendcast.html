@@ -1,260 +1,266 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="UTF-8">
-<script>(function(){try{var t=localStorage.getItem("portfolio-theme")||"dark";document.documentElement.setAttribute("data-theme",t);}catch(e){}})()</script>
+<script>document.documentElement.setAttribute("data-theme","light");</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/png" href="favicon.png">
-<title>I Downloaded a Free Budget App. Then It Asked Me to Pay to See Last Month. — Satheesh Mankulam</title>
+<title>I Needed a Budget Tracker. Every Good One Wanted My Bank Login. — Satheesh Mankulam</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--blue:#0061FF;--blue-d:#0050CC;--blue-10:rgba(0,97,255,.12);--blue-25:rgba(0,97,255,.28);--yellow:#FFD166;--mint:#06D6A0;--font:'Helvetica Neue',Helvetica,-apple-system,BlinkMacSystemFont,Arial,sans-serif}
-[data-theme="dark"]{--bg:#0C0C10;--bg-card:#141418;--bg-el:#1C1C24;--bg-hover:#22222C;--text:#ECECF4;--muted:#7A7A90;--subtle:#3C3C50;--border:rgba(255,255,255,.07);--shadow:0 8px 32px rgba(0,0,0,.5);--card-border:rgba(255,255,255,.07)}
-[data-theme="light"]{--bg:#F2F3F7;--bg-card:#FFFFFF;--bg-el:#EAEAF4;--bg-hover:#E0E0EE;--text:#1A1A2E;--muted:#5C5C74;--subtle:#ABABC4;--border:rgba(0,0,0,.08);--shadow:0 8px 32px rgba(0,0,0,.1);--card-border:rgba(0,0,0,.07)}
+:root{--font:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;--blue:#1A1F44;--blue-d:#2A3266;--blue-10:rgba(26,31,68,.08);--blue-25:rgba(26,31,68,.22);--mint:#5FA98A;--yellow:#D9A54A;--purple:#7C5CFC;--red:#C0533E}
+[data-theme="light"]{--bg:#FFFFFF;--bg-card:#FFFFFF;--bg-el:#F7F7FA;--bg-hover:#EFEFF4;--text:#1A1F44;--muted:#565C82;--subtle:#8A8FB0;--border:rgba(26,31,68,.1);--blockquote-border:#1A1F44;--card-border:rgba(26,31,68,.1);--shadow:0 8px 32px rgba(26,31,68,.08)}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{font-size:16px;-webkit-font-smoothing:antialiased;scroll-behavior:smooth}
-body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;transition:background .3s,color .3s}
+html{-webkit-font-smoothing:antialiased}
+body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh}
 a{text-decoration:none;color:inherit}
-.topbar{position:sticky;top:0;z-index:100;background:var(--bg-card);border-bottom:1px solid var(--border);padding:.75rem clamp(1.25rem,5vw,4rem);display:flex;align-items:center;justify-content:space-between;gap:1rem;transition:background .3s,border-color .3s}
-.topbar-left{display:flex;align-items:center;gap:.75rem}
-.topbar-home{font-size:.78rem;font-weight:700;color:var(--muted);transition:color .2s;display:flex;align-items:center;gap:.35rem}
-.topbar-home:hover{color:var(--blue)}
-.topbar-sep{color:var(--subtle);font-size:.75rem}
-.topbar-label{font-size:.75rem;font-weight:500;color:var(--muted)}
-.topbar-actions{display:flex;align-items:center;gap:.5rem}
-.topbar-btn{display:flex;align-items:center;gap:.35rem;font-size:.72rem;font-weight:700;padding:.38rem .8rem;border-radius:7px;transition:all .2s;cursor:pointer;border:none;font-family:var(--font)}
-.topbar-theme{background:var(--bg-el);color:var(--muted);border:1px solid var(--border)}
-.topbar-theme:hover{color:var(--text);background:var(--bg-hover)}
-.article-wrap{max-width:680px;margin:0 auto;padding:clamp(2.5rem,6vw,4.5rem) clamp(1.25rem,5vw,2rem) clamp(3rem,6vw,5rem)}
-.art-eyebrow{display:flex;align-items:center;gap:.5rem;font-size:.64rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:1.25rem}
-.art-eye-dot{width:6px;height:6px;border-radius:50%;background:var(--blue);flex-shrink:0}
-.art-tag{font-size:.58rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--blue);background:var(--blue-10);padding:.1rem .5rem;border-radius:100px}
-.art-title{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:700;line-height:1.1;letter-spacing:-.022em;color:var(--text);margin-bottom:.75rem}
-.art-title em{font-style:normal;color:var(--blue)}
-.art-subtitle{font-size:1rem;color:var(--muted);line-height:1.65;margin-bottom:1.75rem;font-weight:400}
-.art-meta{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;padding:1rem 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-bottom:2.5rem}
-.art-author{display:flex;align-items:center;gap:.6rem}
-.art-avatar{width:32px;height:32px;border-radius:8px;overflow:hidden;flex-shrink:0}
-.art-avatar img{width:100%;height:100%;object-fit:cover;object-position:center 15%}
-.art-author-name{font-size:.82rem;font-weight:700;color:var(--text)}
-.art-author-role{font-size:.7rem;color:var(--muted)}
-.art-meta-right{display:flex;align-items:center;gap:.75rem;margin-left:auto;flex-wrap:wrap}
-.art-meta-item{font-size:.72rem;color:var(--muted);display:flex;align-items:center;gap:.3rem}
-.art-body{font-size:.97rem;line-height:1.88;color:var(--muted)}
-.art-body p{margin-bottom:1.4rem}
-.art-body p:last-child{margin-bottom:0}
-.art-body strong{color:var(--text);font-weight:700}
-.art-body em{font-style:italic}
-.art-lead{font-size:1.08rem;color:var(--text);line-height:1.8;font-weight:400;margin-bottom:1.5rem}
-.art-h2{font-size:1.2rem;font-weight:700;color:var(--text);letter-spacing:-.01em;margin:2.5rem 0 .9rem;padding-top:.5rem}
-.art-hr{border:none;border-top:1px solid var(--border);margin:2.5rem 0}
-.art-quote{border-left:2px solid var(--blue);padding:.75rem 1.25rem;margin:1.75rem 0;background:var(--blue-10);border-radius:0 10px 10px 0}
-.art-quote p{font-size:.97rem;font-style:italic;color:var(--text);line-height:1.75;margin:0}
-.art-callout{background:rgba(0,97,255,.06);border:1px solid rgba(0,97,255,.15);border-radius:14px;padding:1.4rem 1.6rem;margin:2rem 0}
-.art-callout-eye{font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:.55rem}
-.art-callout p{font-size:.88rem;color:var(--muted);line-height:1.8;margin-bottom:.75rem}
-.art-callout p:last-child{margin-bottom:0}
-.art-callout strong{color:var(--text)}
-.art-cta{background:var(--bg-el);border:1px solid var(--card-border);border-radius:18px;padding:1.75rem 2rem;margin-top:3rem;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap}
-.art-cta-text .label{font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.3rem}
-.art-cta-text .title{font-size:1.05rem;font-weight:700;color:var(--text);margin-bottom:.2rem}
-.art-cta-text .sub{font-size:.8rem;color:var(--muted)}
-.art-cta-btns{display:flex;gap:.5rem;flex-wrap:wrap;flex-shrink:0}
-.cta-btn{display:inline-flex;align-items:center;gap:.35rem;font-size:.76rem;font-weight:700;padding:.5rem 1rem;border-radius:8px;transition:all .2s;font-family:var(--font);border:none;cursor:pointer}
-.cta-btn-primary{background:var(--blue);color:#fff}.cta-btn-primary:hover{background:var(--blue-d)}
-.cta-btn-ghost{background:var(--bg-hover);color:var(--muted);border:1px solid var(--border)}.cta-btn-ghost:hover{color:var(--text)}
-.cta-btn-soon{background:var(--bg-el);color:var(--subtle);border:1px solid var(--border);cursor:default}
-.art-related{margin-top:2.5rem;padding-top:2rem;border-top:1px solid var(--border)}
-.art-related-label{font-size:.64rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem;display:flex;align-items:center;gap:.5rem}
-.art-related-label::before{content:'';width:20px;height:1px;background:var(--subtle)}
-.related-links{display:flex;gap:.6rem;flex-wrap:wrap}
-.related-link{display:inline-flex;align-items:center;gap:.4rem;font-size:.78rem;font-weight:600;color:var(--muted);background:var(--bg-el);border:1px solid var(--border);padding:.4rem .85rem;border-radius:8px;transition:all .2s}
-.related-link:hover{color:var(--blue);border-color:var(--blue-25);background:var(--blue-10)}
-@media(max-width:600px){.art-title{font-size:1.65rem}.art-cta{flex-direction:column;align-items:flex-start}.topbar-label{display:none}.art-meta-right{margin-left:0;width:100%}}
+
+.pj-nav{padding:1.25rem clamp(1.25rem,5vw,3.5rem);background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:200}
+.pj-nav-inner{max-width:820px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.pj-nav-logo{display:flex;align-items:center;gap:.6rem}
+.pj-nav-mark{width:32px;height:32px;border-radius:8px;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:800}
+.pj-nav-name{font-size:.94rem;font-weight:700;color:var(--blue)}
+.pj-nav-back{font-size:.82rem;font-weight:700;color:var(--blue);display:flex;align-items:center;gap:.4rem}
+
+.article-wrap{max-width:760px;margin:0 auto;padding:clamp(3rem,7vw,4.5rem) clamp(1.25rem,5vw,2.5rem) 3rem}
+.pub-badge{display:inline-flex;align-items:center;gap:.5rem;font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);background:var(--blue-10);border:1px solid var(--blue-25);padding:.28rem .8rem;border-radius:100px;margin-bottom:1.25rem}
+.article-title{font-size:clamp(1.7rem,4vw,2.5rem);font-weight:800;color:var(--text);line-height:1.16;letter-spacing:-.02em;margin-bottom:.65rem}
+.article-subtitle{font-size:1.05rem;color:var(--muted);line-height:1.6;margin-bottom:1.5rem}
+.author-bar{display:flex;align-items:center;gap:.75rem;padding:1.1rem 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-bottom:2rem}
+.author-photo{width:40px;height:40px;border-radius:50%;object-fit:cover;object-position:center 15%;flex-shrink:0}
+.author-name{font-size:.9rem;font-weight:700;color:var(--text)}
+.author-meta{font-size:.8rem;color:var(--muted)}
+.article-tags{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:1.75rem}
+.article-tag{font-size:.68rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--blue);background:var(--blue-10);padding:.2rem .6rem;border-radius:100px}
+
+.article-body{font-size:1.03rem;line-height:1.85;color:var(--text)}
+.article-body p{margin-bottom:1.35rem}
+.article-body h2{font-size:1.4rem;font-weight:800;color:var(--text);margin:2.5rem 0 .9rem;letter-spacing:-.012em}
+.article-body h3{font-size:1.12rem;font-weight:700;color:var(--text);margin:2rem 0 .7rem}
+.article-body strong{font-weight:700;color:var(--text)}
+.article-body em{font-style:italic}
+.article-body blockquote{border-left:3px solid var(--blockquote-border);padding:.6rem 0 .6rem 1.3rem;margin:1.6rem 0;color:var(--muted);font-style:italic;font-size:1.02rem}
+.article-body ul{margin:.85rem 0 1.4rem 1.5rem}
+.article-body li{margin-bottom:.55rem;line-height:1.7}
+.article-body hr{border:none;border-top:1px solid var(--border);margin:2.5rem 0}
+
+.art-img{background:var(--bg-el);border:1px solid var(--border);border-radius:14px;aspect-ratio:16/9;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem;margin:1.75rem 0;overflow:hidden;position:relative}
+.art-img img{width:100%;height:100%;object-fit:cover;border-radius:14px}
+.art-img-placeholder{text-align:center}
+.art-img-placeholder .icon{font-size:1.5rem;opacity:.35;margin-bottom:.35rem}
+.art-img-placeholder .hint{font-size:.72rem;color:var(--subtle)}
+
+.qa-block{background:var(--bg-el);border-radius:14px;padding:1.3rem 1.5rem;margin:1.5rem 0}
+.qa-row{padding:.55rem 0;border-bottom:1px solid var(--border)}
+.qa-row:last-child{border-bottom:none}
+.qa-q{font-size:.92rem;color:var(--text);font-weight:600}
+.qa-a{font-size:.88rem;color:var(--muted);margin-top:.15rem}
+
+.score-box{background:linear-gradient(135deg,rgba(192,83,62,.08),rgba(192,83,62,.03));border:1px solid rgba(192,83,62,.2);border-radius:14px;padding:1.5rem 1.75rem;margin:1.75rem 0;text-align:center}
+.score-num{font-size:2.2rem;font-weight:800;color:var(--red);line-height:1}
+.score-label{font-size:.85rem;color:var(--muted);margin-top:.4rem}
+
+.error-tag{display:inline-flex;align-items:center;gap:.4rem;font-size:.85rem;font-weight:700;color:#fff;background:var(--red);padding:.4rem .9rem;border-radius:8px;margin:.5rem 0}
+
+.heur-grid{display:flex;flex-direction:column;gap:.7rem;margin:1.25rem 0 1.75rem}
+.heur-item{background:var(--bg-card);border:1px solid var(--border);border-left:3px solid var(--red);border-radius:12px;padding:1.1rem 1.3rem}
+.heur-title{font-size:.92rem;font-weight:700;color:var(--text);margin-bottom:.35rem}
+.heur-desc{font-size:.85rem;color:var(--muted);line-height:1.65}
+
+.psych-grid{display:flex;flex-direction:column;gap:.7rem;margin:1.25rem 0 1.75rem}
+.psych-item{background:var(--bg-el);border-radius:12px;padding:1rem 1.3rem}
+.psych-title{font-size:.9rem;font-weight:700;color:var(--text);margin-bottom:.3rem}
+.psych-desc{font-size:.85rem;color:var(--muted);line-height:1.65}
+
+.ba-compare{display:flex;flex-direction:column;gap:1rem;margin:1.5rem 0}
+.ba-col{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:1.4rem 1.6rem}
+.ba-col.before{border-left:3px solid var(--red)}
+.ba-col.after{border-left:3px solid var(--mint)}
+.ba-label{font-size:.68rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.6rem}
+.ba-col.before .ba-label{color:var(--red)}
+.ba-col.after .ba-label{color:var(--mint)}
+.ba-text{font-size:.9rem;color:var(--muted);line-height:1.7}
+
+.fix-list{display:flex;flex-direction:column;gap:.75rem;margin:1.25rem 0}
+.fix-item{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:1.1rem 1.3rem;display:flex;gap:.9rem;align-items:flex-start}
+.fix-num{font-size:.72rem;font-weight:800;color:#fff;background:var(--blue);width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.fix-text{font-size:.9rem;color:var(--text);line-height:1.65}
+
+.pj-nextprev{max-width:820px;margin:3rem auto 0;padding:0 clamp(1.25rem,5vw,2.5rem)}
+.pj-np-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;border-top:1px solid var(--border);padding-top:2rem}
+.pj-np-card{background:var(--bg-el);border-radius:14px;padding:1.3rem 1.4rem;transition:all .18s;text-decoration:none;display:block}
+.pj-np-card:hover{background:var(--bg-hover)}
+.pj-np-card.next{text-align:right}
+.pj-np-label{font-size:.68rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--subtle);margin-bottom:.5rem;display:block}
+.pj-np-title{font-size:.95rem;font-weight:700;color:var(--text);line-height:1.4}
+@media(max-width:600px){.pj-np-row{grid-template-columns:1fr}}
+
+.pj-footer{max-width:820px;margin:3.5rem auto 0;padding:2.5rem clamp(1.25rem,5vw,2.5rem) 3rem;border-top:1px solid var(--border)}
+.pj-footer-row{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.pj-footer-say{font-size:.95rem;color:var(--text)}
+.pj-footer-say a{color:var(--blue);font-weight:700;text-decoration:underline}
+.pj-footer-phone{font-size:.85rem;color:var(--subtle);margin-top:.35rem}
+.pj-footer-phone a{color:var(--subtle)}
+.pj-footer-socials{display:flex;gap:.55rem}
+.pj-fs-link{width:34px;height:34px;border-radius:9px;background:var(--bg-el);display:flex;align-items:center;justify-content:center;color:var(--blue);transition:all .15s}
+.pj-fs-link:hover{background:var(--blue);color:#fff}
+.pj-footer-meta{font-size:.75rem;color:var(--subtle);margin-top:1.75rem;text-align:center}
+
+.sa{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
+.sa.in{opacity:1;transform:translateY(0)}
 </style>
 </head>
 <body>
 
-<header class="topbar">
-  <div class="topbar-left">
-    <a href="index.html" class="topbar-home">
-      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" style="width:12px;height:12px"><path d="M2 6L8 1l6 5v8a1 1 0 01-1 1H3a1 1 0 01-1-1V6z"/></svg>
-      Satheesh Mankulam
-    </a>
-    <span class="topbar-sep">/</span>
-    <span class="topbar-label">SpendCast — Article</span>
+<nav class="pj-nav">
+  <div class="pj-nav-inner">
+    <a href="index.html" class="pj-nav-logo"><div class="pj-nav-mark">SM</div><span class="pj-nav-name">Satheesh Mankulam</span></a>
+    <a href="index.html#apps" class="pj-nav-back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>All Apps</a>
   </div>
-  <div class="topbar-actions">
-    <button class="topbar-btn topbar-theme" id="themeBtn">
-      <svg id="themeIc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="width:13px;height:13px"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-      <span id="themeLbl">Light</span>
-    </button>
-  </div>
-</header>
+</nav>
 
-<article class="article-wrap">
+<div class="article-wrap">
 
-  <div class="art-eyebrow">
-    <div class="art-eye-dot"></div>
-    Medium Article
-    <span class="art-tag">App Story</span>
-    <span class="art-tag">UX + Dev</span>
+  <div class="pub-badge sa">Medium · App Story</div>
+  <h1 class="article-title sa">I Needed a Budget Tracker. Every Good One Wanted My Bank Login.</h1>
+  <p class="article-subtitle sa">The story behind SpendCast — an offline expense tracker built because personal finance shouldn't require a subscription</p>
+
+  <div class="article-tags sa">
+    <span class="article-tag">App Story</span>
+    <span class="article-tag">Product Design</span>
+    <span class="article-tag">Privacy</span>
+    <span class="article-tag">Android</span>
   </div>
 
-  <h1 class="art-title">I Downloaded a Free Budget App.<br><em>Then It Asked Me to Pay to See Last Month.</em></h1>
-  <p class="art-subtitle">The story behind SpendCast — built because tracking your own money shouldn't cost extra.</p>
+  <div class="author-bar sa">
+    <img src="satheesh-photo.jpg" class="author-photo" alt="Satheesh Mankulam">
+    <div>
+      <div class="author-name">Satheesh Mankulam</div>
+      <div class="author-meta">2026 · 4 min read</div>
+    </div>
+  </div>
 
-  <div class="art-meta">
-    <div class="art-author">
-      <div class="art-avatar"><img src="satheesh-photo.jpg" alt="Satheesh Mankulam"></div>
-      <div>
-        <div class="art-author-name">Satheesh Mankulam</div>
-        <div class="art-author-role">UX Designer · IDrive India</div>
+  <div class="art-img sa">
+    <div class="art-img-placeholder"><div class="icon">🖼️</div><div class="hint">Add your SpendCast app screenshot here</div></div>
+  </div>
+
+  <div class="article-body">
+
+    <p class="sa">I track my spending the way most people do.</p>
+    <p class="sa">Badly.</p>
+    <p class="sa">A note here. A screenshot there. A vague mental category called "miscellaneous" that quietly absorbs everything I'd rather not examine too closely. Every few months I'd open a budgeting app, spend twenty minutes setting it up, then abandon it because it wanted to connect to my bank, or asked me to upgrade to see last month's data, or showed me a dashboard so full of graphs I forgot I just wanted to log a coffee.</p>
+
+    <blockquote class="sa">I didn't want a financial platform. I wanted a tracker.</blockquote>
+
+    <p class="sa">Something I could open, tap a number, and close. Something that told me — clearly, simply — where the money went this month.</p>
+    <p class="sa">I looked. The honest ones required accounts. The free ones were free until they weren't — basic filtering locked behind a paywall, export behind a premium tier, history view cut off at 30 days unless you upgraded. The ones that connected to your bank felt like they needed more trust than I was ready to give an app I'd just downloaded.</p>
+    <p class="sa">So I built SpendCast.</p>
+
+    <hr class="sa">
+
+    <h2 class="sa">The brief I wrote for myself was short</h2>
+    <p class="sa">Log income. Log expenses. Set a budget. See where you stand. Work without internet. Never ask me to log in.</p>
+    <p class="sa">That's it. Four things and a constraint.</p>
+    <p class="sa">I built it the same way I've built my other apps — React + Vite + Capacitor + Android Studio, with Claude as my coding partner. I've written about this workflow before, when I shipped FamilyDose. I describe what I want in plain language. Claude writes the code. When something breaks — and it always breaks somewhere — I describe what went wrong and we fix it together.</p>
+    <p class="sa">My wife tested it. She always does. She has no patience for flows that aren't obvious, and she'll find every edge case I convinced myself was an edge case. The quick calculator was her idea. <em>"Sometimes I just need to split a bill. I don't want to leave the app to do maths."</em></p>
+    <p class="sa">It's in the build now.</p>
+
+    <hr class="sa">
+
+    <h2 class="sa">The features that made it are the ones that came from real friction</h2>
+
+    <div class="art-img sa">
+      <div class="art-img-placeholder"><div class="icon">🖼️</div><div class="hint">Add your SpendCast feature screenshots here</div></div>
+    </div>
+
+    <div class="heur-grid">
+      <div class="heur-item sa">
+        <div class="heur-title">Income tracking alongside expenses</div>
+        <div class="heur-desc">Most trackers are expense-only. But understanding spending only makes sense when you can see it against what came in. Freelancers especially — your income isn't a fixed number. SpendCast lets you log multiple income sources alongside your expenses in the same view.</div>
+      </div>
+      <div class="heur-item sa">
+        <div class="heur-title">Categories with filters</div>
+        <div class="heur-desc">Not just a list of every transaction. Filter by category, by date range, by type. The question I kept asking my own data was: "How much did I spend on eating out last month?" That answer should be one tap, not a scroll through everything.</div>
+      </div>
+      <div class="heur-item sa">
+        <div class="heur-title">Budget tracking</div>
+        <div class="heur-desc">Set a monthly budget — overall or by category — and SpendCast shows you how you're tracking against it before the month ends. Not after.</div>
+      </div>
+      <div class="heur-item sa">
+        <div class="heur-title">PIN lock</div>
+        <div class="heur-desc">Your spending habits are private. Nobody else needs to see what you spent money on last Tuesday.</div>
+      </div>
+      <div class="heur-item sa">
+        <div class="heur-title">The quick calculator</div>
+        <div class="heur-desc">Built in. No switching apps to split a bill or work out a percentage.</div>
+      </div>
+      <div class="heur-item sa">
+        <div class="heur-title">No account. No cloud. No sync.</div>
+        <div class="heur-desc">Everything lives on your device. Export as a file when you want a backup. Restore whenever you need it. That's the full data story.</div>
       </div>
     </div>
-    <div class="art-meta-right">
-      <span class="art-meta-item">
-        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" style="width:12px;height:12px"><circle cx="8" cy="8" r="6"/><path d="M8 4v4l2.5 2.5"/></svg>
-        4 min read
-      </span>
-      <span class="art-meta-item">2026</span>
-    </div>
-  </div>
 
-  <div class="art-body">
+    <hr class="sa">
 
-    <p class="art-lead">I track my spending the way most people do. Badly.</p>
+    <h2 class="sa">Here's something I think about as a designer</h2>
+    <p class="sa">Most budgeting apps use pricing to segment users. The free tier gives you just enough to feel the value, then locks the part you actually need behind a paywall. It's a deliberate design pattern — and it works for growth metrics.</p>
+    <p class="sa">But for a tool that's supposed to help you manage money, that model has a specific irony. <strong>The people who most need a good budget tracker are often the ones least able to pay for one.</strong></p>
+    <p class="sa">I made SpendCast completely free. Not free with limits. Not free with ads. Free.</p>
+    <p class="sa">Not because I'm against business models — I understand them. But because the core purpose of this tool is to help people understand their finances. Gating that behind a subscription fee contradicts the whole point.</p>
 
-    <p>A note here. A screenshot there. A vague mental category called "miscellaneous" that quietly absorbs everything I'd rather not examine too closely. Every few months I'd open a budgeting app, spend twenty minutes setting it up, and feel good about it for exactly three days.</p>
+    <blockquote class="sa">That's a design decision as much as it is a values one.</blockquote>
 
-    <p>Then the paywall would appear.</p>
+    <hr class="sa">
 
-    <p>Not on day one — that would be honest. After you've entered your data, built your categories, started to see the picture. <em>Upgrade to see history older than 30 days. Unlock filters with Pro. Export your data — Premium only.</em></p>
+    <p class="sa">SpendCast is live on the Play Store.</p>
+    <p class="sa">If you've tried budgeting apps and abandoned them — because they were too complex, too connected, or too expensive to be worth it — SpendCast might be the one that actually sticks.</p>
+    <p class="sa"><strong>No bank login. No subscription. No data leaving your phone.</strong></p>
 
-    <p><strong>I was paying to see my own spending.</strong></p>
-
-    <p>That specific frustration is what SpendCast is about.</p>
-
-    <hr class="art-hr">
-
-    <p>The apps I tried weren't bad. Some were genuinely well-designed. But almost all of them used the same pattern: give you just enough to feel the value, then lock the part you actually need behind a subscription. Some asked for a social login before you could even start. Some required an account "to sync your data" — data I never asked to sync anywhere.</p>
-
-    <p><strong>I didn't want a financial platform. I wanted a tracker.</strong></p>
-
-    <p>Something I could open, tap a number, and close. Something that told me — clearly, simply — where the money went this month. No sign-up. No cloud. No paying monthly to access a feature that should have been there from the start.</p>
-
-    <p>So I built SpendCast.</p>
-
-    <hr class="art-hr">
-
-    <p><strong>The brief I wrote for myself was short.</strong></p>
-
-    <p>Log income. Log expenses. Set a budget. See where you stand. Work without internet. No account required.</p>
-
-    <p>That's it. Four things and a constraint.</p>
-
-    <p>I built it the same way I've built my other apps — React + Vite + Capacitor + Android Studio, with Claude as my coding partner. I've written about this workflow before, when I shipped FamilyDose. I describe what I want in plain language. Claude writes the code. When something breaks — and it always breaks somewhere — I describe what went wrong and we fix it together.</p>
-
-    <p>My wife tested it. She always does. She has no patience for flows that aren't obvious, and she'll find every edge case I convinced myself was an edge case. The quick calculator was her idea. <em>"Sometimes I just need to split a bill. I don't want to leave the app to do maths."</em></p>
-
-    <p>It's in the build now.</p>
-
-    <hr class="art-hr">
-
-    <p class="art-h2">The features that made it are the ones that came from real friction.</p>
-
-    <p><strong>Income tracking alongside expenses.</strong> Most trackers are expense-only. But understanding spending only makes sense when you can see it against what came in. Freelancers especially — your income isn't a fixed number. SpendCast lets you log multiple income sources alongside your expenses in the same view.</p>
-
-    <p><strong>Categories with filters.</strong> Not just a list of every transaction. Filter by category, by date range, by type. The question I kept asking my own data was: <em>"How much did I spend on eating out last month?"</em> That answer should be one tap, not a scroll through everything.</p>
-
-    <p><strong>Budget tracking.</strong> Set a monthly budget — overall or by category — and SpendCast shows you how you're tracking against it before the month ends. Not after.</p>
-
-    <p><strong>PIN lock.</strong> Your spending habits are private. Nobody else needs to see what you spent money on last Tuesday.</p>
-
-    <p><strong>Full history. Always.</strong> No 30-day cutoff. No unlock required. Everything you've ever entered is right there.</p>
-
-    <p><strong>Export as a file. Free.</strong> Your data is yours. Export it, back it up, move it wherever you want. Not a premium feature. Just the app doing what it should.</p>
-
-    <p><strong>The quick calculator.</strong> Built in. No switching apps to split a bill or work out a percentage.</p>
-
-    <p><strong>No account. No cloud. No sync.</strong> Everything lives on your device. Export as a file when you want a backup. Restore whenever you need it. That's the full data story.</p>
-
-    <hr class="art-hr">
-
-    <p class="art-h2">Here's something I think about as a designer.</p>
-
-    <p>Most budgeting apps use pricing to segment users. The free tier gives you just enough to feel the value, then locks the part you actually need behind a paywall. It's a deliberate design pattern — and it works for growth metrics.</p>
-
-    <p>But for a tool that's supposed to help you manage money, that model has a specific irony. The people who most need a good budget tracker are often the ones least able to pay for one.</p>
-
-    <div class="art-callout">
-      <div class="art-callout-eye">A design decision, not a growth strategy</div>
-      <p>I made SpendCast completely free. Not free with limits. Not free with ads. <strong>Free.</strong></p>
-      <p>Not because I'm against business models — I understand them. But because the core purpose of this tool is to help people understand their finances. Gating that behind a subscription fee contradicts the whole point.</p>
-      <p>That's a design decision as much as it is a values one.</p>
+    <div class="fix-list">
+      <div class="fix-item sa">
+        <div class="fix-num">→</div>
+        <div class="fix-text"><a href="https://play.google.com/store/apps/details?id=com.satheesh.spendcast" target="_blank" style="color:var(--blue);font-weight:700;text-decoration:underline">Download SpendCast on Google Play</a></div>
+      </div>
     </div>
 
-    <hr class="art-hr">
-
-    <p>SpendCast is live on the Play Store.</p>
-
-    <p>If you've tried budgeting apps and abandoned them — because they locked the useful parts, asked you to sign up before you'd seen anything, or charged you to export your own data — SpendCast might be the one that actually sticks.</p>
-
-    <div class="art-quote">
-      <p>No account. No paywall. No data leaving your phone.</p>
-    </div>
-
-    <p><em>Built by a UX designer, for people who just want to know where their money went.</em></p>
+    <p class="sa"><em>SpendCast is live on Google Play. Built by a UX designer, for people who just want to know where their money went.</em></p>
 
   </div>
 
-  <!-- CTA -->
-  <div class="art-cta">
-    <div class="art-cta-text">
-      <div class="label">Free on Google Play</div>
-      <div class="title">SpendCast</div>
-      <div class="sub">Offline budget tracker. No account. No paywall. Free forever.</div>
+</div>
+
+<div class="pj-nextprev">
+  <div class="pj-np-row">
+    <a href="case-linked.html" class="pj-np-card">
+      <span class="pj-np-label">← Previous Story</span>
+      <span class="pj-np-title">47 Open Tabs. Zero System. So I Built One.</span>
+    </a>
+    <a href="case-familydose.html" class="pj-np-card next">
+      <span class="pj-np-label">Next Story →</span>
+      <span class="pj-np-title">Designers Can Ship Now. I Did.</span>
+    </a>
+  </div>
+</div>
+
+<div class="pj-footer">
+  <div class="pj-footer-row">
+    <div>
+      <div class="pj-footer-say">Say hi — <a href="mailto:satheesh.mankulam@gmail.com">satheesh.mankulam@gmail.com</a></div>
+      <div class="pj-footer-phone"><a href="tel:+919731108717">+91 9731108717</a></div>
     </div>
-    <div class="art-cta-btns">
-      <a href="https://play.google.com/store/apps/details?id=com.satheesh.spendcast&pcampaignid=web_share" target="_blank" class="cta-btn cta-btn-primary">↗ Download App</a>
-      <a href="index.html#app" class="cta-btn cta-btn-ghost">← All Apps</a>
+    <div class="pj-footer-socials">
+      <a href="https://www.linkedin.com/in/satheeshm93" target="_blank" class="pj-fs-link"><svg viewBox="0 0 24 24" fill="currentColor" width="15" height="15"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 11.02-4.12 2.06 2.06 0 01-.02 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></a>
+      <a href="https://www.behance.net/satheesmankul" target="_blank" class="pj-fs-link"><svg viewBox="0 0 24 24" fill="currentColor" width="15" height="15"><path d="M22 7.1h-6.3V5.6H22v1.5zM8.1 12.1c.9-.5 1.4-1.2 1.4-2.4 0-2.3-1.6-3.1-3.9-3.1H0v13h5.9c2.4 0 4.6-1.1 4.6-3.8 0-1.6-.8-2.9-2.4-3.7zM2.7 8.7h2.7c1 0 1.9.3 1.9 1.5 0 1.1-.8 1.6-1.9 1.6H2.7V8.7zm3 8.2H2.7v-3.6h3.1c1.3 0 2.1.6 2.1 1.8 0 1.3-1 1.8-2.2 1.8zM17.3 8.4c-3.2 0-5.3 2.3-5.3 5.6 0 3.4 2 5.5 5.4 5.5 2.5 0 4.3-1.1 5-3.4h-2.4c-.3.9-1.2 1.4-2.5 1.4-1.8 0-2.8-1.1-2.9-2.9h8v-.7c0-3.4-1.9-5.5-5.3-5.5zm-2.6 4.5c.1-1.5 1.1-2.5 2.6-2.5 1.6 0 2.5 1 2.6 2.5h-5.2z"/></svg></a>
+      <a href="https://figma.com/@satheeshm" target="_blank" class="pj-fs-link"><svg viewBox="0 0 24 24" fill="currentColor" width="15" height="15"><path d="M8 24c2.2 0 4-1.8 4-4v-4H8c-2.2 0-4 1.8-4 4s1.8 4 4 4zM4 12c0-2.2 1.8-4 4-4h4v8H8c-2.2 0-4-1.8-4-4zM4 4c0-2.2 1.8-4 4-4h4v8H8C5.8 8 4 6.2 4 4zM12 0h4c2.2 0 4 1.8 4 4s-1.8 4-4 4h-4V0zM20 12c0 2.2-1.8 4-4 4s-4-1.8-4-4 1.8-4 4-4 4 1.8 4 4z"/></svg></a>
+      <a href="https://medium.com/@satheesh.mankulam" target="_blank" class="pj-fs-link"><svg viewBox="0 0 24 24" fill="currentColor" width="15" height="15"><path d="M13.5 12c0 3.6-2.9 6.5-6.5 6.5S.5 15.6.5 12 3.4 5.5 7 5.5s6.5 2.9 6.5 6.5zM20.7 12c0 3.4-1.5 6.1-3.2 6.1S14.2 15.4 14.2 12s1.5-6.1 3.2-6.1 3.3 2.8 3.3 6.1zM23.5 12c0 3-.5 5.4-1.2 5.4-.7 0-1.2-2.4-1.2-5.4s.5-5.4 1.2-5.4c.7 0 1.2 2.4 1.2 5.4z"/></svg></a>
     </div>
   </div>
-
-  <!-- Related -->
-  <div class="art-related">
-    <div class="art-related-label">More from Satheesh</div>
-    <div class="related-links">
-      <a href="case-familydose.html" class="related-link">
-        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" style="width:11px;height:11px"><rect x="2" y="2" width="12" height="12" rx="2"/></svg>
-        FamilyDose Story
-      </a>
-      <a href="case-linked.html" class="related-link">
-        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" style="width:11px;height:11px"><path d="M7 9a3.5 3.5 0 005 0l2-2a3.5 3.5 0 00-5-5L8 3"/><path d="M9 7a3.5 3.5 0 00-5 0L2 9a3.5 3.5 0 005 5l1-1"/></svg>
-        linked Story
-      </a>
-      <a href="index.html#app" class="related-link">
-        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" style="width:11px;height:11px"><rect x="4" y="1" width="8" height="14" rx="2"/><line x1="8" y1="12" x2="8.01" y2="12"/></svg>
-        All Apps
-      </a>
-    </div>
-  </div>
-
-</article>
+  <div class="pj-footer-meta">© 2026 Satheesh Mankulam · UX Designer · Bangalore</div>
+</div>
 
 <script>
-const sun=`<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>`;
-const moon=`<path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>`;
-const themeIc=document.getElementById('themeIc');
-const themeLbl=document.getElementById('themeLbl');
-document.getElementById('themeBtn').addEventListener('click',()=>{
-  const isLight=document.documentElement.getAttribute('data-theme')==='light';
-  const next=isLight?'dark':'light';
-  document.documentElement.setAttribute('data-theme',next);
-  try{localStorage.setItem('portfolio-theme',next);}catch(e){}
-  themeIc.innerHTML=isLight?sun:moon;
-  themeLbl.textContent=isLight?'Light':'Dark';
-});
-(function(){const t=document.documentElement.getAttribute('data-theme');if(t==='light'){themeIc.innerHTML=moon;themeLbl.textContent='Dark';}})();
+const saObs=new IntersectionObserver(e=>e.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');saObs.unobserve(en.target)}}),{threshold:.07});
+document.querySelectorAll('.sa').forEach(el=>saObs.observe(el));
 </script>
 </body>
 </html>
