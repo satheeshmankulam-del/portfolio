@@ -97,7 +97,7 @@ img,svg{display:block}
 .apps-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.4rem}
 .app-card{background:var(--card-bg);border:1px solid var(--border);border-radius:20px;padding:2rem 1.75rem;box-shadow:0 1px 3px rgba(26,31,68,.04);transition:box-shadow .22s ease,transform .22s ease}
 .app-card:hover{box-shadow:0 12px 30px rgba(26,31,68,.11);transform:translateY(-4px)}
-.app-thumb{width:56px;height:56px;border-radius:14px;margin-bottom:1.4rem}
+.app-thumb{width:56px;height:56px;border-radius:14px;margin-bottom:1.4rem;display:block;object-fit:contain}
 .app-name{font-size:1.2rem;font-weight:800;color:var(--navy);margin-bottom:.5rem;letter-spacing:-.01em}
 .app-desc{font-size:.86rem;color:var(--navy-soft);line-height:1.65;margin-bottom:1.1rem}
 .app-badge{font-size:.7rem;font-weight:700;color:#2E9E5B;background:rgba(46,158,91,.1);padding:.22rem .65rem;border-radius:100px;display:inline-block;margin-bottom:.75rem}
@@ -107,7 +107,7 @@ img,svg{display:block}
 
 /* ===== BOOK ===== */
 .book-row{display:flex;gap:2rem;align-items:center;background:var(--card-bg);border-radius:20px;padding:2.2rem;flex-wrap:wrap}
-.book-cover{width:96px;height:130px;border-radius:8px;background:linear-gradient(135deg,var(--g4a),var(--g4b));flex-shrink:0}
+.book-cover{width:104px;height:135px;border-radius:6px;object-fit:cover;display:block;background:#fff;border:1px solid var(--border);box-shadow:0 6px 18px rgba(26,31,68,.12);flex-shrink:0}
 .book-title{font-size:1.2rem;font-weight:800;color:var(--navy);margin-bottom:.55rem}
 .book-desc{font-size:.9rem;color:var(--navy-soft);line-height:1.7;margin-bottom:1rem;max-width:500px}
 
@@ -201,7 +201,7 @@ img,svg{display:block}
       </a>
 
       <a href="case-esanjeevani.html" class="work-card sa">
-        <div class="work-thumb" style="background:linear-gradient(135deg,var(--g5a),var(--g5b))"></div>
+        <div class="work-thumb"><img src="tele.gif" alt="eSanjeevani telemedicine intake flow" loading="lazy"></div>
         <div class="work-card-body"><div class="work-info">
           <div class="work-eyebrow">Healthcare UX · Form Design</div>
           <div class="work-title">The App Asked Everything. The Doctor Asked Nothing.</div>
@@ -210,7 +210,7 @@ img,svg{display:block}
       </a>
 
       <a href="case-google-maps.html" class="work-card sa">
-        <div class="work-thumb" style="background:linear-gradient(135deg,var(--g1a),var(--g1b))"></div>
+        <div class="work-thumb"><img src="maps.gif" alt="Google Maps vehicle profile flow" loading="lazy"></div>
         <div class="work-card-body"><div class="work-info">
           <div class="work-eyebrow">Navigation UX</div>
           <div class="work-title">Google Maps × Android Auto</div>
@@ -218,12 +218,12 @@ img,svg{display:block}
         </div><svg class="work-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
       </a>
 
-      <a href="case-familydose.html" class="work-card sa">
-        <div class="work-thumb" style="background:linear-gradient(135deg,var(--g2a),var(--g2b))"></div>
+      <a href="case-micro-friction.html" class="work-card sa">
+        <div class="work-thumb" style="background:linear-gradient(135deg,var(--g3a),var(--g3b))"></div>
         <div class="work-card-body"><div class="work-info">
-          <div class="work-eyebrow">Product Design · Android App</div>
-          <div class="work-title">FamilyDose — Designers Can Ship. I Did.</div>
-          <div class="work-desc">Designed and shipped an Android app solo — built after a sleepless night with a sick child.</div>
+          <div class="work-eyebrow">Micro-interactions · UX Trust</div>
+          <div class="work-title">What a Download Taught Me About Micro-Friction</div>
+          <div class="work-desc">How the smallest interaction breaks trust built over months.</div>
         </div><svg class="work-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
       </a>
 
@@ -251,28 +251,28 @@ img,svg{display:block}
 
     <div class="apps-grid">
       <div class="app-card sa">
-        <div class="app-thumb" style="background:linear-gradient(135deg,var(--g1a),var(--g1b))"></div>
+        <img class="app-thumb" src="familydose_logo.png" alt="FamilyDose app logo" loading="lazy">
         <span class="app-badge">Live · v7.8</span>
         <div class="app-name">FamilyDose</div>
         <div class="app-desc">Trilingual family medication tracker — built solo, shipped to Play Store.</div>
         <a href="case-familydose.html" class="app-link">Read the story →</a>
       </div>
       <div class="app-card sa">
-        <div class="app-thumb" style="background:linear-gradient(135deg,var(--g2a),var(--g2b))"></div>
+        <img class="app-thumb" src="linked_logo.png" alt="linked app logo" loading="lazy">
         <span class="app-badge">Live · v5.6</span>
         <div class="app-name">linked</div>
         <div class="app-desc">Free visual bookmark manager. Data stays on your device.</div>
         <a href="case-linked.html" class="app-link">Read the story →</a>
       </div>
       <div class="app-card sa">
-        <div class="app-thumb" style="background:linear-gradient(135deg,var(--g3a),var(--g3b))"></div>
+        <img class="app-thumb" src="spendcast_logo.png" alt="SpendCast app logo" loading="lazy">
         <span class="app-badge">Live · v5.7</span>
         <div class="app-name">SpendCast</div>
         <div class="app-desc">Offline budget tracker. No account, no paywall, full history free.</div>
         <a href="case-spendcast.html" class="app-link">Read the story →</a>
       </div>
       <div class="app-card sa">
-        <div class="app-thumb" style="background:linear-gradient(135deg,var(--g4a),var(--g4b))"></div>
+        <img class="app-thumb" src="noctuna_logo.png" alt="Noctuna app logo" loading="lazy">
         <span class="app-badge">Live · v1.0</span>
         <div class="app-name">Noctuna</div>
         <div class="app-desc">Cosy bedtime stories for kids — offline, ad-free, no tracking.</div>
@@ -287,7 +287,7 @@ img,svg{display:block}
   <section class="section">
     <div class="sec-label sa"><span class="sec-num">03</span><span class="sec-name">Published Work</span></div>
     <div class="book-row sa">
-      <div class="book-cover"></div>
+      <img class="book-cover" src="book.jpg" alt="The Psychology of Product Moments — book cover" loading="lazy">
       <div>
         <div class="book-title">The Psychology of Product Moments</div>
         <div class="book-desc">A book exploring the psychological principles behind the small moments that shape how people feel about a product — 10 case studies, published and available now.</div>
