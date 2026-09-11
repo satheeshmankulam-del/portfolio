@@ -5,7 +5,7 @@
 <script>document.documentElement.setAttribute("data-theme","light");</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/png" href="favicon.png">
-<title>I Needed a Budget Tracker. Every Good One Wanted My Bank Login. — Satheesh Mankulam</title>
+<title>I Tracked My Spending for Free. Until I Didn't. — Satheesh Mankulam</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{--font:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;--blue:#1A1F44;--blue-d:#2A3266;--blue-10:rgba(26,31,68,.08);--blue-25:rgba(26,31,68,.22);--mint:#5FA98A;--yellow:#D9A54A;--purple:#7C5CFC;--red:#C0533E}
@@ -122,13 +122,13 @@ a{text-decoration:none;color:inherit}
 <div class="article-wrap">
 
   <div class="pub-badge sa">Medium · App Story</div>
-  <h1 class="article-title sa">I Needed a Budget Tracker. Every Good One Wanted My Bank Login.</h1>
-  <p class="article-subtitle sa">The story behind SpendCast — an offline expense tracker built because personal finance shouldn't require a subscription</p>
+  <h1 class="article-title sa">I Tracked My Spending for Free. Until I Didn't.</h1>
+  <p class="article-subtitle sa">The story behind SpendCast — built because tracking your own money shouldn't cost extra.</p>
 
   <div class="article-tags sa">
     <span class="article-tag">App Story</span>
     <span class="article-tag">Product Design</span>
-    <span class="article-tag">Privacy</span>
+    <span class="article-tag">Paywall UX</span>
     <span class="article-tag">Android</span>
   </div>
 
@@ -136,33 +136,48 @@ a{text-decoration:none;color:inherit}
     <img src="satheesh-photo.jpg" class="author-photo" alt="Satheesh Mankulam">
     <div>
       <div class="author-name">Satheesh Mankulam</div>
-      <div class="author-meta">2026 · 4 min read</div>
+      <div class="author-meta">Jul 2, 2026 · 4 min read</div>
     </div>
   </div>
 
   <div class="art-img sa">
-    <div class="art-img-placeholder"><div class="icon">🖼️</div><div class="hint">Add your SpendCast app screenshot here</div></div>
+    <div class="art-img-placeholder"><div class="icon">🖼️</div><div class="hint">Add your SpendCast hero image here</div></div>
   </div>
 
   <div class="article-body">
 
-    <p class="sa">I track my spending the way most people do.</p>
-    <p class="sa">Badly.</p>
-    <p class="sa">A note here. A screenshot there. A vague mental category called "miscellaneous" that quietly absorbs everything I'd rather not examine too closely. Every few months I'd open a budgeting app, spend twenty minutes setting it up, then abandon it because it wanted to connect to my bank, or asked me to upgrade to see last month's data, or showed me a dashboard so full of graphs I forgot I just wanted to log a coffee.</p>
+    <p class="sa">I track my spending the way most people do. Badly.</p>
 
-    <blockquote class="sa">I didn't want a financial platform. I wanted a tracker.</blockquote>
+    <p class="sa">A note here. A screenshot there. A vague mental category called "miscellaneous" that quietly absorbs everything I'd rather not examine too closely. Every few months I'd open a budgeting app, spend twenty minutes setting it up, and feel good about it for exactly three days.</p>
 
-    <p class="sa">Something I could open, tap a number, and close. Something that told me — clearly, simply — where the money went this month.</p>
-    <p class="sa">I looked. The honest ones required accounts. The free ones were free until they weren't — basic filtering locked behind a paywall, export behind a premium tier, history view cut off at 30 days unless you upgraded. The ones that connected to your bank felt like they needed more trust than I was ready to give an app I'd just downloaded.</p>
+    <p class="sa">Then the paywall would appear.</p>
+
+    <p class="sa">Not on day one — that would be honest. After you've entered your data, built your categories, started to see the picture. <em>Upgrade to see history older than 30 days. Unlock filters with Pro. Export your data — Premium only.</em></p>
+
+    <blockquote class="sa">I was paying to see my own spending.</blockquote>
+
+    <p class="sa">That specific frustration is what SpendCast is about.</p>
+
+    <p class="sa">The apps I tried weren't bad. Some were genuinely well-designed. But almost all of them used the same pattern: give you just enough to feel the value, then lock the part you actually need behind a subscription. Some asked for a social login before you could even start. Some required an account "to sync your data" — data I never asked to sync anywhere.</p>
+
+    <p class="sa"><strong>I didn't want a financial platform. I wanted a tracker.</strong></p>
+
+    <p class="sa">Something I could open, tap a number, and close. Something that told me — clearly, simply — where the money went this month. No sign-up. No cloud. No paying monthly to access a feature that should have been there from the start.</p>
+
     <p class="sa">So I built SpendCast.</p>
 
     <hr class="sa">
 
     <h2 class="sa">The brief I wrote for myself was short</h2>
-    <p class="sa">Log income. Log expenses. Set a budget. See where you stand. Work without internet. Never ask me to log in.</p>
+
+    <p class="sa">Log income. Log expenses. Set a budget. See where you stand. Work without internet. No account required.</p>
+
     <p class="sa">That's it. Four things and a constraint.</p>
+
     <p class="sa">I built it the same way I've built my other apps — React + Vite + Capacitor + Android Studio, with Claude as my coding partner. I've written about this workflow before, when I shipped FamilyDose. I describe what I want in plain language. Claude writes the code. When something breaks — and it always breaks somewhere — I describe what went wrong and we fix it together.</p>
-    <p class="sa">My wife tested it. She always does. She has no patience for flows that aren't obvious, and she'll find every edge case I convinced myself was an edge case. The quick calculator was her idea. <em>"Sometimes I just need to split a bill. I don't want to leave the app to do maths."</em></p>
+
+    <p class="sa">My wife tested it. She always does. She'll find every edge case I convinced myself was an edge case. The quick calculator was her idea. <em>"Sometimes I just need to split a bill. I don't want to leave the app to do maths."</em></p>
+
     <p class="sa">It's in the build now.</p>
 
     <hr class="sa">
@@ -191,6 +206,14 @@ a{text-decoration:none;color:inherit}
         <div class="heur-desc">Your spending habits are private. Nobody else needs to see what you spent money on last Tuesday.</div>
       </div>
       <div class="heur-item sa">
+        <div class="heur-title">Full history. Always.</div>
+        <div class="heur-desc">No 30-day cutoff. No unlock required. Everything you've ever entered is right there.</div>
+      </div>
+      <div class="heur-item sa">
+        <div class="heur-title">Export as a file. Free.</div>
+        <div class="heur-desc">Your data is yours. Export it, back it up, move it wherever you want. Not a premium feature. Just the app doing what it should.</div>
+      </div>
+      <div class="heur-item sa">
         <div class="heur-title">The quick calculator</div>
         <div class="heur-desc">Built in. No switching apps to split a bill or work out a percentage.</div>
       </div>
@@ -203,18 +226,20 @@ a{text-decoration:none;color:inherit}
     <hr class="sa">
 
     <h2 class="sa">Here's something I think about as a designer</h2>
+
     <p class="sa">Most budgeting apps use pricing to segment users. The free tier gives you just enough to feel the value, then locks the part you actually need behind a paywall. It's a deliberate design pattern — and it works for growth metrics.</p>
+
     <p class="sa">But for a tool that's supposed to help you manage money, that model has a specific irony. <strong>The people who most need a good budget tracker are often the ones least able to pay for one.</strong></p>
+
     <p class="sa">I made SpendCast completely free. Not free with limits. Not free with ads. Free.</p>
+
     <p class="sa">Not because I'm against business models — I understand them. But because the core purpose of this tool is to help people understand their finances. Gating that behind a subscription fee contradicts the whole point.</p>
 
     <blockquote class="sa">That's a design decision as much as it is a values one.</blockquote>
 
     <hr class="sa">
 
-    <p class="sa">SpendCast is live on the Play Store.</p>
-    <p class="sa">If you've tried budgeting apps and abandoned them — because they were too complex, too connected, or too expensive to be worth it — SpendCast might be the one that actually sticks.</p>
-    <p class="sa"><strong>No bank login. No subscription. No data leaving your phone.</strong></p>
+    <h2 class="sa">SpendCast is live on the Play Store</h2>
 
     <div class="fix-list">
       <div class="fix-item sa">
@@ -223,7 +248,17 @@ a{text-decoration:none;color:inherit}
       </div>
     </div>
 
-    <p class="sa"><em>SpendCast is live on Google Play. Built by a UX designer, for people who just want to know where their money went.</em></p>
+    <p class="sa">If you've tried budgeting apps and abandoned them — because they locked the useful parts, asked you to sign up before you'd seen anything, or charged you to export your own data — SpendCast might be the one that actually sticks.</p>
+
+    <p class="sa"><strong>No account. No paywall. No data leaving your phone.</strong></p>
+
+    <p class="sa"><em>Built by a UX designer, for people who just want to know where their money went.</em></p>
+
+    <p class="sa">Drop your feedback on Google Play Store or at <a href="mailto:appfeedback.satheesh@gmail.com" style="color:var(--blue);font-weight:700;text-decoration:underline">appfeedback.satheesh@gmail.com</a></p>
+
+    <div class="art-img sa">
+      <div class="art-img-placeholder"><div class="icon">🖼️</div><div class="hint">Add your closing image here</div></div>
+    </div>
 
   </div>
 
