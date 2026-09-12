@@ -46,6 +46,9 @@ a{text-decoration:none;color:inherit}
 
 .art-img{background:var(--bg-el);border:1px solid var(--border);border-radius:14px;aspect-ratio:16/9;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem;margin:1.75rem 0;overflow:hidden;position:relative}
 .art-img img{width:100%;height:100%;object-fit:cover;border-radius:14px}
+.art-img.natural{aspect-ratio:auto;background:none;border:none;padding:0;display:block}
+.art-img.natural img{width:100%;height:auto;object-fit:contain;border-radius:14px;display:block}
+.art-cap{font-size:.78rem;color:var(--subtle);text-align:center;margin-top:.6rem;line-height:1.5}
 .art-img-placeholder{text-align:center}
 .art-img-placeholder .icon{font-size:1.5rem;opacity:.35;margin-bottom:.35rem}
 .art-img-placeholder .hint{font-size:.72rem;color:var(--subtle)}
@@ -140,8 +143,8 @@ a{text-decoration:none;color:inherit}
     </div>
   </div>
 
-  <div class="art-img sa" style="aspect-ratio:auto;background:none;border:none">
-    <img src="tele.gif" alt="eSanjeevani consultation intake flow — Chief complaints screen" style="height:auto;object-fit:contain">
+  <div class="art-img natural sa">
+    <img src="esanjeevani-feature.gif" alt="eSanjeevani chief complaints chat — question after question before a doctor is reached">
   </div>
 
   <div class="article-body">
@@ -152,6 +155,11 @@ a{text-decoration:none;color:inherit}
     <p class="sa">I found my patient card. I tapped Chief Complaints. A friendly chat window slid up — orange bubbles from the app, blue bubbles from me. It felt approachable. Like texting.</p>
     <p class="sa">Then it asked me a question. I answered. It asked another. I answered.</p>
     <p class="sa">Then it kept asking.</p>
+
+    <div class="art-img natural sa">
+      <img src="esanjeevani-symptom-chat.gif" alt="eSanjeevani symptom questionnaire cycling through follow-up questions" loading="lazy">
+      <div class="art-cap">The intake chat keeps asking — each answer opens another question.</div>
+    </div>
 
     <h3 class="sa">The Questions</h3>
 
@@ -173,6 +181,11 @@ a{text-decoration:none;color:inherit}
 
     <p class="sa">Fifteen questions answered. Still 5%. The one signal that was supposed to say "you're getting there" sat frozen — quietly insisting I had done almost nothing.</p>
 
+    <div class="art-img natural sa">
+      <img src="esanjeevani-symptom-tree.webp" alt="eSanjeevani chief complaints screens asking duration and frequency of loose motion" loading="lazy">
+      <div class="art-cap">The symptom tree: duration, then frequency, then more.</div>
+    </div>
+
     <h3 class="sa">The Doubt</h3>
     <p class="sa">I finished the Loose Motion section. Then a doubt crept in — did that just save? Or did I answer the same disease history twice? There was no confirmation. No little "saved" tick. So I did the natural thing. I closed the popup to check.</p>
     <p class="sa">The screen turned red.</p>
@@ -181,8 +194,9 @@ a{text-decoration:none;color:inherit}
     <p class="sa">I had no other option but to keep going. So I added my second symptom — vomiting.</p>
     <p class="sa">And the whole thing started again. Since when. How many times. What's in it. What type. What happens before. Symptoms of dehydration. Another full bundle of endless questions, with the score still refusing to move.</p>
 
-    <div class="art-img sa">
-      <div class="art-img-placeholder"><div class="icon">🖼️</div><div class="hint">Add your symptom-tree screenshot here</div></div>
+    <div class="art-img natural sa">
+      <img src="esanjeevani-errors.webp" alt="eSanjeevani error banners — query error and not found — during the intake form" loading="lazy">
+      <div class="art-cap">Errors arrive at the top and vanish, with no way back to what failed.</div>
     </div>
 
     <h3 class="sa">The Silence Has a Cousin: The Endless</h3>
@@ -201,8 +215,9 @@ a{text-decoration:none;color:inherit}
     <p class="sa">The screen went orange. A profile photo. Dr. _______________. Ringing… A countdown: 36.</p>
     <p class="sa">It worked. I reached a doctor.</p>
 
-    <div class="art-img sa">
-      <div class="art-img-placeholder"><div class="icon">🖼️</div><div class="hint">Add your call-connecting screenshot here</div></div>
+    <div class="art-img natural sa">
+      <img src="esanjeevani-call-ringing.webp" alt="eSanjeevani case form completed and the consultation call ringing" loading="lazy">
+      <div class="art-cap">After the full form, the call finally rings.</div>
     </div>
 
     <h3 class="sa">And Then Nothing Happened</h3>
