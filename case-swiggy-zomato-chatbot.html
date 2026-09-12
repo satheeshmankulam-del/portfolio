@@ -32,6 +32,9 @@ a{text-decoration:none;color:inherit}
 .article-tag{font-size:.68rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--blue);background:var(--blue-10);padding:.2rem .55rem;border-radius:100px}
 .featured-img{width:100%;border-radius:12px;margin-bottom:2.5rem;display:block;max-height:none;object-fit:contain}
 
+.art-fig{margin:1.9rem 0}
+.art-fig img{width:100%;height:auto;border-radius:12px;display:block}
+.art-cap{font-size:.78rem;color:var(--subtle);text-align:center;margin-top:.6rem;line-height:1.5}
 .article-body{font-size:1.05rem;line-height:1.85;color:var(--text)}
 .article-body p{margin-bottom:1.4rem}
 .article-body h2{font-size:1.5rem;font-weight:700;color:var(--text);margin:2.5rem 0 1rem;letter-spacing:-.012em}
@@ -204,6 +207,8 @@ footer{padding:1.5rem clamp(1.5rem,5vw,4rem);border-top:1px solid var(--border);
     </div>
   </div>
 
+  <img src="chatbot-feature.gif" class="featured-img sa d3" alt="Support chat where the reply never resolves the problem">
+
   <div class="article-body">
 
     <p class="sa">I've spent the last few weeks going back and forth with two chatbots that never really talked to me. One kept pushing a delivery time further and further away every time I asked. The other one let my order get marked "delivered" when it wasn't, then handed me off between agents who couldn't see what the last agent had already promised — until Zomato's own email team told me the order was fine and I was wrong.</p>
@@ -216,6 +221,11 @@ footer{padding:1.5rem clamp(1.5rem,5vw,4rem);border-top:1px solid var(--border);
     <p class="sa">And I'm not the only one who's noticed the gap. Independent reporting (Moneycontrol, via Storyboard18) documents the same complaint across both platforms: the chatbot handles standard, scripted situations fine, and stalls — often with no visible way to reach a human — the moment the issue doesn't fit a preset category. That's not an isolated bad day. That's a boundary someone drew on purpose.</p>
 
     <h3 class="sa">Case 1: Swiggy — The Delay That Never Actually Resolves</h3>
+    <div class="art-fig sa">
+      <img src="swiggy-delay-loop.gif" alt="Swiggy support chat repeating the same delay reply as the user asks again" loading="lazy">
+      <div class="art-cap">Ask again, get the same answer — the loop with no exit.</div>
+    </div>
+
     <p class="sa">Here's what happened, in order:</p>
 
     <div class="flow-steps sa">
@@ -282,6 +292,11 @@ footer{padding:1.5rem clamp(1.5rem,5vw,4rem);border-top:1px solid var(--border);
     <p class="sa">More than 24 hours after I wrote in to their support email, I finally got a reply. It said Zomato found no discrepancy — the order was delivered — flatly contradicting what two live agents had already acknowledged to my face.</p>
 
     <h3 class="sa">The Breakdown, Mapped to What's Actually Broken</h3>
+    <div class="art-fig sa">
+      <img src="chatbot-add-comment.gif" alt="Support chat closed for inactivity while the issue is still open" loading="lazy">
+      <div class="art-cap">The conversation closes itself — the problem does not.</div>
+    </div>
+
 
     <div class="ux-analysis-list">
       <div class="ux-item sa">
@@ -306,6 +321,11 @@ footer{padding:1.5rem clamp(1.5rem,5vw,4rem);border-top:1px solid var(--border);
       </div>
     </div>
 
+    <div class="art-fig sa">
+      <img src="zomato-order-vanished.gif" alt="Order marked arrived early, then a prompt to rate the order that never came" loading="lazy">
+      <div class="art-cap">Marked delivered, then rated — the record closes over the gap.</div>
+    </div>
+
     <h3 class="sa">The Pattern Underneath Both Stories</h3>
     <p class="sa">Strip the surface differences away — a delay dispute versus a phantom delivery — and I was dealing with the same architecture both times:</p>
 
@@ -324,6 +344,11 @@ footer{padding:1.5rem clamp(1.5rem,5vw,4rem);border-top:1px solid var(--border);
     </div>
 
     <h3 class="sa">What I'd Fix</h3>
+    <div class="art-fig sa">
+      <img src="chatbot-fix-proposal.gif" alt="Support chat offering a clear choice between calling and chatting with an agent" loading="lazy">
+      <div class="art-cap">What it could be: a real route to a person, offered up front.</div>
+    </div>
+
 
     <div class="solution-list">
       <div class="solution-item sa">

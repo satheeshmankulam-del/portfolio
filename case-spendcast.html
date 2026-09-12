@@ -46,6 +46,9 @@ a{text-decoration:none;color:inherit}
 
 .art-img{background:var(--bg-el);border:1px solid var(--border);border-radius:14px;aspect-ratio:16/9;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem;margin:1.75rem 0;overflow:hidden;position:relative}
 .art-img img{width:100%;height:100%;object-fit:cover;border-radius:14px}
+.art-img.natural{aspect-ratio:auto;background:none;border:none;padding:0;display:block}
+.art-img.natural img{width:100%;height:auto;object-fit:contain;border-radius:14px;display:block}
+.art-cap{font-size:.78rem;color:var(--subtle);text-align:center;margin-top:.6rem;line-height:1.5}
 .art-img-placeholder{text-align:center}
 .art-img-placeholder .icon{font-size:1.5rem;opacity:.35;margin-bottom:.35rem}
 .art-img-placeholder .hint{font-size:.72rem;color:var(--subtle)}
@@ -140,8 +143,8 @@ a{text-decoration:none;color:inherit}
     </div>
   </div>
 
-  <div class="art-img sa">
-    <div class="art-img-placeholder"><div class="icon">🖼️</div><div class="hint">Add your SpendCast hero image here</div></div>
+  <div class="art-img natural sa">
+    <img src="spendcast-feature.gif" alt="Budgeting app hiding the monthly tracker behind a Subscribe button">
   </div>
 
   <div class="article-body">
@@ -184,9 +187,6 @@ a{text-decoration:none;color:inherit}
 
     <h2 class="sa">The features that made it are the ones that came from real friction</h2>
 
-    <div class="art-img sa">
-      <div class="art-img-placeholder"><div class="icon">🖼️</div><div class="hint">Add your SpendCast feature screenshots here</div></div>
-    </div>
 
     <div class="heur-grid">
       <div class="heur-item sa">
@@ -256,8 +256,9 @@ a{text-decoration:none;color:inherit}
 
     <p class="sa">Drop your feedback on Google Play Store or at <a href="mailto:appfeedback.satheesh@gmail.com" style="color:var(--blue);font-weight:700;text-decoration:underline">appfeedback.satheesh@gmail.com</a></p>
 
-    <div class="art-img sa">
-      <div class="art-img-placeholder"><div class="icon">🖼️</div><div class="hint">Add your closing image here</div></div>
+    <div class="art-img natural sa">
+      <img src="spendcast-playstore.webp" alt="SpendCast: Budget Tracker on the Google Play Store" loading="lazy">
+      <div class="art-cap">SpendCast on the Play Store — free, no account, no paywall.</div>
     </div>
 
   </div>
