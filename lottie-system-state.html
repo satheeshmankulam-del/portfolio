@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/png" href="favicon.png">
-<title>System State &amp; Data Management Pack — Free Lottie Animations | Satheesh Mankulam</title>
-<meta name="description" content="9 free Lottie animations for system states and data management — disk full, data corrupted, backup, export, secure, trash, folder access, storage and archive retrieval. Free JSON download with credit.">
+<title>System State &amp; Data Management Pack — Lottie Animations | Satheesh Mankulam</title>
+<meta name="description" content="9 Lottie animations for system states and data management — disk full, data corrupted, backup, export, secure, trash, folder access, storage and archive retrieval. Designed and animated by Satheesh Mankulam.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -47,7 +47,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .icon-card:hover{box-shadow:0 12px 30px rgba(26,31,68,.11);transform:translateY(-3px)}
 .stage{background:var(--stage);border:1px solid var(--border);border-radius:13px;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;overflow:hidden;transition:background .25s}
 .stage > div{width:100%;height:100%}
-.stage.failed::after{content:"Preview unavailable — download the file";font-size:.72rem;color:var(--muted);text-align:center;padding:1rem;line-height:1.5}
+.stage.failed::after{content:"Preview unavailable";font-size:.72rem;color:var(--muted);text-align:center;padding:1rem;line-height:1.5}
 .icon-meta{display:flex;align-items:flex-start;justify-content:space-between;gap:.6rem;margin-top:.95rem}
 .icon-name{font-size:.92rem;font-weight:700;color:var(--navy)}
 .icon-use{font-size:.75rem;color:var(--muted);margin-top:.15rem;line-height:1.5}
@@ -88,7 +88,7 @@ footer{padding:2.5rem clamp(1.25rem,5vw,3.5rem);border-top:1px solid var(--borde
   <div class="page-head">
     <div class="page-eye sa">Lottie Pack · 9 animations</div>
     <h1 class="page-title sa">System State &amp; Data Management Pack</h1>
-    <p class="page-sub sa">The moments products usually handle badly — a disk filling up, a file that won't open, a backup running, something moved to trash. Free to download and use in any project, with credit.</p>
+    <p class="page-sub sa">The moments products usually handle badly — a disk filling up, a file that won't open, a backup running, something moved to trash. Designed and animated for real product moments.</p>
   </div>
 
   <div class="toolbar sa">
@@ -100,19 +100,18 @@ footer{padding:2.5rem clamp(1.25rem,5vw,3.5rem);border-top:1px solid var(--borde
         <button class="bg-opt" data-bg="#E6E9F5">Tinted</button>
       </div>
     </div>
-    <a href="lottie/system-state-pack.zip" download class="dl-all">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M12 3v12M7 12l5 5 5-5M4 21h16"/></svg>
-      Download all 9
+    <a href="mailto:satheesh.mankulam@gmail.com?subject=System%20State%20Lottie%20pack%20-%20licensing" class="dl-all">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+      Enquire about licensing
     </a>
   </div>
 
   <div class="icon-grid" id="grid"></div>
 
   <div class="use-note sa">
-    <h2>Using these files</h2>
-    <p>Each animation is a Lottie JSON under 30 KB. Drop the file into a web project with the Lottie player, or into an Android or iOS app with the native Lottie library. They're vector, so they stay sharp at any size, and you can recolour them in LottieFiles Editor or After Effects.</p>
-    <p><strong>Free for personal and commercial work, with credit.</strong> Please credit "Satheesh Mankulam" with a link back to satheeshmankulam.com wherever the animation appears — in your app's about or credits screen, your site footer, or the project post.</p>
-    <p>Need a licence without credit, or have a question about using these? Email me at <a href="mailto:satheesh.mankulam@gmail.com" style="color:var(--navy);font-weight:700">satheesh.mankulam@gmail.com</a>.</p>
+    <h2>About this pack</h2>
+    <p>Each animation is built in After Effects and exported as Lottie, so it stays sharp at any size and runs in web, Android and iOS apps.</p>
+    <p>These are previews, not free downloads. The pack is being prepared for release on stock marketplaces. For licensing, early access, or custom animation work, email <a href="mailto:satheesh.mankulam@gmail.com" style="color:var(--navy);font-weight:700">satheesh.mankulam@gmail.com</a>.</p>
   </div>
 </div>
 
@@ -149,15 +148,12 @@ ICONS.forEach((icon, i) => {
         <button class="act" data-replay="${i}" title="Replay" aria-label="Replay ${icon.name}">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M21 12a9 9 0 11-3-6.7M21 4v5h-5"/></svg>
         </button>
-        <a class="act" href="lottie/${icon.file}" download title="Download JSON" aria-label="Download ${icon.name}">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M12 3v12M7 12l5 5 5-5M4 21h16"/></svg>
-        </a>
       </div>
     </div>`;
   grid.appendChild(card);
 
-  // Load the animation. If the player or the file fails, the card still shows
-  // the name and a working download link.
+  // Load the animation. If the player or the file fails, the card still
+  // shows the name and its use case.
   let anim = null;
   try {
     anim = lottie.loadAnimation({
