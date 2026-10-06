@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="favicon.png">
+<title>Space Icons (Stroke Based) — Lottie Animations | Satheesh Mankulam</title>
+<meta name="description" content="5 stroke-based Lottie space icons — comet, telescope, galaxy, rocket and constellation. Designed and animated by Satheesh Mankulam.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FFFFFF;--navy:#1A1F44;--navy-soft:#565C82;--muted:#8A8FB0;--border:rgba(26,31,68,.1);--card-bg:#F7F7FA;
+  --stage:#FFFFFF;
+  --font:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-font-smoothing:antialiased;scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--bg);color:var(--navy);min-height:100vh;line-height:1.5}
+a{text-decoration:none;color:inherit}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+
+.nav{padding:1.5rem clamp(1.25rem,5vw,3.5rem)}
+.nav-inner{max-width:1120px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.nav-logo{display:flex;align-items:center;gap:.6rem}
+.nav-mark{width:34px;height:34px;border-radius:9px;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:800}
+.nav-name{font-size:1rem;font-weight:700;color:var(--navy)}
+.nav-back{font-size:.85rem;font-weight:700;color:var(--navy);display:flex;align-items:center;gap:.4rem}
+
+.wrap{max-width:1120px;margin:0 auto;padding:0 clamp(1.25rem,5vw,3.5rem)}
+.page-head{padding:clamp(2.5rem,6vw,4rem) 0 2rem;max-width:680px}
+.page-eye{font-size:.82rem;font-weight:700;color:var(--muted);margin-bottom:.9rem}
+.page-title{font-size:clamp(1.9rem,4.2vw,2.8rem);font-weight:800;letter-spacing:-.02em;line-height:1.1;margin-bottom:.9rem}
+.page-sub{font-size:1rem;color:var(--navy-soft);line-height:1.75}
+
+.toolbar{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;padding-bottom:1.6rem;border-bottom:1px solid var(--border);margin-bottom:2rem}
+.bg-switch{display:flex;align-items:center;gap:.55rem;font-size:.8rem;color:var(--navy-soft)}
+.bg-opts{display:flex;gap:3px;background:var(--card-bg);border-radius:100px;padding:3px}
+.bg-opt{font-size:.78rem;font-weight:600;padding:.4rem .9rem;border-radius:100px;color:var(--navy-soft)}
+.bg-opt.on{background:#fff;color:var(--navy);font-weight:700;box-shadow:0 1px 3px rgba(26,31,68,.1)}
+.dl-all{display:inline-flex;align-items:center;gap:.45rem;font-size:.85rem;font-weight:700;color:#fff;background:var(--navy);padding:.75rem 1.4rem;border-radius:100px;transition:all .18s}
+.dl-all:hover{background:#2A3266;transform:translateY(-2px);box-shadow:0 8px 20px rgba(26,31,68,.22)}
+
+.icon-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.3rem;padding-bottom:3rem}
+.icon-card{background:var(--card-bg);border:1px solid var(--border);border-radius:18px;padding:1.1rem;transition:box-shadow .22s ease,transform .22s ease}
+.icon-card:hover{box-shadow:0 12px 30px rgba(26,31,68,.11);transform:translateY(-3px)}
+.stage{background:var(--stage);border:1px solid var(--border);border-radius:13px;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;overflow:hidden;transition:background .25s}
+.stage > div{width:100%;height:100%}
+.stage.failed::after{content:"Preview unavailable";font-size:.72rem;color:var(--muted);text-align:center;padding:1rem;line-height:1.5}
+.icon-meta{display:flex;align-items:flex-start;justify-content:space-between;gap:.6rem;margin-top:.95rem}
+.icon-name{font-size:.92rem;font-weight:700;color:var(--navy)}
+.icon-use{font-size:.75rem;color:var(--muted);margin-top:.15rem;line-height:1.5}
+.icon-acts{display:flex;gap:.35rem;flex-shrink:0}
+.act{width:31px;height:31px;border-radius:9px;background:#fff;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--navy-soft);transition:all .18s}
+.act:hover{color:var(--navy);border-color:var(--navy);transform:translateY(-2px)}
+
+.use-note{background:var(--card-bg);border-radius:16px;padding:1.6rem 1.8rem;margin-bottom:3.5rem}
+.use-note h2{font-size:1rem;font-weight:800;margin-bottom:.6rem}
+.use-note p{font-size:.88rem;color:var(--navy-soft);line-height:1.75;margin-bottom:.8rem}
+.use-note p:last-child{margin-bottom:0}
+
+footer{padding:2.5rem clamp(1.25rem,5vw,3.5rem);border-top:1px solid var(--border);text-align:center;font-size:.78rem;color:var(--muted)}
+.sa{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
+.sa.in{opacity:1;transform:translateY(0)}
+@media(max-width:820px){.icon-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.icon-grid{grid-template-columns:1fr}}
+</style>
+<!-- Microsoft Clarity — heatmaps & session recordings. -->
+<script type="text/javascript">
+(function(c,l,a,r,i,t,y){
+  c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+  t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+  y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+})(window, document, "clarity", "script", "ygypbst024");
+</script>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><div class="nav-mark">SM</div><span class="nav-name">Satheesh Mankulam</span></a>
+    <a href="lottie.html" class="nav-back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Motion Library</a>
+  </div>
+</nav>
+
+<div class="wrap">
+  <div class="page-head">
+    <div class="page-eye sa">Lottie Pack · 5 animations</div>
+    <h1 class="page-title sa">Space Icons (Stroke Based)</h1>
+    <p class="page-sub sa">A comet streaking past, a telescope tilting to look, a galaxy turning, a rocket lifting off, a constellation drawing itself. One stroke weight across the set, built for interface use.</p>
+  </div>
+
+  <div class="toolbar sa">
+    <div class="bg-switch">
+      Background
+      <div class="bg-opts">
+        <button class="bg-opt on" data-bg="#FFFFFF">White</button>
+        <button class="bg-opt" data-bg="#F1F2F7">Grey</button>
+        <button class="bg-opt" data-bg="#E6E9F5">Tinted</button>
+      </div>
+    </div>
+    <a href="mailto:satheesh.mankulam@gmail.com?subject=Space%20Icons%20pack%20-%20licensing" class="dl-all">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+      Enquire about licensing
+    </a>
+  </div>
+
+  <div class="icon-grid" id="grid"></div>
+
+  <div class="use-note sa">
+    <h2>About this pack</h2>
+    <p>Each animation is built in After Effects and exported as Lottie, so it stays sharp at any size and runs in web, Android and iOS apps.</p>
+    <p>These are previews, not free downloads. The pack is being prepared for release on stock marketplaces. For licensing, early access, or custom animation work, email <a href="mailto:satheesh.mankulam@gmail.com" style="color:var(--navy);font-weight:700">satheesh.mankulam@gmail.com</a>.</p>
+  </div>
+</div>
+
+<footer>Satheesh Mankulam · Product Designer · Bangalore</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.13.0/lottie_svg.min.js"></script>
+<script>
+const ICONS = [
+  {file:'comet.json',     name:'Comet',     use:'Speed, launch, something passing'},
+  {file:'telescope.json', name:'Telescope', use:'Search, discover, look ahead'},
+  {file:'galaxy.json',    name:'Galaxy',    use:'Scale, exploration, loading'},
+  {file:'rocket.json',    name:'Rocket',    use:'Launch, upgrade, getting started'},
+  {file:'constellation.json',name:'Constellation',use:'Connections, mapping, patterns'}
+];
+
+const grid = document.getElementById('grid');
+const players = [];
+
+ICONS.forEach((icon, i) => {
+  const card = document.createElement('div');
+  card.className = 'icon-card sa';
+  card.innerHTML = `
+    <div class="stage"><div id="stage-${i}"></div></div>
+    <div class="icon-meta">
+      <div>
+        <div class="icon-name">${icon.name}</div>
+        <div class="icon-use">${icon.use}</div>
+      </div>
+      <div class="icon-acts">
+        <button class="act" data-replay="${i}" title="Replay" aria-label="Replay ${icon.name}">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M21 12a9 9 0 11-3-6.7M21 4v5h-5"/></svg>
+        </button>
+      </div>
+    </div>`;
+  grid.appendChild(card);
+
+  // Load the animation. If the player or the file fails, the card still
+  // shows the name and its use case.
+  let anim = null;
+  try {
+    anim = lottie.loadAnimation({
+      container: document.getElementById('stage-' + i),
+      renderer: 'svg',
+      loop: true,
+      autoplay: false,
+      path: 'lottie/' + icon.file
+    });
+    anim.addEventListener('data_failed', () => card.querySelector('.stage').classList.add('failed'));
+  } catch (e) {
+    card.querySelector('.stage').classList.add('failed');
+  }
+  players.push(anim);
+
+  card.querySelector('[data-replay]').addEventListener('click', () => {
+    if (anim) { anim.goToAndPlay(0, true); }
+  });
+});
+
+// Play only what's on screen, so nine loops don't run at once on a phone
+const playObs = new IntersectionObserver(entries => {
+  entries.forEach(en => {
+    const i = [...grid.children].indexOf(en.target);
+    const anim = players[i];
+    if (!anim) return;
+    en.isIntersecting ? anim.play() : anim.pause();
+  });
+}, {threshold: .25});
+[...grid.children].forEach(c => playObs.observe(c));
+
+// Background switcher
+document.querySelectorAll('.bg-opt').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.bg-opt').forEach(b => b.classList.remove('on'));
+    btn.classList.add('on');
+    document.documentElement.style.setProperty('--stage', btn.dataset.bg);
+  });
+});
+
+const saObs = new IntersectionObserver(e => e.forEach(en => {
+  if (en.isIntersecting) { en.target.classList.add('in'); saObs.unobserve(en.target); }
+}), {threshold:.08});
+document.querySelectorAll('.sa').forEach(el => saObs.observe(el));
+</script>
+</body>
+</html>
