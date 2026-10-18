@@ -95,14 +95,15 @@ img,svg{display:block}
 @media(max-width:560px){.writing-item{grid-template-columns:64px 1fr}.writing-thumb{width:64px;height:64px}}
 
 /* ===== APPS — vector cards (side projects style) ===== */
-.apps-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.4rem}
-.app-card{background:var(--card-bg);border:1px solid var(--border);border-radius:20px;padding:2rem 1.75rem;box-shadow:0 1px 3px rgba(26,31,68,.04);transition:box-shadow .22s ease,transform .22s ease}
+.apps-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1.1rem}
+.app-card{background:var(--card-bg);border:1px solid var(--border);border-radius:20px;padding:1.6rem 1.3rem;box-shadow:0 1px 3px rgba(26,31,68,.04);transition:box-shadow .22s ease,transform .22s ease}
 .app-card:hover{box-shadow:0 12px 30px rgba(26,31,68,.11);transform:translateY(-4px)}
 .app-thumb{width:56px;height:56px;border-radius:14px;margin-bottom:1.4rem;display:block;object-fit:contain}
-.app-name{font-size:1.2rem;font-weight:800;color:var(--navy);margin-bottom:.5rem;letter-spacing:-.01em}
-.app-desc{font-size:.86rem;color:var(--navy-soft);line-height:1.65;margin-bottom:1.1rem}
+.app-name{font-size:1.08rem;font-weight:800;color:var(--navy);margin-bottom:.5rem;letter-spacing:-.01em}
+.app-desc{font-size:.82rem;color:var(--navy-soft);line-height:1.65;margin-bottom:1.1rem}
 .app-badge{font-size:.7rem;font-weight:700;color:#2E9E5B;background:rgba(46,158,91,.1);padding:.22rem .65rem;border-radius:100px;display:inline-block;margin-bottom:.75rem}
 .app-link{font-size:.85rem;font-weight:700;color:var(--navy);display:inline-flex;align-items:center;gap:.3rem}
+@media(max-width:1060px){.apps-grid{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:820px){.apps-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:480px){.apps-grid{grid-template-columns:1fr}}
 
@@ -355,6 +356,13 @@ img,svg{display:block}
         <div class="app-name">Noctuna</div>
         <div class="app-desc">Cosy bedtime stories for kids — offline, ad-free, no tracking.</div>
         <a href="https://play.google.com/store/apps/details?id=com.satheesh.noctuna" target="_blank" class="app-link">View on Play Store →</a>
+      </div>
+      <div class="app-card sa">
+        <img class="app-thumb" src="rotawake_logo.png" alt="RotaWake app logo" loading="lazy">
+        <span class="app-badge">Live · v1.1</span>
+        <div class="app-name">RotaWake</div>
+        <div class="app-desc">Shift pattern calendar — set it once, see months ahead. Offline, no account.</div>
+        <a href="https://play.google.com/store/apps/details?id=com.satheesh.roster" target="_blank" rel="noopener" class="app-link">View on Play Store →</a>
       </div>
     </div>
   </section>
